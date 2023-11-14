@@ -12,6 +12,22 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
 - TBD
 
+## Tech Stack
+
+- [Postcss Normalise](https://github.com/csstools/postcss-normalize)
+- BrowserList
+- Normalize CSS
+
+- [React](https://react.dev/)
+- [ThreeJS](https://threejs.org/)
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/)
+- [Drei](https://drei.pmnd.rs/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+- Meta
+  - [Vite](https://vitejs.dev/guide/)
+  - [SWC](https://swc.rs/)
+
 ## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
