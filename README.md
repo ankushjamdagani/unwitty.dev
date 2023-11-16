@@ -27,6 +27,7 @@ Personal portfolio 3D experience based on `react-three-fiber`
 - Meta
   - [Vite](https://vitejs.dev/guide/)
   - [SWC](https://swc.rs/)
+  - [vite-pwa](https://vite-pwa-org.netlify.app/)
 
 ## React + TypeScript + Vite
 
