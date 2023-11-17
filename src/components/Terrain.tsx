@@ -1,4 +1,5 @@
 import { useTexture } from "@react-three/drei";
+import { RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -30,27 +31,32 @@ export default function Terrain() {
   texture.map.wrapS = THREE.RepeatWrapping;
   texture.map.wrapT = THREE.RepeatWrapping;
 
-  const { repeatTexture, color, displacementScale } = useControls("Terrain", {
-    repeatTexture: { value: [20, 20] },
-    color: "white",
-    displacementScale: 4,
-  });
+  const { repeatTexture, color, displacementScale, displacementBias } =
+    useControls("Terrain", {
+      repeatTexture: { value: [20, 20] },
+      color: "white",
+      displacementBias: -2,
+      displacementScale: 4,
+    });
 
   return (
-    <mesh
-      ref={terrainRef}
-      receiveShadow
-      position={[0, 0, 0]}
-      rotation-x={-Math.PI / 2}
-    >
-      <planeGeometry args={[64, 64, 256, 256]} />
-      <meshStandardMaterial
-        // {...texture}
-        // displacementScale={displacementScale}
-        // map-repeat={repeatTexture}
-        color={color}
-        transparent
-      />
-    </mesh>
+    <RigidBody type="fixed">
+      <mesh
+        ref={terrainRef}
+        receiveShadow
+        position={[0, 0, 0]}
+        rotation-x={-Math.PI / 2}
+      >
+        <planeGeometry args={[64, 64, 256, 256]} />
+        <meshStandardMaterial
+          {...texture}
+          displacementScale={displacementScale}
+          displacementBias={displacementBias}
+          map-repeat={repeatTexture}
+          color={color}
+          transparent
+        />
+      </mesh>
+    </RigidBody>
   );
 }

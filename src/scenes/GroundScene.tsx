@@ -1,5 +1,6 @@
 import Terrain from "../components/Terrain";
 import { Sky } from "@react-three/drei";
+import { Physics, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 
 function GroundScene() {
@@ -8,17 +9,21 @@ function GroundScene() {
   });
 
   const { position: ballPosition } = useControls("ball", {
-    position: { value: [0, 4, 0] },
+    position: { value: [0, 10, 0] },
   });
 
   return (
     <>
       <Sky sunPosition={sunPosition} />
-      <Terrain />
-      <mesh position={ballPosition} castShadow>
-        <sphereGeometry />
-        <meshStandardMaterial color={"yellow"} />
-      </mesh>
+      <Physics debug>
+        <Terrain />
+        <RigidBody>
+          <mesh position={ballPosition} castShadow>
+            <sphereGeometry />
+            <meshStandardMaterial color={"yellow"} />
+          </mesh>
+        </RigidBody>
+      </Physics>
     </>
   );
 }
