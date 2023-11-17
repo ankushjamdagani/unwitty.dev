@@ -43,7 +43,7 @@ export default function Terrain() {
       position={[0, 0, 0]}
       rotation-x={-Math.PI / 2}
     >
-      <planeGeometry args={[64, 64, 128, 128]} />
+      <planeGeometry args={[64, 64, 256, 256]} />
       <meshStandardMaterial
         {...texture}
         displacementScale={displacementScale}
