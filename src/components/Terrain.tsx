@@ -3,40 +3,21 @@ import { RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 import { useRef } from "react";
 import * as THREE from "three";
-
-const textures = {
-  brown_mud: {
-    map: "./textures/brown_mud/brown_mud_leaves_01_diff_1k.jpg",
-    displacementMap: "./textures/cloud.jpeg",
-    // displacementMap: "./textures/brown_mud/brown_mud_leaves_01_disp_1k.jpg",
-    // normalMap: "./textures/brown_mud/brown_mud_leaves_01_nor_gl_1k.jpg",
-    // aoMap: "./textures/brown_mud/brown_mud_leaves_01_arm_1k.jpg",
-    // roughnessMap: "./textures/brown_mud/brown_mud_leaves_01_arm_1k.jpg",
-    // metalnessMap: "./textures/brown_mud/brown_mud_leaves_01_arm_1k.jpg",
-  },
-  grass: {
-    map: "./textures/grass/grass_medium_01_diff_4k.jpg",
-    alphaMap: "./textures/grass/grass_medium_01_alpha_4k.jpg",
-    normalMap: "./textures/grass/grass_medium_01_nor_gl_4k.jpg",
-    aoMap: "./textures/grass/grass_medium_01_arm_4k.jpg",
-    roughnessMap: "./textures/grass/grass_medium_01_arm_4k.jpg",
-    metalnessMap: "./textures/grass/grass_medium_01_arm_4k.jpg",
-  },
-};
+import Textures from "../resources/textures";
 
 export default function Terrain() {
   const terrainRef = useRef();
 
-  const texture = useTexture(textures["brown_mud"]);
+  const texture = useTexture(Textures["brown_mud"]);
   texture.map.wrapS = THREE.RepeatWrapping;
   texture.map.wrapT = THREE.RepeatWrapping;
 
   const { repeatTexture, color, displacementScale, displacementBias } =
     useControls("Terrain", {
       repeatTexture: { value: [20, 20] },
-      color: "white",
-      displacementBias: -2,
-      displacementScale: 4,
+      color: "#b8ff1b",
+      displacementBias: -5,
+      displacementScale: 6,
     });
 
   return (
@@ -54,7 +35,6 @@ export default function Terrain() {
           displacementBias={displacementBias}
           map-repeat={repeatTexture}
           color={color}
-          transparent
         />
       </mesh>
     </RigidBody>

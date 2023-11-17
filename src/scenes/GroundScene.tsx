@@ -1,7 +1,10 @@
-import Terrain from "../components/Terrain";
 import { Sky } from "@react-three/drei";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
+
+import Terrain from "../components/Terrain";
+import Pathway from "../components/Pathway";
+import PlainTerrain from "../components/PlainTerrain";
 
 function GroundScene() {
   const { sunPosition } = useControls("sky", {
@@ -17,7 +20,9 @@ function GroundScene() {
       <Sky sunPosition={sunPosition} />
       <Physics debug>
         <Terrain />
-        <RigidBody>
+        <PlainTerrain />
+        <Pathway />
+        <RigidBody colliders="ball">
           <mesh position={ballPosition} castShadow>
             <sphereGeometry />
             <meshStandardMaterial color={"yellow"} />
