@@ -1,4 +1,4 @@
-import { Plane, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { useControls } from "leva";
 import { useRef } from "react";
 import * as THREE from "three";
@@ -45,10 +45,11 @@ export default function Terrain() {
     >
       <planeGeometry args={[64, 64, 256, 256]} />
       <meshStandardMaterial
-        {...texture}
-        displacementScale={displacementScale}
-        map-repeat={repeatTexture}
+        // {...texture}
+        // displacementScale={displacementScale}
+        // map-repeat={repeatTexture}
         color={color}
+        transparent
       />
     </mesh>
   );

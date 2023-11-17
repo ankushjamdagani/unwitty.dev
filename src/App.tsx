@@ -1,42 +1,50 @@
 import {
-  CubeCamera,
   OrbitControls,
   PerformanceMonitor,
   PerspectiveCamera,
-  Sky,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
+import * as THREE from "three";
 
-import Terrain from "./components/Terrain";
 import { useState } from "react";
+import GroundScene from "./scenes/GroundScene";
 
 export default function App() {
   const [perfSucks, degrade] = useState(false);
 
-  const { position: cameraPosition } = useControls("camera", {
+  const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
+    fov: 50,
     position: { value: [0, 4, 10] },
-  });
-
-  const { sunPosition } = useControls("sky", {
-    sunPosition: { value: [1, 2, 3] },
   });
 
   return (
     <Canvas
       dpr={[1, perfSucks ? 1.5 : 2]}
       shadows
-      // camera={{ position: cameraPosition }}
+      gl={{
+        antialias: false,
+        toneMapping: THREE.NoToneMapping, // same as setting `flat` to true on Canvas
+        outputColorSpace: THREE.SRGBColorSpace,
+      }}
     >
-      <Perf position="top-left" />
-      <OrbitControls />
-      <PerspectiveCamera makeDefault position={cameraPosition} />
+      <PerspectiveCamera
+        makeDefault
+        position={cameraPosition}
+        fov={cameraFov}
+      />
 
       <directionalLight position={[1, 2, 3]} intensity={1.5} />
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
 
+      {/* -------- ACTIVE SCENE ------------ */}
+      <GroundScene />
+
+      {/* -------- DEBUG CONTROLS ---------- */}
+      <Perf position="top-left" />
+      <OrbitControls />
       <PerformanceMonitor
         flipflops={3}
         onIncline={() => {
@@ -48,9 +56,6 @@ export default function App() {
           degrade(true);
         }}
       />
-
-      <Sky sunPosition={sunPosition} />
-      <Terrain />
     </Canvas>
   );
 }
