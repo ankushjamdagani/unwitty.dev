@@ -8,7 +8,7 @@ export default function Box(props: ThreeElements["mesh"]) {
   return (
     <mesh {...props} ref={meshRef}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="white" />
+      <meshStandardMaterial color="yellow" />
     </mesh>
   );
 }
