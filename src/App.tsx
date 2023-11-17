@@ -10,7 +10,7 @@ import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
 
-import Box from "./components/Box";
+import Terrain from "./components/Terrain";
 
 export default function App() {
   const { sunPosition } = useControls("sky", {
@@ -18,28 +18,16 @@ export default function App() {
   });
 
   return (
-    <Canvas
-    // camera={{ position: [0, 2, 2] }}
-    >
+    <Canvas shadows>
       <Perf position="top-left" />
       <OrbitControls />
 
       <directionalLight position={[1, 2, 3]} intensity={1.5} />
       <ambientLight intensity={0.5} />
-
-      <Environment preset="dawn">
-        <Lightformer
-          scale={10}
-          position={[0, 0, -10]}
-          color={"red"}
-          intensity={10}
-          form={"ring"}
-        />
-      </Environment>
+      <pointLight position={[10, 10, 10]} />
 
       <Sky sunPosition={sunPosition} />
-
-      <Box />
+      <Terrain />
     </Canvas>
   );
 }
