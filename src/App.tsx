@@ -7,24 +7,16 @@ import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
 import * as THREE from "three";
-
 import { useState } from "react";
-import GroundScene from "./scenes/GroundScene";
-import GroundScene2 from "./scenes/GroundScene2";
-import { Scenes } from "./constants/Scenes";
+import SceneHandler from "./scenes";
+import Lights from "./Lights";
 
 export default function App() {
   const [perfSucks, degrade] = useState(false);
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
-    fov: 50,
+    fov: 20,
     position: { value: [0, 4, 10] },
-  });
-
-  const { selected: selectedScene } = useControls("scene", {
-    selected: {
-      options: Object.values(Scenes),
-    },
   });
 
   return (
@@ -33,7 +25,7 @@ export default function App() {
       shadows
       gl={{
         antialias: false,
-        toneMapping: THREE.NoToneMapping, // same as setting `flat` to true on Canvas
+        toneMapping: THREE.NoToneMapping,
         outputColorSpace: THREE.SRGBColorSpace,
       }}
     >
@@ -43,16 +35,10 @@ export default function App() {
         fov={cameraFov}
       />
 
-      <directionalLight position={[1, 2, 3]} intensity={1.5} />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
+      <Lights />
 
       {/* -------- ACTIVE SCENE ------------ */}
-      {selectedScene == Scenes.scene_1 ? (
-        <GroundScene />
-      ) : selectedScene == Scenes.scene_2 ? (
-        <GroundScene2 />
-      ) : null}
+      <SceneHandler />
 
       {/* -------- DEBUG CONTROLS ---------- */}
       <Perf position="top-left" />
