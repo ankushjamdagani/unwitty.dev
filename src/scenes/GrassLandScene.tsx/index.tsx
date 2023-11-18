@@ -1,15 +1,11 @@
 import { useControls } from "leva";
-import GrassPlate from "./GrassLandScene.tsx/components/GrassPlate";
 
-function GroundScene2() {
+function GrassLandScene() {
   const { color: planeColor } = useControls("Plane", {
     color: "#ffcf6c",
   });
-
   return (
     <>
-      <GrassPlate />
-
       <mesh position={[0, -0.1, 0]}>
         <boxGeometry args={[10, 0.2, 10]} />
         <meshStandardMaterial color={planeColor} />
@@ -18,4 +14,4 @@ function GroundScene2() {
   );
 }
 
-export default GroundScene2;
+export default GrassLandScene;

@@ -3,4 +3,9 @@ const Scenes = {
   scene_2: "Ground 2",
 };
 
-export { Scenes };
+const ScenesOptionsConfig = {
+  default: Scenes.scene_2,
+  options: [Scenes.scene_1, Scenes.scene_2],
+};
+
+export { Scenes, ScenesOptionsConfig };
