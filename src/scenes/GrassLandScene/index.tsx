@@ -1,9 +1,10 @@
 import { useControls } from "leva";
-import GrassPlate from "./GrassLandScene.tsx/components/GrassPlate";
 import { useTexture } from "@react-three/drei";
-import Textures from "../resources/textures";
 
-function GroundScene2() {
+import Textures from "../../resources/textures";
+import GrassPlate from "./components/GrassPlate";
+
+function GrassLandScene() {
   const {
     color: planeColor,
     metalness,
@@ -33,4 +34,4 @@ function GroundScene2() {
   );
 }
 
-export default GroundScene2;
+export default GrassLandScene;

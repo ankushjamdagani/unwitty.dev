@@ -15,7 +15,7 @@ export default function App() {
   const [perfSucks, degrade] = useState(false);
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
-    fov: 20,
+    fov: 30,
     position: { value: [0, 4, 10] },
   });
 
