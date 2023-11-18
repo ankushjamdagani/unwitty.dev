@@ -59,12 +59,14 @@ If you are developing a production application, we recommend updating the config
 
 ## Learnings
 
-1. Physics doesnt apply on displacementMap (it's on GPU side, Physics is on CPU side).
-2. For wrapping texture
+-. Physics doesnt apply on displacementMap (it's on GPU side, Physics is on CPU side).
+-. For wrapping texture
 
 ```
 texture.map.wrapS = THREE.RepeatWrapping;
 texture.map.wrapT = THREE.RepeatWrapping;
 ```
 
-3. Texture splatting
+-. For making terrain - transform geometry and add heightfield collider based on z value
+-. For lights on transformed geometry - call geometry.computeVertexNormals
+-. Texture splatting
