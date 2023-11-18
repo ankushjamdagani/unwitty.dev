@@ -10,6 +10,8 @@ import * as THREE from "three";
 
 import { useState } from "react";
 import GroundScene from "./scenes/GroundScene";
+import GroundScene2 from "./scenes/GroundScene2";
+import { Scenes } from "./constants/Scenes";
 
 export default function App() {
   const [perfSucks, degrade] = useState(false);
@@ -17,6 +19,12 @@ export default function App() {
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
     fov: 50,
     position: { value: [0, 4, 10] },
+  });
+
+  const { selected: selectedScene } = useControls("scene", {
+    selected: {
+      options: Object.values(Scenes),
+    },
   });
 
   return (
@@ -40,7 +48,11 @@ export default function App() {
       <pointLight position={[10, 10, 10]} />
 
       {/* -------- ACTIVE SCENE ------------ */}
-      <GroundScene />
+      {selectedScene == Scenes.scene_1 ? (
+        <GroundScene />
+      ) : selectedScene == Scenes.scene_2 ? (
+        <GroundScene2 />
+      ) : null}
 
       {/* -------- DEBUG CONTROLS ---------- */}
       <Perf position="top-left" />
