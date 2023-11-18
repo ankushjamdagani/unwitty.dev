@@ -16,6 +16,18 @@ const Textures = {
     roughnessMap: "./textures/grass/textures/grass_medium_01_arm_4k.jpg",
     metalnessMap: "./textures/grass/textures/grass_medium_01_arm_4k.jpg",
   },
+  grass_land: {
+    map: "./textures/GroundGrassGreen002/GroundGrassGreen002_COL_4K.jpg",
+    // alphaMap: "./textures/grass/textures/grass_medium_01_alpha_4k.jpg",
+    displacementMap:
+      "./textures/GroundGrassGreen002/GroundGrassGreen002_DISP_4K.jpg",
+    aoMap: "./textures/GroundGrassGreen002/GroundGrassGreen002_AO_4K.jpg",
+    normalMap: "./textures/GroundGrassGreen002/GroundGrassGreen002_NRM_4K.jpg",
+    roughnessMap:
+      "./textures/GroundGrassGreen002/GroundGrassGreen002_NRM_4K.jpg",
+    metalnessMap:
+      "./textures/GroundGrassGreen002/GroundGrassGreen002_NRM_4K.jpg",
+  },
   stone_floor: {
     aoMap:
       "./textures/stone_floor/Stylized_Stone_Floor_005_ambientOcclusion.jpg",
