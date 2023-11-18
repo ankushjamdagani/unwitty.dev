@@ -42,6 +42,9 @@ function HillyLandScene() {
       positionAttributes.setZ(i, heightOfVertex);
     }
 
+    // effects lighting
+    planeMeshGeometry.computeVertexNormals();
+
     const { width, height, widthSegments, heightSegments } =
       planeMeshGeometry.parameters;
 
