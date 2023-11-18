@@ -1,11 +1,24 @@
-import { HeightfieldCollider, Physics, RigidBody } from "@react-three/rapier";
-import { useLayoutEffect, useRef, useState } from "react";
+import {
+  HeightfieldArgs,
+  HeightfieldCollider,
+  Physics,
+  RigidBody,
+} from "@react-three/rapier";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 function HillyLandScene() {
   const planeRef = useRef();
 
-  const [heightFieldArgs, setHeightFieldArgs] = useState();
+  // ! For some reason collider formed is rotated on y-axis.
+  // ! Hence, un-rotating it again by 90deg
+  const colliderRotation = useMemo(() => {
+    const rotateDeg = new THREE.Vector3(0, Math.PI / 2, 0);
+    const rotateEuler = new THREE.Euler();
+    rotateEuler.setFromVector3(rotateDeg);
+    return rotateEuler;
+  }, []);
+  const [heightFieldArgs, setHeightFieldArgs] = useState<HeightfieldArgs>();
 
   useLayoutEffect(() => {
     if (!planeRef.current) return;
@@ -25,15 +38,15 @@ function HillyLandScene() {
       const posX = positionAttributes.getX(i);
       const posY = positionAttributes.getY(i);
 
-      positionAttributes.setZ(i, Math.sin(posX) / 4 + Math.cos(posY) / 4);
-      // positionAttributes.setZ(i, Math.sin(i) / 20);
+      const heightOfVertex = Math.sin(posX) / 4 + Math.cos(posY) / 4;
+      positionAttributes.setZ(i, heightOfVertex);
     }
 
     const { width, height, widthSegments, heightSegments } =
       planeMeshGeometry.parameters;
-    const heights = [];
 
-    for (let i = 0; i < (widthSegments + 1) * (heightSegments + 1); i++) {
+    const heights = [];
+    for (let i = 0; i < positionAttributes.count; i++) {
       heights.push(positionAttributes.getZ(i));
     }
 
@@ -41,28 +54,32 @@ function HillyLandScene() {
       widthSegments,
       heightSegments,
       heights,
-      new THREE.Vector3(width + 1, 1, height + 1),
+      new THREE.Vector3(width, 1, height),
     ]);
   }, []);
 
-  console.log(heightFieldArgs);
-
   return (
     <Physics debug>
-      <RigidBody type="fixed" colliders={false} position={[0, -0.01, 0]}>
+      <RigidBody type="fixed" colliders={false}>
         <mesh
           ref={planeRef}
-          rotation-x={-Math.PI * 0.5}
           receiveShadow
           castShadow
+          // position={[0, -0.01, 0]}
+          rotation-x={-Math.PI * 0.5}
         >
           <planeGeometry args={[20, 20, 20, 20]} />
-          <meshStandardMaterial color={"orange"} transparent />
+          <meshStandardMaterial />
         </mesh>
-        {heightFieldArgs && <HeightfieldCollider args={heightFieldArgs} />}
+        {heightFieldArgs && (
+          <HeightfieldCollider
+            rotation={colliderRotation}
+            args={heightFieldArgs}
+          />
+        )}
       </RigidBody>
-      <RigidBody colliders={"ball"}>
-        <mesh rotation-x={-Math.PI * 0.5} position={[0, 4, 0]}>
+      <RigidBody colliders={"ball"} position={[0, 4, 0]}>
+        <mesh>
           <sphereGeometry args={[0.5]} />
           <meshStandardMaterial color={"blue"} />
         </mesh>

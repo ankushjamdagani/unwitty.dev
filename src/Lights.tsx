@@ -8,15 +8,19 @@ function Lights() {
   useHelper(pointLightRef, THREE.PointLightHelper, 0.2, "red");
 
   const { pointLight, ambientLight } = useControls("light", {
-    ambientLight: 0.5,
+    ambientLight: 0.2,
     pointLight: { value: [0, 1, 1] },
   });
 
   return (
     <>
-      <directionalLight position={[1, 2, 3]} intensity={1.5} />
+      <directionalLight
+        position={[-20, 2, 10]}
+        intensity={2.5}
+        color={"blue"}
+      />
       <ambientLight intensity={ambientLight} />
-      <pointLight ref={pointLightRef} position={pointLight} />
+      <pointLight ref={pointLightRef} position={pointLight} intensity={2} />
     </>
   );
 }
