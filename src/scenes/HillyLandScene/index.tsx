@@ -1,7 +1,6 @@
 import {
   HeightfieldArgs,
   HeightfieldCollider,
-  Physics,
   RigidBody,
 } from "@react-three/rapier";
 import { useLayoutEffect, useMemo, useRef, useState } from "react";

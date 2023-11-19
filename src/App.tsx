@@ -91,7 +91,7 @@ export default function App() {
         {debugMode && (
           <>
             <Perf position="top-left" />
-            <OrbitControls />
+            {/* <OrbitControls /> */}
             <GroundBase />
           </>
         )}
