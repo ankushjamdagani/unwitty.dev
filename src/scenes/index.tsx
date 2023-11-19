@@ -2,7 +2,6 @@ import { useControls } from "leva";
 import GroundScene from "./GroundScene";
 import GrassLandScene from "./GrassLandScene";
 import HillyLandScene from "./HillyLandScene";
-import { Grid } from "@react-three/drei";
 
 enum Scenes {
   scene_1 = "Ground 1",
@@ -21,22 +20,6 @@ const ScenesOptionsConfig = {
   options: [Scenes.scene_1, Scenes.scene_2, Scenes.scene_3],
 };
 
-function GroundBase() {
-  const gridConfig = {
-    cellSize: 0.1,
-    cellThickness: 0.5,
-    cellColor: "#6f6f6f",
-    sectionSize: 1,
-    sectionThickness: 1,
-    sectionColor: "#f7d76d",
-    // fadeDistance: 10,
-    // fadeStrength: 2,
-    followCamera: false,
-    infiniteGrid: true,
-  };
-  return <Grid args={[10, 10]} {...gridConfig} />;
-}
-
 function SceneHandler() {
   const { selected: selectedScene } = useControls("scene", {
     selected: {
@@ -47,12 +30,7 @@ function SceneHandler() {
 
   const SceneComponent = ScenesComponent[selectedScene];
 
-  return (
-    <>
-      <SceneComponent />
-      <GroundBase />
-    </>
-  );
+  return <SceneComponent />;
 }
 
 export default SceneHandler;
