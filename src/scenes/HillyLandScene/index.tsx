@@ -32,8 +32,6 @@ function HillyLandScene() {
       uvAttributes.setZ(i, Math.random());
     }
 
-    console.log(planeMeshGeometry);
-
     for (let i = 0; i < positionAttributes.count; i++) {
       const posX = positionAttributes.getX(i);
       const posY = positionAttributes.getY(i);
@@ -62,7 +60,7 @@ function HillyLandScene() {
   }, []);
 
   return (
-    <Physics debug>
+    <>
       <RigidBody type="fixed" colliders={false}>
         <mesh
           ref={planeRef}
@@ -72,7 +70,7 @@ function HillyLandScene() {
           rotation-x={-Math.PI * 0.5}
         >
           <planeGeometry args={[20, 20, 20, 20]} />
-          <meshStandardMaterial />
+          <meshStandardMaterial color={"red"} />
         </mesh>
         {heightFieldArgs && (
           <HeightfieldCollider
@@ -81,13 +79,7 @@ function HillyLandScene() {
           />
         )}
       </RigidBody>
-      <RigidBody colliders={"ball"} position={[0, 4, 0]}>
-        <mesh>
-          <sphereGeometry args={[0.5]} />
-          <meshStandardMaterial color={"blue"} />
-        </mesh>
-      </RigidBody>
-    </Physics>
+    </>
   );
 }
 

@@ -10,6 +10,7 @@ import * as THREE from "three";
 import { useState } from "react";
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
+import { Physics, RigidBody } from "@react-three/rapier";
 
 export default function App() {
   const [perfSucks, degrade] = useState(false);
@@ -37,8 +38,18 @@ export default function App() {
 
       <Lights />
 
-      {/* -------- ACTIVE SCENE ------------ */}
-      <SceneHandler />
+      <Physics>
+        {/* -------- ACTIVE SCENE ------------ */}
+        <SceneHandler />
+
+        {/* --------- REFERENCE OBJECT ------- */}
+        <RigidBody colliders={"ball"} position={[0, 4, 0]}>
+          <mesh>
+            <sphereGeometry args={[0.5]} />
+            <meshStandardMaterial color={"blue"} />
+          </mesh>
+        </RigidBody>
+      </Physics>
 
       {/* -------- DEBUG CONTROLS ---------- */}
       <Perf position="top-left" />
