@@ -34,7 +34,7 @@ function Player() {
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={"yellow"} />
       </mesh>
-      <CuboidCollider args={[1, 1, 1]} />
+      <CuboidCollider args={[0.5, 0.5, 0.5]} />
     </RigidBody>
   );
 }
