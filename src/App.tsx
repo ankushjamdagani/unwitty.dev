@@ -11,6 +11,8 @@ import { useState } from "react";
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
 import { Physics, RigidBody } from "@react-three/rapier";
+import Player from "./objects/Player";
+import InputController from "./InputController";
 
 export default function App() {
   const [perfSucks, degrade] = useState(false);
@@ -39,16 +41,21 @@ export default function App() {
       <Lights />
 
       <Physics>
-        {/* -------- ACTIVE SCENE ------------ */}
-        <SceneHandler />
+        <InputController>
+          {/* -------- ACTIVE SCENE ------------ */}
+          <SceneHandler />
 
-        {/* --------- REFERENCE OBJECT ------- */}
-        <RigidBody colliders={"ball"} position={[0, 4, 0]}>
-          <mesh>
-            <sphereGeometry args={[0.5]} />
-            <meshStandardMaterial color={"blue"} />
-          </mesh>
-        </RigidBody>
+          {/* --------- GAME OBJECT ------------ */}
+          <Player />
+
+          {/* --------- REFERENCE OBJECT ------- */}
+          <RigidBody position={[-1, 4, 0]}>
+            <mesh>
+              <boxGeometry args={[1, 1]} />
+              <meshStandardMaterial color={"blue"} />
+            </mesh>
+          </RigidBody>
+        </InputController>
       </Physics>
 
       {/* -------- DEBUG CONTROLS ---------- */}

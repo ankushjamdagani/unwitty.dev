@@ -10,7 +10,23 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
 ## Guidelines
 
-- TBD
+### Directory Structure
+
+> Refining this structure over time
+
+```python
+- /public
+- /src
+  - /components
+  - /constants
+  - /objects
+  - /resources # Manages all assets loading, path and config data
+  - /scenes
+  - App
+- /config # bundler, linter, deployment, etc
+- /tests # integration tests
+- /docs
+```
 
 ## Tech Stack
 
