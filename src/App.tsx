@@ -12,7 +12,7 @@ import { useState } from "react";
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
 import { Physics, RigidBody } from "@react-three/rapier";
-import Player from "./objects/Player";
+import Player from "./entities/Player";
 import InputController from "./InputController";
 
 // // can be complex object for specific debugging modes
