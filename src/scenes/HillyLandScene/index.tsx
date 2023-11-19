@@ -69,7 +69,7 @@ function HillyLandScene() {
           // position={[0, -0.01, 0]}
           rotation-x={-Math.PI * 0.5}
         >
-          <planeGeometry args={[20, 20, 20, 20]} />
+          <planeGeometry args={[64, 64, 64, 64]} />
           <meshStandardMaterial color={"red"} />
         </mesh>
         {heightFieldArgs && (
