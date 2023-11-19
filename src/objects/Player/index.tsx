@@ -49,7 +49,7 @@ function Player() {
     player.setLinvel({ ...currentLinvel }, true);
 
     if (jumpPressed) {
-      player.applyImpulse({ x: 0, y: 0.2 * mass, z: 0 }, true);
+      player.applyImpulse({ x: 0, y: 5 * mass, z: 0 }, true);
     }
     // player.applyTorqueImpulse({
     //   x: Math.random() - 1,
@@ -65,7 +65,7 @@ function Player() {
       colliders={false}
       position={[0, 4, 0]}
       friction={0}
-      // restitution={0.2}
+      restitution={1.5}
       // gravityScale={0.2}
       canSleep={false}
       // friction={0}
