@@ -75,14 +75,18 @@ If you are developing a production application, we recommend updating the config
 
 ## Learnings
 
--. Physics doesnt apply on displacementMap (it's on GPU side, Physics is on CPU side).
--. For wrapping texture
+- Physics doesnt apply on displacementMap (it's on GPU side, Physics is on CPU side).
+- For wrapping texture
 
 ```
 texture.map.wrapS = THREE.RepeatWrapping;
 texture.map.wrapT = THREE.RepeatWrapping;
 ```
 
--. For making terrain - transform geometry and add heightfield collider based on z value
--. For lights on transformed geometry - call geometry.computeVertexNormals
--. Texture splatting
+- For making terrain - transform geometry and add heightfield collider based on z value
+- For lights on transformed geometry - call geometry.computeVertexNormals
+- Texture splatting
+
+## Assets
+
+1. Nasa - Moon assets [CGI Kit](https://svs.gsfc.nasa.gov/4720) | [Usage](https://science.nasa.gov/moon/)

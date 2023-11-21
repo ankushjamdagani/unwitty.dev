@@ -45,6 +45,12 @@ const Textures = {
     // roughnessMap: "./textures/red_sand_1k/textures/red_sand_arm_1k.jpg",
     // metalnessMap: "./textures/red_sand_1k/textures/red_sand_arm_1k.jpg",
   },
+  MOON: {
+    // map: "./textures/moon_heightmap.5400x2700.jpg",
+    // normalMap: "./textures/moon_heightmap.5400x2700.jpg",
+    map: "./textures/moon/color.jpg",
+    displacementMap: "./textures/moon/displacement.jpg",
+  },
 };
 
 export default Textures;
