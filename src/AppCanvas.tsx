@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Grid, PerformanceMonitor, PerspectiveCamera } from "@react-three/drei";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
-import { Leva, useControls } from "leva";
+import { useControls } from "leva";
 
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
@@ -41,7 +41,6 @@ export default function AppCanvas() {
 
   return (
     <div id="CanvasApp">
-      <Leva collapsed hidden={!debugMode} />
       <Canvas
         dpr={[1, perfSucks ? 1.5 : 2]}
         shadows

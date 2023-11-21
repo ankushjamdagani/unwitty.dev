@@ -106,11 +106,12 @@ button:focus-visible {
   left: 8px;
   right: 8px;
   background-color: rgba(0, 0, 0, 0.1);
-  height: 36px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 8px;
   border-radius: 5px;
   backdrop-filter: blur(10px);
+  border: solid 1px rgba(0, 0, 0, 0.1);
 }

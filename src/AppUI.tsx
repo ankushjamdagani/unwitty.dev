@@ -1,3 +1,4 @@
+import { Leva } from "leva";
 import useDebugState, { DebugLevels } from "./state/Debug";
 
 function StatusPanel() {
@@ -5,12 +6,15 @@ function StatusPanel() {
   const isFullDebug = debugLevel === DebugLevels.FULL;
 
   return (
-    <div id="status-bar__container" className="panel__overlay">
-      <button onClick={isFullDebug ? setNoDebug : setFullDebug}>
-        {isFullDebug ? "Preview" : "Debug"}
-      </button>
-      <p>Status Bar</p>
-    </div>
+    <>
+      <Leva collapsed hidden={!isFullDebug} />
+      <div id="status-bar__container" className="panel__overlay">
+        <button onClick={isFullDebug ? setNoDebug : setFullDebug}>
+          {isFullDebug ? "Preview" : "Debug"}
+        </button>
+        <p>Status Bar</p>
+      </div>
+    </>
   );
 }
 
