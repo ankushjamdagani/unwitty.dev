@@ -1,21 +1,16 @@
-import { Grid, PerformanceMonitor, PerspectiveCamera } from "@react-three/drei";
+import { useState } from "react";
+import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
+import { Grid, PerformanceMonitor, PerspectiveCamera } from "@react-three/drei";
+import { Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import { Leva, useControls } from "leva";
-import * as THREE from "three";
-import { useState } from "react";
+
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
-import { Physics, RigidBody } from "@react-three/rapier";
 import InputController from "./InputController";
 
-// // can be complex object for specific debugging modes
-// enum DebugMode {
-//   ALL,
-//   PHYSICS,
-//   SCENE,
-//   OBJECTS,
-// }
+import useDebugState, { DebugLevels } from "./state/Debug";
 
 function GroundBase() {
   const gridConfig = {
@@ -33,9 +28,11 @@ function GroundBase() {
   return <Grid args={[10, 10]} {...gridConfig} />;
 }
 
-export default function App() {
+export default function AppCanvas() {
+  const { debugLevel } = useDebugState();
+  const debugMode = debugLevel === DebugLevels.FULL;
+
   const [perfSucks, degrade] = useState(false);
-  const [debugMode, setDebugMode] = useState(false);
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
     fov: 30,
@@ -43,7 +40,7 @@ export default function App() {
   });
 
   return (
-    <>
+    <div id="CanvasApp">
       <Leva collapsed hidden={!debugMode} />
       <Canvas
         dpr={[1, perfSucks ? 1.5 : 2]}
@@ -99,6 +96,6 @@ export default function App() {
           }}
         />
       </Canvas>
-    </>
+    </div>
   );
 }
