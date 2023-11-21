@@ -1,23 +1,27 @@
 import { useControls } from "leva";
+
 import GroundScene from "./GroundScene";
 import GrassLandScene from "./GrassLandScene";
 import HillyLandScene from "./HillyLandScene";
+import MoonColor from "./MoonColor";
 
 enum Scenes {
-  scene_1 = "Ground 1",
-  scene_2 = "Ground 2",
-  scene_3 = "Ground 3",
+  scene_1 = "Rough Terrain",
+  scene_2 = "Grassland",
+  scene_3 = "Hilly Land",
+  scene_4 = "Moon Color",
 }
 
 const ScenesComponent = {
   [Scenes.scene_1]: GroundScene,
   [Scenes.scene_2]: GrassLandScene,
   [Scenes.scene_3]: HillyLandScene,
+  [Scenes.scene_4]: MoonColor,
 };
 
 const ScenesOptionsConfig = {
-  default: Scenes.scene_3,
-  options: [Scenes.scene_1, Scenes.scene_2, Scenes.scene_3],
+  default: Scenes.scene_4,
+  options: [Scenes.scene_1, Scenes.scene_2, Scenes.scene_3, Scenes.scene_4],
 };
 
 function SceneHandler() {
