@@ -1,6 +1,11 @@
 @import "normalize.css";
 @import "sanitize.css";
 
+:root {
+  --zIndexBase: 10;
+  --zIndexMenu: 100;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -74,4 +79,38 @@ button:focus-visible {
 #root {
   width: 100vw;
   height: 100vh;
+}
+
+#CanvasApp {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#CanvasApp {
+  z-index: var(--zIndexBase);
+}
+
+#UIApp {
+}
+
+.panel__overlay {
+  position: fixed;
+  z-index: var(--zIndexMenu);
+}
+
+#status-bar__container {
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 5px;
+  backdrop-filter: blur(10px);
 }

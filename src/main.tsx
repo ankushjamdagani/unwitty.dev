@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import "./main.css";
+import "./styles/global.css";
 
 import AppCanvas from "./AppCanvas.tsx";
 import AppUI from "./AppUI.tsx";
