@@ -1,9 +1,4 @@
-import {
-  Grid,
-  OrbitControls,
-  PerformanceMonitor,
-  PerspectiveCamera,
-} from "@react-three/drei";
+import { Grid, PerformanceMonitor, PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import { Leva, useControls } from "leva";
@@ -12,7 +7,6 @@ import { useState } from "react";
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
 import { Physics, RigidBody } from "@react-three/rapier";
-import Player from "./entities/Player";
 import InputController from "./InputController";
 
 // // can be complex object for specific debugging modes
@@ -41,11 +35,11 @@ function GroundBase() {
 
 export default function App() {
   const [perfSucks, degrade] = useState(false);
-  const [debugMode, setDebugMode] = useState(true);
+  const [debugMode, setDebugMode] = useState(false);
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
     fov: 30,
-    position: { value: [0, 4, 10] },
+    position: { value: [0, 4, 60] },
   });
 
   return (
@@ -66,18 +60,15 @@ export default function App() {
           fov={cameraFov}
         />
 
-        <Lights />
+        <Lights debugMode={debugMode} />
 
-        <Physics>
+        <Physics debug={debugMode}>
           <InputController>
             {/* -------- ACTIVE SCENE ------------ */}
             <SceneHandler />
 
-            {/* --------- GAME OBJECT ------------ */}
-            <Player />
-
             {/* --------- REFERENCE OBJECT ------- */}
-            <RigidBody position={[-1, 4, 0]}>
+            <RigidBody position={[0, 20, 0]}>
               <mesh>
                 <boxGeometry args={[1, 1]} />
                 <meshStandardMaterial color={"blue"} />
@@ -91,7 +82,6 @@ export default function App() {
         {debugMode && (
           <>
             <Perf position="top-left" />
-            {/* <OrbitControls /> */}
             <GroundBase />
           </>
         )}

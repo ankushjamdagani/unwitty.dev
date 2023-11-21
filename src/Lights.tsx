@@ -3,15 +3,20 @@ import * as THREE from "three";
 import { useHelper } from "@react-three/drei";
 import { useControls } from "leva";
 
-function Lights() {
+function Lights({ debugMode }: { debugMode: boolean }) {
   const pointLightRef = useRef();
   const directionalLightRef = useRef();
 
-  useHelper(pointLightRef, THREE.PointLightHelper, 0.2, "red");
-  useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1, "red");
+  useHelper(debugMode && pointLightRef, THREE.PointLightHelper, 0.2, "red");
+  useHelper(
+    debugMode && directionalLightRef,
+    THREE.DirectionalLightHelper,
+    1,
+    "red"
+  );
 
   const { pointLight, ambientLight } = useControls("light", {
-    ambientLight: 0.2,
+    ambientLight: 1,
     pointLight: { value: [0, 1, 1] },
   });
 
@@ -19,9 +24,9 @@ function Lights() {
     <>
       <directionalLight
         ref={directionalLightRef}
-        position={[-20, 2, 10]}
-        intensity={2.5}
-        color={"blue"}
+        position={[-50, 2, 10]}
+        intensity={1}
+        color={"white"}
       />
       <ambientLight intensity={ambientLight} />
       <pointLight ref={pointLightRef} position={pointLight} intensity={2} />
