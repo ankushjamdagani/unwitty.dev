@@ -1,8 +1,9 @@
 import * as THREE from "three";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment } from "@react-three/drei";
 import Moon from "../../entities/Moon";
 import Lights from "./Lights";
 import Player from "../../entities/Player";
+import { Suspense } from "react";
 
 const MOON_SIZE = 10;
 const PLAYER_OFFSET_DISTANCE = 2;
@@ -15,6 +16,7 @@ const GameConfig = {
     },
     player: {
       size: Math.floor(MOON_SIZE / 8),
+      velocity: new THREE.Vector2(Math.PI / 10, Math.PI / 10),
       position: new THREE.Vector3().setFromSpherical(
         new THREE.Spherical(
           MOON_SIZE + PLAYER_OFFSET_DISTANCE,
@@ -29,9 +31,10 @@ const GameConfig = {
 function MoonColor() {
   return (
     <>
-      <OrbitControls />
       <Lights />
-      <Environment background preset="park" blur={0.08} />
+      <Suspense fallback={null}>
+        <Environment background preset="park" blur={0.08} />
+      </Suspense>
 
       <Moon config={GameConfig.entities.moon} />
       <Player config={GameConfig.entities.player} />

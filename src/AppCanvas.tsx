@@ -35,7 +35,7 @@ export default function AppCanvas() {
   const [perfSucks, degrade] = useState(false);
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
-    fov: 30,
+    fov: 50,
     position: { value: [0, 4, 60] },
   });
 
@@ -52,7 +52,7 @@ export default function AppCanvas() {
       >
         <PerspectiveCamera
           makeDefault
-          position={cameraPosition}
+          // position={cameraPosition}
           fov={cameraFov}
         />
 
