@@ -3,7 +3,7 @@ import { useControls } from "leva";
 import GroundScene from "./GroundScene";
 import GrassLandScene from "./GrassLandScene";
 import HillyLandScene from "./HillyLandScene";
-import MoonColor from "./MoonColor";
+import MoonColorScene from "./MoonColorScene";
 
 enum Scenes {
   scene_1 = "Rough Terrain",
@@ -16,7 +16,7 @@ const ScenesComponent = {
   [Scenes.scene_1]: GroundScene,
   [Scenes.scene_2]: GrassLandScene,
   [Scenes.scene_3]: HillyLandScene,
-  [Scenes.scene_4]: MoonColor,
+  [Scenes.scene_4]: MoonColorScene,
 };
 
 const ScenesOptionsConfig = {

@@ -29,7 +29,7 @@ const GameConfig = {
   },
 };
 
-function MoonColor() {
+function MoonColorScene() {
   return (
     <>
       <color attach={"background"} args={["#130318"]} />
@@ -71,4 +71,4 @@ function MoonColor() {
   );
 }
 
-export default MoonColor;
+export default MoonColorScene;
