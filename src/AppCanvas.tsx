@@ -44,7 +44,7 @@ export default function AppCanvas() {
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
     fov: 50,
-    position: { value: [0, 4, 60] },
+    position: { value: [40, 40, 40] },
   });
 
   return (
@@ -60,7 +60,7 @@ export default function AppCanvas() {
       >
         <PerspectiveCamera
           makeDefault
-          // position={cameraPosition}
+          position={cameraPosition}
           fov={cameraFov}
         />
 

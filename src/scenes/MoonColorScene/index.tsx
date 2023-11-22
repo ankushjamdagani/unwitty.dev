@@ -4,6 +4,7 @@ import Lights from "./Lights";
 import Player from "../../entities/Player";
 import Pokeball from "../../entities/Pokeball";
 import PlanetRings from "../../entities/PlanetRings";
+import Player2 from "../../entities/Player2";
 
 const MOON_SIZE = 14;
 const PLAYER_OFFSET_DISTANCE = 2;
@@ -40,7 +41,8 @@ function MoonColorScene() {
 
       <PlanetRings />
       <Pokeball config={GameConfig.entities.moon} />
-      <Player config={GameConfig.entities.player} />
+      {/* <Player config={GameConfig.entities.player} /> */}
+      <Player2 />
     </>
   );
 }
