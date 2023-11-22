@@ -1,10 +1,9 @@
-import { Suspense } from "react";
 import * as THREE from "three";
-import { Environment, OrbitControls, Ring, Stars } from "@react-three/drei";
-import Moon from "../../entities/Moon";
+import { OrbitControls, Stars } from "@react-three/drei";
 import Lights from "./Lights";
 import Player from "../../entities/Player";
 import Pokeball from "../../entities/Pokeball";
+import PlanetRings from "../../entities/PlanetRings";
 
 const MOON_SIZE = 14;
 const PLAYER_OFFSET_DISTANCE = 2;
@@ -32,39 +31,14 @@ const GameConfig = {
 function MoonColorScene() {
   return (
     <>
+      <OrbitControls />
+
       <color attach={"background"} args={["#130318"]} />
       <fog attach="fog" color="#130318" near={1} far={150} />
       <Lights />
-
       <Stars />
 
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <Ring args={[20, 24, 64, 8, 0, Math.PI * 2]} />
-        <meshStandardMaterial color={"red"} />
-      </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <Ring args={[17.5, 19.5, 64, 8, 0, Math.PI * 2]} />
-        <meshStandardMaterial color={"red"} />
-      </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <Ring args={[24.5, 25.5, 64, 8, 0, Math.PI * 2]} />
-        <meshStandardMaterial color={"red"} />
-      </mesh>
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <Ring args={[26, 26.2, 64, 8, 0, Math.PI * 2]} />
-        <meshStandardMaterial color={"red"} />
-      </mesh>
-
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <Ring args={[26.5, 27, 64, 8, 0, Math.PI * 2]} />
-        <meshStandardMaterial color={"red"} metalness={10} />
-      </mesh>
-      {/* <OrbitControls /> */}
-      {/* <Suspense fallback={null}>
-        <Environment background preset="park" blur={0.08} />
-      </Suspense> */}
-
-      {/* <Moon config={GameConfig.entities.moon} /> */}
+      <PlanetRings />
       <Pokeball config={GameConfig.entities.moon} />
       <Player config={GameConfig.entities.player} />
     </>
