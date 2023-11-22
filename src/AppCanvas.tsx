@@ -28,6 +28,14 @@ function GroundBase() {
   return <Grid args={[10, 10]} {...gridConfig} />;
 }
 
+function GroundBasePolar() {
+  const radius = 24;
+  const sectors = 16;
+  const rings = 8;
+  const divisions = 64;
+  return <polarGridHelper args={[radius, sectors, rings, divisions]} />;
+}
+
 export default function AppCanvas() {
   const { debugLevel } = useDebugState();
   const debugMode = debugLevel === DebugLevels.FULL;
@@ -78,7 +86,8 @@ export default function AppCanvas() {
         {debugMode && (
           <>
             <Perf position="top-left" />
-            <GroundBase />
+            <GroundBasePolar />
+            {/* <GroundBase /> */}
           </>
         )}
 
