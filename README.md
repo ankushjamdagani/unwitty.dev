@@ -4,6 +4,10 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
 [Notion Docs](https://www.notion.so/ankushjamdagani/Plan-Portfolio-e4b5dba83ca949b9b2658db60557dc58?pvs=4)
 
+## GamePlay
+
+A planet of pokemon's made of pokeball. Pikachu is the guard. We have to paint the planet. Pikachu doesn't like colors. He will electrocute use.
+
 ## Setup
 
 - TBD
@@ -78,7 +82,7 @@ If you are developing a production application, we recommend updating the config
 - Physics doesnt apply on displacementMap (it's on GPU side, Physics is on CPU side).
 - For wrapping texture
 
-```
+```javascript
 texture.map.wrapS = THREE.RepeatWrapping;
 texture.map.wrapT = THREE.RepeatWrapping;
 ```

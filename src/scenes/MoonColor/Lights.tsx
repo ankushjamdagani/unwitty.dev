@@ -18,8 +18,9 @@ function Lights() {
     const radius = 20;
     const x = radius * Math.sin(time);
     const z = radius * Math.cos(time);
+    const y = radius * Math.cos(time);
 
-    spotLight.position.set(x, 0, z);
+    spotLight.position.set(x, y, z);
   });
 
   return (
