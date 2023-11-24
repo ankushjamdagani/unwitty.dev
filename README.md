@@ -6,7 +6,12 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
 ## GamePlay
 
-A planet of pokemon's made of pokeball. Pikachu is the guard. We have to paint the planet. Pikachu doesn't like colors. He will electrocute use.
+- Iteration 1
+  Scene is a grassland. Pokeball is on a stand and zombie/bug apocalypse occurs. You can shoot from pokeball to convert zombies. Or jump and move away.
+- Iteration 2
+  Scene is pokeball planet. We have to paint the planet but pikachu is electrocuting us.
+- Iteration 3
+  Scene is pokeball planet similar to saturn. There's a car racing on it's rings. Points for hitting pokeballs. And -ve points for hitting pokemons.
 
 ## Setup
 
