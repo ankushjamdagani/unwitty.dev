@@ -60,6 +60,10 @@ function Player() {
       .applyEuler(state.camera.rotation);
 
     player.setLinvel({ x: direction.x, y: velocity.y, z: direction.z }, true);
+
+    if (jump) {
+      player.applyImpulse({ x: 0, y: 0.5, z: 0 }, true);
+    }
   });
 
   // useLayoutEffect(() => {
