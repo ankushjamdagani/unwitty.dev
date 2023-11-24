@@ -1,13 +1,7 @@
-import { KeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
 import { useMemo } from "react";
+import { KeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
 
-export enum Controls {
-  forward = "forward",
-  back = "back",
-  left = "left",
-  right = "right",
-  jump = "jump",
-}
+import { Controls } from "./constants";
 
 function InputController({ children }) {
   const map = useMemo<KeyboardControlsEntry<Controls>[]>(

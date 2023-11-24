@@ -8,7 +8,7 @@ import { useControls } from "leva";
 
 import SceneHandler from "./scenes";
 import Lights from "./Lights";
-import InputController from "./InputController";
+import InputController from "./controllers/InputController";
 
 import useDebugState, { DebugLevels } from "./state/Debug";
 

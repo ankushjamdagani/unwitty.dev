@@ -5,7 +5,6 @@ import {
   RapierRigidBody,
   RigidBody,
 } from "@react-three/rapier";
-import { Controls } from "../../../../InputController";
 import { useFrame } from "@react-three/fiber";
 
 import * as THREE from "three";
@@ -26,7 +25,7 @@ const rotation = new THREE.Vector3();
 
 function Player() {
   const playerRef = useRef();
-  const [, getKeyboardControls] = useKeyboardControls<Controls>();
+  const [, getKeyboardControls] = useKeyboardControls();
 
   useFrame((state) => {
     if (!playerRef.current) return;
