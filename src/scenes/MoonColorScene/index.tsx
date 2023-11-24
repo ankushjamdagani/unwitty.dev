@@ -32,7 +32,7 @@ const GameConfig = {
 function MoonColorScene() {
   return (
     <>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
 
       <color attach={"background"} args={["#130318"]} />
       <fog attach="fog" color="#130318" near={1} far={150} />
