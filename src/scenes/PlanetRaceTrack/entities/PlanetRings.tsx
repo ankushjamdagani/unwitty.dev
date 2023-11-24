@@ -1,5 +1,5 @@
-import { Plane, Ring } from "@react-three/drei";
-import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
+import { Ring } from "@react-three/drei";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 import * as THREE from "three";
 

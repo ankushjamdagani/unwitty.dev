@@ -3,9 +3,8 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useControls } from "leva";
-import { RigidBody } from "@react-three/rapier";
 
-const velocity = new THREE.Vector3(1, 0, 1);
+const velocity = new THREE.Vector2(1, 1);
 
 function Player() {
   const playerRef = useRef();
@@ -35,37 +34,40 @@ function Player() {
     if (!player) return;
 
     const camera = state.camera;
+    const time = state.clock.elapsedTime;
+    const playerPos = player.position;
 
-    const { forward, backward, left, right } = get();
+    const { forward, back, left, right } = get();
+
+    // console.log(player.position);
 
     if (left) velocity.x = -1;
     if (right) velocity.x = 1;
-    if (forward) velocity.z = 1;
-    if (backward) velocity.z -= 1;
 
-    player.setLinvel(velocity);
+    const x = velocity.x * Math.sin(time) * 60;
+    const z = velocity.y * Math.cos(time) * 60;
 
-    console.log(player);
+    console.log(x, z, velocity);
 
-    // camera.position.set(
-    //   playerPos.x + offset[0],
-    //   playerPos.y + offset[1],
-    //   playerPos.z + offset[2]
-    // );
-    // camera.lookAt(player);
+    playerPos.set(x, playerPos.y, z);
+
+    camera.position.set(
+      playerPos.x + offset[0],
+      playerPos.y + offset[1],
+      playerPos.z + offset[2]
+    );
+    camera.lookAt(playerPos);
 
     // update torch
-    // spotLightRef.current.position.set(playerPos.x, playerPos.y, playerPos.z);
+    spotLightRef.current.position.set(playerPos.x, playerPos.y, playerPos.z);
   });
 
   return (
     <>
-      <RigidBody ref={playerRef}>
-        <mesh position={[5, 1, 60]}>
-          <boxGeometry args={[2, 1, 1]} />
-          <meshBasicMaterial color={"red"} />
-        </mesh>
-      </RigidBody>
+      <mesh ref={playerRef} position={[5, 1, 60]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshBasicMaterial color={"red"} />
+      </mesh>
       <spotLight
         ref={spotLightRef}
         args={[color, intensity, distance, angle, penumbra, decay]}
