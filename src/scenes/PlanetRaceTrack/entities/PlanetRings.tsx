@@ -11,7 +11,23 @@ function GroundBasePolar() {
   return <polarGridHelper args={[radius, sectors, rings, divisions]} />;
 }
 
-function PlanetRings() {
+function generateNumberPairs(startRange, endRange, numPairs) {
+  // [50, 60, 70, 80, 90, 100]
+  return [
+    [52, 55],
+    [57, 57.5],
+    [60, 65],
+    [67, 68],
+    [70, 80],
+    [82, 83],
+    [85, 90],
+    [92.5, 93],
+    [95, 98],
+    [99, 99.5],
+  ];
+}
+
+function PlanetRings({ config }) {
   const { color } = useControls("Rings", { color: "#9c9edb" });
 
   const material = new THREE.MeshStandardMaterial({
@@ -20,44 +36,64 @@ function PlanetRings() {
     transparent: true,
   });
 
-  const mapSize = new THREE.Vector3(100, 1, 100);
+  const mapScale = config.map.scale;
+  const mapSize = config.map.size;
+  const planetSize = config.entities.planet.size;
+  const numberOfGrids = 5;
+
+  const gridLinesRadius = generateNumberPairs(
+    planetSize,
+    mapScale,
+    numberOfGrids
+  );
 
   return (
     <>
-      <RigidBody type="fixed" colliders={false}>
-        <group>
-          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+      <RigidBody type="fixed" rotation={[-Math.PI / 2, 0, 0]} colliders={false}>
+        {/* <group>
+          <mesh>
             <Ring args={[20, 24, 64, 8, 0, Math.PI * 2]} material={material} />
           </mesh>
-          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh>
             <Ring
               args={[17.5, 19.5, 64, 8, 0, Math.PI * 2]}
               material={material}
             />
             <meshStandardMaterial color={"red"} />
           </mesh>
-          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh>
             <Ring
               args={[24.5, 25.5, 64, 8, 0, Math.PI * 2]}
               material={material}
             />
             <meshStandardMaterial color={"red"} />
           </mesh>
-          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh>
             <Ring
               args={[26, 26.2, 64, 8, 0, Math.PI * 2]}
               material={material}
             />
             <meshStandardMaterial color={"red"} />
           </mesh>
-          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+          <mesh>
             <Ring
               args={[26.5, 27, 64, 8, 0, Math.PI * 2]}
               material={material}
             />
           </mesh>
+        </group> */}
+
+        <group>
+          {gridLinesRadius.map((grid, index) => (
+            <mesh key={index}>
+              <Ring
+                args={[grid[0], grid[1], 100, 20, 0, Math.PI * 2]}
+                material={material}
+              />
+            </mesh>
+          ))}
         </group>
-        <CuboidCollider args={[...mapSize]} />
+        <CuboidCollider args={[...mapSize]} rotation={[-Math.PI / 2, 0, 0]} />
       </RigidBody>
       <GroundBasePolar />
     </>

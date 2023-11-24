@@ -6,7 +6,7 @@ const MODEL_SIZE = 1;
 
 function Planet({ config }) {
   const model = useGLTF("./models/pokeball2.glb");
-  const { size, ...meshConfig } = config;
+  const { size, ...meshConfig } = config.entities.planet;
   const scale = size / MODEL_SIZE;
 
   const loadingCube = useMemo(() => <mesh geometry={<sphereGeometry />} />, []);
@@ -15,7 +15,7 @@ function Planet({ config }) {
     <>
       <RigidBody
         type="fixed"
-        colliders="ball"
+        colliders={false}
         args={[size + 0.1]}
         {...meshConfig}
       >
@@ -23,8 +23,9 @@ function Planet({ config }) {
           <primitive
             object={model.scene}
             scale={scale}
-            position={[0, -14, 0]}
+            position={[0, -scale, 0]}
           />
+          <BallCollider args={[size + 1]} />
         </Suspense>
       </RigidBody>
     </>

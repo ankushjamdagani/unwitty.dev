@@ -6,31 +6,35 @@ import Planet from "./entities/Planet";
 import PlanetRings from "./entities/PlanetRings";
 import Player from "./entities/Player";
 import { RigidBody } from "@react-three/rapier";
+import { useMemo } from "react";
 
-const MOON_SIZE = 14;
-const PLAYER_OFFSET_DISTANCE = 2;
+function PlanetRaceTrack({ config: globalConfig }) {
+  const config = useMemo(() => {
+    const mapScale = globalConfig.map.scale;
+    const planetSize = mapScale / 2;
 
-const GameConfig = {
-  entities: {
-    moon: {
-      size: MOON_SIZE,
-      position: new THREE.Vector3(0, 0, 0),
-    },
-    player: {
-      size: Math.floor(MOON_SIZE / 8),
-      velocity: new THREE.Vector2(Math.PI / 5, Math.PI / 5),
-      position: new THREE.Vector3().setFromSpherical(
-        new THREE.Spherical(
-          MOON_SIZE + PLAYER_OFFSET_DISTANCE,
-          Math.PI / 4,
-          Math.PI / 4
-        )
-      ),
-    },
-  },
-};
+    return {
+      ...globalConfig,
+      entities: {
+        planet: {
+          size: planetSize,
+          psition: new THREE.Vector3(0, 0, 0),
+        },
+        player: {
+          size: Math.floor(planetSize / 10),
+          velocity: new THREE.Vector2(1, 1),
+          position: new THREE.Vector3().setFromSpherical(
+            new THREE.Spherical(
+              planetSize + planetSize / 10,
+              Math.PI / 4,
+              Math.PI / 4
+            )
+          ),
+        },
+      },
+    };
+  }, [globalConfig]);
 
-function PlanetRaceTrack() {
   return (
     <>
       <OrbitControls />
@@ -39,8 +43,8 @@ function PlanetRaceTrack() {
       <Lights />
       <Stars />
 
-      <PlanetRings />
-      {/* <Planet config={GameConfig.entities.moon} /> */}
+      <PlanetRings config={config} />
+      <Planet config={config} />
       {/* <Player /> */}
 
       <RigidBody>
