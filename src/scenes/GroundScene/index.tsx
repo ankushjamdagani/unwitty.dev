@@ -2,9 +2,9 @@ import { Sky } from "@react-three/drei";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
 
-import Terrain from "../components/Terrain";
-import Pathway from "../components/Pathway";
-import PlainTerrain from "../components/PlainTerrain";
+import Terrain from "../../components/Terrain";
+import Pathway from "../../components/Pathway";
+import PlainTerrain from "../../components/PlainTerrain";
 
 function GroundScene() {
   const { sunPosition } = useControls("sky", {

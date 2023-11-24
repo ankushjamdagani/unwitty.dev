@@ -1,7 +1,8 @@
+import React from "react";
 import { useControls } from "leva";
 
-import GroundScene from "./GroundScene";
 import GrassLandScene from "./GrassLandScene";
+import GroundScene from "./GroundScene";
 import HillyLandScene from "./HillyLandScene";
 import MoonColorScene from "./MoonColorScene";
 import PlanetRaceTrack from "./PlanetRaceTrack";
@@ -14,7 +15,15 @@ enum Scenes {
   scene_5 = "Planet Racing",
 }
 
-const ScenesComponent = {
+type GameConfig = {
+  [key: string]: unknown;
+};
+
+type TSceneHandler = {
+  config: GameConfig;
+};
+
+const ScenesComponent: { [key in Scenes]: React.FC<{ config: GameConfig }> } = {
   [Scenes.scene_1]: GroundScene,
   [Scenes.scene_2]: GrassLandScene,
   [Scenes.scene_3]: HillyLandScene,
@@ -27,7 +36,7 @@ const ScenesOptionsConfig = {
   options: Object.values(Scenes),
 };
 
-function SceneHandler() {
+function SceneHandler({ config }: TSceneHandler) {
   const { selected: selectedScene } = useControls("scene", {
     selected: {
       value: ScenesOptionsConfig.default,
@@ -37,7 +46,7 @@ function SceneHandler() {
 
   const SceneComponent = ScenesComponent[selectedScene];
 
-  return <SceneComponent />;
+  return <SceneComponent config={config} />;
 }
 
 export default SceneHandler;
