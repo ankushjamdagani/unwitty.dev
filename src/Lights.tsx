@@ -29,7 +29,7 @@ function Lights({ debugMode }: { debugMode: boolean }) {
         color={"white"}
       />
       <ambientLight intensity={ambientLight} />
-      <pointLight ref={pointLightRef} position={pointLight} intensity={2} />
+      {/* <pointLight ref={pointLightRef} position={pointLight} intensity={2} /> */}
     </>
   );
 }

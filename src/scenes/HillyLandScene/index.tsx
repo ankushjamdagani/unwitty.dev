@@ -1,5 +1,5 @@
-import SineHill from "../../entities/SineHill";
-import Player from "../../entities/PlayerBox";
+import SineHill from "./entities/SineHill";
+import Player from "./entities/Player";
 
 function HillyLandScene() {
   return (

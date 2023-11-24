@@ -29,12 +29,29 @@ function GroundBase() {
 }
 
 function GroundBasePolar() {
-  const radius = 24;
+  const radius = 32;
   const sectors = 16;
   const rings = 8;
   const divisions = 64;
   return <polarGridHelper args={[radius, sectors, rings, divisions]} />;
 }
+
+const mapScale = 100;
+const mapSize = new THREE.Vector3(mapScale, mapScale / 50, mapScale);
+
+const gameConfig = {
+  world: {
+    gravity: new THREE.Vector3(0, -9.81, 0),
+  },
+  map: {
+    size: mapSize,
+    scale: mapScale,
+  },
+  camera: {
+    fov: 50,
+    position: new THREE.Vector3(0, mapScale, 2 * mapScale),
+  },
+};
 
 export default function AppCanvas() {
   const { debugLevel } = useDebugState();
@@ -44,7 +61,13 @@ export default function AppCanvas() {
 
   const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
     fov: 50,
-    position: { value: [40, 40, 40] },
+    position: {
+      value: [
+        gameConfig.camera.position.x,
+        gameConfig.camera.position.y,
+        gameConfig.camera.position.z,
+      ],
+    },
   });
 
   return (
@@ -69,15 +92,7 @@ export default function AppCanvas() {
         <Physics debug={debugMode}>
           <InputController>
             {/* -------- ACTIVE SCENE ------------ */}
-            <SceneHandler />
-
-            {/* --------- REFERENCE OBJECT ------- */}
-            <RigidBody position={[0, 20, 0]}>
-              <mesh>
-                <boxGeometry args={[1, 1]} />
-                <meshStandardMaterial color={"blue"} />
-              </mesh>
-            </RigidBody>
+            <SceneHandler config={gameConfig} />
           </InputController>
         </Physics>
 
@@ -86,7 +101,7 @@ export default function AppCanvas() {
         {debugMode && (
           <>
             <Perf position="top-left" />
-            <GroundBasePolar />
+            {/* <GroundBasePolar /> */}
             {/* <GroundBase /> */}
           </>
         )}

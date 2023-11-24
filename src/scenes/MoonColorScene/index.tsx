@@ -1,10 +1,11 @@
 import * as THREE from "three";
 import { OrbitControls, Stars } from "@react-three/drei";
-import Lights from "./Lights";
-import Player from "../../entities/Player";
-import Pokeball from "../../entities/Pokeball";
-import PlanetRings from "../../entities/PlanetRings";
-import Player2 from "../../entities/Player2";
+
+import Lights from "./entities/Lights";
+import Player from "./entities/Player";
+import Pokeball from "./entities/Pokeball";
+import PlanetRings from "./entities/PlanetRings";
+import Player2 from "./entities/Player2";
 
 const MOON_SIZE = 14;
 const PLAYER_OFFSET_DISTANCE = 2;
