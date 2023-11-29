@@ -39,20 +39,58 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
 ## Tech Stack
 
-- [Postcss Normalise](https://github.com/csstools/postcss-normalize)
-- BrowserList
-- Normalize CSS
+- Language: [TypeScript](https://www.typescriptlang.org/)
 
-- [React](https://react.dev/)
-- [ThreeJS](https://threejs.org/)
-- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/)
-- [Drei](https://drei.pmnd.rs/)
-- [TypeScript](https://www.typescriptlang.org/)
+- UI
 
-- Meta
+  - [React](https://react.dev/)
+  - [Next.js](https://nextjs.org/)
+
+  - Design Sytem: [Radix UI](https://www.radix-ui.com/) @`/design-system`
+
+- 3D
+
+  - [ThreeJS](https://threejs.org/)
+  - [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/)
+
+- State Management
+
+  - [Zustand](https://docs.pmnd.rs/zustand/)
+  - [React Query](https://tanstack.com/query/latest/)
+
+- Helpers
+
+  - [Drei](https://drei.pmnd.rs/)
+  - [usehooks-ts](https://usehooks-ts.com/)
+  - [lodash-es](https://www.npmjs.com/package/lodash-es)
+
+- Dev Helpers
+
+  - [ESLint](https://eslint.org/)
+  - [Prettier](https://prettier.io/)
   - [Vite](https://vitejs.dev/guide/)
   - [SWC](https://swc.rs/)
   - [vite-pwa](https://vite-pwa-org.netlify.app/)
+  - [Postcss Normalise](https://github.com/csstools/postcss-normalize)
+  - BrowserList
+  - Normalize CSS
+
+- Dev Ops
+
+  - [Monitoring: Sentry](https://sentry.io/welcome/)
+  - [Logging: Axiom](https://axiom.co/)
+
+- Under consideration
+
+```
+⛑ Typesafe API: tRPC
+🌐 i18n: Format.js + custom i18n routing
+🗺 ORM: Prisma
+🗄 Database: Supabase (PostgreSQL)
+🔐 Authentication: Supabase
+- Multiplayer: Supabase
+⬇️ Markdown: MDX + Rehype + Remark | (Unifiedjs)
+```
 
 ## React + TypeScript + Vite
 
