@@ -1,7 +1,7 @@
 {
-  "name": "unwitty-dev",
-  "private": true,
+  "name": "cosmic-velocity",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
