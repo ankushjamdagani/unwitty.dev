@@ -1,0 +1,124 @@
+import { useState } from "react";
+import * as THREE from "three";
+import { Canvas } from "@react-three/fiber";
+import { Grid, PerformanceMonitor, PerspectiveCamera } from "@react-three/drei";
+import { Physics, RigidBody } from "@react-three/rapier";
+import { Perf } from "r3f-perf";
+import { useControls } from "leva";
+
+import SceneHandler from "./scenes";
+import Lights from "./Lights";
+import InputController from "./controllers/InputController";
+
+import useDebugState, { DebugLevels } from "./state/Debug";
+
+function GroundBase() {
+  const gridConfig = {
+    cellSize: 0.1,
+    cellThickness: 0.5,
+    cellColor: "#6f6f6f",
+    sectionSize: 1,
+    sectionThickness: 1,
+    sectionColor: "#f7d76d",
+    // fadeDistance: 10,
+    // fadeStrength: 2,
+    followCamera: false,
+    infiniteGrid: true,
+  };
+  return <Grid args={[10, 10]} {...gridConfig} />;
+}
+
+function GroundBasePolar() {
+  const radius = 32;
+  const sectors = 16;
+  const rings = 8;
+  const divisions = 64;
+  return <polarGridHelper args={[radius, sectors, rings, divisions]} />;
+}
+
+const mapScale = 100;
+const mapSize = new THREE.Vector3(mapScale, mapScale / 50, mapScale);
+
+const gameConfig = {
+  world: {
+    gravity: new THREE.Vector3(0, -9.81, 0),
+  },
+  map: {
+    size: mapSize,
+    scale: mapScale,
+  },
+  camera: {
+    fov: 50,
+    position: new THREE.Vector3(0, mapScale, 2 * mapScale),
+  },
+};
+
+export default function AppCanvas() {
+  const { debugLevel } = useDebugState();
+  const debugMode = debugLevel === DebugLevels.FULL;
+
+  const [perfSucks, degrade] = useState(false);
+
+  const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
+    fov: 50,
+    position: {
+      value: [
+        gameConfig.camera.position.x,
+        gameConfig.camera.position.y,
+        gameConfig.camera.position.z,
+      ],
+    },
+  });
+
+  return (
+    <div id="CanvasApp">
+      <Canvas
+        dpr={[1, perfSucks ? 1.5 : 2]}
+        shadows
+        gl={{
+          antialias: false,
+          toneMapping: THREE.NoToneMapping,
+          outputColorSpace: THREE.SRGBColorSpace,
+        }}
+      >
+        <PerspectiveCamera
+          makeDefault
+          position={cameraPosition}
+          fov={cameraFov}
+        />
+
+        <Lights debugMode={debugMode} />
+
+        <Physics debug={debugMode}>
+          <InputController>
+            {/* -------- ACTIVE SCENE ------------ */}
+            <SceneHandler config={gameConfig} />
+          </InputController>
+        </Physics>
+
+        {/* -------- DEBUG CONTROLS ---------- */}
+
+        {debugMode && (
+          <>
+            <Perf position="top-left" />
+            {/* <GroundBasePolar /> */}
+            {/* <GroundBase /> */}
+          </>
+        )}
+
+        {/* -------- PERFORMANCE CONTROLS ---- */}
+        <PerformanceMonitor
+          flipflops={3}
+          onIncline={() => {
+            console.log("performance - onIncline");
+            degrade(false);
+          }}
+          onDecline={() => {
+            console.log("performance - onDecline");
+            degrade(true);
+          }}
+        />
+      </Canvas>
+    </div>
+  );
+}
