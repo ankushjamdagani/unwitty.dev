@@ -47,6 +47,7 @@ Personal portfolio 3D experience based on `react-three-fiber`
   - [Next.js](https://nextjs.org/)
 
   - Design Sytem: [Radix UI](https://www.radix-ui.com/) @`/design-system`
+  - [Stylex](https://stylexjs.com/docs/learn/)
 
 - 3D
 
@@ -66,7 +67,7 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
 - Dev Helpers
 
-  - [ESLint](https://eslint.org/)
+  - [ESLint](https://eslint.org/) - Also, use `eslint-config-prettier` to turn off prettier rules in eslint
   - [Prettier](https://prettier.io/)
   - [Vite](https://vitejs.dev/guide/)
   - [SWC](https://swc.rs/)
@@ -90,6 +91,7 @@ Personal portfolio 3D experience based on `react-three-fiber`
 🔐 Authentication: Supabase
 - Multiplayer: Supabase
 ⬇️ Markdown: MDX + Rehype + Remark | (Unifiedjs)
+Notifications - https://novu.co/
 ```
 
 ## React + TypeScript + Vite
