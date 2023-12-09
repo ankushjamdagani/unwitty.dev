@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@react-three/fiber": "^8.15.11",
     "@react-three/rapier": "^1.1.2",
     "@types/three": "^0.158.2",
+    "@/ui": "workspace:*",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,18 +23,17 @@
     "zustand": "^4.4.6"
   },
   "devDependencies": {
+    "@/eslint-config": "workspace:*",
+    "@/typescript-config": "workspace:*",
+    "@types/eslint": "^8.44.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "browserslist-to-esbuild": "^1.2.0",
-    "eslint": "^8.45.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
+    "eslint": "^8.53.0",
     "leva": "^0.9.35",
     "r3f-perf": "^7.1.2",
-    "typescript": "^5.0.2",
+    "typescript": "^5.2.2",
     "vite": "^4.4.5",
     "vite-plugin-glsl": "^1.1.2",
     "vite-plugin-pwa": "^0.16.7",
