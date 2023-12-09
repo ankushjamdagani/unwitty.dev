@@ -1,6 +1,6 @@
 {
   "extends": "@/typescript-config/reactjs.json",
   "compilerOptions": {},
-  "include": ["src"],
+  "include": ["vite.config.ts", "src"],
   "exclude": ["node_modules"]
 }
