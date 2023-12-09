@@ -48,6 +48,7 @@ Personal portfolio 3D experience based on `react-three-fiber`
 
   - Design Sytem: [Radix UI](https://www.radix-ui.com/) @`/design-system`
   - [Stylex](https://stylexjs.com/docs/learn/)
+  - [Web Animation](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) and [View Transition](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) API
 
 - 3D
 
