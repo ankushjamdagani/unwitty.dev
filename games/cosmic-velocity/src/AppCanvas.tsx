@@ -39,7 +39,7 @@ function GroundBasePolar() {
 const gameConfig = {
   camera: {
     fov: 50,
-    position: new THREE.Vector3(0, 2, 10),
+    position: new THREE.Vector3(0, 10, 21),
   },
 };
 
