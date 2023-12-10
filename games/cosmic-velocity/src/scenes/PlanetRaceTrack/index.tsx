@@ -7,7 +7,26 @@ import Planet from "./entities/Planet";
 import PlanetRings from "./entities/PlanetRings";
 import Player from "./entities/Player";
 
-function PlanetRaceTrack({ config: globalConfig }) {
+const mapScale = 100;
+const mapSize = new THREE.Vector3(mapScale, mapScale / 50, mapScale);
+
+const gameConfig = {
+  world: {
+    gravity: new THREE.Vector3(0, -9.81, 0),
+  },
+  map: {
+    size: mapSize,
+    scale: mapScale,
+  },
+  camera: {
+    fov: 50,
+    position: new THREE.Vector3(0, mapScale, 2 * mapScale),
+  },
+};
+
+function PlanetRaceTrack({ config: _globalConfig }) {
+  const globalConfig = gameConfig;
+
   const config = useMemo(() => {
     const mapScale = globalConfig.map.scale;
     const planetSize = mapScale / 2;

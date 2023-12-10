@@ -36,20 +36,10 @@ function GroundBasePolar() {
   return <polarGridHelper args={[radius, sectors, rings, divisions]} />;
 }
 
-const mapScale = 100;
-const mapSize = new THREE.Vector3(mapScale, mapScale / 50, mapScale);
-
 const gameConfig = {
-  world: {
-    gravity: new THREE.Vector3(0, -9.81, 0),
-  },
-  map: {
-    size: mapSize,
-    scale: mapScale,
-  },
   camera: {
     fov: 50,
-    position: new THREE.Vector3(0, mapScale, 2 * mapScale),
+    position: new THREE.Vector3(0, 2, 10),
   },
 };
 
@@ -101,8 +91,8 @@ export default function AppCanvas() {
         {debugMode && (
           <>
             <Perf position="top-left" />
-            {/* <GroundBasePolar /> */}
-            {/* <GroundBase /> */}
+            {/* <GroundBasePolar />
+            <GroundBase /> */}
           </>
         )}
 
