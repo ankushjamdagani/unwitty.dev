@@ -1,7 +1,12 @@
 import { useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Grid, PerformanceMonitor, PerspectiveCamera } from "@react-three/drei";
+import {
+  Grid,
+  OrbitControls,
+  PerformanceMonitor,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Perf } from "r3f-perf";
 import { useControls } from "leva";
@@ -49,7 +54,15 @@ export default function AppCanvas() {
 
   const [perfSucks, degrade] = useState(false);
 
-  const { position: cameraPosition, fov: cameraFov } = useControls("camera", {
+  const {
+    position: cameraPosition,
+    fov: cameraFov,
+    mode: cameraMode,
+  } = useControls("camera", {
+    mode: {
+      value: "follow",
+      options: ["follow", "orbit"],
+    },
     fov: 50,
     position: {
       value: [
@@ -71,6 +84,8 @@ export default function AppCanvas() {
           outputColorSpace: THREE.SRGBColorSpace,
         }}
       >
+        {cameraMode === "orbit" ? <OrbitControls /> : null}
+
         <PerspectiveCamera
           makeDefault
           position={cameraPosition}
@@ -79,7 +94,7 @@ export default function AppCanvas() {
 
         <Lights debugMode={debugMode} />
 
-        <Physics debug={debugMode}>
+        <Physics debug={debugMode} gravity={[0, -2.6, 0]}>
           <InputController>
             {/* -------- ACTIVE SCENE ------------ */}
             <SceneHandler config={gameConfig} />
