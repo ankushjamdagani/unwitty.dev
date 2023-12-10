@@ -6,7 +6,7 @@ function Ground({ map }) {
   const { size, scale } = map;
 
   return (
-    <RigidBody type="fixed">
+    <RigidBody type="fixed" friction={0}>
       <mesh position={[0, wallSize / 2, -size.z / 2]}>
         <boxGeometry args={[size.x, wallSize, 0.1]} />
         <meshBasicMaterial color={"orange"} />

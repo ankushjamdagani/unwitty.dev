@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls, Stars } from "@react-three/drei";
 import Ground from "./entities/Ground";
 import Player from "./entities/Player";
+import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 
 const mapScale = 100;
 const mapSize = new THREE.Vector3(mapScale, mapScale / mapScale, mapScale);
@@ -33,6 +34,15 @@ function WorldView({ config: globalConfig }) {
 
       <Ground map={config.map} />
       <Player />
+
+      {/* Testing */}
+      <RigidBody colliders="cuboid" position={[-4, 1, -10]}>
+        <mesh>
+          <meshBasicMaterial color="crimson" />
+          <capsuleGeometry args={[0.5, 1, 4, 8]} />
+        </mesh>
+        {/* <CapsuleCollider /> */}
+      </RigidBody>
     </>
   );
 }
