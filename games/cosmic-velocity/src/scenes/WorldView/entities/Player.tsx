@@ -1,11 +1,16 @@
-import React from "react";
+import * as THREE from "three";
+import { RigidBody } from "@react-three/rapier";
+
+const size = new THREE.Vector3(2, 1, 3);
 
 function Player() {
   return (
-    <mesh position={[0, 0.501, 0]}>
-      <boxGeometry args={[2, 1, 3]} />
-      <meshStandardMaterial color={"white"} />
-    </mesh>
+    <RigidBody>
+      <mesh position={[0, 1 + size.y / 2 + 0.1, 0]}>
+        <boxGeometry args={[size.x, size.y, size.z]} />
+        <meshStandardMaterial color={"white"} />
+      </mesh>
+    </RigidBody>
   );
 }
 

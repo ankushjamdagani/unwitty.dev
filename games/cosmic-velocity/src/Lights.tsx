@@ -17,14 +17,14 @@ function Lights({ debugMode }: { debugMode: boolean }) {
 
   const { pointLight, ambientLight } = useControls("light", {
     ambientLight: 1,
-    pointLight: { value: [0, 1, 1] },
+    pointLight: { value: [1, 1, 1] },
   });
 
   return (
     <>
       <directionalLight
         ref={directionalLightRef}
-        position={[-50, 2, 10]}
+        position={[-50, 10, 50]}
         intensity={1}
         color={"white"}
       />

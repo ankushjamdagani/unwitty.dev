@@ -1,10 +1,10 @@
 import * as THREE from "three";
 import { OrbitControls, Stars } from "@react-three/drei";
-import Plane from "./entities/Plane";
+import Ground from "./entities/Ground";
 import Player from "./entities/Player";
 
 const mapScale = 100;
-const mapSize = new THREE.Vector3(mapScale, mapScale / 50, mapScale);
+const mapSize = new THREE.Vector3(mapScale, mapScale / mapScale, mapScale);
 
 const gameConfig = {
   world: {
@@ -21,16 +21,18 @@ const gameConfig = {
 };
 
 function WorldView({ config: globalConfig }) {
+  const config = gameConfig;
+
   return (
     <>
       <OrbitControls />
 
+      {/* Environment */}
       <color attach={"background"} args={["#130318"]} />
+      <Stars />
 
-      <Plane />
+      <Ground map={config.map} />
       <Player />
-
-      {/* <Stars /> */}
     </>
   );
 }
