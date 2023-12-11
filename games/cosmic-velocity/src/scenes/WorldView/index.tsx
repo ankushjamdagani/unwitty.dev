@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OrbitControls, Stars } from "@react-three/drei";
+import { Stars } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 import Ground from "./entities/Ground";
@@ -27,8 +27,6 @@ function WorldView({ config: globalConfig }) {
 
   return (
     <>
-      <OrbitControls />
-
       {/* Environment */}
       <color attach={"background"} args={["#130318"]} />
       <Stars />

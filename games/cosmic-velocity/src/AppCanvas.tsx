@@ -60,7 +60,7 @@ export default function AppCanvas() {
     mode: cameraMode,
   } = useControls("camera", {
     mode: {
-      value: "follow",
+      value: "orbit",
       options: ["follow", "orbit"],
     },
     fov: 50,
