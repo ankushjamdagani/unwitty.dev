@@ -136,6 +136,15 @@ texture.map.wrapT = THREE.RepeatWrapping;
 - For making terrain - transform geometry and add heightfield collider based on z value
 - For lights on transformed geometry - call geometry.computeVertexNormals
 - Texture splatting
+- Joints used for constraint system like car ([Example](https://sketches.isaacmason.com/sketch/rapier/revolute-joint-vehicle))
+- Rapier params
+
+```js
+maxStabilizationIterations={50}
+maxVelocityFrictionIterations={50}
+maxVelocityIterations={100}
+updatePriority={PriorityPhysicsUpdate}
+```
 
 ## Assets
 

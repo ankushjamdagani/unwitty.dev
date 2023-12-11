@@ -16,6 +16,7 @@ import Lights from "./Lights";
 import InputController from "./controllers/InputController";
 
 import useDebugState, { DebugLevels } from "./state/Debug";
+import { PriorityPhysicsUpdate } from "./constants/UpdatePriorities";
 
 function GroundBase() {
   const gridConfig = {
@@ -100,6 +101,7 @@ export default function AppCanvas() {
           maxStabilizationIterations={50}
           maxVelocityFrictionIterations={50}
           maxVelocityIterations={100}
+          updatePriority={PriorityPhysicsUpdate}
         >
           <InputController>
             {/* -------- ACTIVE SCENE ------------ */}

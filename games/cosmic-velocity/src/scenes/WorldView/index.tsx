@@ -33,7 +33,7 @@ function WorldView({ config: globalConfig }) {
       <Stars />
 
       <Ground map={config.map} />
-      <Car />
+      {/* <Car /> */}
       <CarV2 />
 
       {/* Testing */}
