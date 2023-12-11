@@ -94,7 +94,13 @@ export default function AppCanvas() {
 
         <Lights debugMode={debugMode} />
 
-        <Physics debug={debugMode} gravity={[0, -2.6, 0]}>
+        <Physics
+          debug={debugMode}
+          // gravity={[0, -2.6, 0]}
+          maxStabilizationIterations={50}
+          maxVelocityFrictionIterations={50}
+          maxVelocityIterations={100}
+        >
           <InputController>
             {/* -------- ACTIVE SCENE ------------ */}
             <SceneHandler config={gameConfig} />
