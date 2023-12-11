@@ -1,8 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls, Stars } from "@react-three/drei";
-import Ground from "./entities/Ground";
-import Player from "./entities/Player";
 import { RigidBody } from "@react-three/rapier";
+
+import Ground from "./entities/Ground";
+import Car from "./entities/Car";
 
 const mapScale = 100;
 const mapSize = new THREE.Vector3(mapScale, mapScale / mapScale, mapScale);
@@ -33,7 +34,7 @@ function WorldView({ config: globalConfig }) {
       <Stars />
 
       <Ground map={config.map} />
-      <Player />
+      <Car />
 
       {/* Testing */}
       <RigidBody colliders="cuboid" position={[-4, 1, -10]}>
