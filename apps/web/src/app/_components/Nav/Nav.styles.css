@@ -21,11 +21,8 @@ nav {
     }
 
     &:focus-visible {
-      /* outline: solid 2px rgb(var(--foreground-rgb)); */
-      text-decoration: underline;
-      text-decoration-style: wavy;
-      text-underline-offset: 8px;
-      text-decoration-color: orange;
+      outline: solid 2px var(--focus-color);
+      outline-offset: 2px;
     }
   }
 }

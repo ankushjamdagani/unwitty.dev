@@ -6,6 +6,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
 
+  --focus-color: orange;
+
   /* Box variables */
   --border-radius: 3px;
   --border-radius-md: 5px;
