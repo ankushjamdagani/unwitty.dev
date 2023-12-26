@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   transpilePackages: ["@/ui"],
 };
+
+module.exports = nextConfig;

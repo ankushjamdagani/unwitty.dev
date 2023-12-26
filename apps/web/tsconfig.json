@@ -1,12 +1,15 @@
 {
   "extends": "@/typescript-config/nextjs.json",
   "compilerOptions": {
+    "allowJs": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "allowJs": true
+    ]
   },
   "include": [
     "next-env.d.ts",
