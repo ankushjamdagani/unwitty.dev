@@ -20,3 +20,12 @@ pnpm dev
 # or
 bun dev
 ```
+
+## Directory Structure
+
+- Components
+  - Use named exports - now, it can't be used with any other names
+  - Make folder for components - all helpers etc remains in scope
+  - For better cmd+p - use index.ts only for exporting
+  - Use \_ for private non-route folders
+-
