@@ -1,11 +1,11 @@
 nav {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding: 16px 0;
-  text-align: right;
+  position: sticky;
+  top: 0;
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  text-align: right;
+  height: var(--nav-height);
 
   ul {
     display: flex;
@@ -14,17 +14,18 @@ nav {
   a {
     padding: 8px 16px;
 
-    &:hover {
-      /* font-weight: bold; */
-    }
-
-    &:focus-visible {
-      outline: solid 2px rgb(var(--foreground-rgb));
-    }
-
     &.active {
       text-decoration: underline;
       text-decoration-style: wavy;
+      text-underline-offset: 8px;
+    }
+
+    &:focus-visible {
+      /* outline: solid 2px rgb(var(--foreground-rgb)); */
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-underline-offset: 8px;
+      text-decoration-color: orange;
     }
   }
 }

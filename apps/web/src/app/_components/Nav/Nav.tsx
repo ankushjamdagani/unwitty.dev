@@ -6,10 +6,10 @@ import "./Nav.styles.css";
 import { useState } from "react";
 
 const Links = [
-  {
-    path: "#info",
-    label: "Info",
-  },
+  // {
+  //   path: "#info",
+  //   label: "Info",
+  // },
   {
     path: "#projects",
     label: "Experiments",
