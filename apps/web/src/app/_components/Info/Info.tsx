@@ -1,5 +1,5 @@
 import React from "react";
 
 export function Info() {
-  return <section>Info</section>;
+  return <section id="info">Info</section>;
 }

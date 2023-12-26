@@ -1,4 +1,4 @@
-import { Blogs } from "./_components/Blogs";
+import { Words } from "./_components/Words";
 import { Footer } from "./_components/Footer";
 import { Info } from "./_components/Info";
 import { Nav } from "./_components/Nav";
@@ -11,7 +11,7 @@ export default function Home() {
       <Nav />
       <Info />
       <Projects />
-      <Blogs />
+      <Words />
       <Work />
       <Footer />
     </main>
