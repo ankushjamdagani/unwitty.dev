@@ -19,11 +19,12 @@ import useDebugState, { DebugLevels } from "./state/Debug";
 import { PriorityPhysicsUpdate } from "./constants/UpdatePriorities";
 
 function GroundBase() {
+  const scale = 4;
   const gridConfig = {
-    cellSize: 0.1,
+    cellSize: scale / 10,
     cellThickness: 0.5,
     cellColor: "#6f6f6f",
-    sectionSize: 1,
+    sectionSize: scale,
     sectionThickness: 1,
     sectionColor: "#f7d76d",
     // fadeDistance: 10,
@@ -31,7 +32,7 @@ function GroundBase() {
     followCamera: false,
     infiniteGrid: true,
   };
-  return <Grid args={[10, 10]} {...gridConfig} />;
+  return <Grid args={[10, 10]} {...gridConfig} position={[0, 0.02, 0]} />;
 }
 
 function GroundBasePolar() {
@@ -114,8 +115,9 @@ export default function AppCanvas() {
         {debugMode && (
           <>
             <Perf position="top-left" />
-            {/* <GroundBasePolar />
-            <GroundBase /> */}
+            {/* <GroundBasePolar /> */}
+            <GroundBase />
+            <axesHelper args={[5]} />
           </>
         )}
 
