@@ -1,3 +1,4 @@
+@import url("./reset.css");
 @import url("./normalize.css");
 
 :root {
@@ -19,6 +20,9 @@
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+  /* Components */
+  --nav-height: 50px;
+
   color-scheme: light dark;
 }
 
@@ -29,32 +33,12 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  padding: 0 32px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul,
-li {
-  margin: 0;
-  padding: 0;
-  text-indent: none;
-  list-style-type: none;
+p {
+  line-height: 1.4;
 }
