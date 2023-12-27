@@ -44,3 +44,9 @@ body {
 p {
   line-height: 1.4;
 }
+
+.wavy-underline {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-underline-offset: 0.5em;
+}

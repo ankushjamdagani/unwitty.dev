@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./Info.styles.css";
+import { AnimatedWordList } from "@/components/AnimatedWordList";
 
 export function Info() {
   return (
@@ -8,14 +9,24 @@ export function Info() {
       <header>
         <h1>
           Hello <br />
-          I'm Ankush
+          I&apos;m Ankush
         </h1>
 
         <p>
           Crafting web experiences for <strong>7+ years</strong> <br />
-          sometimes <strong>stupid</strong>, sometimes <strong>awesome</strong>{" "}
+          sometimes{" "}
+          <strong>
+            <AnimatedWordList
+              words={[
+                <span key={"stupid"}>stupid</span>,
+                <span key={"awesome"}>awesome</span>,
+              ]}
+              transitionTime={2000}
+            />
+          </strong>
           <br />
-          ....but <strong>fun</strong> all the time
+          ...
+          <strong className="wavy-underline">fun</strong> all the time
         </p>
       </header>
 
