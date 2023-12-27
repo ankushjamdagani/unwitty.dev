@@ -37,9 +37,9 @@
       top: 4px;
     }
 
-    &:focus {
-      outline: solid 1px var(--focus-color);
-      outline-offset: 2px;
+    &:focus-visible {
+      outline: var(--focus-outline);
+      outline-offset: var(--focus-outline-offset);
     }
   }
 
@@ -47,11 +47,25 @@
     display: flex;
     gap: 8px;
 
-    li {
-      background-color: rgb(var(--foreground-rgb));
-      color: rgb(var(--background-rgb));
-      padding: 4px 8px;
+    li a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: solid 1px rgb(var(--foreground-rgb));
       border-radius: var(--border-radius);
+
+      padding: 0.25em;
+
+      &:hover {
+        background-color: rgb(var(--foreground-rgb));
+        color: rgb(var(--background-rgb));
+      }
+    }
+
+    li a:focus-visible {
+      outline: var(--focus-outline);
+      outline-offset: var(--focus-outline-offset);
     }
   }
 }

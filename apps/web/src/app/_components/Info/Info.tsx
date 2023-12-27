@@ -1,7 +1,14 @@
-import React from "react";
+import Link from "next/link";
+import {
+  FaXTwitter,
+  FaLinkedinIn,
+  FaGithub,
+  FaRegEnvelope,
+} from "react-icons/fa6";
+
+import { AnimatedWordList } from "@/components/AnimatedWordList";
 
 import "./Info.styles.css";
-import { AnimatedWordList } from "@/components/AnimatedWordList";
 
 export function Info() {
   return (
@@ -30,10 +37,26 @@ export function Info() {
         Hire me
       </a>
       <ul>
-        <li>gt</li>
-        <li>tw</li>
-        <li>li</li>
-        <li>gm</li>
+        <li>
+          <Link href="#">
+            <FaGithub />
+          </Link>
+        </li>
+        <li>
+          <Link href="#">
+            <FaXTwitter />
+          </Link>
+        </li>
+        <li>
+          <Link href="#">
+            <FaLinkedinIn />
+          </Link>
+        </li>
+        <li>
+          <Link href="#">
+            <FaRegEnvelope />
+          </Link>
+        </li>
       </ul>
     </section>
   );

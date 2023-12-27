@@ -6,7 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
 
+  /* Accessibility Styles */
   --focus-color: orange;
+  --focus-outline: dotted 2px var(--focus-color);
+  --focus-outline-offset: 2px;
 
   /* Box variables */
   --border-radius: 3px;
