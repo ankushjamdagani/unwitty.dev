@@ -15,10 +15,22 @@ type AnimatedWordListProps = {
    * in milliseconds
    */
   delayTime?: number;
+  /**
+   * html tag name
+   */
+  as?: keyof JSX.IntrinsicElements;
+  // as?: ElementType;
+  // as?: keyof ReactHTML;
 };
 
 export function AnimatedWordList(props: AnimatedWordListProps) {
-  const { words, startIndex = 0, transitionTime, delayTime = 0 } = props;
+  const {
+    words,
+    startIndex = 0,
+    transitionTime,
+    delayTime = 0,
+    as: Wrapper = "span",
+  } = props;
 
   const [currentIndex, setCurrentIndex] = useState(startIndex || 0);
   const activeWord = words.at(currentIndex % words.length);
@@ -38,5 +50,5 @@ export function AnimatedWordList(props: AnimatedWordListProps) {
     };
   }, [delayTime, transitionTime]);
 
-  return <>{activeWord}</>;
+  return <Wrapper>{activeWord}</Wrapper>;
 }

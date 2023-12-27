@@ -17,11 +17,9 @@ export function Info() {
           sometimes{" "}
           <strong>
             <AnimatedWordList
-              words={[
-                <span key={"stupid"}>stupid</span>,
-                <span key={"awesome"}>awesome</span>,
-              ]}
+              words={["stupid", "awesome"]}
               transitionTime={2000}
+              as="span"
             />
           </strong>
           <br />
