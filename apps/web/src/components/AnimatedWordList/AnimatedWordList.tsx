@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { PolymorphicComponent } from "@/types/PolymorphicComponent";
 
-type Word = string | JSX.Element;
+type Word = React.ReactNode;
 
-type AnimatedWordListProps = {
+type ComponentProps = {
   words: Word[];
   startIndex?: number;
   /**
@@ -15,21 +16,18 @@ type AnimatedWordListProps = {
    * in milliseconds
    */
   delayTime?: number;
-  /**
-   * html tag name
-   */
-  as?: keyof JSX.IntrinsicElements;
-  // as?: ElementType;
-  // as?: keyof ReactHTML;
 };
 
-export function AnimatedWordList(props: AnimatedWordListProps) {
+export function AnimatedWordList<T extends React.ElementType = "span">(
+  props: PolymorphicComponent<T, ComponentProps>
+) {
   const {
     words,
     startIndex = 0,
     transitionTime,
     delayTime = 0,
-    as: Wrapper = "span",
+    as: Component = "span",
+    ...restProps
   } = props;
 
   const [currentIndex, setCurrentIndex] = useState(startIndex || 0);
@@ -50,5 +48,5 @@ export function AnimatedWordList(props: AnimatedWordListProps) {
     };
   }, [delayTime, transitionTime]);
 
-  return <Wrapper>{activeWord}</Wrapper>;
+  return <Component {...restProps}>{activeWord}</Component>;
 }

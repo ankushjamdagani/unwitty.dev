@@ -15,13 +15,11 @@ export function Info() {
         <p>
           Crafting web experiences for <strong>7+ years</strong> <br />
           sometimes{" "}
-          <strong>
-            <AnimatedWordList
-              words={["stupid", "awesome"]}
-              transitionTime={2000}
-              as="span"
-            />
-          </strong>
+          <AnimatedWordList
+            words={["stupid", "awesome"]}
+            transitionTime={2500}
+            as="strong"
+          />
           <br />
           ...
           <strong className="wavy-underline">fun</strong> all the time
