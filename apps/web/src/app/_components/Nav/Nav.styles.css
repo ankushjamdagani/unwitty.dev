@@ -12,6 +12,7 @@ nav {
   }
 
   a {
+    display: inline-flex;
     padding: 8px 16px;
 
     &.active {

@@ -8,8 +8,10 @@ import { Work } from "./_components/Work";
 export default function Home() {
   return (
     <main>
-      <Nav />
-      <Info />
+      <section className="hero-section">
+        <Nav />
+        <Info />
+      </section>
       <Projects />
       <Words />
       <Work />
