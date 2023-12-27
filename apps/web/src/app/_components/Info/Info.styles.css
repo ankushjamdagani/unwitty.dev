@@ -7,10 +7,6 @@
   justify-content: center;
   text-align: right;
 
-  h1 {
-    font-size: 72px;
-  }
-
   a.btn-bordered {
     background-color: rgb(var(--background-rgb));
     border-radius: var(--border-radius);

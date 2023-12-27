@@ -47,10 +47,22 @@ p {
   line-height: 1.4;
 }
 
+h1 {
+  font-size: 4.5em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 2em;
+}
+
 .hero-section {
   border-right: dashed 2px rgb(var(--foreground-rgb));
   padding-right: 16px;
-  margin-right: calc((100vw - 800px) / 2);
+  margin-right: max(0px, calc((100vw - 800px) / 2));
 }
 
 .wavy-underline {
