@@ -56,7 +56,7 @@ const List = [
 
 export function Projects() {
   return (
-    <section id="projects">
+    <section id="projects" className="container">
       <header>
         <h2>Experiments</h2>
       </header>

@@ -60,6 +60,63 @@ h3 {
   font-size: 2em;
 }
 
+.container {
+  /* min-height: calc(100vh - var(--nav-height)); */
+  padding-top: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+
+  & > header {
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  & > ul {
+    padding: 32px 0;
+    padding-left: max(0px, calc((100vw - 800px) / 2));
+    padding-right: 32px;
+    width: 100%;
+    gap: 16px;
+  }
+
+  & > footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+
+    button {
+      display: inline-flex;
+      padding: 0.5em;
+      cursor: pointer;
+
+      &.project-prev:hover {
+        transform: translateX(-0.5em);
+      }
+      &.project-next:hover {
+        transform: translateX(0.5em);
+      }
+
+      &:focus-visible {
+        outline: var(--focus-outline);
+        outline-offset: var(--focus-outline-offset);
+      }
+    }
+
+    .seperator {
+      width: 8px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background-color: rgb(var(--foreground-rgb));
+    }
+  }
+}
+
 .hero-section {
   border-right: dashed 2px rgb(var(--foreground-rgb));
   padding-right: 16px;

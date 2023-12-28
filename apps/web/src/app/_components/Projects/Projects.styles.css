@@ -1,23 +1,8 @@
 #projects {
-  margin: 0 auto;
-  max-width: 800px;
-  min-height: calc(100vh - var(--nav-height));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  header {
-    width: 100%;
-  }
-
   ul {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: minmax(140px, auto);
-    gap: 16px;
-    margin: 32px 0;
   }
 
   li {
@@ -72,38 +57,5 @@
   .project-4 {
     grid-column: 1 / 3;
     grid-row: 2 / 4;
-  }
-
-  footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 8px;
-
-    button {
-      display: inline-flex;
-      padding: 0.5em;
-      cursor: pointer;
-
-      &.project-prev:hover {
-        transform: translateX(-0.5em);
-      }
-      &.project-next:hover {
-        transform: translateX(0.5em);
-      }
-
-      &:focus-visible {
-        outline: var(--focus-outline);
-        outline-offset: var(--focus-outline-offset);
-      }
-    }
-
-    .seperator {
-      width: 8px;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      background-color: rgb(var(--foreground-rgb));
-    }
   }
 }
