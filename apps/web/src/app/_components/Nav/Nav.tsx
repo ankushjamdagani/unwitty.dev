@@ -31,6 +31,7 @@ export function Nav() {
 
   return (
     <aside id="navigation-bar">
+      <Link href="#">Logo</Link>
       <nav>
         <ul>
           {Links.map((link) => (

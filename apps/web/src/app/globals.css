@@ -7,7 +7,7 @@
   --background-rgb: 255, 255, 255;
 
   /* Accessibility Styles */
-  --focus-color: orange;
+  --focus-color: crimson;
   --focus-outline: dotted 2px var(--focus-color);
   --focus-outline-offset: 2px;
 
@@ -45,6 +45,7 @@
 [data-theme="dark"] {
   --foreground-rgb: 255, 255, 255;
   --background-rgb: 0, 0, 0;
+  --focus-color: orange;
 }
 
 body {

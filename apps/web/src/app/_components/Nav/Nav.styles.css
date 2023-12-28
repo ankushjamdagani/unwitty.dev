@@ -1,16 +1,17 @@
 #navigation-bar {
-  align-items: center;
-  background-color: rgb(var(--background-rgb));
-  border-bottom: dashed var(--border-width) rgb(var(--foreground-rgb));
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: var(--nav-height);
-  justify-content: flex-end;
   margin-bottom: 8px;
-  padding-right: max(0px, calc((100vw - 800px) / 2));
   position: sticky;
-  text-align: right;
   top: 0;
   z-index: 111;
+  padding: 0 max(0px, calc((100vw - 800px) / 2));
+
+  /* text-align: right; */
+  background-color: rgb(var(--background-rgb));
+  border-bottom: dashed var(--border-width) rgb(var(--foreground-rgb));
 
   ul {
     display: flex;
