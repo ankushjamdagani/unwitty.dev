@@ -39,10 +39,5 @@
         color: rgb(var(--foreground-rgb));
       }
     }
-
-    li a:focus-visible {
-      outline: var(--focus-outline);
-      outline-offset: var(--focus-outline-offset);
-    }
   }
 }

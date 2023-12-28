@@ -37,11 +37,6 @@
       left: 4px;
       top: 4px;
     }
-
-    &:focus-visible {
-      outline: var(--focus-outline);
-      outline-offset: var(--focus-outline-offset);
-    }
   }
 
   ul {
@@ -62,11 +57,6 @@
         background-color: rgb(var(--foreground-rgb));
         color: rgb(var(--background-rgb));
       }
-    }
-
-    li a:focus-visible {
-      outline: var(--focus-outline);
-      outline-offset: var(--focus-outline-offset);
     }
   }
 }
