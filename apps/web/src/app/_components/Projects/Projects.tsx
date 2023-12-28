@@ -75,7 +75,9 @@ export function Projects() {
       <ul>
         {List.map((project) => (
           <li key={project.id} className={project.id.replace(" ", "-")}>
-            <Link href={`#${project.id}`}>{project.title}</Link>
+            <Link href={`#${project.id}`} className="shadow-box">
+              {project.title}
+            </Link>
           </li>
         ))}
       </ul>

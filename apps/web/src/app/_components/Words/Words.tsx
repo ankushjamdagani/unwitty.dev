@@ -68,8 +68,10 @@ export function Words() {
       </header>
       <ul>
         {List.map((post) => (
-          <li key={post.id} className={post.id.replace(" ", "-")}>
-            <Link href={`#${post.id}`}>{post.title}</Link>
+          <li key={post.id}>
+            <Link href={`#${post.id}`} className="shadow-box">
+              {post.title}
+            </Link>
           </li>
         ))}
       </ul>

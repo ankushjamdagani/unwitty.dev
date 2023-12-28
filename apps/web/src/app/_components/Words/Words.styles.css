@@ -11,15 +11,6 @@
   }
 
   li a {
-    background-color: rgb(var(--background-rgb));
-    border-radius: var(--border-radius);
-    border: solid 2px rgb(var(--foreground-rgb));
-    display: flex;
-    width: 100%;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-
     min-height: 140px;
     aspect-ratio: 1;
   }
