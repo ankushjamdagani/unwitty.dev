@@ -1,8 +1,9 @@
 #marquee-text-wrapper {
   --gap: 32px;
 
-  position: absolute;
-  top: calc(100vh - 60px);
+  /* position: absolute;
+  top: calc(100vh - 60px); */
+  height: var(--marquee-height);
   width: 100%;
 
   white-space: nowrap;

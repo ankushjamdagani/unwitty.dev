@@ -30,6 +30,7 @@
 
   /* Components */
   --nav-height: 50px;
+  --marquee-height: 80px;
 
   color-scheme: light dark;
 }
@@ -124,12 +125,6 @@ h3 {
       background-color: rgb(var(--foreground-rgb));
     }
   }
-}
-
-.hero-section {
-  border-right: dashed var(--border-width) rgb(var(--foreground-rgb));
-  padding-right: 16px;
-  margin-right: max(0px, calc((100vw - 800px) / 2));
 }
 
 .wavy-underline {

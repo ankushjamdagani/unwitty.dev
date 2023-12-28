@@ -9,10 +9,8 @@ import { MarqueeText } from "./_components/MarqueeText";
 export default function Home() {
   return (
     <main>
-      <section className="hero-section">
-        {/* <Nav /> */}
-        <Info />
-      </section>
+      <Nav />
+      <Info />
       <MarqueeText />
       <Projects />
       <Words />
