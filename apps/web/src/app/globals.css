@@ -63,6 +63,11 @@ h3 {
   font-size: 2em;
 }
 
+::selection {
+  color: rgb(var(--background-rgb));
+  background-color: rgb(var(--foreground-rgb));
+}
+
 .container {
   /* min-height: calc(100vh - var(--nav-height)); */
   padding-top: 140px;
@@ -167,11 +172,6 @@ h3 {
 }
 
 .highlight-inverted {
-  color: rgb(var(--background-rgb));
-  background-color: rgb(var(--foreground-rgb));
-}
-
-::selection {
   color: rgb(var(--background-rgb));
   background-color: rgb(var(--foreground-rgb));
 }
