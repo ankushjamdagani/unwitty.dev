@@ -1,0 +1,18 @@
+#footer {
+  padding: 200px 0;
+  background-color: rgb(var(--foreground-rgb));
+  color: rgb(var(--background-rgb));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a[href^="email"] {
+    font-size: 2em;
+
+    &:hover {
+      text-decoration: underline;
+      text-decoration-style: wavy;
+      text-underline-offset: 0.5em;
+    }
+  }
+}

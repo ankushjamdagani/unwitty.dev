@@ -95,12 +95,12 @@ h3 {
       padding: 0.5em;
       cursor: pointer;
 
-      &.project-prev:hover {
+      /* &.project-prev:hover {
         transform: translateX(-0.5em);
       }
       &.project-next:hover {
         transform: translateX(0.5em);
-      }
+      } */
 
       &:focus-visible {
         outline: var(--focus-outline);
