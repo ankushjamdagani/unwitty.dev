@@ -15,6 +15,9 @@
   --border-radius: 3px;
   --border-radius-md: 5px;
   --border-radius-lg: 8px;
+  --border-width-thin: 1px;
+  --border-width: 2px;
+  --border-width-thick: 3px;
 
   /* Font Families */
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
@@ -63,6 +66,7 @@ h3 {
 .container {
   /* min-height: calc(100vh - var(--nav-height)); */
   padding-top: 140px;
+  padding-bottom: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +122,7 @@ h3 {
 }
 
 .hero-section {
-  border-right: dashed 2px rgb(var(--foreground-rgb));
+  border-right: dashed var(--border-width) rgb(var(--foreground-rgb));
   padding-right: 16px;
   margin-right: max(0px, calc((100vw - 800px) / 2));
 }
@@ -132,7 +136,7 @@ h3 {
 .shadow-box {
   background-color: rgb(var(--background-rgb));
   border-radius: var(--border-radius);
-  border: solid 2px rgb(var(--foreground-rgb));
+  border: solid var(--border-width) rgb(var(--foreground-rgb));
   display: flex;
   width: 100%;
   position: relative;
@@ -160,6 +164,11 @@ h3 {
     outline: var(--focus-outline);
     outline-offset: var(--focus-outline-offset);
   }
+}
+
+.highlight-inverted {
+  color: rgb(var(--background-rgb));
+  background-color: rgb(var(--foreground-rgb));
 }
 
 ::selection {

@@ -10,13 +10,13 @@ export default function Home() {
   return (
     <main>
       <section className="hero-section">
-        <Nav />
+        {/* <Nav /> */}
         <Info />
       </section>
       <MarqueeText />
       <Projects />
       <Words />
-      <Work />
+      {/* <Work /> */}
       <Footer />
     </main>
   );

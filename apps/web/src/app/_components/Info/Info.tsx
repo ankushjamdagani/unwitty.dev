@@ -26,6 +26,7 @@ export function Info() {
             words={["stupid", "awesome"]}
             transitionTime={2500}
             as="strong"
+            className="highlight-inverted"
           />
           <br />
           ...

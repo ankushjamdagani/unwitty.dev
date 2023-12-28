@@ -1,18 +1,48 @@
 #footer {
-  padding: 200px 0;
-  background-color: rgb(var(--foreground-rgb));
-  color: rgb(var(--background-rgb));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .content {
+    align-items: center;
+    background-color: rgb(var(--foreground-rgb));
+    color: rgb(var(--background-rgb));
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    padding: 200px 0;
+  }
 
   a[href^="email"] {
     font-size: 2em;
+  }
 
-    &:hover {
-      text-decoration: underline;
-      text-decoration-style: wavy;
-      text-underline-offset: 0.5em;
+  blockquote {
+    border-top: dashed var(--border-width) white;
+    font-size: 0.8em;
+    padding: 16px 0;
+    text-align: center;
+  }
+
+  ul {
+    display: flex;
+    gap: 8px;
+
+    li a {
+      border: solid var(--border-width-thin) rgb(var(--background-rgb));
+      border-radius: var(--border-radius);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25em;
+
+      &:hover {
+        background-color: rgb(var(--background-rgb));
+        color: rgb(var(--foreground-rgb));
+      }
+    }
+
+    li a:focus-visible {
+      outline: var(--focus-outline);
+      outline-offset: var(--focus-outline-offset);
     }
   }
 }
