@@ -5,48 +5,60 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 const List = [
   {
-    name: "project 1",
-    path: "project 1",
+    id: "project 1",
+    title: "project 1",
+    description:
+      "project 1 project 1 project 1 project 1 project 1 project 1 project 1",
     thumbnail: {
       src: ".",
       type: "gif",
     },
   },
   {
-    name: "project 2",
-    path: "project 2",
+    id: "project 2",
+    title: "project 2",
+    description:
+      "project 2 project 2 project 2 project 2 project 2 project 2 project 2",
     thumbnail: {
       src: ".",
       type: "gif",
     },
   },
   {
-    name: "project 3",
-    path: "project 3",
+    id: "project 3",
+    title: "project 3",
+    description:
+      "project 3 project 3 project 3 project 3 project 3 project 3 project 3",
     thumbnail: {
       src: ".",
       type: "gif",
     },
   },
   {
-    name: "project 4",
-    path: "project 4",
+    id: "project 4",
+    title: "project 4",
+    description:
+      "project 4 project 4 project 4 project 4 project 4 project 4 project 4",
     thumbnail: {
       src: ".",
       type: "gif",
     },
   },
   {
-    name: "project 5",
-    path: "project 5",
+    id: "project 5",
+    title: "project 5",
+    description:
+      "project 5 project 5 project 5 project 5 project 5 project 5 project 5",
     thumbnail: {
       src: ".",
       type: "gif",
     },
   },
   {
-    name: "project 6",
-    path: "project 6",
+    id: "project 6",
+    title: "project 6",
+    description:
+      "project 6 project 6 project 6 project 6 project 6 project 6 project 6",
     thumbnail: {
       src: ".",
       type: "gif",
@@ -62,8 +74,8 @@ export function Projects() {
       </header>
       <ul>
         {List.map((project) => (
-          <li key={project.path} className={project.name.replace(" ", "-")}>
-            <Link href={`#${project.path}`}>{project.name}</Link>
+          <li key={project.id} className={project.id.replace(" ", "-")}>
+            <Link href={`#${project.id}`}>{project.title}</Link>
           </li>
         ))}
       </ul>
