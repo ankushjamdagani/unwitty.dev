@@ -71,3 +71,8 @@ h3 {
   text-decoration-style: wavy;
   text-underline-offset: 0.5em;
 }
+
+::selection {
+  color: rgb(var(--background-rgb));
+  background-color: rgb(var(--foreground-rgb));
+}
