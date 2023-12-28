@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
+import { ThemeToggle } from "./ThemeToggle";
+
 import "./Nav.styles.css";
-import { useState } from "react";
 
 const Links = [
   // {
@@ -28,22 +30,27 @@ export function Nav() {
   const [activeLink, setActiveLink] = useState(window.location.hash);
 
   return (
-    <nav>
-      <ul>
-        {Links.map((link) => (
-          <li key={link.path}>
-            <Link
-              href={link.path}
-              prefetch={false}
-              onClick={() => setActiveLink(link.path)}
-              className={activeLink === link.path ? "active" : ""}
-              aria-current={activeLink === link.path}
-            >
-              {link.label}
-            </Link>
+    <aside id="navigation-bar">
+      <nav>
+        <ul>
+          {Links.map((link) => (
+            <li key={link.path}>
+              <Link
+                href={link.path}
+                prefetch={false}
+                onClick={() => setActiveLink(link.path)}
+                className={activeLink === link.path ? "active" : ""}
+                aria-current={activeLink === link.path}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <ThemeToggle />
           </li>
-        ))}
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+    </aside>
   );
 }
