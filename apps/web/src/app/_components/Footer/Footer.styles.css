@@ -15,7 +15,7 @@
   }
 
   blockquote {
-    border-top: dashed var(--border-width) white;
+    border-top: dashed var(--border-width) rgb(var(--foreground-rgb));
     font-size: 0.8em;
     padding: 16px 0;
     text-align: center;
