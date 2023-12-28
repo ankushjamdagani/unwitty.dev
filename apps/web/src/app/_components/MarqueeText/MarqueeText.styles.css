@@ -1,4 +1,6 @@
 #marquee-text-wrapper {
+  --gap: 32px;
+
   position: absolute;
   top: calc(100vh - 60px);
   width: 100%;
@@ -8,29 +10,34 @@
 
   .marquee-text {
     display: flex;
+    gap: var(--gap);
     overflow: hidden;
 
     user-select: none;
     transform-origin: right;
 
     position: relative;
+
+    background-color: rgb(var(--background-rgb));
+    border-bottom: dashed 2px rgb(var(--foreground-rgb));
+    border-top: dashed 2px rgb(var(--foreground-rgb));
+    color: rgb(var(--foreground-rgb));
+  }
+
+  &.inverted .marquee-text {
+    background-color: rgb(var(--foreground-rgb));
+    border-bottom: dashed 2px rgb(var(--background-rgb));
+    border-top: dashed 2px rgb(var(--background-rgb));
+    color: rgb(var(--background-rgb));
   }
 
   .marquee-text ul {
-    background-color: rgb(var(--foreground-rgb));
-    border-top: dashed 3px rgb(var(--background-rgb));
-    border-bottom: dashed 3px rgb(var(--background-rgb));
-    color: rgb(var(--background-rgb));
-    font-size: 1.25em;
-    letter-spacing: 2;
-    padding: 8px 0;
-    /* overflow: hidden; */
-
+    animation: marquee 25s linear infinite;
     display: flex;
-    justify-content: space-around;
-    width: 100%;
     flex-shrink: 0;
-    animation: marquee 10s linear infinite;
+    gap: var(--gap);
+    min-width: 100%;
+    padding: 8px 0;
   }
 
   .marquee-text-primary {
@@ -42,11 +49,9 @@
   .marquee-text-secondary {
     transform: rotateZ(1.5deg);
     opacity: 0.2;
-    background-color: red;
   }
   .marquee-text-secondary ul {
     animation-direction: reverse;
-    /* animation-delay: 2s; */
   }
 }
 

@@ -41,6 +41,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  letter-spacing: 0.075em;
 }
 
 p {
