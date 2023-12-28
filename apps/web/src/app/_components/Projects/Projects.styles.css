@@ -73,4 +73,37 @@
     grid-column: 1 / 3;
     grid-row: 2 / 4;
   }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+
+    button {
+      display: inline-flex;
+      padding: 0.5em;
+      cursor: pointer;
+
+      &.project-prev:hover {
+        transform: translateX(-0.5em);
+      }
+      &.project-next:hover {
+        transform: translateX(0.5em);
+      }
+
+      &:focus-visible {
+        outline: var(--focus-outline);
+        outline-offset: var(--focus-outline-offset);
+      }
+    }
+
+    .seperator {
+      width: 8px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background-color: rgb(var(--foreground-rgb));
+    }
+  }
 }

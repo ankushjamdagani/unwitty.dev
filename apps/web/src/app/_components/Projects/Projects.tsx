@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import "./Projects.styles.css";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 const List = [
   {
@@ -66,6 +67,15 @@ export function Projects() {
           </li>
         ))}
       </ul>
+      <footer>
+        <button className="project-prev" aria-label="Previous projects">
+          <FaAngleLeft />
+        </button>
+        <div className="seperator"></div>
+        <button className="project-next" aria-label="Next projects">
+          <FaAngleRight />
+        </button>
+      </footer>
     </section>
   );
 }
