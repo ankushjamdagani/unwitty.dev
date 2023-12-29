@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
@@ -6,55 +7,55 @@ import "./Words.styles.css";
 const List = [
   {
     id: "blog 1",
-    title: "blog 1",
-    description: "blog 1 blog 1 blog 1 blog 1 blog 1 blog 1 blog 1",
+    title: "This is the title for blog 1",
+    description: "Contrary to popular belief, Lorem Ipsum is not simply. ",
     thumbnail: {
-      src: ".",
+      src: "/abc.jpg",
       type: "gif",
     },
   },
   {
     id: "blog 2",
-    title: "blog 2",
-    description: "blog 2 blog 2 blog 2 blog 2 blog 2 blog 2 blog 2",
+    title: "This is the title for blog 2",
+    description: "Contrary to popular belief, Lorem Ipsum is not simply. ",
     thumbnail: {
-      src: ".",
+      src: "/abc.jpg",
       type: "gif",
     },
   },
   {
     id: "blog 3",
-    title: "blog 3",
-    description: "blog 3 blog 3 blog 3 blog 3 blog 3 blog 3 blog 3",
+    title: "This is the title for blog 3 and this can be long too",
+    description: "Contrary to popular belief, Lorem Ipsum is not simply. ",
     thumbnail: {
-      src: ".",
+      src: "/abc.jpg",
       type: "gif",
     },
   },
   {
     id: "blog 4",
-    title: "blog 4",
-    description: "blog 4 blog 4 blog 4 blog 4 blog 4 blog 4 blog 4",
+    title: "This is the title for blog 4 and this can be long too",
+    description: "Contrary to popular belief, Lorem Ipsum is not simply. ",
     thumbnail: {
-      src: ".",
+      src: "/abc.jpg",
       type: "gif",
     },
   },
   {
     id: "blog 5",
-    title: "blog 5",
-    description: "blog 5 blog 5 blog 5 blog 5 blog 5 blog 5 blog 5",
+    title: "This is the title for blog 5 and this can be long too",
+    description: "Contrary to popular belief, Lorem Ipsum is not simply. ",
     thumbnail: {
-      src: ".",
+      src: "/abc.jpg",
       type: "gif",
     },
   },
   {
     id: "blog 6",
-    title: "blog 6",
-    description: "blog 6 blog 6 blog 6 blog 6 blog 6 blog 6 blog 6",
+    title: "This is the title for blog 6",
+    description: "Contrary to popular belief, Lorem Ipsum is not simply. ",
     thumbnail: {
-      src: ".",
+      src: "/abc.jpg",
       type: "gif",
     },
   },
@@ -69,8 +70,20 @@ export function Words() {
       <ul>
         {List.map((post) => (
           <li key={post.id}>
-            <Link href={`#${post.id}`} className="shadow-box">
-              {post.title}
+            <Link
+              aria-label={post.title}
+              className="post shadow-box"
+              href={`#${post.id}`}
+            >
+              <Image
+                alt={post.title}
+                className="post-thumb"
+                height={240}
+                src={post.thumbnail.src}
+                width={240}
+              />
+              <h3 className="post-title">{post.title}</h3>
+              <p className="post-description">{post.description}</p>
             </Link>
           </li>
         ))}
