@@ -28,15 +28,21 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ### Scripts
 
+To setup all apps and packages, run the following command:
+
+```js
+pnpm install
+```
+
 To build all apps and packages, run the following command:
 
-```
+```js
 pnpm build
 ```
 
 To develop all apps and packages, run the following command:
 
-```
+```js
 pnpm dev
 ```
 
