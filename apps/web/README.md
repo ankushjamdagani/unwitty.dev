@@ -1,12 +1,5 @@
 # Unwitty Dev webapp
 
-## Tech specs
-
-- Error logging
-- User monitoring
-- Internationalisation [Template](https://github.com/vercel/next.js/tree/canary/examples/app-dir-i18n-routing)
-- Accessibility
-
 ## Getting Started
 
 First, run the development server on [http://localhost:3000](http://localhost:3000):
@@ -21,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-## Directory Structure
+## FAQs in Code Structure
 
 - Components
   - Use named exports - now, it can't be used with any other names
@@ -29,3 +22,10 @@ bun dev
   - For better cmd+p - use index.ts only for exporting
   - Use \_ for private non-route folders
 -
+
+## Todos
+
+- Error logging
+- User monitoring
+- Internationalisation [Template](https://github.com/vercel/next.js/tree/canary/examples/app-dir-i18n-routing)
+- Accessibility
