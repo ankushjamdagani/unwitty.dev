@@ -1,9 +1,7 @@
 # Unwitty Dev 🧟‍♂️
 
 > [!CAUTION]
-> Work in progress. A lot of unstable experimentation.
-
-## (⚠️⚠️⚠️ Work in progress ⚠️⚠️⚠️)
+> ⚠️ Work in progress ⚠️ A lot of unstable experimentation.
 
 Let the exploration begin.
 
