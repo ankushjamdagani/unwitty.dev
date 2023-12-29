@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
   z-index: 111;
-  padding: 0 max(0px, calc((100vw - 800px) / 2));
+  padding: 0 max(0px, calc((100vw - 800px) / 2) - 1em);
 
   /* text-align: right; */
   background-color: rgb(var(--background-rgb));
