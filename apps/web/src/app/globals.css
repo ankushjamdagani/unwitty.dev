@@ -12,6 +12,7 @@
   --focus-outline-offset: 2px;
 
   /* Box variables */
+  --border-radius-sm: 1px;
   --border-radius: 3px;
   --border-radius-md: 5px;
   --border-radius-lg: 8px;
@@ -56,6 +57,11 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   letter-spacing: 0.075em;
+
+  &.mono {
+    font-size: 14px;
+    font-family: monospace;
+  }
 }
 
 p {
