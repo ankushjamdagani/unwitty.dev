@@ -10,8 +10,8 @@ import "./Nav.styles.css";
 
 const Links = [
   // {
-  //   path: "#info",
-  //   label: "Info",
+  //   path: "#hero",
+  //   label: "Hero",
   // },
   {
     path: "#projects",

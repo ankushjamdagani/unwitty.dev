@@ -8,11 +8,11 @@ import {
 
 import { AnimatedWordList } from "@/components/AnimatedWordList";
 
-import "./Info.styles.css";
+import "./Hero.styles.css";
 
-export function Info() {
+export function Hero() {
   return (
-    <section id="info">
+    <section id="hero">
       <header>
         <h1>
           Hello <br />
