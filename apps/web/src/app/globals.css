@@ -60,14 +60,17 @@ p {
 
 h1 {
   font-size: 4.5em;
+  margin: 0;
 }
 
 h2 {
   font-size: 3em;
+  margin: 0;
 }
 
 h3 {
   font-size: 2em;
+  margin: 0;
 }
 
 ::selection {
@@ -118,7 +121,6 @@ h3 {
 
 [class^="seperator-round"] {
   aspect-ratio: 1/1;
-  border-radius: 50%;
   background-color: rgb(var(--foreground-rgb));
 }
 
@@ -133,7 +135,7 @@ h3 {
 .wavy-underline {
   text-decoration: underline;
   text-decoration-style: wavy;
-  text-underline-offset: 0.5em;
+  text-underline-offset: 0.4em;
 }
 
 .shadow-box {

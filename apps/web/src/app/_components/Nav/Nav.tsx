@@ -47,7 +47,7 @@ export function Nav() {
                   href={link.path}
                   prefetch={false}
                   onClick={() => setActiveLink(link.path)}
-                  className={activeLink === link.path ? "active" : ""}
+                  className={activeLink === link.path ? "wavy-underline" : ""}
                   aria-current={activeLink === link.path}
                 >
                   <>

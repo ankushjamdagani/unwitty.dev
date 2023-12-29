@@ -26,12 +26,6 @@
     a {
       display: inline-flex;
       padding: 8px 16px;
-
-      &.active {
-        text-decoration: underline;
-        text-decoration-style: wavy;
-        text-underline-offset: 0.5em;
-      }
     }
 
     a > svg {

@@ -12,12 +12,14 @@ import "./Hero.styles.css";
 
 export function Hero() {
   return (
-    <section id="hero">
+    <section id="hero" className="--left-aligned">
       <header>
         <h1>
           Hello <br />
           I&apos;m Ankush
         </h1>
+
+        <div className="seperator-round-sm"></div>
 
         <p>
           Crafting web experiences for <strong>7+ years</strong> <br />
@@ -32,11 +34,10 @@ export function Hero() {
           ...
           <strong className="wavy-underline">fun</strong> all the time
         </p>
+
+        <div className="seperator-round-sm"></div>
       </header>
 
-      <a className="btn btn-bordered" href="#">
-        Hire me
-      </a>
       <ul>
         <li>
           <Link href="#">
