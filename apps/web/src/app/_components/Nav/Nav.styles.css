@@ -13,18 +13,30 @@
   background-color: rgb(var(--background-rgb));
   border-bottom: dashed var(--border-width) rgb(var(--foreground-rgb));
 
-  ul {
-    display: flex;
-  }
+  nav {
+    ul {
+      display: flex;
+      align-items: center;
+    }
 
-  a {
-    display: inline-flex;
-    padding: 8px 16px;
+    [class^="seperator-round"]:last-of-type {
+      display: none;
+    }
 
-    &.active {
-      text-decoration: underline;
-      text-decoration-style: wavy;
-      text-underline-offset: 0.5em;
+    a {
+      display: inline-flex;
+      padding: 8px 16px;
+
+      &.active {
+        text-decoration: underline;
+        text-decoration-style: wavy;
+        text-underline-offset: 0.5em;
+      }
+    }
+
+    a > svg {
+      margin-left: 4px;
+      margin-top: 2px;
     }
   }
 

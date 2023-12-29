@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { GoArrowUpRight } from "react-icons/go";
 
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -21,8 +22,13 @@ const Links = [
     label: "Thoughts",
   },
   {
-    path: "#work",
-    label: "Work",
+    path: "#about",
+    label: "About",
+  },
+  {
+    path: "#resume",
+    label: "Resume",
+    icon: () => <GoArrowUpRight />,
   },
 ];
 
@@ -35,17 +41,24 @@ export function Nav() {
       <nav>
         <ul>
           {Links.map((link) => (
-            <li key={link.path}>
-              <Link
-                href={link.path}
-                prefetch={false}
-                onClick={() => setActiveLink(link.path)}
-                className={activeLink === link.path ? "active" : ""}
-                aria-current={activeLink === link.path}
-              >
-                {link.label}
-              </Link>
-            </li>
+            <>
+              <li key={link.path}>
+                <Link
+                  href={link.path}
+                  prefetch={false}
+                  onClick={() => setActiveLink(link.path)}
+                  className={activeLink === link.path ? "active" : ""}
+                  aria-current={activeLink === link.path}
+                >
+                  <>
+                    {link.label}
+                    {link.icon ? link.icon() : null}
+                  </>
+                </Link>
+              </li>
+
+              <div className="seperator-round-sm"></div>
+            </>
           ))}
           <li>
             <ThemeToggle />

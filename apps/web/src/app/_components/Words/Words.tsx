@@ -79,7 +79,7 @@ export function Words() {
         <button className="project-prev" aria-label="Previous projects">
           <FaAngleLeft />
         </button>
-        <div className="seperator"></div>
+        <div className="seperator-round"></div>
         <button className="project-next" aria-label="Next projects">
           <FaAngleRight />
         </button>

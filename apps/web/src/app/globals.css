@@ -110,14 +110,21 @@ h3 {
       display: inline-flex;
       padding: 0.5em;
     }
-
-    .seperator {
-      width: 8px;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      background-color: rgb(var(--foreground-rgb));
-    }
   }
+}
+
+[class^="seperator-round"] {
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: rgb(var(--foreground-rgb));
+}
+
+.seperator-round {
+  width: 8px;
+}
+
+.seperator-round-sm {
+  width: 4px;
 }
 
 .wavy-underline {
