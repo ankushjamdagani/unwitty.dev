@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 
@@ -41,8 +41,8 @@ export function Nav() {
       <nav>
         <ul>
           {Links.map((link) => (
-            <>
-              <li key={link.path}>
+            <React.Fragment key={link.path}>
+              <li>
                 <Link
                   href={link.path}
                   prefetch={false}
@@ -58,7 +58,7 @@ export function Nav() {
               </li>
 
               <div className="seperator-round-sm"></div>
-            </>
+            </React.Fragment>
           ))}
           <li>
             <ThemeToggle />
