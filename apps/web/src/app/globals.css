@@ -78,12 +78,15 @@ h3 {
 .container {
   /* min-height: calc(100vh - var(--nav-height)); */
   padding-top: 140px;
-  padding-bottom: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
+
+  &:last-of-type {
+    padding-bottom: 32px;
+  }
 
   & > header {
     margin: 0 auto;

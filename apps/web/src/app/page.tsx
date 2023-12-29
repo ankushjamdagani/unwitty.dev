@@ -3,7 +3,6 @@ import { Footer } from "./_components/Footer";
 import { Hero } from "./_components/Hero";
 import { Nav } from "./_components/Nav";
 import { Projects } from "./_components/Projects";
-import { Work } from "./_components/Work";
 import { MarqueeText } from "./_components/MarqueeText";
 
 export default function Home() {

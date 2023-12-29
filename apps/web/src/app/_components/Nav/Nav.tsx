@@ -22,7 +22,7 @@ const Links = [
     label: "Thoughts",
   },
   {
-    path: "#about",
+    path: "/about",
     label: "About",
   },
   {
