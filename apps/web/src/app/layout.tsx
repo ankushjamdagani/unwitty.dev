@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className} mono`}>
         {children}
         {/* <CursorInverted /> */}
-        <CursorDisplacementFire />
+        {/* <CursorDisplacementFire /> */}
         {/* <CursorWind /> */}
       </body>
     </html>
