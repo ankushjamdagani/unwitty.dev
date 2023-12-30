@@ -5,6 +5,7 @@ import { CursorInverted } from "@/components/CursorInveted";
 import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
 
 import "./globals.css";
+import { CursorWind } from "@/components/CursorWind";
 
 // Inter is a variable font. Don't need weights
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +25,8 @@ export default function RootLayout({
       <body className={`${inter.className} mono`}>
         {children}
         {/* <CursorInverted /> */}
-        <CursorDisplacementFire />
+        {/* <CursorDisplacementFire /> */}
+        <CursorWind />
       </body>
     </html>
   );
