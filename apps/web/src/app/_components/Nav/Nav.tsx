@@ -14,11 +14,11 @@ const Links = [
   //   label: "Hero",
   // },
   {
-    path: "#projects",
+    path: "/#projects",
     label: "Experiments",
   },
   {
-    path: "#words",
+    path: "/#words",
     label: "Thoughts",
   },
   {
@@ -36,8 +36,8 @@ export function Nav() {
   const [activeLink, setActiveLink] = useState(window.location.hash);
 
   return (
-    <aside id="navigation-bar">
-      <Link href="#">Logo</Link>
+    <header id="navigation-bar">
+      <Link href="/">Logo</Link>
       <nav>
         <ul>
           {Links.map((link) => (
@@ -57,7 +57,7 @@ export function Nav() {
                 </Link>
               </li>
 
-              <div className="seperator-round-sm"></div>
+              <div className="seperator-rect-sm"></div>
             </React.Fragment>
           ))}
           <li>
@@ -65,6 +65,6 @@ export function Nav() {
           </li>
         </ul>
       </nav>
-    </aside>
+    </header>
   );
 }

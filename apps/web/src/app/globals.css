@@ -32,6 +32,12 @@
   /* Components */
   --nav-height: 50px;
   --marquee-height: 80px;
+  --max-content-width: 800px;
+
+  --horizontal-gap: max(
+    0px,
+    calc((100vw - var(--max-content-width)) / 2) - 1em
+  );
 
   color-scheme: light dark;
 }
@@ -129,17 +135,30 @@ h3 {
   }
 }
 
-[class^="seperator-round"] {
-  aspect-ratio: 1/1;
+[class^="seperator"] {
   background-color: rgb(var(--foreground-rgb));
 }
 
-.seperator-round {
+[class^="seperator-sq"] {
+  aspect-ratio: 1/1;
+}
+
+.seperator-sq {
   width: 8px;
 }
 
-.seperator-round-sm {
+.seperator-sq-sm {
   width: 4px;
+}
+
+.seperator-rect {
+  height: 2px;
+  width: 24px;
+}
+
+.seperator-rect-sm {
+  height: 2px;
+  width: 12px;
 }
 
 .wavy-underline {

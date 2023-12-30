@@ -7,7 +7,7 @@
   position: sticky;
   top: 0;
   z-index: 111;
-  padding: 0 max(0px, calc((100vw - 800px) / 2) - 1em);
+  padding: 0 var(--horizontal-gap);
 
   /* text-align: right; */
   background-color: rgb(var(--background-rgb));
@@ -19,7 +19,7 @@
       align-items: center;
     }
 
-    [class^="seperator-round"]:last-of-type {
+    [class^="seperator"]:last-of-type {
       display: none;
     }
 

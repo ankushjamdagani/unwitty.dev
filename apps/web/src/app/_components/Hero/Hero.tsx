@@ -13,30 +13,28 @@ import "./Hero.styles.css";
 export function Hero() {
   return (
     <section id="hero" className="--left-aligned">
-      <header>
-        <h1>
-          Hello <br />
-          I&apos;m Ankush
-        </h1>
+      <h1>
+        Hello <br />
+        I&apos;m Ankush
+      </h1>
 
-        <div className="seperator-round-sm"></div>
+      <div className="seperator-rect"></div>
 
-        <p>
-          Crafting web experiences for <strong>7+ years</strong> <br />
-          sometimes{" "}
-          <AnimatedWordList
-            words={["stupid", "awesome"]}
-            transitionTime={2500}
-            as="strong"
-            className="highlight-inverted"
-          />
-          <br />
-          ...
-          <strong className="wavy-underline">fun</strong> all the time
-        </p>
+      <p>
+        Crafting web experiences for <strong>7+ years</strong> <br />
+        sometimes{" "}
+        <AnimatedWordList
+          words={["stupid", "awesome"]}
+          transitionTime={2500}
+          as="strong"
+          className="highlight-inverted"
+        />
+        <br />
+        ...
+        <strong className="wavy-underline">fun</strong> all the time
+      </p>
 
-        <div className="seperator-round-sm"></div>
-      </header>
+      <div className="seperator-rect"></div>
 
       <ul>
         <li>
@@ -60,6 +58,15 @@ export function Hero() {
           </Link>
         </li>
       </ul>
+
+      <footer>
+        <em>
+          Based in India → <strong>1:12:59 AM</strong>
+        </em>
+        <em>
+          Status → <strong>Open to Work</strong>
+        </em>
+      </footer>
     </section>
   );
 }
