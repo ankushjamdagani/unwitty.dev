@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { CursorInverted } from "@/components/CursorInveted";
+import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
 
 import "./globals.css";
 
@@ -22,7 +23,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} mono`}>
         {children}
-        <CursorInverted />
+        {/* <CursorInverted /> */}
+        <CursorDisplacementFire />
       </body>
     </html>
   );

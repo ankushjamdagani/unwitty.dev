@@ -1,0 +1,12 @@
+@supports (backdrop-filter: none) {
+  #cursor-displacement-fire {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 111;
+
+    backdrop-filter: invert(1) url(#displacementFilter);
+  }
+}
