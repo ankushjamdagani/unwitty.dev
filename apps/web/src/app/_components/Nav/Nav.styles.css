@@ -35,8 +35,8 @@
     }
 
     a:hover {
-      background-color: black;
-      color: white;
+      background-color: rgb(var(--foreground-rgb));
+      color: rgb(var(--background-rgb));
     }
 
     [class^="seperator"]:last-of-type {
