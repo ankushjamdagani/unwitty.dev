@@ -7,6 +7,8 @@
     pointer-events: none;
     z-index: 111;
 
-    backdrop-filter: invert(1) url(#displacementFilter);
+    backdrop-filter: url(#displacementFilter);
+    filter: url(#displacementFilter);
+    /* background-color: rebeccapurple; */
   }
 }

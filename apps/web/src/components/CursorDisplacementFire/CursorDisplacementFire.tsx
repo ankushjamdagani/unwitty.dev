@@ -5,16 +5,12 @@ import { useMouse } from "@uidotdev/usehooks";
 import "./CursorDisplacementFire.styles.css";
 import { useEffect } from "react";
 
-let baseFrequency = 0.05;
-
 export function CursorDisplacementFire() {
   const [mouse, ref] = useMouse();
 
   useEffect(() => {
     ref.current = document.body;
   }, [ref]);
-
-  baseFrequency = baseFrequency <= 0.1 ? baseFrequency + 0.001 : 0.05;
 
   return (
     <>
@@ -25,21 +21,29 @@ export function CursorDisplacementFire() {
           top: `${mouse.elementY - 50}px`,
         }}
       ></div>
-      <svg xmlns="http://www.w3.org/2000/svg" style={{ display: "none" }}>
+      <svg xmlns="http://www.w3.org/2000/svg">
         <filter id="displacementFilter">
           <feTurbulence
+            id="turbulence"
             type="turbulence"
-            baseFrequency={baseFrequency}
-            numOctaves="3"
-            result="turbulence"
+            numOctaves="1"
+            result="NOISE"
           />
           <feDisplacementMap
-            in2="turbulence"
             in="SourceGraphic"
+            in2="NOISE"
             scale="10"
             xChannelSelector="R"
             yChannelSelector="G"
           />
+          <animate
+            href="#turbulence"
+            attributeName="baseFrequency"
+            dur="10s"
+            keyTimes="0;0.5;1"
+            values="0.01 0.02;0.02 0.04;0.01 0.02"
+            repeatCount="indefinite"
+          ></animate>
         </filter>
       </svg>
     </>
