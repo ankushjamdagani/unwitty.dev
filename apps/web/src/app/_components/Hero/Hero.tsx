@@ -7,6 +7,7 @@ import {
 } from "react-icons/fa6";
 
 import { AnimatedWordList } from "@/components/AnimatedWordList";
+import { Time } from "@/components/Time";
 
 import "./Hero.styles.css";
 
@@ -61,7 +62,10 @@ export function Hero() {
 
       <footer>
         <em>
-          Based in India → <strong>1:12:59 AM</strong>
+          Based in India →{" "}
+          <strong>
+            <Time />
+          </strong>
         </em>
         <em>
           Status → <strong>Open to Work</strong>
