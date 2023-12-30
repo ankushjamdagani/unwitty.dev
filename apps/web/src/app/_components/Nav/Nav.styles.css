@@ -19,18 +19,28 @@
       align-items: center;
     }
 
-    [class^="seperator"]:last-of-type {
-      display: none;
+    li {
+      padding: 0 8px;
     }
 
     a {
       display: inline-flex;
-      padding: 8px 16px;
+      padding: 8px;
+      border-radius: var(--border-radius);
     }
 
     a > svg {
       margin-left: 4px;
       margin-top: 2px;
+    }
+
+    a:hover {
+      background-color: black;
+      color: white;
+    }
+
+    [class^="seperator"]:last-of-type {
+      display: none;
     }
   }
 

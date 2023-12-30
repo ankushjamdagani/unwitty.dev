@@ -32,7 +32,8 @@
       border: solid var(--border-width-thin) rgb(var(--foreground-rgb));
       border-radius: var(--border-radius);
 
-      padding: 0.25em;
+      height: 28px;
+      width: 28px;
 
       &:hover {
         background-color: rgb(var(--foreground-rgb));
