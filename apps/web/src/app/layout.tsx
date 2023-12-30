@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import { CursorInverted } from "@/components/CursorInveted";
+
 import "./globals.css";
 
 // Inter is a variable font. Don't need weights
@@ -17,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} mono`}>{children}</body>
+      <body className={`${inter.className} mono`}>
+        {children}
+        <CursorInverted />
+      </body>
     </html>
   );
 }
