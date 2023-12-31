@@ -16,10 +16,6 @@
 
   border-right: dashed var(--border-width) rgb(var(--foreground-rgb));
 
-  .seperator-sq-sm {
-    margin: 16px 4px 16px auto;
-  }
-
   ul {
     display: flex;
     gap: 8px;

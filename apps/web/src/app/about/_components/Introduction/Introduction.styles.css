@@ -1,0 +1,109 @@
+#container-introduction {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  margin-left: var(--horizontal-gap);
+  padding-left: 16px;
+  padding-top: 64px;
+  position: relative;
+
+  p {
+    max-width: 480px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    width: 100%;
+
+    li a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border: solid var(--border-width-thin) rgb(var(--foreground-rgb));
+      border-radius: var(--border-radius);
+
+      height: 28px;
+      width: 28px;
+
+      &:hover {
+        background-color: rgb(var(--foreground-rgb));
+        color: rgb(var(--background-rgb));
+      }
+    }
+  }
+
+  .social-images {
+    position: absolute;
+    right: var(--horizontal-gap);
+    top: 64px;
+    bottom: 0;
+    width: 320px;
+
+    li {
+      aspect-ratio: 1/1.5;
+      background-color: rgb(var(--background-rgb));
+      border-radius: var(--border-radius);
+      border: dashed 2px rgb(var(--foreground-rgb));
+      cursor: pointer;
+      filter: grayscale(1);
+      transform-origin: bottom left;
+      transition: all 0.25s;
+
+      margin: 0 auto;
+      padding: 16px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 4rem;
+      width: 240px;
+    }
+
+    figure {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      gap: 16px;
+    }
+
+    li:hover {
+      filter: grayscale(0);
+      translate: 0 -20px 0;
+      z-index: 1;
+    }
+
+    li:nth-child(1) {
+      transform: translateY(0px) translateX(-10px) rotateZ(-7deg);
+    }
+    li:nth-child(2) {
+      transform: translateY(-10px) translateX(-5px) rotateZ(0deg);
+    }
+    li:nth-child(3) {
+      transform: translateY(-20px) translateX(5px) rotateZ(6deg);
+    }
+
+    &:hover {
+      li:nth-child(1) {
+        transform: translateY(0px) translateX(-10px) rotateZ(-15deg);
+      }
+      li:nth-child(2) {
+        transform: translateY(-20px) translateX(-5px) rotateZ(0deg);
+      }
+      li:nth-child(3) {
+        transform: translateY(-10px) translateX(10px) rotateZ(15deg);
+      }
+    }
+
+    img {
+      object-fit: cover;
+      border-bottom: solid 2px rgb(var(--background-rgb));
+      border-radius: var(--border-radius);
+      flex: 1;
+      width: 100%;
+    }
+  }
+}

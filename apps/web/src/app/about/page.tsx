@@ -1,7 +1,11 @@
+import { Introduction } from "./_components/Introduction";
+
+import "./About.styles.css";
+
 export default function Home() {
   return (
-    <main>
-      <h1>About me</h1>
+    <main id="page-about">
+      <Introduction />
     </main>
   );
 }
