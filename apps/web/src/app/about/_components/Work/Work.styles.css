@@ -1,0 +1,43 @@
+#container-work {
+  align-items: flex-start;
+  width: 100%;
+
+  h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: 8px 0 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  li > a {
+    gap: 16px;
+    max-width: 640px;
+    padding: 16px;
+    position: relative;
+    width: 100%;
+  }
+
+  li img {
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: var(--border-radius);
+  }
+
+  li header {
+    flex: 1;
+  }
+
+  li div {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    opacity: 0.75;
+  }
+}

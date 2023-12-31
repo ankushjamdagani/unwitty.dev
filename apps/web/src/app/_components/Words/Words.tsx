@@ -64,9 +64,7 @@ const List = [
 export function Words() {
   return (
     <section id="words" className="container">
-      <header>
-        <h2>Thoughts</h2>
-      </header>
+      <h2>Thoughts</h2>
       <ul>
         {List.map((post) => (
           <li key={post.id}>
