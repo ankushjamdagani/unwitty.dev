@@ -91,6 +91,7 @@ export function SceneNightLighthouse() {
           </filter>
           <filter id="nightSea">
             <feTurbulence
+              id="nightSea-turbulence"
               type="fractalNoise"
               baseFrequency="0.02"
               numOctaves="3"
@@ -101,14 +102,6 @@ export function SceneNightLighthouse() {
               in="SourceGraphic"
               in2="turbulence"
               scale={num}
-            />
-            <animate
-              href="#nightSea-displacement"
-              attributeName="scale"
-              dur="10s"
-              keyTimes="0;0.5;1"
-              values="20,20,20"
-              repeatCount="indefinite"
             />
           </filter>
         </defs>
