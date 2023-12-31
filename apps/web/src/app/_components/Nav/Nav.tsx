@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { GoArrowUpRight } from "react-icons/go";
 
 import { ThemeToggle } from "./ThemeToggle";
@@ -33,7 +34,7 @@ const Links = [
 ];
 
 export function Nav() {
-  const [activeLink, setActiveLink] = useState(window.location.hash);
+  const path = usePathname();
 
   return (
     <header id="navigation-bar">
@@ -47,10 +48,9 @@ export function Nav() {
               <li>
                 <Link
                   href={link.path}
-                  prefetch={false}
-                  onClick={() => setActiveLink(link.path)}
-                  className={activeLink === link.path ? "active" : ""}
-                  aria-current={activeLink === link.path}
+                  prefetch={true}
+                  className={path === link.path ? "active" : ""}
+                  aria-current={path === link.path}
                 >
                   <>
                     {link.label}

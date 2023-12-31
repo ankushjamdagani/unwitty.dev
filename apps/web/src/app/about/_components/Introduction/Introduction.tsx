@@ -19,19 +19,19 @@ type IntroImage = {
 const Images: IntroImage[] = [
   {
     src: "/images/about1.jpeg",
-    alt: "Something about image",
+    alt: "Something about image 1",
     width: 200,
     height: 300,
   },
   {
     src: "/images/about2.jpeg",
-    alt: "Something about image",
+    alt: "Something about image 2",
     width: 200,
     height: 300,
   },
   {
     src: "/images/about3.jpeg",
-    alt: "Something about image",
+    alt: "Something about image 3",
     width: 200,
     height: 300,
   },

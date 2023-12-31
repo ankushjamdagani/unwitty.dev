@@ -7,8 +7,6 @@ export function LevaDebugger() {
   const searchParams = useSearchParams();
   const enableDebugger = searchParams.get("debugger");
 
-  console.log(enableDebugger, enableDebugger != "true");
-
   return (
     <Leva
       // theme={myTheme} // you can pass a custom theme (see the styling section)
