@@ -52,4 +52,14 @@
       padding: 8px;
     }
   }
+
+  #logo {
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+  }
+
+  #logo:hover {
+    background: rgb(var(--foreground-rgb));
+    color: rgb(var(--background-rgb));
+  }
 }

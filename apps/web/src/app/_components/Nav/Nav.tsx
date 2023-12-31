@@ -37,7 +37,9 @@ export function Nav() {
 
   return (
     <header id="navigation-bar">
-      <Link href="/">Logo</Link>
+      <Link href="/" id="logo">
+        Unwitty.dev
+      </Link>
       <nav>
         <ul>
           {Links.map((link) => (
