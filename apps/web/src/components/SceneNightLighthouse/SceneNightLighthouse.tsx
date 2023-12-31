@@ -1,38 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useControls } from "leva";
 
 import "./SceneNightLighthouse.styles.css";
 
 export function SceneNightLighthouse() {
-  const [num, setNum] = useState(20);
-
   const { sunFeDisplacementMap, cloudsFeDisplacementMap } = useControls({
     sunFeDisplacementMap: 10,
     cloudsFeDisplacementMap: 30,
   });
-
-  useEffect(() => {
-    let direction = 1;
-
-    const interval = setInterval(
-      () =>
-        setNum((num) => {
-          if (num <= 15) {
-            direction = 1;
-          } else if (num >= 35) {
-            direction = -1;
-          }
-          return num + direction;
-        }),
-      100
-    );
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
 
   return (
     <div id="SceneNightLighthouse">
@@ -101,8 +77,20 @@ export function SceneNightLighthouse() {
               id="nightSea-displacement"
               in="SourceGraphic"
               in2="turbulence"
-              scale={num}
+              scale="20"
+              xChannelSelector="R"
+              yChannelSelector="G"
             />
+            <animate
+              href="#nightSea-displacement"
+              attributeName="scale"
+              dur="1s"
+              // from="20"
+              // to="30"
+              values="20;30;20"
+              keyTimes="0;.5;1"
+              repeatCount="indefinite"
+            ></animate>
           </filter>
         </defs>
       </svg>
