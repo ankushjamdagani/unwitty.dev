@@ -75,7 +75,7 @@ const Jobs = [
 export function Work() {
   return (
     <section id="container-work" className="container">
-      <h2>Experience</h2>
+      <h2>Work History</h2>
       <ul>
         {Jobs.map((job) => (
           <li key={job.company}>

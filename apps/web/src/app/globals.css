@@ -107,7 +107,7 @@ h3 {
     padding-bottom: 32px;
   }
 
-  & > header {
+  & > h2 {
     margin: 0 auto;
     max-width: 800px;
     width: 100%;

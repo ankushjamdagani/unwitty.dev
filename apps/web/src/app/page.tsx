@@ -1,5 +1,4 @@
 import { Words } from "./_components/Words";
-import { Footer } from "./_components/Footer";
 import { Hero } from "./_components/Hero";
 import { Projects } from "./_components/Projects";
 import { MarqueeText } from "./_components/MarqueeText";
@@ -12,7 +11,6 @@ export default function Home() {
       <MarqueeText />
       <Projects />
       <Words />
-      <Footer />
 
       <SceneNightLighthouse />
     </main>

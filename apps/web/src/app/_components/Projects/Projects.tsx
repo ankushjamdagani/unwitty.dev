@@ -69,9 +69,7 @@ const List = [
 export function Projects() {
   return (
     <section id="projects" className="container">
-      <header>
-        <h2>Experiments</h2>
-      </header>
+      <h2>Experiments</h2>
       <ul>
         {List.map((project) => (
           <li key={project.id} className={project.id.replace(" ", "-")}>
