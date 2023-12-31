@@ -34,9 +34,12 @@
       margin-top: 2px;
     }
 
+    a.active {
+      font-weight: bold;
+    }
+
     a:hover {
-      background-color: rgb(var(--foreground-rgb));
-      color: rgb(var(--background-rgb));
+      font-weight: bold;
     }
 
     [class^="seperator"]:last-of-type {

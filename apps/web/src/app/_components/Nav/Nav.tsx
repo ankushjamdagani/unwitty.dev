@@ -13,14 +13,14 @@ const Links = [
   //   path: "#hero",
   //   label: "Hero",
   // },
-  {
-    path: "/#projects",
-    label: "Experiments",
-  },
-  {
-    path: "/#words",
-    label: "Thoughts",
-  },
+  // {
+  //   path: "/#projects",
+  //   label: "Experiments",
+  // },
+  // {
+  //   path: "/#words",
+  //   label: "Thoughts",
+  // },
   {
     path: "/about",
     label: "About",
@@ -47,7 +47,7 @@ export function Nav() {
                   href={link.path}
                   prefetch={false}
                   onClick={() => setActiveLink(link.path)}
-                  className={activeLink === link.path ? "wavy-underline" : ""}
+                  className={activeLink === link.path ? "active" : ""}
                   aria-current={activeLink === link.path}
                 >
                   <>
