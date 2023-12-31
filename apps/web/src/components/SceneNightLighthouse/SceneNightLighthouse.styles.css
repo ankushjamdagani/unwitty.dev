@@ -1,0 +1,60 @@
+#SceneNightLighthouse {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: var(--nav-height);
+
+  #sun {
+    border-radius: 50%;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    height: 100px;
+    width: 100px;
+
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#sun-decompose);
+  }
+
+  #sea {
+    position: absolute;
+    height: 140px;
+    left: -20px;
+    right: var(--horizontal-gap);
+    bottom: 0;
+
+    background-color: rgb(var(--foreground-rgb));
+    background: linear-gradient(white 1%, transparent 5%);
+    filter: url(#wavy-sea);
+    filter: url(#noise);
+    filter: url(#nightSea);
+  }
+
+  #clouds::before {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    left: -150px;
+    top: -20px;
+    height: 140px;
+    width: 530px;
+
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#wavy-sea) invert(1);
+    background: radial-gradient(white, transparent 40%);
+    opacity: 0.5;
+  }
+
+  #clouds {
+    border-radius: 50%;
+    position: absolute;
+    left: 50px;
+    top: 150px;
+    height: 100px;
+    width: 200px;
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#wavy-sea) invert(1);
+    background: radial-gradient(white, transparent 40%);
+  }
+}

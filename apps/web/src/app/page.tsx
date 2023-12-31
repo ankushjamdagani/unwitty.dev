@@ -4,6 +4,7 @@ import { Hero } from "./_components/Hero";
 import { Nav } from "./_components/Nav";
 import { Projects } from "./_components/Projects";
 import { MarqueeText } from "./_components/MarqueeText";
+import { SceneNightLighthouse } from "@/components/SceneNightLighthouse";
 
 export default function Home() {
   return (
@@ -15,6 +16,8 @@ export default function Home() {
       <Words />
       {/* <Work /> */}
       <Footer />
+
+      <SceneNightLighthouse />
     </main>
   );
 }

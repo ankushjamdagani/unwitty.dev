@@ -1,0 +1,112 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import "./SceneNightLighthouse.styles.css";
+
+export function SceneNightLighthouse() {
+  const [num, setNum] = useState(20);
+
+  useEffect(() => {
+    let direction = 1;
+
+    const interval = setInterval(
+      () =>
+        setNum((num) => {
+          if (num <= 15) {
+            direction = 1;
+          } else if (num >= 35) {
+            direction = -1;
+          }
+          return num + direction;
+        }),
+      100
+    );
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  return (
+    <div id="SceneNightLighthouse">
+      <div id="sun"></div>
+      <div id="clouds"></div>
+      <div id="sea"></div>
+
+      <svg>
+        <defs>
+          <filter id="nightSea" x="0%" y="-10%" width="100%" height="100%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.02"
+              numOctaves="3"
+              result="turbulence"
+            />
+            <feDisplacementMap
+              id="nightSea-displacement"
+              in="SourceGraphic"
+              in2="turbulence"
+              scale={num + 1}
+            />
+
+            {/* <animate
+              href="#nightSea-displacement"
+              attributeName="scale"
+              values="20,30,20"
+              keyTimes="0;0.5;1"
+              dur="3s"
+              repeatCount="indefinite"
+            /> */}
+          </filter>
+        </defs>
+        <filter id="sun-decompose">
+          <feTurbulence
+            id="decompose-turbulence"
+            type="turbulence"
+            baseFrequency="0.05"
+            numOctaves="2"
+            result="turbulence"
+          />
+          <feDisplacementMap
+            in2="turbulence"
+            in="SourceGraphic"
+            scale="10"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+          <animate
+            href="#decompose-turbulence"
+            attributeName="baseFrequency"
+            dur="10s"
+            keyTimes="0;0.5;1"
+            values="0.05 0.06;0.07 0.08;0.03 0.02"
+            repeatCount="indefinite"
+          ></animate>
+        </filter>
+        <filter id="wavy-sea">
+          <feTurbulence
+            id="wavy-turbulence"
+            type="turbulence"
+            numOctaves="100"
+            result="NOISE"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="NOISE"
+            scale="30"
+            // xChannelSelector="R"
+            // yChannelSelector="G"
+          />
+          <animate
+            href="#wavy-turbulence"
+            attributeName="baseFrequency"
+            dur="60s"
+            keyTimes="0;0.5;1"
+            values="0.01 0.02;0.02 0.04;0.01 0.02"
+            repeatCount="indefinite"
+          ></animate>
+        </filter>
+      </svg>
+    </div>
+  );
+}
