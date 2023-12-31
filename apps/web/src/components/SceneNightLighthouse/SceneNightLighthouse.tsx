@@ -1,10 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useControls } from "leva";
+
 import "./SceneNightLighthouse.styles.css";
 
 export function SceneNightLighthouse() {
   const [num, setNum] = useState(20);
+
+  const { sunFeDisplacementMap, cloudsFeDisplacementMap } = useControls({
+    sunFeDisplacementMap: 10,
+    cloudsFeDisplacementMap: 30,
+  });
 
   useEffect(() => {
     let direction = 1;
@@ -46,7 +53,7 @@ export function SceneNightLighthouse() {
             <feDisplacementMap
               in2="turbulence"
               in="SourceGraphic"
-              scale="10"
+              scale={sunFeDisplacementMap}
               xChannelSelector="R"
               yChannelSelector="G"
             />
@@ -69,7 +76,7 @@ export function SceneNightLighthouse() {
             <feDisplacementMap
               in="SourceGraphic"
               in2="NOISE"
-              scale="30"
+              scale={cloudsFeDisplacementMap}
               xChannelSelector="R"
               yChannelSelector="G"
             />
