@@ -1,5 +1,21 @@
 # Unwitty Dev webapp
 
+## Checklist for 1.0.alpha release
+
+- Responsive design
+- Smooth animations
+- Content correction
+
+## Checklist for 1.0.beta release
+
+- 1 project
+- 2 blogs
+- Offline support with caching, etc
+- Accessibility
+- Lighthouse 100
+- Feeback changes
+- Logging, Monitoring and Tracking
+
 ## Getting Started
 
 First, run the development server on [http://localhost:3000](http://localhost:3000):
