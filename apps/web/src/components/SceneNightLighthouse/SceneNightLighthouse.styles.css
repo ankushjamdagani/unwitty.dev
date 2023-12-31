@@ -5,6 +5,23 @@
   right: 0;
   top: var(--nav-height);
 
+  background:
+    linear-gradient(
+      to top,
+      transparent 50%,
+      rgba(var(--foreground-rgb), 0.2) 100%
+    ),
+    rgb(var(--background-rgb))
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        rgba(var(--foreground-rgb), 0) 5px,
+        rgba(var(--foreground-rgb), 0) 5px,
+        rgba(var(--foreground-rgb), 0.1) 7px
+      );
+  opacity: 0.75;
+  z-index: -1;
+
   #sun {
     border-radius: 50%;
     position: absolute;
@@ -24,26 +41,24 @@
     right: var(--horizontal-gap);
     bottom: 0;
 
-    background-color: rgb(var(--foreground-rgb));
-    background: linear-gradient(white 1%, transparent 5%);
-    filter: url(#wavy-sea);
-    filter: url(#noise);
     filter: url(#nightSea);
-  }
-
-  #clouds::before {
-    content: "";
-    border-radius: 50%;
-    position: absolute;
-    left: -150px;
-    top: -20px;
-    height: 140px;
-    width: 530px;
 
     background-color: rgb(var(--foreground-rgb));
-    filter: url(#wavy-sea) invert(1);
-    background: radial-gradient(white, transparent 40%);
-    opacity: 0.5;
+    background: linear-gradient(rgb(var(--foreground-rgb)) 1%, transparent 5%);
+    background:
+      linear-gradient(
+        to top,
+        transparent 50%,
+        rgba(var(--foreground-rgb), 0.2) 100%
+      ),
+      rgb(var(--background-rgb))
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          rgba(var(--foreground-rgb), 0) 5px,
+          rgba(var(--foreground-rgb), 0) 5px,
+          rgba(var(--foreground-rgb), 0.1) 7px
+        );
   }
 
   #clouds {
@@ -54,7 +69,22 @@
     height: 100px;
     width: 200px;
     background-color: rgb(var(--foreground-rgb));
-    filter: url(#wavy-sea) invert(1);
-    background: radial-gradient(white, transparent 40%);
+    filter: url(#wavy-clouds) invert(1);
+    background: radial-gradient(rgb(var(--foreground-rgb)), transparent 40%);
+  }
+
+  #clouds::before {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    left: -150px;
+    top: -40px;
+    height: 140px;
+    width: 530px;
+
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#wavy-clouds) invert(1);
+    background: radial-gradient(rgb(var(--foreground-rgb)), transparent 40%);
+    opacity: 0.5;
   }
 }

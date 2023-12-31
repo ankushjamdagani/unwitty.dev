@@ -35,7 +35,54 @@ export function SceneNightLighthouse() {
 
       <svg>
         <defs>
-          <filter id="nightSea" x="0%" y="-10%" width="100%" height="100%">
+          <filter id="sun-decompose">
+            <feTurbulence
+              id="decompose-turbulence"
+              type="turbulence"
+              baseFrequency="0.05"
+              numOctaves="2"
+              result="turbulence"
+            />
+            <feDisplacementMap
+              in2="turbulence"
+              in="SourceGraphic"
+              scale="10"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+            <animate
+              href="#decompose-turbulence"
+              attributeName="baseFrequency"
+              dur="10s"
+              keyTimes="0;0.5;1"
+              values="0.05 0.06;0.07 0.08;0.03 0.02"
+              repeatCount="indefinite"
+            ></animate>
+          </filter>
+          <filter id="wavy-clouds">
+            <feTurbulence
+              id="wavy-clouds-turbulence"
+              type="turbulence"
+              numOctaves="100"
+              result="NOISE"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="NOISE"
+              scale="30"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+            <animate
+              href="#wavy-clouds-turbulence"
+              attributeName="baseFrequency"
+              dur="30s"
+              keyTimes="0;0.5;1"
+              values="0.01 0.02;0.02 0.04;0.01 0.02"
+              repeatCount="indefinite"
+            />
+          </filter>
+          <filter id="nightSea">
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.02"
@@ -46,66 +93,18 @@ export function SceneNightLighthouse() {
               id="nightSea-displacement"
               in="SourceGraphic"
               in2="turbulence"
-              scale={num + 1}
+              scale={num}
             />
-
-            {/* <animate
+            <animate
               href="#nightSea-displacement"
               attributeName="scale"
-              values="20,30,20"
+              dur="10s"
               keyTimes="0;0.5;1"
-              dur="3s"
+              values="20,20,20"
               repeatCount="indefinite"
-            /> */}
+            />
           </filter>
         </defs>
-        <filter id="sun-decompose">
-          <feTurbulence
-            id="decompose-turbulence"
-            type="turbulence"
-            baseFrequency="0.05"
-            numOctaves="2"
-            result="turbulence"
-          />
-          <feDisplacementMap
-            in2="turbulence"
-            in="SourceGraphic"
-            scale="10"
-            xChannelSelector="R"
-            yChannelSelector="G"
-          />
-          <animate
-            href="#decompose-turbulence"
-            attributeName="baseFrequency"
-            dur="10s"
-            keyTimes="0;0.5;1"
-            values="0.05 0.06;0.07 0.08;0.03 0.02"
-            repeatCount="indefinite"
-          ></animate>
-        </filter>
-        <filter id="wavy-sea">
-          <feTurbulence
-            id="wavy-turbulence"
-            type="turbulence"
-            numOctaves="100"
-            result="NOISE"
-          />
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="NOISE"
-            scale="30"
-            // xChannelSelector="R"
-            // yChannelSelector="G"
-          />
-          <animate
-            href="#wavy-turbulence"
-            attributeName="baseFrequency"
-            dur="60s"
-            keyTimes="0;0.5;1"
-            values="0.01 0.02;0.02 0.04;0.01 0.02"
-            repeatCount="indefinite"
-          ></animate>
-        </filter>
       </svg>
     </div>
   );
