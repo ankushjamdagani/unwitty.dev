@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import "./RotatingCards.styles.css";
+
 export type RotatingCardsItem = {
   src: string;
   alt: string;
