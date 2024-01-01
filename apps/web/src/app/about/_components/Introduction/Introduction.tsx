@@ -6,14 +6,11 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 
-import {
-  RotatingCards,
-  type RotatingCardsItem,
-} from "@/components/RotatingCards";
+import { LadderCards, type LadderCardsItem } from "@/components/LadderCards";
 
 import "./Introduction.styles.css";
 
-const Images: RotatingCardsItem[] = [
+const Images: LadderCardsItem[] = [
   {
     src: "/images/about1.jpeg",
     alt: "Something about image 1",
@@ -77,7 +74,9 @@ export function Introduction() {
         </li>
       </ul>
 
-      <RotatingCards list={Images} />
+      <div className="right-panel">
+        <LadderCards list={Images} />
+      </div>
     </section>
   );
 }
