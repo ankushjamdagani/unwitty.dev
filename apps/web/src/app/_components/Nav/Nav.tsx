@@ -24,7 +24,7 @@ const Links = [
   // },
   {
     path: "/about",
-    label: "About",
+    label: "About me",
   },
   {
     path: "#resume",
