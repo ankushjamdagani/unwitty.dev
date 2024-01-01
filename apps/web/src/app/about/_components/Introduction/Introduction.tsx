@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   FaGithub,
@@ -7,16 +6,14 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 
+import {
+  RotatingCards,
+  type RotatingCardsItem,
+} from "@/components/RotatingCards";
+
 import "./Introduction.styles.css";
 
-type IntroImage = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-};
-
-const Images: IntroImage[] = [
+const Images: RotatingCardsItem[] = [
   {
     src: "/images/about1.jpeg",
     alt: "Something about image 1",
@@ -37,11 +34,6 @@ const Images: IntroImage[] = [
   },
 ];
 
-/**
- * @todo
- * - Support styles for dynamic images
- *
- */
 export function Introduction() {
   return (
     <section id="container-introduction">
@@ -85,16 +77,7 @@ export function Introduction() {
         </li>
       </ul>
 
-      <ul className="social-images">
-        {Images.map((image) => (
-          <li key={image.alt}>
-            <figure>
-              <figcaption>{image.alt}</figcaption>
-              <Image {...image} alt={image.alt} />
-            </figure>
-          </li>
-        ))}
-      </ul>
+      <RotatingCards list={Images} />
     </section>
   );
 }
