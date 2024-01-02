@@ -54,12 +54,9 @@
   }
 
   #logo {
-    padding: 4px 8px;
-    border-radius: var(--border-radius);
-  }
-
-  #logo:hover {
     background: rgb(var(--foreground-rgb));
+    border-radius: var(--border-radius);
     color: rgb(var(--background-rgb));
+    padding: 4px 8px;
   }
 }
