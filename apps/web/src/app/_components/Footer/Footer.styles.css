@@ -1,13 +1,67 @@
+@property --white-bar-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --black-bar-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --circle-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --circle-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
 #footer {
   .content {
     align-items: center;
-    background-color: rgb(var(--foreground-rgb));
     color: rgb(var(--background-rgb));
     display: flex;
     flex-direction: column;
     gap: 32px;
     justify-content: center;
     padding: 200px 0;
+    animation: lines 1s linear forwards;
+    animation-timeline: view(block);
+    animation-range: entry 0% entry 100%;
+    background: repeating-radial-gradient(
+      circle at var(--circle-x) var(--circle-y),
+      transparent,
+      transparent var(--white-bar-width),
+      rgb(var(--foreground-rgb)) var(--white-bar-width),
+      rgb(var(--foreground-rgb))
+        calc((var(--white-bar-width) + var(--black-bar-width)))
+    );
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        rgb(var(--foreground-rgb)),
+        rgb(var(--foreground-rgb)) var(--black-bar-width),
+        transparent var(--black-bar-width),
+        transparent calc((var(--black-bar-width) + var(--white-bar-width)))
+      ),
+      /* repeating-linear-gradient(
+        to right,
+        rgb(var(--foreground-rgb)),
+        rgb(var(--foreground-rgb)) var(--black-bar-width),
+        transparent var(--black-bar-width),
+        transparent calc((var(--black-bar-width) + var(--white-bar-width)))
+      ), */
+        repeating-radial-gradient(
+          circle at var(--circle-x) var(--circle-y),
+          transparent,
+          transparent var(--white-bar-width),
+          rgb(var(--foreground-rgb)) var(--white-bar-width),
+          rgb(var(--foreground-rgb))
+            calc((var(--white-bar-width) + var(--black-bar-width)))
+        );
   }
 
   a[href^="email"] {
@@ -41,5 +95,20 @@
         color: rgb(var(--foreground-rgb));
       }
     }
+  }
+}
+
+@keyframes lines {
+  from {
+    --white-bar-width: 20px;
+    --black-bar-width: 0px;
+    --circle-x: 50%;
+    --circle-y: 50%;
+  }
+  to {
+    --white-bar-width: 1px;
+    --black-bar-width: 20px;
+    --circle-x: 50%;
+    --circle-y: 50%;
   }
 }
