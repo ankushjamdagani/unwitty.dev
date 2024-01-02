@@ -4,6 +4,12 @@ import Link from "next/link";
 import "./Work.styles.css";
 import { GoArrowUpRight } from "react-icons/go";
 
+/**
+ * @todo:
+ * - do I need tech stack?
+ * - do I need work description?
+ */
+
 const Jobs = [
   {
     company: "Rippling",
