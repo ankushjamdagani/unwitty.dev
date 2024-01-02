@@ -1,9 +1,9 @@
 .rotating-cards {
   position: absolute;
-  right: var(--horizontal-gap);
-  top: 64px;
+  left: 0;
+  right: 0;
   bottom: 0;
-  width: 320px;
+  top: 0;
 
   li {
     aspect-ratio: 1/1.5;
@@ -20,8 +20,6 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 4rem;
-    width: 240px;
   }
 
   figure {

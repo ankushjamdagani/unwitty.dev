@@ -18,7 +18,7 @@ export function RotatingCards({ list }: { list: RotatingCardsItem[] }) {
   return (
     <ul className="rotating-cards">
       {list.map((image) => (
-        <li key={image.alt}>
+        <li key={image.alt} style={{ width: "240px" }}>
           <figure>
             <figcaption>{image.alt}</figcaption>
             <Image {...image} alt={image.alt} />
