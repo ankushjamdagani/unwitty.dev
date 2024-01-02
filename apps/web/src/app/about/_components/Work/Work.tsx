@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import "./Work.styles.css";
+import { GoArrowUpRight } from "react-icons/go";
 
 const Jobs = [
   {
@@ -11,8 +12,8 @@ const Jobs = [
       linkedin: "https://www.linkedin.com/company/rippling/about/",
     },
     logo: "/images/company-logo/rippling.jpeg",
-    startDate: { value: "2022-12-05", displayValue: "Dec '22" },
-    endDate: { value: "2023-09-05", displayValue: "Sep '23" },
+    startDate: "2022-12-05",
+    endDate: "2023-09-05",
     description: "",
     title: "Senior Frontend Engineer",
     techStack: ["react.js", "javascript", "typescript", "storybook"],
@@ -24,8 +25,8 @@ const Jobs = [
       linkedin: "https://www.linkedin.com/company/lambdatest/about/",
     },
     logo: "/images/company-logo/lambdatest.jpeg",
-    startDate: { value: "2021-12-01", displayValue: "Dec '21" },
-    endDate: { value: "2022-11-30", displayValue: "Nov '22" },
+    startDate: "2021-12-01",
+    endDate: "2022-11-30",
     description: "",
     title: "Senior Frontend Engineer",
     techStack: ["react.js", "javascript", "typescript", "storybook"],
@@ -37,8 +38,8 @@ const Jobs = [
       linkedin: "https://www.linkedin.com/company/synaptic-data/about/",
     },
     logo: "/images/company-logo/synaptic_data.jpeg",
-    startDate: { value: "2019-07-04", displayValue: "Jul '19" },
-    endDate: { value: "2021-11-30", displayValue: "Nov '21" },
+    startDate: "2019-07-04",
+    endDate: "2021-11-30",
     description: "",
     title: "Senior Frontend Engineer",
     techStack: ["react.js", "javascript", "typescript", "storybook"],
@@ -50,8 +51,8 @@ const Jobs = [
       linkedin: "https://www.linkedin.com/company/caroobi/about/",
     },
     logo: "/images/company-logo/caroobi.jpeg",
-    startDate: { value: "2017-12-01", displayValue: "Dec '17" },
-    endDate: { value: "2019-06-30", displayValue: "Jun '19" },
+    startDate: "2017-12-01",
+    endDate: "2019-06-30",
     description: "",
     title: "Software Engineer - Frontend",
     techStack: ["react.js", "javascript", "typescript", "storybook"],
@@ -64,11 +65,24 @@ const Jobs = [
         "https://www.linkedin.com/company/adcount-technologies-pvt-ltd/about/",
     },
     logo: "/images/company-logo/adurcup.jpeg",
-    startDate: { value: "2016-09-08", displayValue: "Sep '16" },
-    endDate: { value: "2017-11-30", displayValue: "Nov '17" },
+    startDate: "2016-09-08",
+    endDate: "2017-11-30",
     description: "",
     title: "Software Engineer - Frontend",
-    techStack: ["react.js", "javascript", "typescript", "storybook"],
+    techStack: [
+      "react.js",
+      "javascript",
+      "typescript",
+      "storybook",
+      "react.js",
+      "javascript",
+      "typescript",
+      "storybook",
+      "react.js",
+      "javascript",
+      "typescript",
+      "storybook",
+    ],
   },
 ];
 
@@ -76,30 +90,53 @@ export function Work() {
   return (
     <section id="container-work" className="container">
       <h2>Work History</h2>
-      <ul>
+      <ul className="content-list">
         {Jobs.map((job) => (
-          <li key={job.company}>
-            <Link
-              href={job.link.linkedin}
-              aria-label={job.company}
-              className="job shadow-box"
-              target="_blank"
-            >
-              <Image src={job.logo} alt={job.company} width={40} height={40} />
-              <header>
-                <p>{job.title}</p>
-                <h3>{job.company}</h3>
-              </header>
+          <li key={job.company} className="content-item">
+            <div className="start-time">
+              <time className="year">
+                {new Date(job.startDate).getFullYear()}
+              </time>
+              <time className="month">
+                {new Date(job.startDate).toLocaleString("default", {
+                  month: "long",
+                })}
+              </time>
+            </div>
+
+            <header>
+              <Image
+                src={job.logo}
+                alt={job.company}
+                width={40}
+                height={40}
+                className="company-logo"
+              />
               <div>
-                <time dateTime={job.startDate.value}>
-                  {job.startDate.displayValue}
-                </time>{" "}
-                -{" "}
-                <time dateTime={job.endDate.value}>
-                  {job.endDate.displayValue}
-                </time>
+                <h3>
+                  <Link
+                    href={job.link.linkedin}
+                    aria-label={job.company}
+                    target="_blank"
+                  >
+                    {job.company}
+                    <GoArrowUpRight />
+                  </Link>
+                </h3>
+
+                <p>{job.title}</p>
               </div>
-            </Link>
+            </header>
+
+            <ul className="tech-list">
+              {job.techStack.map((item) => (
+                <li key={item} className="tech-item">
+                  {item}{" "}
+                </li>
+              ))}
+            </ul>
+
+            {job.description && <p>{job.description}</p>}
           </li>
         ))}
       </ul>
