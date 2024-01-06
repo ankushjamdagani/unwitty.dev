@@ -1,4 +1,4 @@
-@property --white-bar-width {
+@property --transparent-bar-width {
   syntax: "<length>";
   inherits: false;
   initial-value: 0px;
@@ -22,49 +22,28 @@
 #footer {
   .content {
     align-items: center;
+    animation: circles-zoom 1s linear forwards;
+    animation-range: entry 0% entry 100%;
+    animation-timeline: view(block);
+    background: repeating-radial-gradient(
+      circle at var(--circle-x) var(--circle-y),
+      transparent,
+      transparent var(--transparent-bar-width),
+      rgb(var(--foreground-rgb)) var(--transparent-bar-width),
+      rgb(var(--foreground-rgb))
+        calc((var(--transparent-bar-width) + var(--black-bar-width)))
+    );
     color: rgb(var(--background-rgb));
     display: flex;
     flex-direction: column;
     gap: 32px;
     justify-content: center;
+    min-height: 70vh;
     padding: 200px 0;
-    animation: lines 1s linear forwards;
-    animation-timeline: view(block);
-    animation-range: entry 0% entry 100%;
-    background: repeating-radial-gradient(
-      circle at var(--circle-x) var(--circle-y),
-      transparent,
-      transparent var(--white-bar-width),
-      rgb(var(--foreground-rgb)) var(--white-bar-width),
-      rgb(var(--foreground-rgb))
-        calc((var(--white-bar-width) + var(--black-bar-width)))
-    );
-    background:
-      repeating-linear-gradient(
-        to bottom,
-        rgb(var(--foreground-rgb)),
-        rgb(var(--foreground-rgb)) var(--black-bar-width),
-        transparent var(--black-bar-width),
-        transparent calc((var(--black-bar-width) + var(--white-bar-width)))
-      ),
-      /* repeating-linear-gradient(
-        to right,
-        rgb(var(--foreground-rgb)),
-        rgb(var(--foreground-rgb)) var(--black-bar-width),
-        transparent var(--black-bar-width),
-        transparent calc((var(--black-bar-width) + var(--white-bar-width)))
-      ), */
-        repeating-radial-gradient(
-          circle at var(--circle-x) var(--circle-y),
-          transparent,
-          transparent var(--white-bar-width),
-          rgb(var(--foreground-rgb)) var(--white-bar-width),
-          rgb(var(--foreground-rgb))
-            calc((var(--white-bar-width) + var(--black-bar-width)))
-        );
   }
 
   a[href^="email"] {
+    /* background-color: rgb(var(--foreground-rgb)); */
     font-size: 2em;
   }
 
@@ -80,6 +59,7 @@
     gap: 8px;
 
     li a {
+      /* background-color: rgb(var(--foreground-rgb)); */
       border: solid var(--border-width-thin) rgb(var(--background-rgb));
       border-radius: var(--border-radius);
 
@@ -98,16 +78,16 @@
   }
 }
 
-@keyframes lines {
+@keyframes circles-zoom {
   from {
-    --white-bar-width: 20px;
-    --black-bar-width: 0px;
+    --transparent-bar-width: 100vw;
+    --black-bar-width: 500px;
     --circle-x: 50%;
     --circle-y: 50%;
   }
   to {
-    --white-bar-width: 1px;
-    --black-bar-width: 20px;
+    --transparent-bar-width: 0px;
+    --black-bar-width: 200px;
     --circle-x: 50%;
     --circle-y: 50%;
   }
