@@ -1,0 +1,11 @@
+#cursor {
+  --cursor-size: 24px;
+
+  position: absolute;
+  height: var(--cursor-size);
+  width: var(--cursor-size);
+  border-radius: 50%;
+  z-index: 111111;
+  backdrop-filter: invert(1);
+  pointer-events: none;
+}

@@ -9,6 +9,7 @@ import { CursorWind } from "@/components/CursorWind";
 import { LevaDebugger } from "@/components/LevaDebugger";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
+import { Cursor } from "@/components/Cursor";
 
 // Inter is a variable font. Don't need weights
 const inter = Inter({ subsets: ["latin"] });
@@ -33,6 +34,7 @@ export default function RootLayout({
         {/* <CursorWind /> */}
         <Footer />
 
+        <Cursor />
         <LevaDebugger />
       </body>
     </html>
