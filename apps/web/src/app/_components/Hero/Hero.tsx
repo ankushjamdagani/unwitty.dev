@@ -16,7 +16,7 @@ export function Hero() {
     <section id="hero" className="--left-aligned">
       <h1>
         Hello <br />
-        I&apos;m Ankush
+        I&apos;m <b>Ankush</b>
       </h1>
 
       <div className="seperator-rect"></div>

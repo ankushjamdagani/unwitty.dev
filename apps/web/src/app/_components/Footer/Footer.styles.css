@@ -23,7 +23,7 @@
   .content {
     align-items: center;
     animation: circles-zoom 1s linear forwards;
-    animation-range: entry 0% entry 100%;
+    animation-range: entry 0% entry 99%;
     animation-timeline: view(block);
     background: repeating-radial-gradient(
       circle at var(--circle-x) var(--circle-y),
@@ -86,7 +86,7 @@
     --circle-y: 50%;
   }
   to {
-    --transparent-bar-width: 0px;
+    --transparent-bar-width: 2px;
     --black-bar-width: 200px;
     --circle-x: 50%;
     --circle-y: 50%;
