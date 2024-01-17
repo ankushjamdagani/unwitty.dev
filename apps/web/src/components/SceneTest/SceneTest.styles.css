@@ -70,6 +70,16 @@
     position: absolute;
     right: -800px;
   }
+
+  #hero-image {
+    background-image: url(/images/crumbled_page.jpg);
+    width: 300px;
+    height: 600px;
+    background-size: cover;
+    background-position: right;
+    transform: scaleX(-1);
+    filter: invert(1) grayscale(1);
+  }
 }
 
 @keyframes scale-fade-out {
