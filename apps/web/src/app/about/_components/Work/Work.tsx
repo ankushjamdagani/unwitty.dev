@@ -113,7 +113,7 @@ const Jobs = [
 
 export function Work() {
   return (
-    <section id="container-work" className="container">
+    <section id="work" className="container">
       <h2>Work History</h2>
       <ul className="content-list">
         {Jobs.map((job) => (

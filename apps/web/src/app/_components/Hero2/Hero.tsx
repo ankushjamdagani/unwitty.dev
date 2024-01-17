@@ -18,7 +18,7 @@ const image = {
 
 export function Hero() {
   return (
-    <section id="container-hero">
+    <section id="home">
       <h1>Ankush J.</h1>
 
       <div className="seperator-rect"></div>

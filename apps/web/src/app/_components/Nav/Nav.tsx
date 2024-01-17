@@ -14,18 +14,22 @@ const Links = [
   //   path: "#hero",
   //   label: "Hero",
   // },
-  // {
-  //   path: "/#projects",
-  //   label: "Experiments",
-  // },
-  // {
-  //   path: "/#words",
-  //   label: "Thoughts",
-  // },
   {
-    path: "/about",
-    label: "About me",
+    path: "/#projects",
+    label: "Experiments",
   },
+  {
+    path: "/#words",
+    label: "Thoughts",
+  },
+  {
+    path: "/#work",
+    label: "Work",
+  },
+  // {
+  //   path: "/about",
+  //   label: "About me",
+  // },
   {
     path: "#resume",
     label: "Resume",
@@ -38,7 +42,7 @@ export function Nav() {
 
   return (
     <header id="navigation-bar">
-      <Link href="/" id="logo">
+      <Link href="/#home" id="logo">
         UW
       </Link>
       <nav>
