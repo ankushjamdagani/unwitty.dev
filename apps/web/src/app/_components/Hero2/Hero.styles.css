@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 16px;
 
-  min-height: calc(100vh - var(--nav-height) - var(--marquee-height) / 2);
+  min-height: calc(100vh - var(--nav-height) - var(--marquee-height));
 
   margin-left: var(--horizontal-gap);
   padding-left: 16px;
