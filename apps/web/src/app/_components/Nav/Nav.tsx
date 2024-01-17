@@ -39,7 +39,7 @@ export function Nav() {
   return (
     <header id="navigation-bar">
       <Link href="/" id="logo">
-        Unwitty.dev
+        UW
       </Link>
       <nav>
         <ul>
