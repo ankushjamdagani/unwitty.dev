@@ -14,7 +14,7 @@ export default function Home() {
       <Words />
 
       {/* <SceneNightLighthouse /> */}
-      <SceneTest />
+      {/* <SceneTest /> */}
     </main>
   );
 }

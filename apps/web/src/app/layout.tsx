@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} mono`}>
+      <body className={`${inter.className} monos`}>
         <Nav />
         {children}
         {/* <CursorInverted /> */}
