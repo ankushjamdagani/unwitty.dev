@@ -21,8 +21,8 @@ export function Cursor() {
 
       cursorRef.current.style.left = `${evt.clientX}px`;
       cursorRef.current.style.top = `${evt.clientY}px`;
-      cursorRef.current.style.height = "30px";
-      cursorRef.current.style.width = "30px";
+      cursorRef.current.style.height = "20px";
+      cursorRef.current.style.width = "20px";
 
       const target = evt.target;
       if (!target) return;

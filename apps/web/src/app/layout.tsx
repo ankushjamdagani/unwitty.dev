@@ -34,7 +34,7 @@ export default function RootLayout({
         {/* <CursorWind /> */}
         <Footer />
 
-        {/* <Cursor /> */}
+        <Cursor />
         <LevaDebugger />
       </body>
     </html>
