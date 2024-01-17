@@ -3,6 +3,7 @@ import { Hero } from "./_components/Hero";
 import { Projects } from "./_components/Projects";
 import { MarqueeText } from "./_components/MarqueeText";
 import { SceneNightLighthouse } from "@/components/SceneNightLighthouse";
+import { SceneTest } from "@/components/SceneTest";
 
 export default function Home() {
   return (
@@ -12,7 +13,8 @@ export default function Home() {
       <Projects />
       <Words />
 
-      <SceneNightLighthouse />
+      {/* <SceneNightLighthouse /> */}
+      <SceneTest />
     </main>
   );
 }
