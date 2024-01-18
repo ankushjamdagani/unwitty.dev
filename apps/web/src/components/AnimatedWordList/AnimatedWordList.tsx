@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { PolymorphicComponent } from "@/types/PolymorphicComponent";
 
 type Word = React.ReactNode;
 
 type ComponentProps = {
-  words: Word[];
+  words?: Word[];
   startIndex?: number;
   /**
    * in milliseconds
@@ -27,11 +27,14 @@ export function AnimatedWordList<T extends React.ElementType = "span">(
     transitionTime,
     delayTime = 0,
     as: Component = "span",
+    children,
     ...restProps
   } = props;
 
+  const nodes = words || React.Children.toArray(children);
+
   const [currentIndex, setCurrentIndex] = useState(startIndex || 0);
-  const activeWord = words.at(currentIndex % words.length);
+  const activeWord = nodes.at(currentIndex % nodes.length);
 
   useEffect(() => {
     let transitionTimer: NodeJS.Timeout;
