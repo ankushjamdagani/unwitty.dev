@@ -8,7 +8,10 @@ import {
 } from "react-icons/fa6";
 
 import "./Hero.styles.css";
+
 import { Time } from "@/components/Time";
+import { AnimatedWordList } from "@/components/AnimatedWordList";
+import { TypeWord, TypeWordCursor } from "@/components/TypeWord";
 
 const image = {
   src: "/images/profile.jpg",
@@ -16,6 +19,21 @@ const image = {
   width: 200,
   height: 300,
 };
+
+const LoveAllThings = [
+  {
+    label: "Javascript",
+    time: 1000,
+  },
+  {
+    label: "html/css",
+    time: 700,
+  },
+  {
+    label: "User Interface",
+    time: 1200,
+  },
+];
 
 export function Hero() {
   return (
@@ -29,7 +47,20 @@ export function Hero() {
       <p>
         Frontend Developer for 7 years, weaving digital tales and embracing the
         lazy coder&apos;s lifestyle. <br /> <br />
-        <strong>❤️ all things Javascript.</strong>
+        <strong>
+          ❤️ all things{" "}
+          <AnimatedWordList transitionTime={3000}>
+            {LoveAllThings.map((love) => (
+              <TypeWord
+                cursorType={TypeWordCursor.VERT_THICK}
+                key={love.label}
+                time={love.time}
+              >
+                {love.label}
+              </TypeWord>
+            ))}
+          </AnimatedWordList>
+        </strong>
         <br /> <br />
         Beyond the screen, you&apos;ll find me exploring new places and
         relishing tasty eats.

@@ -1,0 +1,45 @@
+.typing-indicator {
+  background-color: rgb(var(--foreground-rgb));
+  display: inline-flex;
+  position: relative;
+
+  &.underscore {
+    height: 0.125em;
+    width: 0.75em;
+    bottom: 0px;
+    left: 0.25em;
+  }
+
+  &.fat {
+    height: 1.25em;
+    width: 0.375em;
+    top: 0.25em;
+    left: 0.25em;
+  }
+
+  &.fat-bordered {
+    height: 1.25em;
+    width: 0.375em;
+    top: 0.25em;
+    left: 0.25em;
+    background-color: rgb(var(--background-rgb));
+    border: solid 1px;
+  }
+
+  &.vertical {
+    height: 1.25em;
+    width: 0.125em;
+    top: 0.25em;
+    left: 0.25em;
+  }
+
+  &.blink {
+    animation: blink-animation 1s steps(5, start) infinite;
+  }
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
