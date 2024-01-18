@@ -9,6 +9,8 @@ import { ThemeToggle } from "./ThemeToggle";
 
 import "./Nav.styles.css";
 
+import useMostVisibileItem from "@/hooks/useMostVisibleItem";
+
 const Links = [
   // {
   //   path: "#hero",
@@ -39,6 +41,8 @@ const Links = [
 
 export function Nav() {
   const path = usePathname();
+  const activeElement = useMostVisibileItem("main > section[id]");
+  const activePath = `/#${activeElement?.id}`;
 
   return (
     <header id="navigation-bar">
@@ -56,7 +60,7 @@ export function Nav() {
                 <Link
                   href={link.path}
                   prefetch={true}
-                  className={path === link.path ? "active" : ""}
+                  className={activePath === link.path ? "active" : ""}
                   aria-current={path === link.path}
                 >
                   <>
