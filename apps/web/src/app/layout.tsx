@@ -10,6 +10,7 @@ import { LevaDebugger } from "@/components/LevaDebugger";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";
 import { Cursor } from "@/components/Cursor";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 // Inter is a variable font. Don't need weights
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +36,8 @@ export default function RootLayout({
         <Footer />
 
         <Cursor />
+        <NoiseOverlay />
+
         <LevaDebugger />
       </body>
     </html>
