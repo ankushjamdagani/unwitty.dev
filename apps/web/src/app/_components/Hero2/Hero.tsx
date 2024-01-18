@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa6";
 
 import "./Hero.styles.css";
+import { Time } from "@/components/Time";
 
 const image = {
   src: "/images/profile.jpg",
@@ -69,6 +70,18 @@ export function Hero() {
           </figure>
         )}
       </div>
+
+      <footer>
+        <em>
+          Based in India →{" "}
+          <strong>
+            <Time />
+          </strong>
+        </em>
+        <em>
+          Status → <strong>Open to Work</strong>
+        </em>
+      </footer>
     </section>
   );
 }

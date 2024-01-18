@@ -7,7 +7,6 @@
   min-height: calc(100vh - var(--nav-height) - var(--marquee-height));
 
   margin-left: var(--horizontal-gap);
-  padding-left: 16px;
   position: relative;
 
   h1 {
@@ -69,7 +68,7 @@
 
   .right-panel {
     position: absolute;
-    right: var(--horizontal-gap);
+    right: calc(var(--horizontal-gap) - 1em);
     top: 0;
     bottom: 0;
     width: 300px;
@@ -105,5 +104,16 @@
       transform: translateY(0px) translateX(10px) rotateZ(-4deg) scale(1.2);
       z-index: var(--z-index-base);
     }
+  }
+
+  footer {
+    bottom: 0;
+    display: flex;
+    font-size: 0.75em;
+    justify-content: space-between;
+    left: 0;
+    padding: 8px 16px 8px 0;
+    position: absolute;
+    right: var(--horizontal-gap);
   }
 }
