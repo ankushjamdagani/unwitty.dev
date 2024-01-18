@@ -21,13 +21,9 @@ export function Hero() {
     <section id="home">
       <h1>Ankush J.</h1>
 
-      <div className="seperator-rect"></div>
-
       <p className="pseudo-name">
         a.k.a. <strong>Unwitty[.]Dev</strong>
       </p>
-
-      <div className="seperator-rect"></div>
 
       <p>
         Frontend Developer for 7 years, weaving digital tales and embracing the
