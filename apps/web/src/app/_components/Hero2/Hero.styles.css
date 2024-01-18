@@ -82,9 +82,11 @@
     border-radius: var(--border-radius);
     border: dashed 2px rgb(var(--foreground-rgb));
     filter: grayscale(1);
-    transform: translateY(0px) translateX(-10px) rotateZ(7deg);
+    transform: translateY(0px) translateX(10px) rotateZ(7deg) scale(1);
     /* transform-origin: bottom left; */
-    transition: filter 0.5s;
+    transition:
+      filter 0.5s,
+      transform 0.25s;
     padding: 12px 12px 8px;
     text-align: center;
     font-family: monospace;
@@ -99,7 +101,7 @@
     }
     &:hover {
       filter: grayscale(0);
-      /* transform: translateY(-10px) translateX(-10px) rotateZ(3deg); */
+      transform: translateY(0px) translateX(10px) rotateZ(-4deg) scale(1.2);
       z-index: var(--z-index-base);
     }
   }
