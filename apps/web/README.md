@@ -2,7 +2,6 @@
 
 ## Checklist for 1.0.alpha release
 
-- Nav links hover state and onscroll behaviour
 - Icons black and white
 - Improve micro-interactions
 - Page transitions for projects and words
