@@ -53,6 +53,21 @@
   .marquee-text-secondary ul {
     animation-direction: reverse;
   }
+
+  .word {
+    position: relative;
+  }
+
+  .word::after {
+    content: "";
+    width: 6px;
+    aspect-ratio: 1;
+    background-color: rgb(var(--foreground-rgb));
+    position: absolute;
+    transform: rotate(45deg) translate(-50%, -50%);
+    right: -18px;
+    top: 10px;
+  }
 }
 
 @keyframes marquee {
