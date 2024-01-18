@@ -72,10 +72,24 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   letter-spacing: 0.075em;
+  position: relative;
 
   &.mono {
     font-size: 14px;
     font-family: monospace;
+  }
+
+  &:after {
+    background-attachment: scroll;
+    background-image: url(/images/dots.svg);
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
   }
 }
 
