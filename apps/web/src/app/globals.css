@@ -29,6 +29,15 @@
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+  /* Z-Index */
+  --z-index-below-all: -1;
+  --z-index-base: 1;
+  --z-index-normal: 11;
+  --z-index-menu: 111;
+  --z-index-nav: 1111;
+  --z-index-overlay: 11111;
+  --z-index-above-all: 11111;
+
   /* Components */
   --nav-height: 50px;
   --marquee-height: 80px;
@@ -186,7 +195,7 @@ h3 {
     position: absolute;
     top: 0;
     width: 100%;
-    z-index: -1;
+    z-index: var(--z-index-below-all);
   }
 
   &:hover::after {

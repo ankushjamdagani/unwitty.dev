@@ -20,7 +20,7 @@
       rgb(var(--background-rgb)) 10%,
       transparent
     );
-    z-index: 1;
+    z-index: var(--z-index-base);
   }
 
   &::after {
@@ -35,7 +35,7 @@
       rgb(var(--background-rgb)) 10%,
       transparent
     );
-    z-index: 1;
+    z-index: var(--z-index-base);
   }
 
   ul {

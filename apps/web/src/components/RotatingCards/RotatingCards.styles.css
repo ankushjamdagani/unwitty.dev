@@ -33,7 +33,7 @@
   li:hover {
     filter: grayscale(0);
     translate: 0 -20px 0;
-    z-index: 1;
+    z-index: var(--z-index-base);
   }
 
   li:nth-child(1) {

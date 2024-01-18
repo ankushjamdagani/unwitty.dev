@@ -42,7 +42,7 @@
 
   .marquee-text-primary {
     transform: rotateZ(-1.5deg);
-    z-index: 2;
+    z-index: var(--z-index-normal);
     opacity: 0.8;
   }
 

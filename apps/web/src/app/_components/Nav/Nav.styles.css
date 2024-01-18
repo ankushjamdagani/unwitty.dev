@@ -6,7 +6,7 @@
   margin-bottom: 8px;
   position: sticky;
   top: 0;
-  z-index: 111;
+  z-index: var(--z-index-nav);
   padding: 0 var(--horizontal-gap);
 
   /* text-align: right; */
