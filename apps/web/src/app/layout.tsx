@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 
 import { CursorInverted } from "@/components/CursorInveted";
 import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
@@ -13,7 +13,8 @@ import { Cursor } from "@/components/Cursor";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 // Inter is a variable font. Don't need weights
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -27,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} monos`}>
+      <body className={`${montserrat.className} monos`}>
         <Nav />
         {children}
         {/* <CursorInverted /> */}
