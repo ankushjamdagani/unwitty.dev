@@ -1,4 +1,6 @@
 #home {
+  --left-content-width: 480px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +24,7 @@
   }
 
   p {
-    max-width: 480px;
+    max-width: var(--left-content-width);
   }
 
   .pseudo-name {
@@ -68,7 +70,7 @@
 
   .right-panel {
     position: absolute;
-    right: calc(var(--horizontal-gap) - 1em);
+    left: calc(var(--left-content-width) + 4em);
     top: 0;
     bottom: 0;
     width: 300px;

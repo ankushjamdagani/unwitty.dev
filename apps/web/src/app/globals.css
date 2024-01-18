@@ -41,7 +41,7 @@
   /* Components */
   --nav-height: 50px;
   --marquee-height: 80px;
-  --max-content-width: 800px;
+  --max-content-width: 920px;
 
   --horizontal-gap: max(0px, calc((100vw - var(--max-content-width)) / 2));
   --body-bgfilter: invert(1);
@@ -133,7 +133,7 @@ h3 {
 
   & > h2 {
     margin: 0 auto;
-    max-width: 800px;
+    padding-left: var(--horizontal-gap);
     width: 100%;
   }
 
