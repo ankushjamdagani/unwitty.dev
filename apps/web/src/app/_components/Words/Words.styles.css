@@ -8,6 +8,13 @@
     width: 100%;
     align-items: stretch;
     justify-content: stretch;
+    transition: all 0.25s;
+  }
+
+  li:has(~ li:hover),
+  li:hover ~ li {
+    background-color: rebeccapurple;
+    opacity: 0.5;
   }
 
   .post {
