@@ -29,8 +29,8 @@ export function Cursor() {
 
       const interactingTarget = (target as HTMLElement).closest("a,button");
       if (interactingTarget) {
-        cursorRef.current.style.height = "1px";
-        cursorRef.current.style.width = "1px";
+        cursorRef.current.style.height = "80px";
+        cursorRef.current.style.width = "80px";
         document.body.style.setProperty("--cursor-x", `${evt.clientX}px`);
         document.body.style.setProperty("--cursor-y", `${evt.clientY}px`);
       }
