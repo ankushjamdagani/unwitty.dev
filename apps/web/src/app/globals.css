@@ -47,6 +47,7 @@
     0px,
     calc((100vw - var(--max-content-width)) / 2) - 1em
   );
+  --body-bgfilter: invert(1);
 
   color-scheme: light dark;
 }
@@ -62,6 +63,8 @@
   --foreground-rgb: 255, 255, 255;
   --background-rgb: 0, 0, 0;
   --focus-color: orange;
+
+  --body-bgfilter: none;
 }
 
 html {
@@ -90,6 +93,7 @@ body {
     top: 0;
     width: 100%;
     z-index: -1;
+    filter: var(--body-bgfilter);
   }
 }
 
