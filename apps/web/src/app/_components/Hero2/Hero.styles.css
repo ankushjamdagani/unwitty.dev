@@ -14,6 +14,13 @@
     font-weight: bold;
   }
 
+  h1:first-letter {
+    background: rgb(var(--foreground-rgb));
+    color: rgb(var(--background-rgb));
+    margin-right: 4px;
+    padding: 0px 12px;
+  }
+
   p {
     max-width: 480px;
   }
@@ -87,7 +94,7 @@
     &:hover {
       filter: grayscale(0);
       /* transform: translateY(-10px) translateX(-10px) rotateZ(3deg); */
-      z-index: 1;
+      z-index: var(--z-index-base);
     }
 
     &:hover img {
