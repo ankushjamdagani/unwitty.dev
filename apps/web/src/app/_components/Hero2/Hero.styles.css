@@ -84,7 +84,7 @@
     filter: grayscale(1);
     transform: translateY(0px) translateX(-10px) rotateZ(7deg);
     /* transform-origin: bottom left; */
-    transition: all 0.25s;
+    transition: filter 0.5s;
     padding: 12px 12px 8px;
     text-align: center;
     font-family: monospace;
