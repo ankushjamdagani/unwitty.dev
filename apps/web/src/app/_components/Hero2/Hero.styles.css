@@ -16,6 +16,7 @@
 
   h1:first-letter {
     background: rgb(var(--foreground-rgb));
+    border-radius: var(--border-radius);
     color: rgb(var(--background-rgb));
     margin-right: 4px;
     padding: 0px 12px;

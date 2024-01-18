@@ -22,7 +22,7 @@ export function Hero() {
       <h1>Ankush J.</h1>
 
       <p className="pseudo-name">
-        a.k.a. <strong>Unwitty[.]Dev</strong>
+        a.k.a. <strong>Unwitty</strong>.dev
       </p>
 
       <p>

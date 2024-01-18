@@ -42,9 +42,12 @@ export function Nav() {
 
   return (
     <header id="navigation-bar">
-      <Link href="/#home" id="logo">
-        UW
-      </Link>
+      <span>
+        <Link href="/#home" id="logo">
+          UW
+        </Link>
+        {"  "}.dev
+      </span>
       <nav>
         <ul>
           {Links.map((link) => (
