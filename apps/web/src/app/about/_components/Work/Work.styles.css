@@ -33,7 +33,7 @@
   }
 
   a {
-    display: flex;
+    display: inline-flex;
     align-items: end;
     gap: 8px;
   }
