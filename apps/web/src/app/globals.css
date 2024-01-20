@@ -191,7 +191,7 @@ h3 {
   text-underline-offset: 0.4em;
 }
 
-.shadow-box {
+.shadow-box-v0 {
   background-color: rgb(var(--background-rgb));
   border-radius: var(--border-radius);
   border: solid var(--border-width) rgb(var(--foreground-rgb));
@@ -216,6 +216,23 @@ h3 {
   &:hover::after {
     left: 0.35em;
     top: 0.35em;
+  }
+}
+
+.shadow-box {
+  background-color: rgb(var(--background-rgb));
+  border-radius: var(--border-radius);
+  border: solid var(--border-width) rgb(var(--foreground-rgb));
+  display: flex;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s transform;
+
+  &:hover {
+    transform: scale(1.02);
+    z-index: 1;
   }
 }
 
