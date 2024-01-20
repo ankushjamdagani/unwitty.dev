@@ -15,7 +15,6 @@
 
   li:has(~ li:hover),
   li:hover ~ li {
-    background-color: rebeccapurple;
     opacity: 0.5;
   }
 
