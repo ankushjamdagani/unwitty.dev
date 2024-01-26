@@ -19,7 +19,7 @@
   }
 
   h3 {
-    font-size: 1.25em;
+    font-size: var(--font-lg);
     font-weight: bold;
   }
 
@@ -55,7 +55,7 @@
 
   .month {
     background: rgb(var(--background-rgb));
-    font-size: 0.75em;
+    font-size: var(--font-sm);
     left: 0;
     padding-right: 8px;
     position: absolute;
@@ -72,7 +72,7 @@
   .tech-item {
     border: solid 1px;
     border-radius: 2px;
-    font-size: 0.75em;
+    font-size: var(--font-sm);
     padding: 2px 4px;
   }
 }
