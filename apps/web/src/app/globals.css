@@ -228,12 +228,6 @@ h3 {
   position: relative;
   align-items: center;
   justify-content: center;
-  transition: 0.25s transform;
-
-  &:hover {
-    transform: scale(1.02);
-    z-index: 1;
-  }
 }
 
 .highlight-inverted {

@@ -2,16 +2,16 @@ import Link from "next/link";
 
 import "./Projects.styles.css";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import Image from "next/image";
 
 const List = [
   {
-    id: "project 1",
-    title: "project 1",
-    description:
-      "project 1 project 1 project 1 project 1 project 1 project 1 project 1",
+    id: "gameboy_tetris",
+    title: "Gameboy - Tetris",
+    description: "Gameboy like mobile experience for Tetris in retro style",
     thumbnail: {
-      src: ".",
-      type: "gif",
+      src: "/images/projects/gameboy_tetris.jpeg",
+      type: "image",
     },
   },
   {
@@ -34,36 +34,6 @@ const List = [
       type: "gif",
     },
   },
-  {
-    id: "project 4",
-    title: "project 4",
-    description:
-      "project 4 project 4 project 4 project 4 project 4 project 4 project 4",
-    thumbnail: {
-      src: ".",
-      type: "gif",
-    },
-  },
-  {
-    id: "project 5",
-    title: "project 5",
-    description:
-      "project 5 project 5 project 5 project 5 project 5 project 5 project 5",
-    thumbnail: {
-      src: ".",
-      type: "gif",
-    },
-  },
-  {
-    id: "project 6",
-    title: "project 6",
-    description:
-      "project 6 project 6 project 6 project 6 project 6 project 6 project 6",
-    thumbnail: {
-      src: ".",
-      type: "gif",
-    },
-  },
 ];
 
 export function Projects() {
@@ -72,9 +42,24 @@ export function Projects() {
       <h2>Experiments</h2>
       <ul>
         {List.map((project) => (
-          <li key={project.id} className={project.id.replace(" ", "-")}>
-            <Link href={`#${project.id}`} className="shadow-box">
-              {project.title}
+          <li
+            key={project.id}
+            className={`project-item-wrapper ${project.id.replace(" ", "-")}`}
+          >
+            <Link href={`#${project.id}`} className="project-item shadow-box">
+              <div className="details">
+                <h3 className="title">{project.title}</h3>
+                <p className="description">{project.description}</p>
+              </div>
+              {project.thumbnail.type == "image" && (
+                <Image
+                  src={project.thumbnail.src}
+                  alt={project.title}
+                  width={200}
+                  height={200}
+                  className="preview-thumb"
+                />
+              )}
             </Link>
           </li>
         ))}
