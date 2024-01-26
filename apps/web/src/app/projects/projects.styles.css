@@ -1,0 +1,7 @@
+.project-wrapper {
+  padding: 0 var(--horizontal-gap);
+
+  .project-item {
+    min-height: 100vh;
+  }
+}
