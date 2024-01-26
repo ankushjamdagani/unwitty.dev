@@ -1,0 +1,65 @@
+.project-preview {
+  --controls-height: 32px;
+
+  height: 80vh;
+  background-color: rgb(var(--background-rgb));
+  border-radius: var(--border-radius);
+  border: solid var(--border-width) rgb(var(--foreground-rgb));
+  display: flex;
+  width: 100%;
+  position: relative;
+  align-items: flex-start;
+
+  overflow: auto;
+  scroll-behavior: smooth;
+
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: var(--z-index-overlay);
+    height: 100vh;
+  }
+
+  .project-preview-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    height: var(--controls-height);
+    width: 100%;
+    background-color: rgb(var(--foreground-rgb));
+    color: rgb(var(--background-rgb));
+    font-size: var(--font-sm);
+  }
+
+  .preview-controls {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+
+    svg {
+      font-size: 1rem;
+    }
+  }
+
+  iframe {
+    position: absolute;
+    top: var(--controls-height);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border: 0;
+    height: calc(100% - var(--controls-height));
+  }
+}

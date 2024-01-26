@@ -6,30 +6,6 @@
     margin-bottom: 1rem;
   }
 
-  .project-preview {
-    height: 80vh;
-    background-color: rgb(var(--background-rgb));
-    border-radius: var(--border-radius);
-    border: solid var(--border-width) rgb(var(--foreground-rgb));
-    display: flex;
-    width: 100%;
-    position: relative;
-    align-items: flex-start;
-
-    overflow: auto;
-    scroll-behavior: smooth;
-
-    .project-preview-header {
-      display: flex;
-      justify-content: space-between;
-      padding: 4px 8px;
-      width: 100%;
-      background-color: rgb(var(--foreground-rgb));
-      color: rgb(var(--background-rgb));
-      font-size: var(--font-sm);
-    }
-  }
-
   .project-description {
     padding: 16px 0;
   }
