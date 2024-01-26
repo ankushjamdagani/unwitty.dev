@@ -15,7 +15,7 @@ export default function ProjectsWrapper({
           { label: "Current" },
         ]}
       />
-      <main className="project-item">{children}</main>
+      {children}
     </div>
   );
 }
