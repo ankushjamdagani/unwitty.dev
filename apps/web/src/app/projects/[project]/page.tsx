@@ -1,13 +1,14 @@
 import "./Project.styles.css";
+import { PreviewControls } from "./_components/PreviewControls";
 
 export default function Project({ params }) {
   return (
     <main className="project-item">
       <h1>Project Title</h1>
       <section className="project-preview">
-        <header className="project-controls">
+        <header className="project-preview-header">
           <p>Preview</p>
-          <button>Show full screen preview</button>
+          <PreviewControls />
         </header>
       </section>
       <section className="project-description">

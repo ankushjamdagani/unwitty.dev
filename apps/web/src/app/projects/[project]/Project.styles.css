@@ -19,7 +19,7 @@
     overflow: auto;
     scroll-behavior: smooth;
 
-    .project-controls {
+    .project-preview-header {
       display: flex;
       justify-content: space-between;
       padding: 4px 8px;
