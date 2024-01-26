@@ -1,47 +1,48 @@
 .project-preview {
   --controls-height: 32px;
 
-  height: 80vh;
+  align-items: flex-start;
   background-color: rgb(var(--background-rgb));
   border-radius: var(--border-radius);
   border: solid var(--border-width) rgb(var(--foreground-rgb));
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  height: 80vh;
   position: relative;
-  align-items: flex-start;
+  width: 100%;
 
   overflow: auto;
   scroll-behavior: smooth;
 
   &.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
     bottom: 0;
-    right: 0;
-    z-index: var(--z-index-overlay);
     height: 100vh;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: var(--z-index-overlay);
   }
 
   .project-preview-header {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 8px;
-    height: var(--controls-height);
-    width: 100%;
     background-color: rgb(var(--foreground-rgb));
     color: rgb(var(--background-rgb));
-    font-size: var(--font-sm);
+    display: flex;
+    font-size: var(--font-xs);
+    height: var(--controls-height);
+    justify-content: space-between;
+    padding: 0 8px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
   }
 
   .preview-controls {
+    align-items: center;
     display: flex;
     gap: 16px;
-    align-items: center;
 
     button {
       display: flex;
@@ -54,12 +55,21 @@
   }
 
   iframe {
-    position: absolute;
-    top: var(--controls-height);
-    left: 0;
-    bottom: 0;
     width: 100%;
     border: 0;
-    height: calc(100% - var(--controls-height));
+    flex: 1;
+  }
+
+  .project-preview-footer {
+    background-color: rgb(var(--foreground-rgb));
+    color: rgb(var(--background-rgb));
+    font-size: var(--font-xs);
+    width: 100%;
+
+    ul {
+      display: flex;
+      gap: 8px;
+      padding: 8px 8px 6px;
+    }
   }
 }

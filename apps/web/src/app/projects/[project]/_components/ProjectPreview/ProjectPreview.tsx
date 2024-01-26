@@ -41,6 +41,13 @@ export function ProjectPreview() {
         src="https://www.w3schools.com"
         title="W3Schools Free Online Web Tutorials"
       ></iframe>
+      <footer className="project-preview-footer">
+        <ul>
+          <li className="badge">HTML</li>
+          <li className="badge">CSS</li>
+          <li className="badge">Javascript</li>
+        </ul>
+      </footer>
     </section>
   );
 }

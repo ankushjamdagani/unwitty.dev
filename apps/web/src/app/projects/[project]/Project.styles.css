@@ -6,13 +6,59 @@
     margin-bottom: 1rem;
   }
 
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
   .project-description {
-    padding: 16px 0;
+    padding-top: 8px;
+    margin-bottom: 32px;
+    font-size: var(--font-sm);
   }
 
   .caption {
     font-style: italic;
     text-align: center;
     width: 100%;
+  }
+
+  .project-stack {
+    margin-bottom: 16px;
+    ul {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .badge {
+    border: solid 1px;
+    border-radius: 2px;
+    font-size: var(--font-xs);
+    padding: 2px 4px;
+  }
+
+  .project-learnings ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .project-learnings li {
+    width: calc((100% - 32px) / 3);
+  }
+  .project-learnings li a {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: flex-start;
+    border: solid 1px;
+    border-radius: 2px;
+    padding: 16px;
+    font-size: 1.5rem;
+  }
+
+  .seperator-sq {
+    margin: 32px auto 0;
   }
 }
