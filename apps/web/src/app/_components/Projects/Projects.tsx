@@ -46,7 +46,10 @@ export function Projects() {
             key={project.id}
             className={`project-item-wrapper ${project.id.replace(" ", "-")}`}
           >
-            <Link href={`#${project.id}`} className="project-item shadow-box">
+            <Link
+              href={`/projects/${project.id}`}
+              className="project-item shadow-box"
+            >
               <div className="details">
                 <h3 className="title">{project.title}</h3>
                 <p className="description">{project.description}</p>
