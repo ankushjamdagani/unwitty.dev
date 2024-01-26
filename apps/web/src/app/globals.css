@@ -30,7 +30,8 @@
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Font Sizes */
-  --font-sm: 0.75rem;
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
   --font-md: 1rem;
   --font-lg: 1.25rem;
 

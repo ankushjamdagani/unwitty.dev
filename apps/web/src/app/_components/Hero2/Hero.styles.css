@@ -111,7 +111,7 @@
   footer {
     bottom: 0;
     display: flex;
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
     justify-content: space-between;
     left: 0;
     padding: 8px 16px 8px 0;

@@ -55,7 +55,7 @@
 
   .month {
     background: rgb(var(--background-rgb));
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
     left: 0;
     padding-right: 8px;
     position: absolute;
@@ -72,7 +72,7 @@
   .tech-item {
     border: solid 1px;
     border-radius: 2px;
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
     padding: 2px 4px;
   }
 }

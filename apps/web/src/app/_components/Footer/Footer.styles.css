@@ -49,7 +49,7 @@
 
   blockquote {
     border-top: dashed var(--border-width) rgb(var(--foreground-rgb));
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
     padding: 16px 0;
     text-align: center;
   }
