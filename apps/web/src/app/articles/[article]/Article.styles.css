@@ -1,6 +1,20 @@
 .article-wrapper {
   margin-top: -8px;
 
+  .tags-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 8px;
+  }
+
+  .tag {
+    border: solid 1px;
+    border-radius: 2px;
+    font-size: var(--font-xs);
+    padding: 4px;
+    font-weight: bold;
+  }
+
   /* ------ Cover section ---------- */
 
   .article-cover {
@@ -17,7 +31,8 @@
   }
 
   .article-header,
-  .article-content {
+  .article-content,
+  .article-footer {
     padding: 16px var(--horizontal-gap);
   }
 
@@ -55,7 +70,8 @@
   }
 
   .article-content {
-    h2 {
+    h2,
+    h3 {
       margin: 1em 0 0.5em 0;
     }
 
@@ -84,20 +100,6 @@
       list-style-type: upper-alpha;
     }
 
-    .tags-wrapper {
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 8px;
-    }
-
-    .tag {
-      border: solid 1px;
-      border-radius: 2px;
-      font-size: var(--font-xs);
-      padding: 4px;
-      font-weight: bold;
-    }
-
     [class^="code-"] {
       white-space: pre;
       overflow-x: auto;
@@ -113,7 +115,7 @@
 
     .code-block {
       border-radius: var(--border-radius-lg);
-      padding: 1em 1.1em;
+      padding: 1em 2em;
       display: block;
       position: relative;
       margin: 2em -2em;
@@ -142,27 +144,24 @@
 
     blockquote {
       font-style: italic;
-      margin: 0 -2em 1.4em;
-      padding: 4em;
+      margin: 0 0 1.4em;
+      padding: 2em 3em;
       position: relative;
+      text-align: left;
     }
 
     blockquote::before {
       content: '"';
-      text-align: center;
       font-size: 4em;
       position: absolute;
       left: -0.25em;
     }
-
-    blockquote::after {
-      /* content: '"'; */
-      text-align: center;
-      font-size: 2em;
-      position: absolute;
-      right: 0.4em;
-    }
   }
 
-  /* code, highlight, comment, progress, embeds, author, post date, 4 min read, TLDR; tags, social handles */
+  /* -------- footer --------- */
+
+  footer {
+  }
+
+  /* comment, progress, embeds, 4 min read, TLDR;, social handles */
 }

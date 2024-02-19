@@ -46,6 +46,22 @@ export default function Article() {
       </header>
 
       <section className="article-content">
+        <blockquote cite="https://www.huxley.net/bnw/four.html">
+          <h3>TLDR;</h3>
+          <p>
+            Words can be like X-rays, if you use them properly—they’ll go
+            through anything. You read and you’re pierced. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Nisl nunc mi ipsum
+            faucibus vitae aliquet. risus nec feugiat in fermentum posuere.
+            Neque sodales ut etiam sit. Vulputate eu scelerisque felis imperdiet
+            proin fermentum leo vel. Consectetur purus ut faucibus pulvinar
+            elementum. Enim sit amet venenatis urna cursus. Porta non pulvinar
+            neque laoreet
+          </p>
+        </blockquote>
+
+        <div className="line-seperator"></div>
+
         <p>
           Lorem ipsum dolor sit amet,{" "}
           <code className="code-inline">conse c t et ur</code> adipiscing elit,
@@ -202,8 +218,8 @@ export default function Article() {
         </p>
       </section>
 
-      <footer>
-        <ul className="tags-container">
+      <footer className="article-footer">
+        <ul className="tags-wrapper">
           <li className="tag">Typescript</li>
           <li className="tag">Web Security</li>
           <li className="tag">DDOS attack</li>
