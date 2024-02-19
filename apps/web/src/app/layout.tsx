@@ -13,8 +13,8 @@ import { Cursor } from "@/components/Cursor";
 import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 // Inter is a variable font. Don't need weights
-// const inter = Inter({ subsets: ["latin"] });
-const montserrat = Montserrat({ subsets: ["latin"] });
+// const font = Inter({ subsets: ["latin"] });
+const font = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} monos`}>
+      <body className={`${font.className} monos`}>
         <Nav />
         {children}
         {/* <CursorInverted /> */}
