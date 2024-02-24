@@ -21,7 +21,7 @@ export default function Article() {
         <BreadCrumb
           options={[
             { path: "/", label: "Home" },
-            { path: "/articles", label: "Words" },
+            { path: "/#words", label: "Words" },
             { label: "Current" },
           ]}
         />

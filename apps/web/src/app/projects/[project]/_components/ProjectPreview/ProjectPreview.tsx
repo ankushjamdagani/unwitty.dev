@@ -43,9 +43,9 @@ export function ProjectPreview() {
       ></iframe>
       <footer className="project-preview-footer">
         <ul>
-          <li className="badge">HTML</li>
-          <li className="badge">CSS</li>
-          <li className="badge">Javascript</li>
+          <li className="badge">100 FCP</li>
+          <li className="badge">89 FID</li>
+          <li className="badge">99 CLS</li>
         </ul>
       </footer>
     </section>

@@ -32,15 +32,27 @@
     width: 32px;
   }
 
+  blockquote {
+    font-style: italic;
+    margin: 0 0 1.4em;
+    padding: 2em 3em;
+    position: relative;
+    text-align: left;
+    font-size: 1.2em;
+  }
+
+  blockquote::before {
+    content: '"';
+    font-size: 4em;
+    position: absolute;
+    left: -0.25em;
+  }
+
   /* ---------- Preview section --------- */
 
   h2,
   h3 {
     margin: 1em 0 0.5em 0;
-  }
-
-  p {
-    margin-bottom: 1.5em;
   }
 
   .tags-wrapper {
@@ -55,23 +67,6 @@
     font-size: var(--font-xs);
     padding: 4px;
     font-weight: bold;
-  }
-
-  .project-description {
-    padding-top: 8px;
-    margin-bottom: 32px;
-    line-height: 1.75em;
-    font-size: 1.2em;
-  }
-
-  .project-description p.caption {
-    font-size: var(--font-sm);
-  }
-
-  .caption {
-    font-style: italic;
-    text-align: center;
-    width: 100%;
   }
 
   .project-stack {
@@ -93,11 +88,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
+    margin-bottom: 2em;
   }
 
   .project-learnings li {
     width: calc((100% - 32px) / 3);
   }
+
   .project-learnings li a {
     display: flex;
     width: 100%;

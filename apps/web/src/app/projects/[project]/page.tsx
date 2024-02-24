@@ -15,7 +15,7 @@ export default function Project({ params }) {
         <BreadCrumb
           options={[
             { path: "/", label: "Home" },
-            { path: "/projects", label: "Projects" },
+            { path: "/#projects", label: "Projects" },
             { label: "Current" },
           ]}
         />
@@ -39,15 +39,8 @@ export default function Project({ params }) {
         </ul>
       </header>
 
-      <ProjectPreview />
-
-      <section className="project-description">
-        <p className="caption">
-          This project is very cute. Some long description will tell about the
-          project. Maybe some inspiration. Maybe some random think. Some
-          external links are mentioned elsewhere.
-        </p>
-
+      <blockquote cite="https://www.huxley.net/bnw/four.html">
+        <h3>Info;</h3>
         <p>
           Words can be like X-rays, if you use them properly—they’ll go through
           anything. You read and you’re pierced. Sed do eiusmod tempor
@@ -57,7 +50,9 @@ export default function Project({ params }) {
           fermentum leo vel. Consectetur purus ut faucibus pulvinar elementum.
           Enim sit amet venenatis urna cursus. Porta non pulvinar neque laoreet
         </p>
-      </section>
+      </blockquote>
+
+      <ProjectPreview />
 
       <footer className="project-footer">
         <ul className="tags-wrapper">
@@ -69,7 +64,7 @@ export default function Project({ params }) {
         </ul>
 
         <section className="project-learnings">
-          <h2>Related articles?</h2>
+          <h2>Learnings</h2>
           <ul>
             <li>
               <Link href={"#"}>How to be lazy?</Link>
@@ -83,10 +78,6 @@ export default function Project({ params }) {
           </ul>
         </section>
       </footer>
-
-      <div>
-        <div className="seperator-sq"></div>
-      </div>
     </main>
   );
 }
