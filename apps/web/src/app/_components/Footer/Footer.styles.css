@@ -1,0 +1,94 @@
+@property --transparent-bar-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --black-bar-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --circle-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --circle-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+#footer {
+  .content {
+    align-items: center;
+    animation: circles-zoom 1s linear forwards;
+    animation-range: entry 0% entry 99%;
+    animation-timeline: view(block);
+    background: repeating-radial-gradient(
+      circle at var(--circle-x) var(--circle-y),
+      transparent,
+      transparent var(--transparent-bar-width),
+      rgb(var(--foreground-rgb)) var(--transparent-bar-width),
+      rgb(var(--foreground-rgb))
+        calc((var(--transparent-bar-width) + var(--black-bar-width)))
+    );
+    color: rgb(var(--background-rgb));
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    min-height: 75vh;
+    padding: 200px 0;
+  }
+
+  a[href^="email"] {
+    /* background-color: rgb(var(--foreground-rgb)); */
+    font-size: 2em;
+  }
+
+  blockquote {
+    border-top: dashed var(--border-width) rgb(var(--foreground-rgb));
+    font-size: var(--font-xs);
+    padding: 16px 0;
+    text-align: center;
+  }
+
+  ul {
+    display: flex;
+    gap: 8px;
+
+    li a {
+      /* background-color: rgb(var(--foreground-rgb)); */
+      border: solid var(--border-width-thin) rgb(var(--background-rgb));
+      border-radius: var(--border-radius);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 28px;
+      width: 28px;
+
+      &:hover {
+        background-color: rgb(var(--background-rgb));
+        color: rgb(var(--foreground-rgb));
+      }
+    }
+  }
+}
+
+@keyframes circles-zoom {
+  from {
+    --transparent-bar-width: 100vw;
+    --black-bar-width: 500px;
+    --circle-x: 50%;
+    --circle-y: 50%;
+  }
+  to {
+    --transparent-bar-width: 2px;
+    --black-bar-width: 200px;
+    --circle-x: 50%;
+    --circle-y: 50%;
+  }
+}

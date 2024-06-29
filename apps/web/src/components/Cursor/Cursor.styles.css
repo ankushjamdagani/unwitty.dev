@@ -1,0 +1,24 @@
+#cursor {
+  --cursor-size: 20px;
+
+  position: fixed;
+  height: var(--cursor-size);
+  width: var(--cursor-size);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: var(--z-index-above-all);
+  backdrop-filter: invert(1) grayscale(1);
+  pointer-events: none;
+  transition:
+    width 0.2s,
+    height 0.2s;
+}
+
+a:hover,
+button:hover {
+  /* background: radial-gradient(
+    circle at var(--cursor-x) var(--cursor-y),
+    transparent,
+    white
+  ); */
+}

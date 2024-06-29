@@ -1,0 +1,602 @@
+@import url("./styles/reset.css");
+@import url("./styles/normalize.css");
+
+.gs-container {
+  /* Font Families */
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Font Sizes */
+  --font-sm: 0.5rem;
+  --font-md: 0.75rem;
+  --font-lg: 1.25rem;
+
+  /* Color variables */
+  --skin-background-rgb: 231, 219, 210;
+  --skin-border-rgb: 191, 185, 176;
+  --skin-shadow-rgb: 215, 203, 188;
+
+  --primary-rgb: 17, 67, 75;
+  --primary-accent-rgb: 77, 121, 95;
+
+  --secondary-rgb: 152, 54, 90;
+  --secondary-accent-rgb: 213, 135, 170;
+
+  --text-rgb: 40, 84, 89;
+
+  /* Border variables */
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 32px;
+  --border-radius-xl: 48px;
+  --border-radius-xxl: 64px;
+
+  /* --border-width-thin: 1px; */
+  /* --border-width: 2px; */
+  /* --border-width-thick: 3px; */
+
+  --gs-width: 400px;
+  --gs-aspect-ratio: 427 / 689;
+  --gs-radius: var(--border-radius-md);
+  --gs-radius-bottom: var(--border-radius-xxl);
+
+  --gs-depth: calc(var(--gs-width) / 6);
+
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: var(--gs-width);
+  aspect-ratio: var(--gs-aspect-ratio);
+  letter-spacing: 0.075em;
+  position: relative;
+  font-family: var(--font-sans);
+  transform-style: preserve-3d;
+  transform-origin: center;
+
+  .gs-front {
+    background-color: rgb(var(--skin-background-rgb));
+    color: rgb(var(--text-rgb));
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::after {
+      content: "";
+      width: 100%;
+      aspect-ratio: 1/1;
+      background-color: rgb(var(--skin-shadow-rgb));
+      /* background-color: red; */
+
+      rotate: -30deg;
+      position: absolute;
+      right: -50%;
+      bottom: -50%;
+      opacity: 0.1;
+      /* z-index: 1; */
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      aspect-ratio: 1/1;
+      backdrop-filter: brightness(0.9);
+
+      rotate: -30deg;
+      position: absolute;
+      right: -50%;
+      bottom: -50%;
+      z-index: 2;
+    }
+  }
+
+  .gs-head {
+    height: 48px;
+    border-bottom: solid 6px rgb(var(--skin-border-rgb));
+    display: flex;
+    place-items: stretch;
+
+    .gs-head-left,
+    .gs-head-right {
+      width: 40px;
+    }
+
+    .seperator-dot {
+      height: 6px;
+      width: 6px;
+      background-color: white;
+      border-radius: 50%;
+    }
+
+    .gs-head-center {
+      border-left: solid 6px rgb(var(--skin-border-rgb));
+      border-right: solid 6px rgb(var(--skin-border-rgb));
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+    }
+
+    .gs-device-indicator {
+      background-color: rgb(var(--skin-border-rgb));
+      color: white;
+      padding: 2px 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 20px;
+      font-size: var(--font-md);
+
+      div {
+        font-weight: bold;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .gs-screen {
+    flex: 2;
+    background-color: darkslateblue;
+    color: white;
+    display: grid;
+    grid-template-areas:
+      "head head head"
+      "aside content ."
+      ". . .";
+    /* grid-template-columns: 64px 1fr 64px; */
+    grid-template-columns: 1fr 3.5fr 1fr;
+    /* grid-template-rows: 32px 1fr 32px; */
+    grid-template-rows: 1fr 5fr 1fr;
+
+    border-radius: var(--border-radius-sm);
+    border-bottom-right-radius: var(--border-radius-xl);
+
+    margin: 32px 32px 0;
+
+    .gs-screen-head {
+      grid-area: head;
+    }
+
+    .gs-screen-head {
+      grid-area: head;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm);
+      font-weight: bold;
+      position: relative;
+
+      span {
+        z-index: 1;
+        background-color: darkslateblue;
+        padding: 0 8px;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: red;
+        top: calc(50% - 2px);
+        opacity: 0.5;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: wheat;
+        bottom: calc(50% - 2px);
+        opacity: 0.5;
+      }
+    }
+
+    .gs-screen-aside {
+      grid-area: aside;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      height: 100%;
+
+      font-size: var(--font-sm);
+      font-weight: bold;
+      gap: 8px;
+    }
+
+    .gs-battery-indicator {
+      height: 10px;
+      width: 10px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .gs-screen-content {
+      grid-area: content;
+      background-color: aquamarine;
+      border-radius: var(--border-radius-xs);
+    }
+
+    .gs-screen-content-wrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .gs-brand {
+    margin: 8px 32px;
+    font-size: var(--font-md);
+    font-weight: bold;
+
+    em {
+      font-size: var(--font-lg);
+    }
+  }
+
+  .gs-foot {
+    flex: 2;
+    margin: 24px 32px;
+    display: grid;
+    grid-template-areas:
+      "arr . abtn"
+      ". pbtn charge";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 3fr 3fr 1fr;
+  }
+
+  .gs-arr-btns {
+    display: grid;
+    grid-template-areas: ". top ." "left . right" ". bottom .";
+    grid-area: arr;
+  }
+
+  .gs-arr-btns button {
+    /* height: 40px;
+    width: 40px; */
+    /* width: 100%; */
+    aspect-ratio: 1 / 1;
+    background-color: rgb(var(--primary-rgb));
+    border-radius: var(--border-radius-xs);
+  }
+
+  .gs-arr-btn-top {
+    grid-area: top;
+  }
+
+  .gs-arr-btn-left {
+    grid-area: left;
+  }
+
+  .gs-arr-btn-right {
+    grid-area: right;
+  }
+
+  .gs-arr-btn-bottom {
+    grid-area: bottom;
+  }
+
+  .gs-action-btns {
+    grid-area: abtn;
+    display: grid;
+    grid-template-areas: "left right";
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 16px;
+    rotate: -30deg;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+    justify-self: center;
+    align-self: center;
+    border-radius: 50px;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .gs-action-btns button {
+    /* min-height: 40px; */
+    aspect-ratio: 1 / 1;
+    background-color: rgb(var(--secondary-rgb));
+    border-radius: 50%;
+    position: relative;
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      top: calc(100% + 12px);
+      font-size: var(--font-md);
+      font-weight: bold;
+    }
+  }
+
+  .gs-action-btn-left {
+    grid-area: left;
+
+    &:after {
+      content: "A";
+    }
+  }
+
+  .gs-action-btn-right {
+    grid-area: right;
+
+    &:after {
+      content: "B";
+    }
+  }
+
+  .gs-primary-btns {
+    grid-area: pbtn;
+    display: grid;
+    grid-template-areas: "left right";
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .gs-primary-btns button {
+    rotate: -30deg;
+    width: 100%;
+    border-radius: 50%;
+    position: relative;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gs-primary-btn-handle {
+    aspect-ratio: 5 / 1;
+    /* height: 10px; */
+    border-radius: 4px;
+    background-color: rgb(var(--secondary-rgb));
+    width: 100%;
+  }
+
+  .gs-primary-btn-left {
+    grid-area: left;
+  }
+
+  .gs-primary-btn-center {
+    grid-area: center;
+  }
+
+  .gs-primary-btn-right {
+    grid-area: right;
+  }
+
+  .gs-charging-indicator {
+    grid-area: charge;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 4px;
+    align-items: flex-end;
+    rotate: -30deg;
+    text-align: center;
+    position: relative;
+    top: 20%;
+    left: -10%;
+  }
+
+  .gs-charging-indicator div {
+    width: 5px;
+    border-radius: 4px;
+    background-color: rgb(var(--secondary-rgb));
+    height: 50%;
+    align-items: center;
+  }
+
+  .gs-charging-indicator div:last-of-type {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .gs-connection {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .label {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 40px;
+      font-size: var(--font-md);
+      padding: 4px 8px;
+      color: white;
+      opacity: 0.6;
+      font-weight: bold;
+      display: flex;
+      margin-right: 24px;
+    }
+
+    .indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0.6;
+    }
+
+    .indicator div {
+      width: 4px;
+      height: 10px;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  /* Gameboy 3D shape */
+
+  .gs-back,
+  .gs-left,
+  .gs-right,
+  .gs-top,
+  .gs-bottom,
+  .gs-bottom-left,
+  .gs-bottom-right,
+  .gs-top-left,
+  .gs-top-right {
+    background-color: rgb(var(--secondary-rgb));
+    color: white;
+    position: absolute;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+      rgb(var(--skin-shadow-rgb)) 40%,
+      rgb(var(--secondary-rgb)) 40%
+    );
+  }
+
+  .gs-front,
+  .gs-back {
+    width: 100%;
+    height: 100%;
+    /* border-radius: var(--gs-radius); */
+    /* border-bottom-right-radius: var(--gs-radius-bottom); */
+    clip-path: polygon(
+      3% 0%,
+      97% 0%,
+      100% 3%,
+      100% 95%,
+      85% 100%,
+      3% 100%,
+      0% 97%,
+      0% 3%
+    );
+  }
+
+  .gs-back {
+    transform: translateZ(calc(-1 * var(--gs-depth)));
+    background-image: linear-gradient(
+      to right,
+      rgb(var(--secondary-rgb)) 40%,
+      rgb(var(--secondary-rgb)) 40%
+    );
+    filter: brightness(.8);
+  }
+
+  .gs-left,
+  .gs-right {
+    width: var(--gs-depth);
+    /* height: 100%; */
+  }
+
+  .gs-left {
+    background-image: linear-gradient(
+      to left,
+      rgb(var(--skin-shadow-rgb)) 40%,
+      rgb(var(--secondary-rgb)) 40%
+    );
+
+    right: 100%;
+    transform: rotateY(-90deg);
+    transform-origin: right;
+    top: 3%;
+    bottom: 3%;
+  }
+
+  .gs-right {
+    background-image: linear-gradient(
+      to right,
+      rgb(var(--skin-shadow-rgb)) 40%,
+      rgb(var(--secondary-rgb)) 40%
+    );
+
+    left: 100%;
+    transform: rotateY(90deg);
+    transform-origin: left;
+    top: 3%;
+    bottom: 5%;
+  }
+
+  .gs-top,
+  .gs-bottom,
+  .gs-top-left,
+  .gs-top-right,
+  .gs-bottom-left,
+  .gs-bottom-right {
+    height: var(--gs-depth);
+    /* width: 100%; */
+  }
+
+  .gs-top {
+    background-image: linear-gradient(
+      to top,
+      rgb(var(--skin-shadow-rgb)) 40%,
+      rgb(var(--secondary-rgb)) 40%
+    );
+
+    bottom: 100%;
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+    left: 3%;
+    right: 3%;
+  }
+
+  .gs-top-left {
+    top: 1.7%;
+    transform: rotateX(-90deg) rotateY(-120deg);
+    transform-origin: top;
+    width: 6%;
+    left: -1.7%;
+  }
+
+  .gs-top-right {
+    top: 1.7%;
+    transform: rotateX(-90deg) rotateY(120deg);
+    transform-origin: top;
+    width: 6%;
+    right: -1.7%;
+  }
+
+  .gs-bottom {
+    top: 100%;
+    transform: rotateX(-90deg);
+    transform-origin: top;
+    left: 3%;
+    right: 15%;
+  }
+
+  .gs-bottom-left {
+    top: 98.3%;
+    transform: rotateX(-90deg) rotateY(120deg);
+    transform-origin: top;
+    width: 6%;
+    left: -1.7%;
+  }
+
+  .gs-bottom-right {
+    top: 97.5%;
+    transform: rotateX(-90deg) rotateY(-152deg);
+    transform-origin: top;
+    width: 17.2%;
+    right: -1.1%;
+  }
+}

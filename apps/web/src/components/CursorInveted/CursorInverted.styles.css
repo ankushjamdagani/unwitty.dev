@@ -1,0 +1,11 @@
+@supports (backdrop-filter: none) {
+  #cursor-inverted {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    backdrop-filter: invert(1);
+    pointer-events: none;
+    z-index: var(--z-index-above-all);
+  }
+}

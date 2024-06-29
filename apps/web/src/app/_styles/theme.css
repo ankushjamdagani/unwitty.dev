@@ -1,0 +1,68 @@
+:root {
+  /* Color variables */
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+
+  /* Accessibility Styles */
+  --focus-color: crimson;
+  --focus-outline: dotted 2px var(--focus-color);
+  --focus-outline-offset: 2px;
+
+  /* Box variables */
+  --border-radius-sm: 1px;
+  --border-radius: 3px;
+  --border-radius-md: 5px;
+  --border-radius-lg: 8px;
+  --border-width-thin: 1px;
+  --border-width: 2px;
+  --border-width-thick: 3px;
+
+  /* Font Families */
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Font Sizes */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+
+  /* Z-Index */
+  --z-index-below-all: -1;
+  --z-index-base: 1;
+  --z-index-normal: 11;
+  --z-index-menu: 111;
+  --z-index-nav: 1111;
+  --z-index-overlay: 11111;
+  --z-index-above-all: 11111;
+
+  /* Components */
+  --nav-height: 50px;
+  --marquee-height: 80px;
+  --max-content-width: 920px;
+
+  --horizontal-gap: max(0px, calc((100vw - var(--max-content-width)) / 2));
+  --body-bgfilter: invert(1);
+
+  color-scheme: light dark;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
+  }
+} */
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+  --focus-color: orange;
+
+  --body-bgfilter: none;
+}

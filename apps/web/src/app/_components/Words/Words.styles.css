@@ -1,0 +1,51 @@
+#words {
+  ul {
+    display: flex;
+  }
+
+  li {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    justify-content: stretch;
+    transition: all 0.25s;
+  }
+
+  li:has(~ li:hover),
+  li:hover ~ li {
+    background-color: rebeccapurple;
+    opacity: 0.5;
+  }
+
+  .post {
+    flex-direction: column;
+    /* aspect-ratio: 1/1.5; */
+    padding: 16px;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .post-thumb {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: rgb(var(--foreground-rgb));
+    border-radius: var(--border-radius-sm);
+  }
+
+  .post-title {
+    /* width: 100%; */
+    width: 240px;
+    margin: 16px 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .post-description {
+    width: 100%;
+    margin-bottom: 16px;
+    font-size: 0.85em;
+  }
+}

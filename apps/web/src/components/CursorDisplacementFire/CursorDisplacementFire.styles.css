@@ -1,0 +1,14 @@
+@supports (backdrop-filter: none) {
+  #cursor-displacement-fire {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-index-above-all);
+
+    backdrop-filter: url(#displacementFilter);
+    filter: url(#displacementFilter);
+    /* background-color: rebeccapurple; */
+  }
+}

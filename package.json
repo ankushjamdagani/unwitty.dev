@@ -1,0 +1,26 @@
+{
+  "name": "unwitty-dev",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "bootstrap-all": "(sh apps/web/bootstrap.sh); (sh projects/gameboy-shell/bootstrap.sh); (sh games/cosmic-velocity/bootstrap.sh)"
+  },
+  "devDependencies": {
+    "@/eslint-config": "workspace:*",
+    "@/typescript-config": "workspace:*",
+    "@turbo/gen": "^1.10.12",
+    "prettier": "^3.1.0",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.0",
+    "lodash": "^4.17.21"
+  }
+}

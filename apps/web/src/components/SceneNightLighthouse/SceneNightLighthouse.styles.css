@@ -1,0 +1,90 @@
+#SceneNightLighthouse {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: var(--nav-height);
+
+  background:
+    linear-gradient(
+      to top,
+      transparent 50%,
+      rgba(var(--foreground-rgb), 0.2) 100%
+    ),
+    rgb(var(--background-rgb))
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        rgba(var(--foreground-rgb), 0) 5px,
+        rgba(var(--foreground-rgb), 0) 5px,
+        rgba(var(--foreground-rgb), 0.1) 7px
+      );
+  opacity: 0.75;
+  z-index: var(--z-index-below-all);
+
+  #sun {
+    border-radius: 50%;
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    height: 100px;
+    width: 100px;
+
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#sun-decompose);
+  }
+
+  #sea {
+    position: absolute;
+    height: 140px;
+    left: -20px;
+    right: var(--horizontal-gap);
+    bottom: 0;
+
+    filter: url(#nightSea);
+
+    background-color: rgb(var(--foreground-rgb));
+    background: linear-gradient(rgb(var(--foreground-rgb)) 1%, transparent 5%);
+    background:
+      linear-gradient(
+        to top,
+        transparent 50%,
+        rgba(var(--foreground-rgb), 0.2) 100%
+      ),
+      rgb(var(--background-rgb))
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          rgba(var(--foreground-rgb), 0) 5px,
+          rgba(var(--foreground-rgb), 0) 5px,
+          rgba(var(--foreground-rgb), 0.1) 7px
+        );
+  }
+
+  #clouds {
+    border-radius: 50%;
+    position: absolute;
+    left: 50px;
+    top: 150px;
+    height: 100px;
+    width: 200px;
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#wavy-clouds) invert(1);
+    background: radial-gradient(rgb(var(--foreground-rgb)), transparent 40%);
+  }
+
+  #clouds::before {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    left: -150px;
+    top: -40px;
+    height: 140px;
+    width: 530px;
+
+    background-color: rgb(var(--foreground-rgb));
+    filter: url(#wavy-clouds) invert(1);
+    background: radial-gradient(rgb(var(--foreground-rgb)), transparent 40%);
+    opacity: 0.5;
+  }
+}

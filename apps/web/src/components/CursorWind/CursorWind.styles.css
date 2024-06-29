@@ -1,0 +1,13 @@
+@supports (backdrop-filter: none) {
+  #cursor-wind {
+    position: absolute;
+    height: 1000px;
+    width: 1000px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: var(--z-index-above-all);
+
+    backdrop-filter: url(#displacementFilter);
+    mask: radial-gradient(black, transparent 70%);
+  }
+}

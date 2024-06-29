@@ -1,0 +1,90 @@
+#scene-test {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--nav-height);
+  bottom: 0;
+  /* background-color: red; */
+
+  --sun-size: 50px;
+
+  #item-sun {
+    aspect-ratio: 1/1;
+    /* background-color: rgb(var(--foreground-rgb)); */
+    border-radius: 50%;
+    width: var(--sun-size);
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    backdrop-filter: invert(1);
+  }
+
+  #item-sun::after {
+    animation: scale-fade-out 1s ease-in-out infinite;
+    border-radius: 50%;
+    border: solid 1px rgb(var(--foreground-rgb));
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    backdrop-filter: invert(1);
+  }
+
+  #item-tunnel {
+    height: 60px;
+    width: 40px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    background-color: rgb(var(--foreground-rgb));
+    position: absolute;
+    bottom: 100px;
+    left: 100px;
+  }
+
+  #item-tunnel:after {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border: solid 1px rgb(var(--foreground-rgb));
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    /* transform: scale(1); */
+    background-color: black;
+  }
+
+  #item-tunnel:before {
+    background-image: linear-gradient(
+      90deg,
+      rgb(var(--foreground-rgb)),
+      transparent
+    );
+    height: 1px;
+    bottom: 0;
+    content: "";
+    left: -200px;
+    position: absolute;
+    right: -800px;
+  }
+
+  #hero-image {
+    background-image: url(/images/crumbled_page.jpg);
+    width: 300px;
+    height: 600px;
+    background-size: cover;
+    background-position: right;
+    transform: scaleX(-1);
+    filter: invert(1) grayscale(1);
+  }
+}
+
+@keyframes scale-fade-out {
+  to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

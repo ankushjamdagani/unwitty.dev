@@ -1,0 +1,112 @@
+.project-wrapper {
+  padding: 16px var(--horizontal-gap);
+
+  /* -------- Header section -------- */
+
+  .project-header {
+    margin-bottom: 2em;
+  }
+
+  h1 {
+    /* font-size: 3rem; */
+    margin: 2rem 0;
+    font-weight: bold;
+  }
+
+  .project-meta {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 32px;
+  }
+
+  .project-meta li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .project-author img {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+  }
+
+  blockquote {
+    font-style: italic;
+    margin: 0 0 1.4em;
+    padding: 2em 3em;
+    position: relative;
+    text-align: left;
+    font-size: 1.2em;
+  }
+
+  blockquote::before {
+    content: '"';
+    font-size: 4em;
+    position: absolute;
+    left: -0.25em;
+  }
+
+  /* ---------- Preview section --------- */
+
+  h2,
+  h3 {
+    margin: 1em 0 0.5em 0;
+  }
+
+  .tags-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 8px;
+  }
+
+  .tag {
+    border: solid 1px;
+    border-radius: 2px;
+    font-size: var(--font-xs);
+    padding: 4px;
+    font-weight: bold;
+  }
+
+  .project-stack {
+    margin-bottom: 16px;
+    ul {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .badge {
+    border: solid 1px;
+    border-radius: 2px;
+    font-size: var(--font-xs);
+    padding: 2px 4px;
+  }
+
+  .project-learnings ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 2em;
+  }
+
+  .project-learnings li {
+    width: calc((100% - 32px) / 3);
+  }
+
+  .project-learnings li a {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    align-items: flex-start;
+    border: solid 1px;
+    border-radius: 2px;
+    padding: 16px;
+    font-size: 1.5rem;
+  }
+
+  .seperator-sq {
+    margin: 32px auto 0;
+  }
+}

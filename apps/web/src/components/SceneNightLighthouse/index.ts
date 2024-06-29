@@ -1,0 +1,1 @@
+export { SceneNightLighthouse } from "./SceneNightLighthouse";

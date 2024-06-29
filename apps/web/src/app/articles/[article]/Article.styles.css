@@ -1,0 +1,167 @@
+.article-wrapper {
+  margin-top: -8px;
+
+  .tags-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 8px;
+  }
+
+  .tag {
+    border: solid 1px;
+    border-radius: 2px;
+    font-size: var(--font-xs);
+    padding: 4px;
+    font-weight: bold;
+  }
+
+  /* ------ Cover section ---------- */
+
+  .article-cover {
+    height: 100%;
+    max-height: 500px;
+    width: 100%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .article-header,
+  .article-content,
+  .article-footer {
+    padding: 16px var(--horizontal-gap);
+  }
+
+  /* -------- Header section -------- */
+
+  h1 {
+    /* font-size: 3.5rem; */
+    margin: 2rem 0;
+    font-weight: bold;
+  }
+
+  .article-meta {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 32px;
+  }
+
+  .article-meta li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .article-author img {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+  }
+
+  /* ---------- content section --------- */
+  .article-content {
+    font-size: 1.2em;
+    line-height: 1.75em;
+  }
+
+  .article-content {
+    h2,
+    h3 {
+      margin: 1em 0 0.5em 0;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+    }
+
+    [class^="list-"] {
+      padding-left: 4em;
+      line-height: 1.5em;
+      list-style-position: outside;
+      margin: 1.5em 0;
+
+      li {
+        margin-bottom: 0.35em;
+      }
+    }
+
+    .list-bullet {
+      list-style-type: square;
+    }
+    .list-numbered {
+      list-style-type: decimal;
+    }
+    .list-alpha {
+      list-style-type: upper-alpha;
+    }
+
+    [class^="code-"] {
+      white-space: pre;
+      overflow-x: auto;
+      tab-size: 4;
+      color: rgb(var(--background-rgb));
+      background-color: rgb(var(--foreground-rgb));
+    }
+
+    .code-inline {
+      border-radius: var(--border-radius);
+      padding: 0 0.5em;
+    }
+
+    .code-block {
+      border-radius: var(--border-radius-lg);
+      padding: 1em 2em;
+      display: block;
+      position: relative;
+      margin: 2em -2em;
+    }
+
+    a {
+      border: dashed 1px;
+    }
+
+    figure {
+      margin: 0 -2em 1.4em;
+
+      img {
+        border: dashed 2px rgb(var(--foreground-rgb));
+        border-radius: var(--border-radius-lg);
+        display: block;
+        width: 100%;
+      }
+
+      figcaption {
+        text-align: center;
+        font-style: italic;
+        font-size: smaller;
+      }
+    }
+
+    blockquote {
+      font-style: italic;
+      margin: 0 0 1.4em;
+      padding: 2em 3em;
+      position: relative;
+      text-align: left;
+    }
+
+    blockquote::before {
+      content: '"';
+      font-size: 4em;
+      position: absolute;
+      left: -0.25em;
+    }
+  }
+
+  /* -------- footer --------- */
+
+  footer {
+  }
+
+  /* comment, progress, embeds, 4 min read, TLDR;, social handles */
+}

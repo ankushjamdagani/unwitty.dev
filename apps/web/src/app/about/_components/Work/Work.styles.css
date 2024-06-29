@@ -1,0 +1,78 @@
+#work {
+  align-items: flex-start;
+  width: 100%;
+
+  .content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .content-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 640px;
+    position: relative;
+    width: 100%;
+    gap: 16px;
+  }
+
+  h3 {
+    font-size: var(--font-lg);
+    font-weight: bold;
+  }
+
+  header {
+    align-items: center;
+    display: flex;
+    flex: 1 1;
+    gap: 16px;
+    justify-content: flex-start;
+    margin-top: 16px;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: end;
+    gap: 8px;
+  }
+
+  .company-logo {
+    aspect-ratio: 1/1;
+    border-radius: var(--border-radius);
+    filter: grayscale(1);
+  }
+
+  .start-time {
+    border-bottom: dashed 2px rgb(var(--foreground-rgb));
+    padding-bottom: 5px;
+  }
+
+  .year {
+    font-size: 2.75em;
+  }
+
+  .month {
+    background: rgb(var(--background-rgb));
+    font-size: var(--font-xs);
+    left: 0;
+    padding-right: 8px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 4.15em;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tech-item {
+    border: solid 1px;
+    border-radius: 2px;
+    font-size: var(--font-xs);
+    padding: 2px 4px;
+  }
+}

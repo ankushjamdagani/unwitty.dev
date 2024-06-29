@@ -1,0 +1,81 @@
+version: "3"
+
+services:
+  all:
+    container_name: all
+    build:
+      context: .
+      dockerfile: ./.Dockerfile
+    # restart: always
+    # ports:
+    #   - 8080:3000
+    #   - 3001:3001
+    # volumes:
+    #   - ./apps/web/src/:/app/apps/web/src/
+    # networks:
+    #   - app_network
+    # command:
+    # stdin_open: true
+    tty: true
+  web:
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./apps/web/.Dockerfile
+    # restart: always
+    ports:
+      - 8080:3000
+    volumes:
+      - ./apps/web/src/:/app/apps/web/src/
+    # networks:
+    #   - app_network
+  projects:
+    container_name: gameboy-shell
+    build:
+      context: .
+      dockerfile: ./projects/gameboy-shell/.Dockerfile
+    # restart: always
+    ports:
+      - 3001:3001
+    volumes:
+      - ./projects/gameboy-shell/src/:/app/projects/gameboy-shell/src/
+    # networks:
+    #   - app_network
+    # projects:
+    #   container_name: ${PROJECT}
+    #   build:
+    #     context: .
+    #     dockerfile: ./projects/${PROJECT}/.Dockerfile
+    #   # restart: always
+    #   ports:
+    #     - 3001:3001
+    #   volumes:
+    #     - ./projects/${PROJECT}/src/:/app/projects/${PROJECT}/src/
+    #   # networks:
+    #   #   - app_network
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./apps/server/.Dockerfile
+    # restart: always
+    ports:
+      - 3000:3000
+    # networks:
+    #   - app_network
+    # api:
+    #   container_name: api
+    #   build:
+    #     context: .
+    #     dockerfile: ./apps/api/Dockerfile
+    #   restart: always
+    #   ports:
+    #     - 3001:3001
+    #   networks:
+    #     - app_network
+
+    # Define a network, which allows containers to communicate
+    # with each other, by using their container name as a hostname
+    # networks:
+    #   app_network:
+    #     external: true

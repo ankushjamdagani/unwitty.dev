@@ -1,0 +1,1 @@
+export { AnimatedWordList } from "./AnimatedWordList";

@@ -1,0 +1,60 @@
+#noise-overlay {
+  bottom: 0;
+  left: 0;
+  mix-blend-mode: difference;
+  mix-blend-mode: color-dodge;
+  opacity: 0.4;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: var(--z-index-above-all);
+
+  &::after {
+    animation: 90ms infinite noise;
+    background-attachment: scroll;
+    background-image: url(/images/noise-web.webp);
+    background-size: 440px;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: var(--z-index-normal);
+  }
+}
+
+@keyframes noise {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  10% {
+    background-position: -5% -10%;
+  }
+  20% {
+    background-position: -15% 5%;
+  }
+  30% {
+    background-position: 7% -25%;
+  }
+  40% {
+    background-position: 20% 25%;
+  }
+  50% {
+    background-position: -25% 10%;
+  }
+  60% {
+    background-position: 15% 5%;
+  }
+  70% {
+    background-position: 0 15%;
+  }
+  80% {
+    background-position: 25% 35%;
+  }
+  90% {
+    background-position: -10% 10%;
+  }
+}
