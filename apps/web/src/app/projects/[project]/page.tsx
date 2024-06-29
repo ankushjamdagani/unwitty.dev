@@ -10,6 +10,7 @@ import "./Project.styles.css";
 
 import { BreadCrumb } from "@/app/_components/Breadcrumb";
 import { ProjectPreview } from "./_components/ProjectPreview";
+import { MainCanvas } from '@/app/_components/CanvasGame';
 
 const AuthorConfig = {
   name: "Ankush Jamdagani",
@@ -69,7 +70,7 @@ const ProjectConfig = {
       return (
         <React.Suspense fallback={<div>Loading...</div>}>
           <Component>
-            <h1 style={{ color: "black" }}>Hello World</h1>
+            <MainCanvas />
           </Component>
         </React.Suspense>
       )
