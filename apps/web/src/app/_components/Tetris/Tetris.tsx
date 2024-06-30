@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 
-import "./MainCanvas.styles.css";
+import "./Tetris.styles.css";
 
-import { Tetris } from "./Canvas";
+import { TetrisPiece } from "./Canvas";
 
-export function MainCanvas() {
+export function Tetris() {
   const canvasRef = useRef(null);
   const tetrisRef = useRef(null);
 
@@ -34,7 +34,7 @@ export function MainCanvas() {
   }
 
   function initTetris() {
-    tetrisRef.current = new Tetris({
+    tetrisRef.current = new TetrisPiece({
       canvas: canvasRef.current,
       resolution: [20, 15],
       styles: {
@@ -47,7 +47,7 @@ export function MainCanvas() {
 
   function setNextOrientation() {
     console.log('--------')
-    setOrientation(orientation => Tetris.getNextOrientation(orientation))
+    setOrientation(orientation => TetrisPiece.getNextOrientation(orientation))
   }
 
   useEffect(() => {
@@ -66,6 +66,6 @@ export function MainCanvas() {
   }, [orientation])
 
   return <>
-    <canvas ref={canvasRef} id="main-canvas" onClick={setNextOrientation} />
+    
   </>
 }

@@ -10,7 +10,7 @@ import "./Project.styles.css";
 
 import { BreadCrumb } from "@/app/_components/Breadcrumb";
 import { ProjectPreview } from "./_components/ProjectPreview";
-import { MainCanvas } from '@/app/_components/CanvasGame';
+import { Tetris } from '@/app/_components/Tetris';
 
 const AuthorConfig = {
   name: "Ankush Jamdagani",
@@ -70,7 +70,7 @@ const ProjectConfig = {
       return (
         <React.Suspense fallback={<div>Loading...</div>}>
           <Component>
-            <MainCanvas />
+            <Tetris />
           </Component>
         </React.Suspense>
       )
