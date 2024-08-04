@@ -31,11 +31,3 @@ export enum BoardPixel {
   DISABLED = -1,
   CORRUPT = -2,
 }
-
-// 90deg rotation
-export enum PieceRotation {
-  "0Deg",
-  "90Deg",
-  "180Deg",
-  "270Deg",
-}

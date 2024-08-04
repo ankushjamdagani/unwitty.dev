@@ -1,11 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+
 import { Actions, Events, Layout, Resolution } from "./constants";
+import { numberInRange } from "./helpers/math";
 
 import ThemeProvider, { Theme } from "./components/ThemeProvider";
 
 import { useGameLoop } from "./hooks/useGameLoop";
 import { usePlayState, PlayState } from "./hooks/usePlayState";
 import { useScore } from "./hooks/useScore";
+import { usePiece } from "./hooks/usePiece";
 
 /** * * * * * * * * * * */
 /** * T_E_T_R_I_S * * */
@@ -63,15 +66,14 @@ export interface TetrisProps {
   ) => void;
 }
 
-const defaultTetrisProps: TetrisProps = {
-  resolution: Resolution.MD,
-  theme: Theme.LIGHT,
-  layout: Layout.AUTO,
-};
-
 export function Tetris(props: TetrisProps) {
-  const { theme, resolution, layout, onAction, onEvent } = {
-    ...defaultTetrisProps,
+  const {
+    theme = Theme.LIGHT,
+    resolution = Resolution.MD,
+    layout = Layout.AUTO,
+    onAction,
+    onEvent,
+  } = {
     ...props,
   };
 
@@ -95,6 +97,20 @@ export function Tetris(props: TetrisProps) {
   } = usePlayState({});
 
   const { score, scoreBoard, saveToScoreBoard, reset } = useScore({});
+
+  const keepInRange = useCallback(
+    (position: [number, number]): [number, number] => {
+      return [
+        numberInRange(-resolution / 2, resolution / 2, position[0]),
+        // TODO: y-axis range is between 0 and next heap cell
+        numberInRange(0, resolution, position[1]),
+      ];
+    },
+    []
+  );
+
+  const { activePiece, nextPiece, setNextPiece, rotatePiece, movePiece } =
+    usePiece({ keepInRange });
 
   useEffect(() => {
     if (playState === PlayState.GAME_PLAY) {
