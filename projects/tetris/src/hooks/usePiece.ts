@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 export enum PieceType {
   I, // hero
@@ -31,12 +31,6 @@ export enum PieceMovementDirection {
   DOWN,
 }
 
-const keyCodeToPieceMovementDirection = {
-  ArrowLeft: PieceMovementDirection.LEFT,
-  ArrowRight: PieceMovementDirection.RIGHT,
-  ArrowDown: PieceMovementDirection.DOWN,
-};
-
 type Position = [number, number];
 
 interface Piece {
@@ -52,7 +46,6 @@ interface PieceProps {
     activePiece: Piece;
     nextPiece: Piece;
   };
-  containerElement?: RefObject<HTMLElement>;
   keepInRange: (position: Position) => Position;
 }
 
@@ -78,7 +71,6 @@ function getRandomPiece(): Piece {
 export function usePiece({
   defaultState = DefaultState,
   keepInRange,
-  containerElement,
 }: PieceProps) {
   const [state, setState] = useState(() => defaultState);
   const { activePiece, nextPiece } = state;
@@ -127,26 +119,6 @@ export function usePiece({
       };
     });
   }, []);
-
-  useEffect(() => {
-    const element = containerElement?.current || document.body;
-
-    function onKeyDown(this: HTMLElement, evt: KeyboardEvent) {
-      switch (evt.code) {
-        case "ArrowRight":
-        case "ArrowLeft":
-        case "ArrowDown":
-          movePiece(keyCodeToPieceMovementDirection[evt.code]);
-          break;
-      }
-    }
-
-    element?.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      element?.removeEventListener("keydown", onKeyDown);
-    };
-  }, [containerElement]);
 
   return {
     activePiece,
