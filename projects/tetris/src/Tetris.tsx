@@ -1,10 +1,10 @@
+import { useEffect, useRef } from "react";
 import { Actions, Events, Layout, Resolution } from "./constants";
 
-import useGameLoop from "./hooks/useGameLoop";
-
 import ThemeProvider, { Theme } from "./components/ThemeProvider";
-import { useEffect, useRef } from "react";
-import useGamePlayState, { PlayState } from "./hooks/useGamePlayState";
+
+import useGameLoop from "./hooks/useGameLoop";
+import usePlayState, { PlayState } from "./hooks/usePlayState";
 
 /** * * * * * * * * * * */
 /** * T_E_T_R_I_S * * */
@@ -76,24 +76,34 @@ export function Tetris(props: TetrisProps) {
 
   const gameRootRef = useRef<HTMLDivElement>(null);
 
-  const gameLoopState = useGameLoop({});
-  const gamePlayState = useGamePlayState({});
+  const {
+    state: { tick, speed },
+    setSpeed,
+    increaseSpeed,
+    reset: resetGameLoop,
+  } = useGameLoop({});
+
+  const {
+    state: { playState },
+    endGame,
+    pauseGame,
+    playGame,
+    restartGame,
+    reset: resetGamePlayState,
+  } = usePlayState({});
+
+  useEffect(() => {
+    if (playState === PlayState.GAME_PLAY) {
+      setSpeed(speed || 1);
+    } else {
+      setSpeed(0);
+    }
+  }, [playState, setSpeed, speed]);
 
   return (
     <div id="game-root" ref={gameRootRef} className={`layout-${layout}`}>
       <ThemeProvider>
         <h1>Tetris</h1>
-        <div>
-          <h2>useGameLoop</h2>
-          {JSON.stringify(gameLoopState, undefined, 4)}{" "}
-          <button onClick={() => gameLoopState.increaseSpeed()}>
-            Speed ++
-          </button>
-        </div>
-        <div>
-          <h2>useGamePlayState</h2>
-          {JSON.stringify(gamePlayState, undefined, 4)}{" "}
-        </div>
       </ThemeProvider>
     </div>
   );
