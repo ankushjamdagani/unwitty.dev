@@ -18,7 +18,7 @@ const DefaultState = {
   playState: PlayState.GAME_IDLE,
 };
 
-export default function usePlayState({
+export function usePlayState({
   containerElement,
   defaultState = DefaultState,
 }: useGameProps) {

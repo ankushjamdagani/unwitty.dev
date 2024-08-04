@@ -3,8 +3,8 @@ import { Actions, Events, Layout, Resolution } from "./constants";
 
 import ThemeProvider, { Theme } from "./components/ThemeProvider";
 
-import useGameLoop from "./hooks/useGameLoop";
-import usePlayState, { PlayState } from "./hooks/usePlayState";
+import { useGameLoop } from "./hooks/useGameLoop";
+import { usePlayState, PlayState } from "./hooks/usePlayState";
 
 /** * * * * * * * * * * */
 /** * T_E_T_R_I_S * * */
