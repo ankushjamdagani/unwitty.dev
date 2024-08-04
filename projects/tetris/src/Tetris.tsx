@@ -78,14 +78,15 @@ export function Tetris(props: TetrisProps) {
   const gameRootRef = useRef<HTMLDivElement>(null);
 
   const {
-    state: { tick, speed },
+    tick,
+    speed,
     setSpeed,
     increaseSpeed,
     reset: resetGameLoop,
   } = useGameLoop({});
 
   const {
-    state: { playState },
+    playState,
     endGame,
     pauseGame,
     playGame,
@@ -93,9 +94,7 @@ export function Tetris(props: TetrisProps) {
     reset: resetGamePlayState,
   } = usePlayState({});
 
-  const {
-    state: { score },
-  } = useScore({});
+  const { score, scoreBoard, saveToScoreBoard, reset } = useScore({});
 
   useEffect(() => {
     if (playState === PlayState.GAME_PLAY) {

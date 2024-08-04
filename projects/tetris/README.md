@@ -140,6 +140,8 @@ Handles game logic
     - changeGameState
   - updateScore
   - getLeaderBoard
+- useLeaderBoard
+- useGameHistory
 - useGameLoop
   - state
     - speed

@@ -23,6 +23,7 @@ export function usePlayState({
   defaultState = DefaultState,
 }: useGameProps) {
   const [state, setState] = useState(defaultState);
+  const { playState } = state;
 
   const playGame = useCallback(() => {
     setState((state) => ({ ...state, playState: PlayState.GAME_PLAY }));
@@ -86,7 +87,7 @@ export function usePlayState({
   }, [containerElement]);
 
   return {
-    state,
+    playState,
     playGame,
     restartGame,
     pauseGame,

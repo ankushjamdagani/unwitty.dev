@@ -80,5 +80,5 @@ export function useGameLoop({ defaultState = DefaultState }: useGameLoopProps) {
     };
   }, [timeStep]);
 
-  return { state, increaseSpeed, setSpeed, reset };
+  return { speed, tick, increaseSpeed, setSpeed, reset };
 }
