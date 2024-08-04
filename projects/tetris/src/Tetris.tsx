@@ -5,6 +5,7 @@ import ThemeProvider, { Theme } from "./components/ThemeProvider";
 
 import { useGameLoop } from "./hooks/useGameLoop";
 import { usePlayState, PlayState } from "./hooks/usePlayState";
+import { useScore } from "./hooks/useScore";
 
 /** * * * * * * * * * * */
 /** * T_E_T_R_I_S * * */
@@ -91,6 +92,10 @@ export function Tetris(props: TetrisProps) {
     restartGame,
     reset: resetGamePlayState,
   } = usePlayState({});
+
+  const {
+    state: { score },
+  } = useScore({});
 
   useEffect(() => {
     if (playState === PlayState.GAME_PLAY) {

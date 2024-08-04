@@ -31,9 +31,7 @@ function speedToTime(speed: number) {
   return time;
 }
 
-export default function useGameLoop({
-  defaultState = DefaultState,
-}: useGameLoopProps) {
+export function useGameLoop({ defaultState = DefaultState }: useGameLoopProps) {
   const [state, setState] = useState(defaultState);
   const { speed, tick } = state;
 
