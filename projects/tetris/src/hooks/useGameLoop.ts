@@ -1,7 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function useGameLoop(initialSpeed: number = 0) {
-  const [tick, setTick] = useState(0);
+interface useGameLoopProps {
+  tick?: number;
+  speed?: number;
+}
+
+export default function useGameLoop({
+  tick: initialTick = 0,
+  speed: initialSpeed = 0,
+}: useGameLoopProps) {
+  const [tick, setTick] = useState(initialTick);
   const [speed, setSpeed] = useState(initialSpeed);
 
   const timeStep = 100 * (10 - speed);

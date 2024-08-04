@@ -72,7 +72,7 @@ export function Tetris(props: TetrisProps) {
     ...props,
   };
 
-  const gameLoopState = useGameLoop();
+  const gameLoopState = useGameLoop({});
 
   return (
     <div id="game-root" className={`layout-${layout}`}>
