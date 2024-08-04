@@ -1,9 +1,11 @@
-/** * * * * * * * * * * */
-/** * T_E_T_R_I_S * * */
-
-import ThemeProvider, { Theme } from "./components/ThemeProvider";
 import { Actions, Events, Layout, Resolution } from "./constants";
 
+import useGameLoop from "./hooks/useGameLoop";
+
+import ThemeProvider, { Theme } from "./components/ThemeProvider";
+
+/** * * * * * * * * * * */
+/** * T_E_T_R_I_S * * */
 /** 
 /** @todo
 /** - what if there is no space for controls panel? Priority of `resolution` vs `layout`. 
@@ -70,10 +72,19 @@ export function Tetris(props: TetrisProps) {
     ...props,
   };
 
+  const gameLoopState = useGameLoop();
+
   return (
     <div id="game-root" className={`layout-${layout}`}>
       <ThemeProvider>
-        Tetris
+        <h1>Tetris</h1>
+        <div>
+          <h2>useGameLoop</h2>
+          {JSON.stringify(gameLoopState, undefined, 4)}{" "}
+          <button onClick={() => gameLoopState.increaseSpeed()}>
+            Speed ++
+          </button>
+        </div>
       </ThemeProvider>
     </div>
   );
