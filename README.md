@@ -47,6 +47,10 @@ To develop all apps and packages, run the following command:
 pnpm dev
 ```
 
+To develop one app, run the following command:
+
+`pnpm dev --filter=@/typing-racer-web`
+
 ### Local development using docker
 
 1. Run `docker-compose up --build ${service-name} -d`
