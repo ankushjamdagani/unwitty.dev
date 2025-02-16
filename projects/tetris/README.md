@@ -3,7 +3,7 @@
 ## Features
 
 - Tetris logic
-  - Misc *
+  - Misc \*
     - Ground shrinking
     - Multiplayer
       - Lines cut are added as disabled blocks for opponents
@@ -21,28 +21,28 @@
 ```js
 /** * * * * * * * * * * */
 /** * T_E_T_R_I_S * * */
-/** 
+/**
 /** @todo
-/** - what if there is no space for controls panel? Priority of `resolution` vs `layout`. 
-/** 
+/** - what if there is no space for controls panel? Priority of `resolution` vs `layout`.
+/**
 /* * * * * * * * * * * */
 interface Tetris {
   /**
-   * @desc 
+   * @desc
    * - number of blocks in x-axis
    * - y-axis will be deduced automatically
-   * 
-   * @todo 
+   *
+   * @todo
    * - should it be multiple of 10?
    */
   resolution: number;
 
-  /** 
+  /**
    * @desc Game layout of canvas and controls panel
    */
   layout: 'auto' | 'landscape' | 'portrait' | 'square';
 
-  /** 
+  /**
    * @desc Pre-defined set of themes
    */
   theme: Theme;
@@ -50,8 +50,8 @@ interface Tetris {
   /**
    * @desc Listeners for user actions
    */
-  onAction: (type: 'KEY_PRESSED' 
-    | 'CLICKED', 
+  onAction: (type: 'KEY_PRESSED'
+    | 'CLICKED',
     state: {
       data: any, // event data
       game: {
@@ -65,12 +65,12 @@ interface Tetris {
    * @desc Listeners for game-play events
    */
   onEvent: (
-    type: 'GAME_START' 
-    | 'GAME_PAUSE' 
-    | 'GAME_RESUME' 
-    | 'GAME_END' 
+    type: 'GAME_START'
+    | 'GAME_PAUSE'
+    | 'GAME_RESUME'
+    | 'GAME_END'
     | 'GAME_RENDER'
-    | 'LEVEL_CHANGE', 
+    | 'LEVEL_CHANGE',
     state: {
       data: any, // event data
       game: {
@@ -82,10 +82,10 @@ interface Tetris {
   ) => void;
 }
 
-type Theme = 'dark' 
-    | 'light' 
-    | 'orange' 
-    | 'multicolor-vintage' 
+type Theme = 'dark'
+    | 'light'
+    | 'orange'
+    | 'multicolor-vintage'
     | 'multicolor-futuristic'
 
 type ThemeConfig {
@@ -106,7 +106,7 @@ enum PieceType {
 const PieceColors: Record<PieceType, ThemePieceColors>
 
 interface Piece {
-  type: PieceType, 
+  type: PieceType,
   rotation: 1 | 2 | 3 | 4, // 90deg rotation
   position: [number,number],  // position of top-left
   color?: keyof ThemeConfig.pieceColors
@@ -163,6 +163,7 @@ Handles game logic
     - addToHeap
   - checkHeapCollapse
     - removeRowsFromHeap
+- useCorruptHeap
 - useActions
 - useEvents
 - exportGameState
@@ -246,12 +247,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json", "./tsconfig.app.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`

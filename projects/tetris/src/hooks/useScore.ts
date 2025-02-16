@@ -19,8 +19,8 @@ export function useScore({ defaultState = DefaultState }: useScoreProps) {
 
   const [scoreBoard, setScoreBoard] = useState<ScoreBoardItem[]>([]);
 
-  const addToScore = useCallback((score: number) => {
-    setState((state) => ({ ...state, score: state.score + score }));
+  const addToScore = useCallback((points: number) => {
+    setState((state) => ({ ...state, score: state.score + points }));
   }, []);
 
   const saveToScoreBoard = useCallback(() => {

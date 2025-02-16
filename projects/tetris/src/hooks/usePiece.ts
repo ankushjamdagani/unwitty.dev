@@ -1,4 +1,7 @@
 import { useCallback, useState } from "react";
+import { Resolution } from "../constants";
+import { numberInRange, rotateMatrix } from "../helpers/math";
+import { MovementDirection, Rotation } from "../types/common";
 
 export enum PieceType {
   I, // hero
@@ -10,49 +13,73 @@ export enum PieceType {
   Z, // cleveland
 }
 
-// 90deg rotation
-export enum PieceRotation {
-  "0Deg",
-  "90Deg",
-  "180Deg",
-  "270Deg",
-}
-
 const nextRotation = {
-  [PieceRotation["0Deg"]]: PieceRotation["90Deg"],
-  [PieceRotation["90Deg"]]: PieceRotation["180Deg"],
-  [PieceRotation["180Deg"]]: PieceRotation["270Deg"],
-  [PieceRotation["270Deg"]]: PieceRotation["0Deg"],
+  [Rotation["0Deg"]]: Rotation["90Deg"],
+  [Rotation["90Deg"]]: Rotation["180Deg"],
+  [Rotation["180Deg"]]: Rotation["270Deg"],
+  [Rotation["270Deg"]]: Rotation["0Deg"],
 };
 
-export enum PieceMovementDirection {
-  LEFT,
-  RIGHT,
-  DOWN,
-}
+export type PiecePosition = [number, number];
 
-type Position = [number, number];
-
-interface Piece {
+export interface Piece {
   type: PieceType;
-  rotation: PieceRotation;
+  rotation: Rotation;
   // position of top-left
-  position: Position;
+  position: PiecePosition;
   // color?: ThemeConfig["pieceColors"];
 }
 
 interface PieceProps {
   defaultState?: {
-    activePiece: Piece;
+    activePiece: Piece | null;
     nextPiece: Piece;
   };
-  keepInRange: (position: Position) => Position;
+  resolution: Resolution;
 }
 
 const DefaultState = {
-  activePiece: getRandomPiece(),
+  activePiece: null,
   nextPiece: getRandomPiece(),
 };
+
+const PieceShape = {
+  [PieceType.I]: [[1], [1], [1]],
+  [PieceType.J]: [
+    [0, 1],
+    [0, 1],
+    [1, 1],
+  ],
+  [PieceType.L]: [
+    [1, 0],
+    [1, 0],
+    [1, 1],
+  ],
+  [PieceType.O]: [
+    [1, 1],
+    [1, 1],
+  ],
+  [PieceType.S]: [
+    [0, 1, 1],
+    [0, 1, 0],
+    [1, 1, 0],
+  ],
+  [PieceType.T]: [
+    [1, 1, 1],
+    [0, 1, 0],
+    [0, 1, 0],
+  ],
+  [PieceType.Z]: [
+    [1, 1, 0],
+    [0, 1, 0],
+    [0, 1, 1],
+  ],
+};
+
+export function getPiecePixels(piece: Piece) {
+  const baseShape = PieceShape[piece.type];
+  return rotateMatrix(baseShape, piece.rotation);
+}
 
 function getRandomPiece(): Piece {
   const allPieces = Object.values(PieceType).filter(
@@ -63,14 +90,26 @@ function getRandomPiece(): Piece {
 
   return {
     type: pieceType,
-    rotation: PieceRotation["0Deg"],
+
+    rotation: Rotation["0Deg"],
     position: [0, 0],
   };
 }
 
+function keepInRange(
+  position: [number, number],
+  resolution: Resolution
+): [number, number] {
+  return [
+    numberInRange(-resolution / 2, resolution / 2, position[0]),
+    // TODO: y-axis range is between 0 and next heap cell
+    numberInRange(0, resolution, position[1]),
+  ];
+}
+
 export function usePiece({
   defaultState = DefaultState,
-  keepInRange,
+  resolution,
 }: PieceProps) {
   const [state, setState] = useState(() => defaultState);
   const { activePiece, nextPiece } = state;
@@ -86,38 +125,50 @@ export function usePiece({
   const rotatePiece = useCallback(() => {
     setState((state) => ({
       ...state,
-      activePiece: {
-        ...state.activePiece,
-        rotation: nextRotation[state.activePiece.rotation],
-      },
+
+      activePiece: state.activePiece
+        ? {
+            ...state.activePiece,
+            rotation: nextRotation[state.activePiece.rotation],
+          }
+        : null,
     }));
   }, []);
 
-  const movePiece = useCallback((direction: PieceMovementDirection) => {
-    setState((state) => {
-      let { position } = state.activePiece;
-      const newPosition: Position = [position[0], position[1]];
+  const movePiece = useCallback(
+    (direction: MovementDirection) => {
+      setState((state) => {
+        if (!state.activePiece) return state;
 
-      switch (direction) {
-        case PieceMovementDirection.LEFT:
-          newPosition[0]--;
-          break;
-        case PieceMovementDirection.RIGHT:
-          newPosition[0]++;
-          break;
-        case PieceMovementDirection.DOWN:
-          newPosition[1]++;
-          break;
-      }
+        let { position } = state.activePiece;
+        const newPosition: PiecePosition = [position[0], position[1]];
 
-      return {
-        ...state,
-        activePiece: {
-          ...state.activePiece,
-          position: keepInRange(newPosition),
-        },
-      };
-    });
+        switch (direction) {
+          case MovementDirection.LEFT:
+            newPosition[0]--;
+            break;
+          case MovementDirection.RIGHT:
+            newPosition[0]++;
+            break;
+          case MovementDirection.DOWN:
+            newPosition[1]++;
+            break;
+        }
+
+        return {
+          ...state,
+          activePiece: {
+            ...state.activePiece,
+            position: keepInRange(newPosition, resolution),
+          },
+        };
+      });
+    },
+    [resolution]
+  );
+
+  const reset = useCallback(() => {
+    setState(DefaultState);
   }, []);
 
   return {
@@ -126,5 +177,6 @@ export function usePiece({
     setNextPiece,
     rotatePiece,
     movePiece,
+    reset,
   };
 }

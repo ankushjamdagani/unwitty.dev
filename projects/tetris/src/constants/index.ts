@@ -11,12 +11,12 @@ export enum Layout {
   SQUARE,
 }
 
-export enum Actions {
+export enum Action {
   KEY_PRESSED,
   CLICKED,
 }
 
-export enum Events {
+export enum Event {
   GAME_START,
   GAME_PAUSE,
   GAME_RESUME,

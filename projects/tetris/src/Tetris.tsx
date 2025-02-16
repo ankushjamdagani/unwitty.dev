@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
-import { Actions, Events, Layout, Resolution } from "./constants";
-import { numberInRange } from "./helpers/math";
+import { Action, Event, Layout, Resolution } from "./constants";
 
 import ThemeProvider, { Theme } from "./components/ThemeProvider";
 
 import { useGameLoop } from "./hooks/useGameLoop";
 import { usePlayState, PlayState } from "./hooks/usePlayState";
 import { useScore } from "./hooks/useScore";
-import { PieceMovementDirection, usePiece } from "./hooks/usePiece";
+import { usePiece } from "./hooks/usePiece";
+import { MovementDirection } from "./types/common";
+import { useGameBoard } from "./hooks/useGameBoard";
 
 /** * * * * * * * * * * */
 /** * T_E_T_R_I_S * * */
@@ -39,7 +40,7 @@ export interface TetrisProps {
    * @desc Listeners for user actions
    */
   onAction?: (
-    type: Actions,
+    type: Action,
     state: {
       data: any; // event data
       game: {
@@ -54,7 +55,7 @@ export interface TetrisProps {
    * @desc Listeners for game-play events
    */
   onEvent?: (
-    type: Events,
+    type: Event,
     state: {
       data: any; // event data
       game: {
@@ -67,9 +68,9 @@ export interface TetrisProps {
 }
 
 const keyCodeToPieceMovementDirection = {
-  ArrowLeft: PieceMovementDirection.LEFT,
-  ArrowRight: PieceMovementDirection.RIGHT,
-  ArrowDown: PieceMovementDirection.DOWN,
+  ArrowLeft: MovementDirection.LEFT,
+  ArrowRight: MovementDirection.RIGHT,
+  ArrowDown: MovementDirection.DOWN,
 };
 
 export function Tetris(props: TetrisProps) {
@@ -104,19 +105,25 @@ export function Tetris(props: TetrisProps) {
 
   const { score, scoreBoard, saveToScoreBoard, reset } = useScore({});
 
-  const keepInRange = useCallback(
-    (position: [number, number]): [number, number] => {
-      return [
-        numberInRange(-resolution / 2, resolution / 2, position[0]),
-        // TODO: y-axis range is between 0 and next heap cell
-        numberInRange(0, resolution, position[1]),
-      ];
-    },
-    [resolution]
-  );
+  const {
+    activePiece,
+    nextPiece,
+    setNextPiece,
+    rotatePiece,
+    movePiece,
+    reset: resetPiece,
+  } = usePiece({ resolution });
 
-  const { activePiece, nextPiece, setNextPiece, rotatePiece, movePiece } =
-    usePiece({ keepInRange });
+  const {
+    board,
+    checkBoardCollision,
+    addToBoard,
+    isBoardHeightFilled,
+    reset: resetGameBoard,
+  } = useGameBoard({
+    resolution,
+    tick,
+  });
 
   useEffect(() => {
     const element = document.body;
@@ -132,6 +139,7 @@ export function Tetris(props: TetrisProps) {
           break;
         case "Enter":
           if (playState === PlayState.GAME_IDLE) {
+            setNextPiece();
             setSpeed(1);
             playGame();
           }
@@ -154,22 +162,53 @@ export function Tetris(props: TetrisProps) {
     return () => {
       element?.removeEventListener("keydown", onKeyDown);
     };
-  }, [playGame, pauseGame, movePiece, playState, setSpeed]);
+  }, [playGame, pauseGame, movePiece, playState, setSpeed, setNextPiece]);
 
   useEffect(() => {
-    movePiece(PieceMovementDirection.DOWN);
-  }, [tick, movePiece]);
+    if (playState === PlayState.GAME_PLAY) {
+      movePiece(MovementDirection.DOWN);
+    }
+  }, [tick, movePiece, playState]);
+
+  useEffect(() => {
+    if (!activePiece) {
+      return;
+    }
+    if (checkBoardCollision(activePiece)) {
+      addToBoard(activePiece);
+      if (isBoardHeightFilled()) {
+        setSpeed(0);
+        resetPiece();
+        endGame();
+        console.log("Game Over");
+      } else {
+        setNextPiece();
+      }
+    }
+  }, [
+    activePiece,
+    checkBoardCollision,
+    addToBoard,
+    setNextPiece,
+    resetPiece,
+    isBoardHeightFilled,
+    endGame,
+    setSpeed,
+  ]);
 
   return (
     <div id="game-root" ref={gameRootRef} className={`layout-${layout}`}>
       <ThemeProvider>
         <h1>Tetris</h1>
         <pre>
+          {board.map((row) => JSON.stringify(row)).join(`
+`)}
+          <br />
           tick - {tick} <br />
           speed - {speed} <br />
           playState - {playState} <br />
-          activePiece - {activePiece.position} <br />
-          score - {score}
+          activePiece position - {JSON.stringify(activePiece?.position)} <br />
+          score - {score} <br />
         </pre>
       </ThemeProvider>
     </div>
