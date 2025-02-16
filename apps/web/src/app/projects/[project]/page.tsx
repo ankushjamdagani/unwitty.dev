@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React from 'react';
+import React from "react";
 
 import { BsCalendar2Date } from "react-icons/bs";
 import Image from "next/image";
@@ -10,12 +10,12 @@ import "./Project.styles.css";
 
 import { BreadCrumb } from "@/app/_components/Breadcrumb";
 import { ProjectPreview } from "./_components/ProjectPreview";
-import { Tetris } from '@/app/_components/Tetris';
+// import { Tetris } from '@/app/_components/Tetris';
 
 const AuthorConfig = {
   name: "Ankush Jamdagani",
   image: "/images/projects/gameboy_tetris.jpeg",
-}
+};
 
 const ProjectConfig = {
   id: "",
@@ -25,58 +25,62 @@ const ProjectConfig = {
     {
       id: "1",
       label: "How to be lazy?",
-      link: "#"
+      link: "#",
     },
     {
       id: "2",
       label: "Art of doing nothing",
-      link: "#"
+      link: "#",
     },
     {
       id: "3",
       label: "Fuck all this",
-      link: "#"
-    }
+      link: "#",
+    },
   ],
   postedDate: new Date().toDateString(),
   tags: [
     {
       id: "1",
-      label: "Typescript"
+      label: "Typescript",
     },
     {
       id: "2",
-      label: "Web Security"
+      label: "Web Security",
     },
     {
       id: "3",
-      label: "DDOS attack"
+      label: "DDOS attack",
     },
     {
       id: "4",
-      label: "CSRF Attacks"
+      label: "CSRF Attacks",
     },
     {
       id: "5",
-      label: "Content Security Policies"
+      label: "Content Security Policies",
     },
   ],
   project: {
     githubLink: "",
     previewLink: "",
     previewElement: () => {
-      const Component = React.lazy(() => import("@/gameboy-shell").then((module) => ({ default: module.GameboyShell })))
+      const GameboyShell = React.lazy(() =>
+        import("@/gameboy-shell").then((module) => ({
+          default: module.GameboyShell,
+        }))
+      );
 
       return (
         <React.Suspense fallback={<div>Loading...</div>}>
-          <Component>
-            <Tetris />
-          </Component>
+          <GameboyShell>
+            <div>Hello</div>
+          </GameboyShell>
         </React.Suspense>
-      )
-    }
-  }
-}
+      );
+    },
+  },
+};
 
 export default function Project({ params }) {
   console.log("params", params);
@@ -112,24 +116,28 @@ export default function Project({ params }) {
 
       <blockquote cite="https://www.huxley.net/bnw/four.html">
         <h3>Info;</h3>
-        <p>
-          {ProjectConfig.description}
-        </p>
+        <p>{ProjectConfig.description}</p>
       </blockquote>
 
       <ProjectPreview {...ProjectConfig.project} />
 
       <footer className="project-footer">
         <ul className="tags-wrapper">
-          {ProjectConfig.tags.map(tag => <li key={tag.id} className="tag">{tag.label}</li>)}
+          {ProjectConfig.tags.map((tag) => (
+            <li key={tag.id} className="tag">
+              {tag.label}
+            </li>
+          ))}
         </ul>
 
         <section className="project-learnings">
           <h2>Learnings</h2>
           <ul>
-            {ProjectConfig.learnings.map(post => <li key={post.id}>
-              <Link href={post.link}>{post.label}</Link>
-            </li>)}
+            {ProjectConfig.learnings.map((post) => (
+              <li key={post.id}>
+                <Link href={post.link}>{post.label}</Link>
+              </li>
+            ))}
           </ul>
         </section>
       </footer>

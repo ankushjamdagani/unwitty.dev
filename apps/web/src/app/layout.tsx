@@ -32,7 +32,7 @@ export default function RootLayout({
         <Nav />
         {children}
         {/* <CursorInverted /> */}
-        {/* <CursorDisplacementFire /> */}
+        <CursorDisplacementFire />
         {/* <CursorWind /> */}
         <Footer />
 
