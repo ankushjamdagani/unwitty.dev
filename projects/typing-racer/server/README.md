@@ -1,1 +1,1 @@
-# Typing racer gateway and services
+# Typing racer servers and gateways

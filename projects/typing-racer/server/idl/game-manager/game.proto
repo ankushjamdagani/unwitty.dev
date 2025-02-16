@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option go_package = "idl/unwitty.dev/typing-racer/game-manager/game";
+
+message Game {
+  uint64 id = 1 [ json_name = "id" ];
+}

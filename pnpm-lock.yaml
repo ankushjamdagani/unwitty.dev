@@ -319,8 +319,6 @@ importers:
         specifier: ^5.4.14
         version: 5.4.14(@types/node@22.13.4)(terser@5.39.0)
 
-  projects/typing-racer/server/web-gateway: {}
-
   projects/typing-racer/web:
     dependencies:
       react:
@@ -363,6 +361,8 @@ importers:
       vite:
         specifier: ^6.1.0
         version: 6.1.0(@types/node@22.13.4)(terser@5.39.0)
+
+  projects/typing-racer/web-gateway: {}
 
 packages:
 
@@ -6827,7 +6827,7 @@ snapshots:
 
   '@types/resolve@1.17.1':
     dependencies:
-      '@types/node': 22.13.4
+      '@types/node': 20.17.19
 
   '@types/semver@7.5.8': {}
 
@@ -8939,7 +8939,7 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 22.13.4
+      '@types/node': 20.17.19
       merge-stream: 2.0.0
       supports-color: 7.2.0
 

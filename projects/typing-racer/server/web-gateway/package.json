@@ -1,6 +1,0 @@
-{
-  "name": "go-server",
-  "scripts": {
-    "build": "go build ./cmd/foobar"
-  }
-}
