@@ -9,7 +9,7 @@ function GameboyShell({ children }: { children: ReactNode }) {
   return (
     <>
       {isDebug && (
-        <div style={{ background: "#000" }}>
+        <div style={{ background: "#000", padding: "50px" }}>
           <label>
             <input
               style={{

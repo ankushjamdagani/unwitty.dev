@@ -6,21 +6,22 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "bootstrap-all": "(sh apps/web/bootstrap.sh); (sh projects/gameboy-shell/bootstrap.sh); (sh games/cosmic-velocity/bootstrap.sh)"
+    "bootstrap-all": "(sh apps/web/bootstrap.sh); (sh projects/gameboy-shell/bootstrap.sh); (sh games/cosmic-velocity/bootstrap.sh)",
+    "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
     "@/eslint-config": "workspace:*",
     "@/typescript-config": "workspace:*",
-    "@turbo/gen": "^1.10.12",
-    "prettier": "^3.1.0",
-    "turbo": "latest"
+    "@turbo/gen": "^1.13.4",
+    "prettier": "^3.5.1",
+    "turbo": "^2.4.2"
   },
-  "packageManager": "pnpm@8.9.0",
+  "packageManager": "pnpm@9.2.0",
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.0",
+    "@types/lodash": "^4.17.15",
     "lodash": "^4.17.21"
   }
 }
