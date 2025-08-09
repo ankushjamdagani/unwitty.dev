@@ -6,11 +6,13 @@ import { BsCalendar2Date } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
 
-import "./Project.styles.css";
+import { GameboyShell } from "@project/gameboy-shell";
 
 import { BreadCrumb } from "@/app/_components/Breadcrumb";
 import { ProjectPreview } from "./_components/ProjectPreview";
 // import { Tetris } from '@/app/_components/Tetris';
+
+import "./Project.styles.css";
 
 const AuthorConfig = {
   name: "Ankush Jamdagani",
@@ -65,11 +67,11 @@ const ProjectConfig = {
     githubLink: "",
     previewLink: "",
     previewElement: () => {
-      const GameboyShell = React.lazy(() =>
-        import("@/gameboy-shell").then((module) => ({
-          default: module.GameboyShell,
-        }))
-      );
+      // const GameboyShell = React.lazy(() =>
+      //   import("@project/gameboy-shell").then((module) => ({
+      //     default: module.GameboyShell,
+      //   }))
+      // );
 
       return (
         <React.Suspense fallback={<div>Loading...</div>}>
@@ -82,8 +84,18 @@ const ProjectConfig = {
   },
 };
 
-export default function Project({ params }) {
-  console.log("params", params);
+export default function Project({
+  params,
+}: {
+  params: Promise<{ project: string }>;
+}) {
+  const { project } = React.use(params);
+  console.log("Project Params:", project);
+
+  // Simulate fetching project data based on the project slug
+  // In a real application, you would fetch this data from an API or database
+  // const projectData = fetchProjectData(project);
+
   return (
     <main className="project-wrapper">
       <header className="project-header">

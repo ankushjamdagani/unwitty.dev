@@ -1,7 +1,7 @@
 // This configuration only applies to the package manager root.
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ["@/eslint-config/library.js"],
+  extends: ["@common/eslint-config/library.js"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,

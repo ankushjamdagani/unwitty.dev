@@ -1,13 +1,20 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 import { GoArrowUpRight } from "react-icons/go";
 import { MdFullscreen } from "react-icons/md";
 
 import "./ProjectPreview.styles.css";
 
-export function ProjectPreview({ githubLink, previewLink, previewElement: PreviewElement }) {
+export function ProjectPreview({
+  githubLink,
+  previewElement: PreviewElement,
+}: {
+  githubLink: string;
+  previewElement: React.ComponentType;
+}) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setFullscreen] = useState(false);
 
@@ -28,9 +35,9 @@ export function ProjectPreview({ githubLink, previewLink, previewElement: Previe
       <header className="project-preview-header">
         <p>Preview</p>
         <div className="preview-controls">
-          <button>
+          <Link href={githubLink} target="_blank">
             Github <GoArrowUpRight />
-          </button>
+          </Link>
           |
           <button onClick={openFullscreen}>
             Fullscreen <MdFullscreen />
