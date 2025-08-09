@@ -8,7 +8,13 @@ export enum DebugLevels {
   NONE,
 }
 
-const useDebugState = create((set) => ({
+interface DebugState {
+  debugLevel: DebugLevels;
+  setNoDebug: () => void;
+  setFullDebug: () => void;
+}
+
+const useDebugState = create<DebugState>((set) => ({
   debugLevel: DebugLevels.FULL,
   setNoDebug: () => set({ debugLevel: DebugLevels.NONE }),
   setFullDebug: () => set({ debugLevel: DebugLevels.FULL }),

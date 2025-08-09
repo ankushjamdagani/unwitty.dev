@@ -5,47 +5,28 @@
 
 Let the exploration begin.
 
-## What's inside?
+## Structure
 
-This Turborepo includes the following packages/apps:
-
-### Apps and packages
-
-- `apps/web`: Primary portfolio app built using [Next.js](https://nextjs.org/)
-- `projects/gameboy-shell`: Shell component for Gameboy UI
-- `games/cosmic-velocity`: ThreeJS racing game
-
-- `packages/ui`: a stub React component library. Todo: Use [shadcn](https://ui.shadcn.com/) maybe
-- `packages/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `packages/typescript-config`: `tsconfig.json`s used throughout the monorepo
+| Namespace | Name                  | Description                                                                          |
+| --------- | --------------------- | ------------------------------------------------------------------------------------ |
+| apps      | `@/portfolio`         | Primary portfolio app built using [Next.js](https://nextjs.org/)                     |
+| projects  | `@/gameboy-shell`     | Shell component for Gameboy UI                                                       |
+| projects  | `@/tetris`            | Vanilla canvas tetris game                                                           |
+| projects  | `@/cosmic-velocity`   | ThreeJS playground game                                                              |
+| packages  | `@/ui`                | a stub React component library. Todo: Use [shadcn](https://ui.shadcn.com/) maybe     |
+| packages  | `@/eslint-config`     | `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`) |
+| packages  | `@/typescript-config` | `tsconfig.json`s used throughout the monorepo                                        |
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+## Scripts
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Scripts
-
-To setup all apps and packages, run the following command:
-
-```js
-pnpm install
-```
-
-To build all apps and packages, run the following command:
-
-```js
-pnpm build
-```
-
-To develop all apps and packages, run the following command:
-
-```js
-pnpm dev
-```
+- **Setup all apps and packages**: `pnpm install`
+- **Running projects and commands (dev, build, lint, typecheck, etc)**: `turbo <COMMAND> --filter=@/NAME`
+- **TODO**
+  - Adding a project
+  - Removing a project
+  - Updating dependencies - `pnpm update && pnpm install`
 
 ### Local development using docker
 
@@ -60,6 +41,7 @@ pnpm dev
 
 ## TODOs
 
-[] Generic params based docker-compose script
-[] How to persist pnpm-lock.json if project is initiated in docker conctainer
-[] volume based developement vs remote container
+- [ ] Generic params based docker-compose script
+- [ ] How to persist pnpm-lock.json if project is initiated in docker conctainer
+- [ ] volume based development vs remote container
+- [ ] Remove `@/ui`. Use shadcn instead
