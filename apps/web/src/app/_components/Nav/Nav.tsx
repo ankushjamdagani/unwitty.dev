@@ -48,7 +48,7 @@ export function Nav() {
     <header id="navigation-bar">
       <span>
         <Link href="/#home" id="logo">
-          UW
+          Unwitty
         </Link>
         {"  "}.dev
       </span>
