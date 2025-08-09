@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Montserrat } from "next/font/google";
 
 import { CursorInverted } from "@/components/CursorInveted";
-import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
+// import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
 
 import "./globals.css";
-import { CursorWind } from "@/components/CursorWind";
+// import { CursorWind } from "@/components/CursorWind";
 import { LevaDebugger } from "@/components/LevaDebugger";
 import { Nav } from "./_components/Nav";
 import { Footer } from "./_components/Footer";

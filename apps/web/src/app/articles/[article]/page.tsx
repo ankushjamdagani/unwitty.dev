@@ -26,7 +26,7 @@ export default function Article() {
           ]}
         />
 
-        <h1>This is going to be a randomly generated blog. Beware!!</h1>
+        <h1>Beware!! This is going to be a randomly generated blog.</h1>
 
         <ul className="article-meta">
           <li className="article-author">
