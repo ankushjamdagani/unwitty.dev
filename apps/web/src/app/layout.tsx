@@ -31,8 +31,8 @@ export default function RootLayout({
       <body className={`${font.className} monos`}>
         <Nav />
         {children}
-        {/* <CursorInverted /> */}
-        <CursorDisplacementFire />
+        <CursorInverted />
+        {/* <CursorDisplacementFire /> */}
         {/* <CursorWind /> */}
         <Footer />
 

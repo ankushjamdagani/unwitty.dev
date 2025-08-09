@@ -1,15 +1,21 @@
 import "./MarqueeText.styles.css";
 
 const words = [
-  "Furonto endo no kaihatsu-sha",
-  "Frontend Developer",
-  "Entwickler für Benutzeroberflächen",
-  "sviluppatore Frontend",
-  "Frontend Developer",
-  "desenvolvedor frontend",
-  "Frontend Developer",
-  "Desarrollador frontend",
-  "Frontend Developer",
+  "Full-Stack Developer",
+  "フルスタック開発者",
+  "Desarrollador Full-Stack",
+  "Full-Stack Developer",
+  "Développeur Full-Stack",
+  "Full-Stack-Entwickler",
+  "Full-Stack Developer",
+  "Sviluppatore Full-Stack",
+  "Desenvolvedor Full-Stack",
+  "Full-Stack Developer",
+  "풀스택 개발자",
+  "全栈开发者",
+  "Full-Stack Developer",
+  "Full-Stack разработчик",
+  "مطور فل ستاك",
 ];
 
 export function MarqueeText() {

@@ -13,24 +13,25 @@ import { Time } from "@/components/Time";
 import { AnimatedWordList } from "@/components/AnimatedWordList";
 import { TypeWord, TypeWordCursor } from "@/components/TypeWord";
 
-const image = {
-  src: "/images/profile_1.jpg",
-  alt: "Not me faking meditation",
-  width: 200,
-  height: 300,
-};
-
 const LoveAllThings = [
   {
     label: "Javascript",
     time: 1000,
   },
   {
-    label: "html/css",
+    label: "golang",
     time: 700,
   },
   {
+    label: "react.js",
+    time: 1000,
+  },
+  {
     label: "User Interface",
+    time: 1200,
+  },
+  {
+    label: "Microservices",
     time: 1200,
   },
 ];
@@ -47,6 +48,29 @@ const Status = [
   },
 ];
 
+const SocialLinks = [
+  {
+    label: "GitHub",
+    icon: <FaGithub />,
+    url: "https://github.com/ankushjamdagani",
+  },
+  {
+    label: "Twitter",
+    icon: <FaXTwitter />,
+    url: "https://twitter.com/ankushjamdagani",
+  },
+  {
+    label: "LinkedIn",
+    icon: <FaLinkedinIn />,
+    url: "https://www.linkedin.com/in/ankushjamdagani/",
+  },
+  {
+    label: "Email",
+    icon: <FaRegEnvelope />,
+    url: "mailto:anqushjamdagani@gmail.com",
+  },
+];
+
 export function Hero() {
   return (
     <section id="home">
@@ -57,8 +81,10 @@ export function Hero() {
       </p>
 
       <p>
-        Frontend Developer for 7 years, weaving digital tales and embracing the
-        lazy coder&apos;s lifestyle. <br /> <br />
+        Frontend Developer for 7 years, now full-stack for the past{" "}
+        {new Date().getFullYear() - new Date(2024, 4, 1).getFullYear()} -
+        weaving digital tales and embracing the lazy coder&apos;s lifestyle.{" "}
+        <br /> <br />
         <strong>
           ❤️ all things{" "}
           <AnimatedWordList transitionTime={3000}>
@@ -83,35 +109,33 @@ export function Hero() {
       <div className="seperator-rect"></div>
 
       <ul className="social-links">
-        <li>
-          <Link href="#">
-            <FaGithub />
-          </Link>
-        </li>
-        <li>
-          <Link href="#">
-            <FaXTwitter />
-          </Link>
-        </li>
-        <li>
-          <Link href="#">
-            <FaLinkedinIn />
-          </Link>
-        </li>
-        <li>
-          <Link href="#">
-            <FaRegEnvelope />
-          </Link>
-        </li>
+        {SocialLinks.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.url}
+              aria-label={link.label}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.icon}
+            </Link>
+          </li>
+        ))}
       </ul>
 
       <div className="right-panel">
-        {image && (
-          <figure className="rotating-hero-image">
-            <Image {...image} alt={image.alt} />
-            <figcaption>{image.alt}</figcaption>
-          </figure>
-        )}
+        <figure className="rotating-hero-image">
+          <Image
+            alt="Profile Picture"
+            height={300}
+            src="/images/profile.png"
+            width={200}
+            style={{
+              objectPosition: "top",
+            }}
+          />
+          <figcaption style={{ fontWeight: "bold" }}>Hakuna Matata</figcaption>
+        </figure>
       </div>
 
       <footer>

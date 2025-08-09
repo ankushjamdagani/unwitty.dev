@@ -23,13 +23,17 @@ body {
     content: "";
     height: 100%;
     left: 0;
-    opacity: 0.4;
+    opacity: 0.3;
     position: absolute;
     top: 0;
     width: 100%;
     z-index: -1;
     filter: var(--body-bgfilter);
   }
+}
+
+[data-theme="light"] body:after {
+  opacity: 0.6;
 }
 
 p {

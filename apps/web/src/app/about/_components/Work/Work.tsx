@@ -12,6 +12,28 @@ import { GoArrowUpRight } from "react-icons/go";
 
 const Jobs = [
   {
+    company: "Uber",
+    link: {
+      website: "https://www.uber.com/",
+      linkedin: "https://www.linkedin.com/company/uber-com/about/",
+    },
+    logo: "/images/company-logo/uber.png",
+    startDate: "2024-04-01",
+    endDate: "",
+    description: "",
+    title: "Software Engineer 2 - Fullstack",
+    techStack: [
+      "typescript",
+      "react.js",
+      "styled-components",
+      "golang",
+      "microservices",
+      "mysql",
+      "kafka",
+      "redis",
+    ],
+  },
+  {
     company: "Rippling",
     link: {
       website: "https://rippling.com/",
