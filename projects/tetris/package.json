@@ -1,5 +1,5 @@
 {
-  "name": "@/tetris",
+  "name": "@project/tetris",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -18,8 +18,8 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@/eslint-config": "workspace:*",
-    "@/typescript-config": "workspace:*",
+    "@common/eslint-config": "workspace:*",
+    "@common/typescript-config": "workspace:*",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
     "@typescript-eslint/eslint-plugin": "^8.39.0",

@@ -1,5 +1,5 @@
 {
-  "extends": "@/typescript-config/nextjs.json",
+  "extends": "@common/typescript-config/nextjs.json",
   "compilerOptions": {
     "allowJs": true,
     "paths": {

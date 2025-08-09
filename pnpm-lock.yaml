@@ -18,10 +18,10 @@ importers:
         specifier: ^5.9.2
         version: 5.9.2
     devDependencies:
-      '@/eslint-config':
+      '@common/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
-      '@/typescript-config':
+      '@common/typescript-config':
         specifier: workspace:*
         version: link:packages/typescript-config
       '@turbo/gen':
@@ -36,12 +36,12 @@ importers:
 
   apps/web:
     dependencies:
-      '@/gameboy-shell':
-        specifier: workspace:*
-        version: link:../../projects/gameboy-shell
-      '@/ui':
+      '@common/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@project/gameboy-shell':
+        specifier: workspace:*
+        version: link:../../projects/gameboy-shell
       '@uidotdev/usehooks':
         specifier: ^2.4.1
         version: 2.4.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -58,10 +58,10 @@ importers:
         specifier: ^5.5.0
         version: 5.5.0(react@19.1.1)
     devDependencies:
-      '@/eslint-config':
+      '@common/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@/typescript-config':
+      '@common/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/node':
@@ -114,10 +114,10 @@ importers:
 
   packages/ui:
     devDependencies:
-      '@/eslint-config':
+      '@common/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@/typescript-config':
+      '@common/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@turbo/gen':
@@ -147,7 +147,7 @@ importers:
 
   projects/cosmic-velocity:
     dependencies:
-      '@/ui':
+      '@common/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@react-three/drei':
@@ -181,10 +181,10 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7(@types/react@19.1.9)(react@19.1.1)(use-sync-external-store@1.5.0(react@19.1.1))
     devDependencies:
-      '@/eslint-config':
+      '@common/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@/typescript-config':
+      '@common/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/eslint':
@@ -239,10 +239,10 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
     devDependencies:
-      '@/eslint-config':
+      '@common/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@/typescript-config':
+      '@common/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/react':
@@ -285,10 +285,10 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
     devDependencies:
-      '@/eslint-config':
+      '@common/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@/typescript-config':
+      '@common/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/react':
@@ -7607,7 +7607,7 @@ snapshots:
       eslint: 9.33.0
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint@9.33.0))(eslint@9.33.0)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.33.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint@9.33.0))(eslint@9.33.0))(eslint@9.33.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.33.0)
       eslint-plugin-react: 7.37.5(eslint@9.33.0)
       eslint-plugin-react-hooks: 5.2.0(eslint@9.33.0)
@@ -7655,7 +7655,7 @@ snapshots:
       tinyglobby: 0.2.14
       unrs-resolver: 1.11.1
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.33.0)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint@9.33.0))(eslint@9.33.0))(eslint@9.33.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -7691,7 +7691,7 @@ snapshots:
       eslint: 9.33.0
       ignore: 5.3.2
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.33.0):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.39.0(eslint@9.33.0)(typescript@5.9.2))(eslint@9.33.0))(eslint@9.33.0))(eslint@9.33.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9

@@ -11,8 +11,8 @@
     "clean": "turbo clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@/eslint-config": "workspace:*",
-    "@/typescript-config": "workspace:*",
+    "@common/eslint-config": "workspace:*",
+    "@common/typescript-config": "workspace:*",
     "@turbo/gen": "^2.5.5",
     "prettier": "^3.6.2",
     "turbo": "^2.5.5"
