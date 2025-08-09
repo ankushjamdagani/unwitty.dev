@@ -84,8 +84,18 @@ const ProjectConfig = {
   },
 };
 
-export default function Project({ params }) {
-  console.log("params", params);
+export default function Project({
+  params,
+}: {
+  params: Promise<{ project: string }>;
+}) {
+  const { project } = React.use(params);
+  console.log("Project Params:", project);
+
+  // Simulate fetching project data based on the project slug
+  // In a real application, you would fetch this data from an API or database
+  // const projectData = fetchProjectData(project);
+
   return (
     <main className="project-wrapper">
       <header className="project-header">

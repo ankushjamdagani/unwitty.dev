@@ -27,7 +27,7 @@ function getDefaultTheme(): themeOptions {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<themeOptions>(getDefaultTheme);
+  const [theme, setTheme] = useState<themeOptions | null>(null);
   const ariaLabel =
     theme === "dark" ? "Change to light theme" : "Change to dark theme";
 
@@ -42,10 +42,15 @@ export function ThemeToggle() {
   useEffect(() => {
     const htmlElem = document.querySelector("html");
 
-    if (htmlElem) {
+    if (htmlElem && theme) {
       htmlElem.setAttribute("data-theme", theme);
     }
   }, [theme]);
+
+  useEffect(() => {
+    const initialTheme = getDefaultTheme();
+    setTheme(initialTheme);
+  }, []);
 
   return (
     <div id="theme-switcher">

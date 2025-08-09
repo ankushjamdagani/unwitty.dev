@@ -77,7 +77,7 @@ export default function Article() {
         </p>
 
         <code className="code-block">
-          def test(): print("this is block code")
+          def test(): print(&quot;this is block code&quot;)
         </code>
 
         <p>

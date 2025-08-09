@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
@@ -39,7 +40,9 @@ export default function RootLayout({
         <Cursor />
         <NoiseOverlay />
 
-        <LevaDebugger />
+        <React.Suspense fallback={null}>
+          <LevaDebugger />
+        </React.Suspense>
       </body>
     </html>
   );
