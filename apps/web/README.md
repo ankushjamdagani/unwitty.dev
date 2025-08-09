@@ -1,4 +1,4 @@
-# Unwitty Dev webapp
+# Portfolio
 
 ## Checklist for 1.0.alpha release
 
@@ -18,20 +18,6 @@
 - Lighthouse 100
 - Feeback changes
 - Logging, Monitoring and Tracking
-
-## Getting Started
-
-First, run the development server on [http://localhost:3000](http://localhost:3000):
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
 ## FAQs in Code Structure
 
