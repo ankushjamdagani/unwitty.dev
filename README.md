@@ -21,12 +21,11 @@ Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
 ## Scripts
 
-- **Setup all apps and packages**: `pnpm install`
-- **Running projects and commands (dev, build, lint, typecheck, etc)**: `turbo <COMMAND> --filter=@/NAME`
-- **TODO**
-  - Adding a project
-  - Removing a project
-  - Updating dependencies - `pnpm update && pnpm install`
+- **Setup all**: `pnpm install`
+- **Commands (dev, build, lint, typecheck, etc)**: `turbo <COMMAND> --filter=@/PROJECT_NAME`
+  - Use `--recursive` for all projects - Ex - `pnpm up --recursive typescript@latest`
+- **Adding a project** - `pnpm create vite`
+- **Updating dependencies** - `pnpm update --recursive && pnpm install`
 
 ### Local development using docker
 
