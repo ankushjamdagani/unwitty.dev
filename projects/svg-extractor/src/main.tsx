@@ -1,9 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import SvgExtractor from "./svg-extractor";
+
+import "./main.css";
+import App from "./modules/app";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <SvgExtractor />
+    <App />
   </StrictMode>
 );
