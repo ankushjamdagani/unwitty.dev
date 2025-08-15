@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@project/gameboy-shell": "workspace:*",
     "@common/ui": "workspace:*",
+    "@project/gameboy-shell": "workspace:*",
     "@uidotdev/usehooks": "^2.4.1",
     "next": "^15.4.6",
     "react": "^19.1.1",
@@ -26,7 +26,6 @@
     "@types/react-dom": "^19.1.7",
     "eslint": "^9.33.0",
     "eslint-config-next": "15.4.6",
-    "leva": "^0.10.0",
-    "typescript": "^5.9.2"
+    "leva": "^0.10.0"
   }
 }
