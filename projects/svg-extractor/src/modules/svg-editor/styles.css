@@ -1,9 +1,10 @@
-.app-container {
+.svg-editor {
   background: linear-gradient(180deg, #0b0d10, #0e1116);
   color: var(--text);
   padding: 16px;
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
   font:
     14px/1.4 system-ui,
