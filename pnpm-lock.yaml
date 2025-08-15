@@ -42,6 +42,9 @@ importers:
       '@project/gameboy-shell':
         specifier: workspace:*
         version: link:../../projects/gameboy-shell
+      '@project/svg-extractor':
+        specifier: workspace:*
+        version: link:../../projects/svg-extractor
       '@uidotdev/usehooks':
         specifier: ^2.4.1
         version: 2.4.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)

@@ -6,83 +6,12 @@ import { BsCalendar2Date } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
 
-import { GameboyShell } from "@project/gameboy-shell";
-
+import { getProjectConfig, ProjectType } from "@/configs/projects";
+import { AuthorConfig } from "@/configs/author";
 import { BreadCrumb } from "@/app/_components/Breadcrumb";
+
 import { ProjectPreview } from "./_components/ProjectPreview";
-// import { Tetris } from '@/app/_components/Tetris';
-
 import "./Project.styles.css";
-
-const AuthorConfig = {
-  name: "Ankush Jamdagani",
-  image: "/images/projects/gameboy_tetris.jpeg",
-};
-
-const ProjectConfig = {
-  id: "",
-  title: "Gameboy Shell",
-  description: "Some info for app info",
-  learnings: [
-    {
-      id: "1",
-      label: "How to be lazy?",
-      link: "#",
-    },
-    {
-      id: "2",
-      label: "Art of doing nothing",
-      link: "#",
-    },
-    {
-      id: "3",
-      label: "Fuck all this",
-      link: "#",
-    },
-  ],
-  postedDate: new Date().toDateString(),
-  tags: [
-    {
-      id: "1",
-      label: "Typescript",
-    },
-    {
-      id: "2",
-      label: "Web Security",
-    },
-    {
-      id: "3",
-      label: "DDOS attack",
-    },
-    {
-      id: "4",
-      label: "CSRF Attacks",
-    },
-    {
-      id: "5",
-      label: "Content Security Policies",
-    },
-  ],
-  project: {
-    githubLink: "",
-    previewLink: "",
-    previewElement: () => {
-      // const GameboyShell = React.lazy(() =>
-      //   import("@project/gameboy-shell").then((module) => ({
-      //     default: module.GameboyShell,
-      //   }))
-      // );
-
-      return (
-        <React.Suspense fallback={<div>Loading...</div>}>
-          <GameboyShell>
-            <div>Hello</div>
-          </GameboyShell>
-        </React.Suspense>
-      );
-    },
-  },
-};
 
 export default function Project({
   params,
@@ -92,9 +21,10 @@ export default function Project({
   const { project } = React.use(params);
   console.log("Project Params:", project);
 
-  // Simulate fetching project data based on the project slug
-  // In a real application, you would fetch this data from an API or database
-  // const projectData = fetchProjectData(project);
+  const projectConfig = getProjectConfig(project as ProjectType);
+  if (!projectConfig) {
+    return null;
+  }
 
   return (
     <main className="project-wrapper">
@@ -103,11 +33,11 @@ export default function Project({
           options={[
             { path: "/", label: "Home" },
             { path: "/#projects", label: "Projects" },
-            { label: ProjectConfig.title },
+            { label: projectConfig.title },
           ]}
         />
 
-        <h1>{ProjectConfig.title}</h1>
+        <h1>{projectConfig.title}</h1>
 
         <ul className="project-meta">
           <li className="project-author">
@@ -121,21 +51,21 @@ export default function Project({
           </li>
 
           <li className="project-date">
-            <BsCalendar2Date /> <time>{ProjectConfig.postedDate}</time>
+            <BsCalendar2Date /> <time>{projectConfig.postedDate}</time>
           </li>
         </ul>
       </header>
 
       <blockquote cite="https://www.huxley.net/bnw/four.html">
         <h3>Info;</h3>
-        <p>{ProjectConfig.description}</p>
+        <p>{projectConfig.description}</p>
       </blockquote>
 
-      <ProjectPreview {...ProjectConfig.project} />
+      <ProjectPreview {...projectConfig.project} />
 
       <footer className="project-footer">
         <ul className="tags-wrapper">
-          {ProjectConfig.tags.map((tag) => (
+          {projectConfig.tags.map((tag) => (
             <li key={tag.id} className="tag">
               {tag.label}
             </li>
@@ -145,7 +75,7 @@ export default function Project({
         <section className="project-learnings">
           <h2>Learnings</h2>
           <ul>
-            {ProjectConfig.learnings.map((post) => (
+            {projectConfig.learnings.map((post) => (
               <li key={post.id}>
                 <Link href={post.link}>{post.label}</Link>
               </li>

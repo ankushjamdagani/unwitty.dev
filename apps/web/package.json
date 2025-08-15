@@ -12,6 +12,7 @@
   "dependencies": {
     "@common/ui": "workspace:*",
     "@project/gameboy-shell": "workspace:*",
+    "@project/svg-extractor": "workspace:*",
     "@uidotdev/usehooks": "^2.4.1",
     "next": "^15.4.6",
     "react": "^19.1.1",
