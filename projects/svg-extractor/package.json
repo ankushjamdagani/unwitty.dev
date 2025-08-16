@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/modules/svg-editor",
-    "./extractor-worker": "./src/workers/extractor-worker"
+    ".": "./src/modules/svg-editor"
   },
   "scripts": {
     "dev": "vite",
