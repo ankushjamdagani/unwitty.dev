@@ -5,6 +5,7 @@ import React from "react";
 import { BsCalendar2Date } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { getProjectConfig, ProjectType } from "@/configs/projects";
 import { AuthorConfig } from "@/configs/author";
@@ -19,11 +20,10 @@ export default function Project({
   params: Promise<{ project: string }>;
 }) {
   const { project } = React.use(params);
-  console.log("Project Params:", project);
 
   const projectConfig = getProjectConfig(project as ProjectType);
   if (!projectConfig) {
-    return null;
+    notFound();
   }
 
   return (

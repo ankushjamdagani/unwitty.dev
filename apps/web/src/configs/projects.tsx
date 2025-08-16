@@ -2,7 +2,7 @@ import React from "react";
 
 // Projects
 // import { GameboyShell } from "@project/gameboy-shell";
-// import { SvgExtractor } from "@project/svg-extractor";
+// import { SvgEditor } from "@project/svg-editor";
 // import { Tetris } from '@/app/_components/Tetris';
 
 export enum ProjectType {
@@ -24,7 +24,7 @@ export const ProjectsMeta = {
     description: "SVG extraction from image and points editor",
     thumbnail: {
       src: "/images/projects/gameboy_tetris.jpeg",
-      type: "gif",
+      type: "image",
     },
   },
 };
@@ -138,9 +138,9 @@ export const ProjectsConfig = {
       githubLink: "",
       previewLink: "",
       previewElement: () => {
-        const SvgExtractor = React.lazy(() =>
-          import("@project/svg-extractor").then((module) => ({
-            default: module.SvgExtractor,
+        const SvgEditor = React.lazy(() =>
+          import("@project/svg-editor").then((module) => ({
+            default: module.SvgEditor,
           }))
         );
 
@@ -148,7 +148,7 @@ export const ProjectsConfig = {
 
         return (
           <React.Suspense fallback={<div>Loading...</div>}>
-            <SvgExtractor />
+            <SvgEditor />
           </React.Suspense>
         );
       },
