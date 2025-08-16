@@ -42,7 +42,7 @@ function TargetsControls({
     const hex = (hexRef.current || "").toString().trim().toLowerCase();
     if (/^#([0-9a-f]{6})$/.test(hex) && !extraTargets.includes(hex)) {
       setExtraTargets([...extraTargets, hex]);
-      if (livePreview) debouncedCompute();
+      debouncedCompute(livePreview);
     }
   };
 
@@ -55,7 +55,7 @@ function TargetsControls({
             checked={invertMask}
             onChange={(e) => {
               setInvertMask(e.target.checked);
-              if (livePreview) debouncedCompute();
+              debouncedCompute(livePreview);
             }}
           />{" "}
           Invert mask
@@ -68,7 +68,7 @@ function TargetsControls({
           value={primaryColor}
           onChange={(e) => {
             setPrimaryColor(e.target.value);
-            if (livePreview) debouncedCompute();
+            debouncedCompute(livePreview);
           }}
         />
         <input
@@ -88,7 +88,7 @@ function TargetsControls({
             className="small"
             onClick={() => {
               setExtraTargets([]);
-              if (livePreview) debouncedCompute();
+              debouncedCompute(livePreview);
             }}
           >
             Clear
@@ -105,7 +105,7 @@ function TargetsControls({
               onClick={() => {
                 const next = extraTargets.filter((_, i) => i !== idx);
                 setExtraTargets(next);
-                if (livePreview) debouncedCompute();
+                debouncedCompute(livePreview);
               }}
             >
               ×
@@ -119,7 +119,7 @@ function TargetsControls({
           value={colorMetric}
           onChange={(e) => {
             setColorMetric(e.target.value as any);
-            if (livePreview) debouncedCompute();
+            debouncedCompute(livePreview);
           }}
         >
           <option value="de76">ΔE76</option>
@@ -136,7 +136,7 @@ function TargetsControls({
           value={tolerance}
           onChange={(e) => {
             setTolerance(Number(e.target.value));
-            if (livePreview) debouncedCompute();
+            debouncedCompute(livePreview);
           }}
         />
         <div className="small">Mask overlay opacity</div>

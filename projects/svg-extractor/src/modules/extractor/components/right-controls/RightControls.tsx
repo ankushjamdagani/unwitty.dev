@@ -195,7 +195,7 @@ function RightControls({
   };
 
   return (
-    <div className="controls">
+    <>
       <Panel title="Path Preview" open>
         <svg ref={miniSvgRef} />
       </Panel>
@@ -380,7 +380,7 @@ function RightControls({
           <button onClick={clear}>Clear</button>
         </div>
       </Panel>
-    </div>
+    </>
   );
 }
 

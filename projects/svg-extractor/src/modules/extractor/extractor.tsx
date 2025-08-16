@@ -282,7 +282,7 @@ function Extractor() {
     ctx.imageSmoothingEnabled = true;
     ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0, 0, w, h);
     doZoomFit();
-    if (livePreview) debouncedCompute(true);
+    debouncedCompute(livePreview);
   }, [processScale, livePreview, fitToCanvas, doZoomFit]);
 
   /* ---- Image picking ---- */
@@ -387,16 +387,16 @@ function Extractor() {
       const payload = {
         width: imgC.width,
         height: imgC.height,
-        tolerance: Number(tolerance),
+        tolerance,
         colorMetric,
         invert: invertMask,
-        erodeIter: Number(erodeIter),
-        dilateIter: Number(dilateIter),
+        erodeIter,
+        dilateIter,
         compMode,
         selectedLabels: Array.from(selectedLabels),
         method,
-        smoothIter: Number(smoothIter),
-        epsilon: Number(epsilon),
+        smoothIter,
+        epsilon,
         wantPath: !!wantPath,
         hexList: allHex,
       };
@@ -536,7 +536,7 @@ function Extractor() {
             setCompMode={setCompMode}
             selectedLabels={selectedLabels}
             setSelectedLabels={setSelectedLabels}
-            lastCC={lastCCRef}
+            lastCCRef={lastCCRef}
             invertMask={invertMask}
             setInvertMask={setInvertMask}
             maskOpacity={maskOpacity}

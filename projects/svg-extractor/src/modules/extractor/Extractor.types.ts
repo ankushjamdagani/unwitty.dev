@@ -27,9 +27,9 @@ export type CCResult = {
 export type SkelBitmap = { w: number; h: number; data: Uint8Array } | null;
 
 export enum ComponentType {
-  all,
-  largest,
-  manual,
+  all = "all",
+  largest = "largest",
+  manual = "manual",
 }
 
 export enum MetricColor {

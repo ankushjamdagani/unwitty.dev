@@ -17,7 +17,7 @@ type LeftControlsProps = {
   setCompMode: React.Dispatch<React.SetStateAction<ComponentType>>;
   selectedLabels: Set<number>;
   setSelectedLabels: React.Dispatch<React.SetStateAction<Set<number>>>;
-  lastCC: React.RefObject<CCResult>;
+  lastCCRef: React.RefObject<CCResult>;
   invertMask: boolean;
   setInvertMask: React.Dispatch<React.SetStateAction<boolean>>;
   maskOpacity: number;
@@ -46,7 +46,7 @@ function LeftControls({
   setCompMode,
   selectedLabels,
   setSelectedLabels,
-  lastCC,
+  lastCCRef,
   invertMask,
   setInvertMask,
   maskOpacity,
@@ -61,7 +61,7 @@ function LeftControls({
   setExtraTargets,
 }: LeftControlsProps) {
   return (
-    <div className="controls">
+    <>
       <Panel title="🔼 Live preview & Image" open>
         <div className="grid-2">
           <div className="small">Upload Image (PNG/JPG)</div>
@@ -103,7 +103,7 @@ function LeftControls({
             value={processScale}
             onChange={(e) => {
               setProcessScale(Number(e.target.value));
-              if (livePreview) debouncedCompute(true);
+              debouncedCompute(livePreview);
             }}
           />
           <div className="small">Update mask/path as you tweak</div>
@@ -137,9 +137,9 @@ function LeftControls({
         setCompMode={setCompMode}
         selectedLabels={selectedLabels}
         setSelectedLabels={setSelectedLabels}
-        lastCC={lastCC}
+        lastCCRef={lastCCRef}
       />
-    </div>
+    </>
   );
 }
 

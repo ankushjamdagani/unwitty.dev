@@ -1,4 +1,15 @@
 import Panel from "../../../../components/panel";
+import { CCResult, ComponentType } from "../../Extractor.types";
+
+type ComponentsPanelProps = {
+  livePreview: boolean;
+  debouncedCompute: (wantPath?: boolean) => void;
+  compMode: ComponentType;
+  setCompMode: React.Dispatch<React.SetStateAction<ComponentType>>;
+  selectedLabels: Set<number>;
+  setSelectedLabels: React.Dispatch<React.SetStateAction<Set<number>>>;
+  lastCCRef: React.RefObject<CCResult>;
+};
 
 function ComponentsPanel({
   livePreview,
@@ -7,17 +18,18 @@ function ComponentsPanel({
   setCompMode,
   selectedLabels,
   setSelectedLabels,
-  lastCC,
-}) {
+  lastCCRef,
+}: ComponentsPanelProps) {
+  const lastCC = lastCCRef.current;
   const selectAll = () => {
     if (!lastCC) return;
     const L = lastCC.sizes.length - 1;
     setSelectedLabels(new Set(Array.from({ length: L }, (_, i) => i + 1)));
-    if (livePreview) debouncedCompute();
+    debouncedCompute(livePreview);
   };
   const selectNone = () => {
     setSelectedLabels(new Set());
-    if (livePreview) debouncedCompute();
+    debouncedCompute(livePreview);
   };
   const selectLargest = () => {
     if (!lastCC) return;
@@ -31,7 +43,7 @@ function ComponentsPanel({
       }
     }
     setSelectedLabels(keep > 0 ? new Set([keep]) : new Set());
-    if (livePreview) debouncedCompute();
+    debouncedCompute(livePreview);
   };
 
   return (
@@ -42,7 +54,7 @@ function ComponentsPanel({
           value={compMode}
           onChange={(e) => {
             setCompMode(e.target.value as any);
-            if (livePreview) debouncedCompute();
+            debouncedCompute(livePreview);
           }}
         >
           <option value="all">Keep all</option>
@@ -62,8 +74,8 @@ function ComponentsPanel({
         </button>
       </div>
       <div id="compList">
-        {!lastCC?.length && <div className="small">No components yet.</div>}
-        {lastCC?.length &&
+        {!lastCC && <div className="small">No components yet.</div>}
+        {lastCC &&
           (() => {
             const items: { l: number; sz: number }[] = [];
             const sizes = lastCC.sizes;
@@ -85,7 +97,7 @@ function ComponentsPanel({
                     if (e.target.checked) next.add(it.l);
                     else next.delete(it.l);
                     setSelectedLabels(next);
-                    if (livePreview) debouncedCompute();
+                    debouncedCompute(livePreview);
                   }}
                 />
                 <span
