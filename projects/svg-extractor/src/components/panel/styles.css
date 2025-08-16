@@ -1,10 +1,11 @@
 .panel {
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: #0c1016;
+  background: #0b0d10;
   overflow: hidden;
 
   summary {
+    border-bottom: 1px dashed var(--border);
     list-style: none;
     cursor: pointer;
     padding: 10px 12px;
@@ -12,7 +13,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #0d121a;
+    background: #0b0d10;
   }
 
   summary::-webkit-details-marker {
@@ -26,7 +27,6 @@
   }
 
   &[open] > summary {
-    background: #0e1420;
   }
 
   .content {
