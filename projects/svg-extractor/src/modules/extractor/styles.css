@@ -19,8 +19,6 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    border: 1px solid var(--border);
-    border-radius: 16px;
   }
 
   @media (max-width: 980px) {
