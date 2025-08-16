@@ -3,7 +3,7 @@ import "./styles.css";
 function Extractor() {
   return (
     <div className="extractor-container">
-      <h1>Color Median Line — SVG Path Extractor (Polyline)</h1>
+      <h1>SVG Editor (Polyline)</h1>
       <div className="sub">
         Drop an image → choose one or more target colors → tune tolerance. Paths
         use only <b>M/L</b>. Region picking and alignment snapping are removed.

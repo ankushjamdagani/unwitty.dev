@@ -1,4 +1,12 @@
 .svg-editor {
+  --bg: #0b0d10;
+  --panel: #11141a;
+  --muted: #8b96a7;
+  --text: #e8eef6;
+  --accent: #6be675;
+  --accent2: #4fd1ff;
+  --border: #1f2430;
+
   background: linear-gradient(180deg, #0b0d10, #0e1116);
   color: var(--text);
   padding: 16px;
@@ -14,14 +22,6 @@
     Ubuntu,
     Helvetica,
     Arial;
-
-  --bg: #0b0d10;
-  --panel: #11141a;
-  --muted: #8b96a7;
-  --text: #e8eef6;
-  --accent: #6be675;
-  --accent2: #4fd1ff;
-  --border: #1f2430;
 
   h1 {
     font-size: 20px;

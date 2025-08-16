@@ -1,10 +1,10 @@
 {
-  "name": "@project/svg-extractor",
+  "name": "@project/svg-editor",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "exports": {
-    ".": "./src/modules/app"
+    ".": "./src/modules/svg-editor"
   },
   "scripts": {
     "dev": "vite",

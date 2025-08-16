@@ -1,1 +1,1 @@
-export { default as SvgExtractor } from "./SvgEditor";
+export { default as SvgEditor } from "./SvgEditor";
