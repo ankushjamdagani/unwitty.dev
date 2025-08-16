@@ -18,6 +18,28 @@ export const ProjectsMeta = {
       src: "/images/projects/gameboy_tetris.jpeg",
       type: "image",
     },
+    tags: [
+      {
+        id: "1",
+        label: "Typescript",
+      },
+      {
+        id: "2",
+        label: "Web Security",
+      },
+      {
+        id: "3",
+        label: "DDOS attack",
+      },
+      {
+        id: "4",
+        label: "CSRF Attacks",
+      },
+      {
+        id: "5",
+        label: "Content Security Policies",
+      },
+    ],
   },
   [ProjectType.SvgEditor]: {
     title: "SVG Editor",
@@ -26,6 +48,28 @@ export const ProjectsMeta = {
       src: "/images/projects/gameboy_tetris.jpeg",
       type: "image",
     },
+    tags: [
+      {
+        id: "1",
+        label: "Typescript",
+      },
+      {
+        id: "2",
+        label: "Web Security",
+      },
+      {
+        id: "3",
+        label: "DDOS attack",
+      },
+      {
+        id: "4",
+        label: "CSRF Attacks",
+      },
+      {
+        id: "5",
+        label: "Content Security Policies",
+      },
+    ],
   },
 };
 
@@ -49,28 +93,6 @@ export const ProjectsConfig = {
       },
     ],
     postedDate: new Date("2024-12-25T10:00:00").toDateString(),
-    tags: [
-      {
-        id: "1",
-        label: "Typescript",
-      },
-      {
-        id: "2",
-        label: "Web Security",
-      },
-      {
-        id: "3",
-        label: "DDOS attack",
-      },
-      {
-        id: "4",
-        label: "CSRF Attacks",
-      },
-      {
-        id: "5",
-        label: "Content Security Policies",
-      },
-    ],
     project: {
       githubLink: "",
       previewLink: "",
@@ -112,28 +134,6 @@ export const ProjectsConfig = {
       },
     ],
     postedDate: new Date("2025-08-15T10:00:00").toDateString(),
-    tags: [
-      {
-        id: "1",
-        label: "Typescript",
-      },
-      {
-        id: "2",
-        label: "Web Security",
-      },
-      {
-        id: "3",
-        label: "DDOS attack",
-      },
-      {
-        id: "4",
-        label: "CSRF Attacks",
-      },
-      {
-        id: "5",
-        label: "Content Security Policies",
-      },
-    ],
     project: {
       githubLink: "",
       previewLink: "",

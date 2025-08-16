@@ -1,4 +1,4 @@
-import type { RGB, XYZ, Lab } from "./types";
+import type { RGB, XYZ, Lab } from "../types";
 
 /** Convert RGB integers to HEX string */
 export function rgbToHex(r: number, g: number, b: number): string {

@@ -1,4 +1,4 @@
-import type { BinaryMask, Skeleton, Point } from "./types";
+import type { BinaryMask, Skeleton, Point } from "../types";
 
 /** Perform Zhang–Suen thinning on binary mask */
 export function zhangSuenThinning(mask: BinaryMask): Skeleton {

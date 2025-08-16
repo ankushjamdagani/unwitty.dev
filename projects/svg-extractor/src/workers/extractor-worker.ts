@@ -1,14 +1,24 @@
-/* global self */
-// Worker: heavy compute off main thread using shared utils
-import * as Utils from "../../utils";
+import { ComponentType, MetricColor } from "../types";
+import * as Utils from "../utils";
 
-// Load shared algorithms from the same origin
-// const ExtractorWorker = () => {
-// const Utils = utils;
+type PayloadProps = {
+  width: number;
+  height: number;
+  tolerance: number;
+  colorMetric: MetricColor;
+  invert: boolean;
+  erodeIter: number;
+  dilateIter: number;
+  compMode: ComponentType;
+  selectedLabels: number[];
+  method: "skeleton" | "pca";
+  smoothIter: number;
+  epsilon: number;
+  wantPath: boolean;
+  hexList: string[];
+};
 
-// importScripts("../../utils");
-
-function postProgress(jobId, message) {
+function postProgress(jobId: string, message: string) {
   self.postMessage({ type: "progress", jobId, message });
 }
 
@@ -30,7 +40,7 @@ self.onmessage = function (e) {
     epsilon,
     wantPath,
     hexList,
-  } = payload;
+  }: PayloadProps = payload;
 
   const rgba = new Uint8ClampedArray(buffer);
 
@@ -46,7 +56,7 @@ self.onmessage = function (e) {
 
   // 2) Morphology
   postProgress(jobId, "Cleaning mask…");
-  let cleaned = sel;
+  let cleaned: { w: number; h: number; data: Uint8Array } = sel;
   for (let i = 0; i < erodeIter; i++) cleaned = Utils.erode(cleaned);
   for (let i = 0; i < dilateIter; i++) cleaned = Utils.dilate(cleaned);
 
@@ -161,7 +171,6 @@ self.onmessage = function (e) {
     )
   );
 };
-// };
 
 // let code = ExtractorWorker.toString();
 // code = code.substring(code.indexOf("{") + 1, code.lastIndexOf("}"));

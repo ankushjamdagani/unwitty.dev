@@ -1,4 +1,4 @@
-import type { Point, BinaryMask, MedianPCASettings } from "./types";
+import type { Point, BinaryMask, MedianPCASettings } from "../types";
 import { clamp, normalize, smoothOnce, rdpSimplify } from "./geometry";
 import { pointsFromMask } from "./components";
 

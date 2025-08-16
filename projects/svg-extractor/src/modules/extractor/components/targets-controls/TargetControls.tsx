@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Panel from "../../../../components/panel";
-import { MetricColor } from "../../Extractor.types";
+import { MetricColor } from "../../../../types";
 
 type TargetsControlsProps = {
   livePreview: boolean;

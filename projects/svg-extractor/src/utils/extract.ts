@@ -1,4 +1,4 @@
-import type { BinaryMask, Skeleton, ExtractSettings, Point } from "./types";
+import type { BinaryMask, Skeleton, ExtractSettings, Point } from "../types";
 import { zhangSuenThinning, longestSkeletonPath } from "./skeleton";
 import {
   connectedComponents,

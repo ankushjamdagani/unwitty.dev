@@ -1,5 +1,5 @@
 import Panel from "../../../../components/panel";
-import { CCResult, ComponentType, MetricColor } from "../../Extractor.types";
+import { CCResult, ComponentType, MetricColor } from "../../../../types";
 import { ComponentsPanel } from "../components-panel";
 import { TargetsControls } from "../targets-controls";
 

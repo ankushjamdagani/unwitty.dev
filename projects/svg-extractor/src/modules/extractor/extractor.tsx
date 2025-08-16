@@ -21,8 +21,9 @@ import {
   MetricColor,
   SkelBitmap,
   Stats,
-} from "./Extractor.types";
-import ExtractorWorker from "./Extractor.worker?worker";
+} from "../../types";
+
+import ExtractorWorker from "../../workers/extractor-worker?worker";
 
 import { CenterPreview } from "./components/center-preview";
 import RightControls from "./components/right-controls/RightControls";
@@ -617,5 +618,7 @@ function Extractor() {
     </div>
   );
 }
+
+export { ExtractorWorker };
 
 export default Extractor;

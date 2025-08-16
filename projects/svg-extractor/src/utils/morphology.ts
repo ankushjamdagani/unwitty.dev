@@ -1,4 +1,4 @@
-import type { BinaryMask } from "./types";
+import type { BinaryMask } from "../types";
 
 /** Apply erosion to binary mask */
 export function erode(mask: BinaryMask): BinaryMask {

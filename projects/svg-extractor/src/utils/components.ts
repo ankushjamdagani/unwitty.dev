@@ -1,4 +1,4 @@
-import type { BinaryMask, ConnectedComponents } from "./types";
+import type { BinaryMask, ConnectedComponents } from "../types";
 
 /** Convert mask into list of coordinates where mask==1 */
 export function pointsFromMask(mask: BinaryMask) {

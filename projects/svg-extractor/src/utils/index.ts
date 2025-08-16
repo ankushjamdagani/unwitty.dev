@@ -1,4 +1,3 @@
-export * from "./types";
 export * from "./color";
 export * from "./mask";
 export * from "./morphology";

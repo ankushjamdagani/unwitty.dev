@@ -1,4 +1,4 @@
-import type { Point } from "./types";
+import type { Point } from "../types";
 
 /** Clamp number between two bounds */
 export function clamp(v: number, a: number, b: number): number {

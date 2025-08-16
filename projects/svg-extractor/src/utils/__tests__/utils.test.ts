@@ -23,7 +23,7 @@ import {
   extractPathsFromFinalMask,
 } from "../";
 
-import type { RasterData } from "../";
+import type { RasterData } from "../../types";
 
 function mkMask(w: number, h: number, ones: Array<[number, number]>) {
   const data = new Uint8Array(w * h);

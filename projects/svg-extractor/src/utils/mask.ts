@@ -1,5 +1,5 @@
 // ======================= mask.ts =======================
-import type { RasterData, BinaryMask, Metric } from "./types";
+import type { RasterData, BinaryMask, MetricColor } from "../types";
 import { hexToRgbObj, rgbToLab, deltaE00, deltaE76 } from "./color";
 
 /**
@@ -10,7 +10,7 @@ export function selectColorMaskMulti(
   imgData: RasterData,
   hexList: ReadonlyArray<string>,
   tol: number,
-  metric: Metric,
+  metric: MetricColor,
   invert: boolean
 ): {
   w: number;
