@@ -1,6 +1,8 @@
 import Panel from "../../../../components/panel";
 import useCopy from "../../../../hooks/use-copy";
-import { MaskBitmap, SkelBitmap } from "../../Extractor.types";
+import { MaskBitmap, SkelBitmap } from "../../../../types";
+import { KPI, type KPIProps } from "../kpi";
+import { PathIO } from "../path-io";
 
 type RightControlsProps = {
   // Refs
@@ -42,6 +44,7 @@ type RightControlsProps = {
 
   busyMessage: string;
   pathLines: string[];
+  kpiOptions: KPIProps["stats"];
   setPathLines: (arr: string[]) => void;
   // Actions
 
@@ -83,6 +86,8 @@ function RightControls({
   setHeatOpacity,
   debouncedCompute,
   pathLines,
+  setPathLines,
+  kpiOptions,
   miniSvgRef,
   imgCanvasRef,
   maskCanvasRef,
@@ -90,7 +95,6 @@ function RightControls({
   overlaySvgRef,
   lastMask,
   lastSkel,
-  setPathLines,
 }: RightControlsProps) {
   const { copied, copy } = useCopy();
 
@@ -198,160 +202,8 @@ function RightControls({
     <>
       <Panel title="Path Preview" open>
         <svg ref={miniSvgRef} />
-      </Panel>
-      <Panel title="🧽 Mask cleanup" open>
-        <div className="grid-2">
-          <div>
-            <div className="small">Erode</div>
-            <input
-              type="range"
-              min={0}
-              max={3}
-              step={1}
-              value={erodeIter}
-              onChange={(e) => {
-                setErodeIter(Number(e.target.value));
-                debouncedCompute();
-              }}
-            />
-          </div>
-          <div>
-            <div className="small">Dilate</div>
-            <input
-              type="range"
-              min={0}
-              max={3}
-              step={1}
-              value={dilateIter}
-              onChange={(e) => {
-                setDilateIter(Number(e.target.value));
-                debouncedCompute();
-              }}
-            />
-          </div>
-        </div>
-      </Panel>
-      <Panel title="🧠 Extraction & shaping" open>
-        <div className="grid-2">
-          <div className="small">Method</div>
-          <select
-            value={method}
-            onChange={(e) => {
-              setMethod(e.target.value as any);
-              debouncedCompute(true);
-            }}
-          >
-            <option value="skeleton">Skeleton (thinning)</option>
-            <option value="pca">PCA Median</option>
-          </select>
-          <label className="small">
-            Smooth (iterations): <span>{smoothIter}</span>
-          </label>
-          <input
-            type="range"
-            min={0}
-            max={8}
-            step={1}
-            value={smoothIter}
-            onChange={(e) => {
-              setSmoothIter(Number(e.target.value));
-              debouncedCompute();
-            }}
-          />
-          <label className="small">
-            Simplify (RDP epsilon px): <span>{Number(epsilon).toFixed(1)}</span>
-          </label>
-          <input
-            type="range"
-            min={0}
-            max={10}
-            step={0.5}
-            value={epsilon}
-            onChange={(e) => {
-              setEpsilon(Number(e.target.value));
-              debouncedCompute();
-            }}
-          />
-        </div>
-      </Panel>
-      <Panel title="👁️ View & Debug" open>
-        <div className="content grid-2">
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={viewMask}
-              onChange={(e) => setViewMask(e.target.checked)}
-            />{" "}
-            Mask
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={viewPath}
-              onChange={(e) => setViewPath(e.target.checked)}
-            />{" "}
-            Path
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={viewComponents}
-              onChange={(e) => setViewComponents(e.target.checked)}
-            />{" "}
-            Components
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={viewPoints}
-              onChange={(e) => setViewPoints(e.target.checked)}
-            />{" "}
-            Points
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={viewSkeleton}
-              onChange={(e) => setViewSkeleton(e.target.checked)}
-            />{" "}
-            Skeleton
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={dbgEndpoints}
-              onChange={(e) => setDbgEndpoints(e.target.checked)}
-            />{" "}
-            Endpoints
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={dbgHeatmap}
-              onChange={(e) => setDbgHeatmap(e.target.checked)}
-            />{" "}
-            ΔE heatmap
-          </label>
-          <label className="small">
-            <input
-              type="checkbox"
-              checked={dbgPCA}
-              onChange={(e) => setDbgPCA(e.target.checked)}
-            />{" "}
-            PCA axis & bins
-          </label>
-          <div className="small">
-            Heatmap opacity (<span className="small">{heatOpacity}%</span>)
-          </div>
-          <input
-            type="range"
-            min={0}
-            max={100}
-            step={5}
-            value={heatOpacity}
-            onChange={(e) => setHeatOpacity(Number(e.target.value))}
-          />
-        </div>
+        <PathIO pathLines={pathLines} />
+        <KPI stats={kpiOptions} />
       </Panel>
       <Panel title="📤 Exports" open>
         <div className="content grid-2 btnrow">
@@ -380,6 +232,165 @@ function RightControls({
           <button onClick={clear}>Clear</button>
         </div>
       </Panel>
+      {false && (
+        <>
+          <Panel title="🧽 Mask cleanup" open>
+            <div className="grid-2">
+              <div>
+                <div className="small">Erode</div>
+                <input
+                  type="range"
+                  min={0}
+                  max={3}
+                  step={1}
+                  value={erodeIter}
+                  onChange={(e) => {
+                    setErodeIter(Number(e.target.value));
+                    debouncedCompute();
+                  }}
+                />
+              </div>
+              <div>
+                <div className="small">Dilate</div>
+                <input
+                  type="range"
+                  min={0}
+                  max={3}
+                  step={1}
+                  value={dilateIter}
+                  onChange={(e) => {
+                    setDilateIter(Number(e.target.value));
+                    debouncedCompute();
+                  }}
+                />
+              </div>
+            </div>
+          </Panel>
+          <Panel title="🧠 Extraction & shaping" open>
+            <div className="grid-2">
+              <div className="small">Method</div>
+              <select
+                value={method}
+                onChange={(e) => {
+                  setMethod(e.target.value as any);
+                  debouncedCompute(true);
+                }}
+              >
+                <option value="skeleton">Skeleton (thinning)</option>
+                <option value="pca">PCA Median</option>
+              </select>
+              <label className="small">
+                Smooth (iterations): <span>{smoothIter}</span>
+              </label>
+              <input
+                type="range"
+                min={0}
+                max={8}
+                step={1}
+                value={smoothIter}
+                onChange={(e) => {
+                  setSmoothIter(Number(e.target.value));
+                  debouncedCompute();
+                }}
+              />
+              <label className="small">
+                Simplify (RDP epsilon px):{" "}
+                <span>{Number(epsilon).toFixed(1)}</span>
+              </label>
+              <input
+                type="range"
+                min={0}
+                max={10}
+                step={0.5}
+                value={epsilon}
+                onChange={(e) => {
+                  setEpsilon(Number(e.target.value));
+                  debouncedCompute();
+                }}
+              />
+            </div>
+          </Panel>
+          <Panel title="👁️ View & Debug" open>
+            <div className="content grid-2">
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={viewMask}
+                  onChange={(e) => setViewMask(e.target.checked)}
+                />{" "}
+                Mask
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={viewPath}
+                  onChange={(e) => setViewPath(e.target.checked)}
+                />{" "}
+                Path
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={viewComponents}
+                  onChange={(e) => setViewComponents(e.target.checked)}
+                />{" "}
+                Components
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={viewPoints}
+                  onChange={(e) => setViewPoints(e.target.checked)}
+                />{" "}
+                Points
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={viewSkeleton}
+                  onChange={(e) => setViewSkeleton(e.target.checked)}
+                />{" "}
+                Skeleton
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={dbgEndpoints}
+                  onChange={(e) => setDbgEndpoints(e.target.checked)}
+                />{" "}
+                Endpoints
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={dbgHeatmap}
+                  onChange={(e) => setDbgHeatmap(e.target.checked)}
+                />{" "}
+                ΔE heatmap
+              </label>
+              <label className="small">
+                <input
+                  type="checkbox"
+                  checked={dbgPCA}
+                  onChange={(e) => setDbgPCA(e.target.checked)}
+                />{" "}
+                PCA axis & bins
+              </label>
+              <div className="small">
+                Heatmap opacity (<span className="small">{heatOpacity}%</span>)
+              </div>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                step={5}
+                value={heatOpacity}
+                onChange={(e) => setHeatOpacity(Number(e.target.value))}
+              />
+            </div>
+          </Panel>
+        </>
+      )}
     </>
   );
 }

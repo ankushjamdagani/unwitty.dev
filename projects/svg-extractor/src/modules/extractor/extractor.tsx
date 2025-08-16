@@ -62,6 +62,8 @@ const kpiOptions: { label: string; key: Stats }[] = [
   },
 ];
 
+const DEFAULT_TARGET_COLOR = "#00cc66";
+
 function Extractor() {
   // Refs
   const previewRef = useRef<HTMLDivElement>(null);
@@ -83,7 +85,7 @@ function Extractor() {
   const [tolerance, setTolerance] = useState(20);
 
   // Targets (fully controlled) — no window deps
-  const [primaryColor, setPrimaryColor] = useState("#ff0000");
+  const [primaryColor, setPrimaryColor] = useState(DEFAULT_TARGET_COLOR);
   const [extraTargets, setExtraTargets] = useState<string[]>([]);
 
   // Components selection (fully controlled)
@@ -564,11 +566,7 @@ function Extractor() {
             viewMask={viewMask}
             viewPath={viewPath}
             busyMessage={busyMessage}
-            kpiOptions={kpiOptions.map((op) => ({
-              ...op,
-              value: stats[op.key],
-            }))}
-            pathLines={pathLines}
+            loadedFile={loadedRef.current}
           />
         </div>
         <div className="panel-container panel-right">
@@ -612,6 +610,10 @@ function Extractor() {
             lastMask={lastMaskRef.current}
             lastSkel={lastSkelRef.current}
             setPathLines={setPathLines}
+            kpiOptions={kpiOptions.map((op) => ({
+              ...op,
+              value: stats[op.key],
+            }))}
           />
         </div>
       </div>

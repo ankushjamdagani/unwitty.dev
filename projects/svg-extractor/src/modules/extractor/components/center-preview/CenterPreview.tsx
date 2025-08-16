@@ -1,8 +1,6 @@
 import { Legend } from "../legend";
 import LoadingBusy from "../../../../components/loading-busy";
 import { DropZone } from "../drop-zone";
-import KPI, { KPIProps } from "../kpi/KPI";
-import { PathIO } from "../path-io";
 
 import "./styles.css";
 
@@ -16,9 +14,8 @@ type CenterPreviewProps = {
   viewMask: boolean;
   viewPath: boolean;
   onFile: (f: File) => void;
+  loadedFile: boolean;
   busyMessage: string;
-  pathLines: string[];
-  kpiOptions: KPIProps["stats"];
 };
 
 const legendOptions = [
@@ -47,13 +44,12 @@ function CenterPreview({
   viewPath,
   onFile,
   busyMessage,
-  pathLines,
-  kpiOptions,
+  loadedFile,
 }: CenterPreviewProps) {
   return (
     <div className="preview-container">
       <div className="preview" ref={previewRef}>
-        <DropZone containerRef={previewRef} onFile={onFile} />
+        {!loadedFile && <DropZone containerRef={previewRef} onFile={onFile} />}
         <div id="stage" ref={stageRef}>
           <canvas id="imgCanvas" ref={imgCanvasRef} />
           <canvas
@@ -71,8 +67,6 @@ function CenterPreview({
         <LoadingBusy busyMessage={busyMessage} />
       </div>
       <Legend options={legendOptions} />
-      <PathIO pathLines={pathLines} />
-      <KPI stats={kpiOptions} />
     </div>
   );
 }
