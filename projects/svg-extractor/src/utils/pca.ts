@@ -2,6 +2,10 @@ import type { Point, BinaryMask, MedianPCASettings } from "./types";
 import { clamp, normalize, smoothOnce, rdpSimplify } from "./geometry";
 import { pointsFromMask } from "./components";
 
+/**
+ * Compute median path of given points using PCA axis projection.
+ * Produces simplified/smoothed central line.
+ */
 export function computeMedianPathPCA(
   points: ReadonlyArray<Point>,
   settings: MedianPCASettings,
@@ -104,6 +108,7 @@ export function computeMedianPathPCA(
   return { points: P };
 }
 
+/** Compute PCA basis vectors on mask (debug helper) */
 export function computePCAOnMask(mask: BinaryMask, bins: number) {
   const pts = pointsFromMask(mask);
   const N = pts.length;

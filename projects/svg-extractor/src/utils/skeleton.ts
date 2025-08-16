@@ -1,5 +1,6 @@
 import type { BinaryMask, Skeleton, Point } from "./types";
 
+/** Perform Zhang–Suen thinning on binary mask */
 export function zhangSuenThinning(mask: BinaryMask): Skeleton {
   const { w, h } = mask;
   let data = mask.data.slice();
@@ -80,6 +81,7 @@ export function zhangSuenThinning(mask: BinaryMask): Skeleton {
   return { w, h, data };
 }
 
+/** Find longest path across skeleton (endpoints to endpoints) */
 export function longestSkeletonPath(sk: Skeleton): Point[] {
   const { w, h, data } = sk;
   const idx = (x: number, y: number) => y * w + x;

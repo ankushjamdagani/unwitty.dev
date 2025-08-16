@@ -1,5 +1,6 @@
 import type { RGB, XYZ, Lab } from "./types";
 
+/** Convert RGB integers to HEX string */
 export function rgbToHex(r: number, g: number, b: number): string {
   return (
     "#" +
@@ -9,6 +10,7 @@ export function rgbToHex(r: number, g: number, b: number): string {
   );
 }
 
+/** Parse HEX color string into RGB object */
 export function hexToRgbObj(hex: string): RGB {
   const m = /^#([0-9a-f]{6})$/i.exec(hex);
   if (!m) return { r: 0, g: 0, b: 0 };
@@ -16,11 +18,13 @@ export function hexToRgbObj(hex: string): RGB {
   return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
 
+/** Convert sRGB component to linear space */
 export function srgbToLinear(c: number): number {
   c /= 255;
   return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 }
 
+/** Convert RGB to XYZ color space */
 export function rgbToXyz(r: number, g: number, b: number): XYZ {
   const R = srgbToLinear(r),
     G = srgbToLinear(g),
@@ -31,6 +35,7 @@ export function rgbToXyz(r: number, g: number, b: number): XYZ {
   return { X, Y, Z };
 }
 
+/** Convert XYZ to Lab color space */
 export function xyzToLab(X: number, Y: number, Z: number): Lab {
   const Xn = 0.95047,
     Yn = 1.0,
@@ -49,11 +54,13 @@ export function xyzToLab(X: number, Y: number, Z: number): Lab {
   return { L: 116 * fy - 16, a: 500 * (fx - fy), b: 200 * (fy - fz) };
 }
 
+/** Convert RGB directly to Lab */
 export function rgbToLab(r: number, g: number, b: number): Lab {
   const xyz = rgbToXyz(r, g, b);
   return xyzToLab(xyz.X, xyz.Y, xyz.Z);
 }
 
+/** Compute DeltaE 1976 between two Lab colors */
 export function deltaE76(l1: Lab, l2: Lab): number {
   const dL = l1.L - l2.L,
     da = l1.a - l2.a,
@@ -61,6 +68,7 @@ export function deltaE76(l1: Lab, l2: Lab): number {
   return Math.sqrt(dL * dL + da * da + db * db);
 }
 
+/** Compute DeltaE 2000 between two Lab colors */
 export function deltaE00(lab1: Lab, lab2: Lab): number {
   const { L: L1, a: a1, b: b1 } = lab1,
     { L: L2, a: a2, b: b2 } = lab2;

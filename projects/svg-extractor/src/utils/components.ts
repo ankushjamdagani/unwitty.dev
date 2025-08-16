@@ -1,5 +1,6 @@
 import type { BinaryMask, ConnectedComponents } from "./types";
 
+/** Convert mask into list of coordinates where mask==1 */
 export function pointsFromMask(mask: BinaryMask) {
   const { w, h, data } = mask;
   const pts: { x: number; y: number }[] = [];
@@ -9,6 +10,7 @@ export function pointsFromMask(mask: BinaryMask) {
   return pts;
 }
 
+/** Create binary mask by selecting pixels belonging to given labels */
 export function maskFromLabels(
   cc: ConnectedComponents,
   set: Set<number>
@@ -18,6 +20,7 @@ export function maskFromLabels(
   return { w: cc.w, h: cc.h, data: out };
 }
 
+/** Find connected components in a binary mask */
 export function connectedComponents(mask: BinaryMask): ConnectedComponents {
   const { w, h, data } = mask;
   const labels = new Int32Array(w * h);

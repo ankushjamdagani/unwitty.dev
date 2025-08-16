@@ -1,9 +1,11 @@
 import type { Point } from "./types";
 
+/** Clamp number between two bounds */
 export function clamp(v: number, a: number, b: number): number {
   return Math.max(a, Math.min(b, v));
 }
 
+/** Smooth polyline once using weighted average */
 export function smoothOnce(P: ReadonlyArray<Point>): Point[] {
   if (P.length <= 2) return P.slice();
   const Q: Point[] = [P[0]];
@@ -17,11 +19,13 @@ export function smoothOnce(P: ReadonlyArray<Point>): Point[] {
   return Q;
 }
 
+/** Normalize vector to unit length */
 export function normalize(v: Point): Point {
   const n = Math.hypot(v.x, v.y) || 1;
   return { x: v.x / n, y: v.y / n };
 }
 
+/** Simplify polyline using Ramer–Douglas–Peucker algorithm */
 export function rdpSimplify(pts: ReadonlyArray<Point>, eps: number): Point[] {
   const dmax = (p: Point, a: Point, b: Point): number => {
     const ABx = b.x - a.x,
@@ -55,6 +59,7 @@ export function rdpSimplify(pts: ReadonlyArray<Point>, eps: number): Point[] {
   return rdp(pts);
 }
 
+/** Convert points to SVG polyline path string */
 export function polylinePath(pts: ReadonlyArray<Point>): string {
   if (!pts.length) return "";
   let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;

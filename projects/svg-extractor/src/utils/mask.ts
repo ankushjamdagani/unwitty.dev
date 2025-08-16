@@ -2,6 +2,10 @@
 import type { RasterData, BinaryMask, Metric } from "./types";
 import { hexToRgbObj, rgbToLab, deltaE00, deltaE76 } from "./color";
 
+/**
+ * Build a binary mask where pixels are selected if their color is close
+ * to any of the target hex colors within tolerance.
+ */
 export function selectColorMaskMulti(
   imgData: RasterData,
   hexList: ReadonlyArray<string>,

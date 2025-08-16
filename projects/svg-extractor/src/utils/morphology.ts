@@ -1,5 +1,6 @@
 import type { BinaryMask } from "./types";
 
+/** Apply erosion to binary mask */
 export function erode(mask: BinaryMask): BinaryMask {
   const { w, h, data } = mask;
   const out = new Uint8Array(w * h);
@@ -20,6 +21,7 @@ export function erode(mask: BinaryMask): BinaryMask {
   return { w, h, data: out };
 }
 
+/** Apply dilation to binary mask */
 export function dilate(mask: BinaryMask): BinaryMask {
   const { w, h, data } = mask;
   const out = new Uint8Array(w * h);

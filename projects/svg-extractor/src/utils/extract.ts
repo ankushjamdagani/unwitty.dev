@@ -8,6 +8,11 @@ import {
 import { smoothOnce, rdpSimplify, polylinePath } from "./geometry";
 import { computeMedianPathPCA } from "./pca";
 
+/**
+ * Extract polyline paths from mask.
+ * - Skeleton method: thin and trace skeleton paths.
+ * - PCA method: project and median-compute paths.
+ */
 export function extractPathsFromFinalMask(
   finalMask: BinaryMask,
   method: "skeleton" | "pca",
