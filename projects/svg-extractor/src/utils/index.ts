@@ -1,18 +1,77 @@
-// Color & ΔE utilities
-export function rgbToHex(r, g, b) {
-  return "#" + [r, g, b].map((x) => x.toString(16).padStart(2, "0")).join("");
+// TypeScript port of color/mask/skeleton utilities
+// -------------------------------------------------
+// Author: ChatGPT (GPT-5 Thinking)
+// Notes:
+// - Designed to work in both browser and non-DOM environments.
+// - Avoids relying on the global ImageData type by using a light-weight alias.
+// - All arrays use typed arrays for performance.
+
+// ===== Types =====
+export type RGB = { r: number; g: number; b: number };
+export type XYZ = { X: number; Y: number; Z: number };
+export type Lab = { L: number; a: number; b: number };
+export type Point = { x: number; y: number };
+export type Polyline = ReadonlyArray<Point>;
+export type Metric = "de2000" | "de1976";
+
+// Minimal raster type compatible with Canvas ImageData
+export type RasterData = {
+  width: number;
+  height: number;
+  data: Uint8ClampedArray;
+};
+
+export interface BinaryMask {
+  w: number;
+  h: number;
+  data: Uint8Array; // 0 or 1 values
 }
-export function hexToRgbObj(hex) {
+
+export interface ConnectedComponents {
+  w: number;
+  h: number;
+  labels: Int32Array; // label per pixel (0 = background)
+  sizes: number[]; // sizes[label] = area
+}
+
+export interface Skeleton extends BinaryMask {}
+
+export interface MedianPCASettings {
+  bins?: number;
+  minPerBin?: number;
+  smoothIter?: number;
+  epsilon?: number; // RDP tolerance (px)
+  curved?: boolean; // reserved (not used here)
+}
+
+export interface ExtractSettings {
+  smoothIter: number;
+  epsilon: number;
+}
+
+// ===== Color & ΔE utilities =====
+export function rgbToHex(r: number, g: number, b: number): string {
+  return (
+    "#" +
+    [r, g, b]
+      .map((x) => Math.max(0, Math.min(255, x)).toString(16).padStart(2, "0"))
+      .join("")
+  );
+}
+
+export function hexToRgbObj(hex: string): RGB {
   const m = /^#([0-9a-f]{6})$/i.exec(hex);
   if (!m) return { r: 0, g: 0, b: 0 };
   const n = parseInt(m[1], 16);
   return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
-export function srgbToLinear(c) {
+
+export function srgbToLinear(c: number): number {
   c /= 255;
   return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 }
-export function rgbToXyz(r, g, b) {
+
+export function rgbToXyz(r: number, g: number, b: number): XYZ {
   const R = srgbToLinear(r),
     G = srgbToLinear(g),
     B = srgbToLinear(b);
@@ -21,7 +80,8 @@ export function rgbToXyz(r, g, b) {
   const Z = R * 0.0193339 + G * 0.119192 + B * 0.9503041;
   return { X, Y, Z };
 }
-export function xyzToLab(X, Y, Z) {
+
+export function xyzToLab(X: number, Y: number, Z: number): Lab {
   const Xn = 0.95047,
     Yn = 1.0,
     Zn = 1.08883;
@@ -30,7 +90,7 @@ export function xyzToLab(X, Y, Z) {
     z = Z / Zn;
   const e = 216 / 24389,
     k = 24389 / 27;
-  function f(t) {
+  function f(t: number): number {
     return t > e ? Math.cbrt(t) : (k * t + 16) / 116;
   }
   const fx = f(x),
@@ -38,17 +98,20 @@ export function xyzToLab(X, Y, Z) {
     fz = f(z);
   return { L: 116 * fy - 16, a: 500 * (fx - fy), b: 200 * (fy - fz) };
 }
-export function rgbToLab(r, g, b) {
+
+export function rgbToLab(r: number, g: number, b: number): Lab {
   const xyz = rgbToXyz(r, g, b);
   return xyzToLab(xyz.X, xyz.Y, xyz.Z);
 }
-export function deltaE76(l1, l2) {
+
+export function deltaE76(l1: Lab, l2: Lab): number {
   const dL = l1.L - l2.L,
     da = l1.a - l2.a,
     db = l1.b - l2.b;
   return Math.sqrt(dL * dL + da * da + db * db);
 }
-export function deltaE00(lab1, lab2) {
+
+export function deltaE00(lab1: Lab, lab2: Lab): number {
   const { L: L1, a: a1, b: b1 } = lab1,
     { L: L2, a: a2, b: b2 } = lab2;
   const avgLp = (L1 + L2) / 2;
@@ -101,8 +164,21 @@ export function deltaE00(lab1, lab2) {
   return dE;
 }
 
-// Mask building (multi-target)
-export function selectColorMaskMulti(imgData, hexList, tol, metric, invert) {
+// ===== Mask building (multi-target) =====
+export function selectColorMaskMulti(
+  imgData: RasterData,
+  hexList: ReadonlyArray<string>,
+  tol: number,
+  metric: Metric,
+  invert: boolean
+): {
+  w: number;
+  h: number;
+  data: Uint8Array;
+  de: Float32Array;
+  minDE: number;
+  maxDE: number;
+} {
   const w = imgData.width,
     h = imgData.height,
     data = imgData.data;
@@ -113,8 +189,8 @@ export function selectColorMaskMulti(imgData, hexList, tol, metric, invert) {
     return rgbToLab(r, g, b);
   });
   let iPix = 0;
-  let minDE = 1e9,
-    maxDE = -1e9;
+  let minDE = Number.POSITIVE_INFINITY,
+    maxDE = Number.NEGATIVE_INFINITY;
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++, iPix++) {
       const i = (y * w + x) * 4;
@@ -144,23 +220,27 @@ export function selectColorMaskMulti(imgData, hexList, tol, metric, invert) {
   return { w, h, data: out, de, minDE, maxDE };
 }
 
-// Points / masks helpers
-export function pointsFromMask(mask) {
+// ===== Points / masks helpers =====
+export function pointsFromMask(mask: BinaryMask): Point[] {
   const { w, h, data } = mask;
-  const pts = [];
+  const pts: Point[] = [];
   let i = 0;
   for (let y = 0; y < h; y++)
     for (let x = 0; x < w; x++, i++) if (data[i]) pts.push({ x, y });
   return pts;
 }
-export function maskFromLabels(cc, set) {
+
+export function maskFromLabels(
+  cc: ConnectedComponents,
+  set: Set<number>
+): BinaryMask {
   const out = new Uint8Array(cc.w * cc.h);
   for (let i = 0; i < out.length; i++) if (set.has(cc.labels[i])) out[i] = 1;
   return { w: cc.w, h: cc.h, data: out };
 }
 
-// Morphology
-export function erode(mask) {
+// ===== Morphology =====
+export function erode(mask: BinaryMask): BinaryMask {
   const { w, h, data } = mask;
   const out = new Uint8Array(w * h);
   for (let y = 1; y < h - 1; y++)
@@ -175,11 +255,12 @@ export function erode(mask) {
         }
         if (!ok) break;
       }
-      out[y * w + x] = ok;
+      out[y * w + x] = ok as 0 | 1;
     }
   return { w, h, data: out };
 }
-export function dilate(mask) {
+
+export function dilate(mask: BinaryMask): BinaryMask {
   const { w, h, data } = mask;
   const out = new Uint8Array(w * h);
   for (let y = 1; y < h - 1; y++)
@@ -194,17 +275,17 @@ export function dilate(mask) {
         }
         if (any) break;
       }
-      out[y * w + x] = any;
+      out[y * w + x] = any as 0 | 1;
     }
   return { w, h, data: out };
 }
 
-// Connected Components (8-neighborhood)
-export function connectedComponents(mask) {
+// ===== Connected Components (8-neighborhood) =====
+export function connectedComponents(mask: BinaryMask): ConnectedComponents {
   const { w, h, data } = mask;
   const labels = new Int32Array(w * h);
   labels.fill(0);
-  const sizes = [0];
+  const sizes: number[] = [0];
   let label = 0;
   const qx = new Int32Array(w * h),
     qy = new Int32Array(w * h);
@@ -245,13 +326,13 @@ export function connectedComponents(mask) {
   return { w, h, labels, sizes };
 }
 
-// Skeletonization (Zhang–Suen)
-export function zhangSuenThinning(mask) {
+// ===== Skeletonization (Zhang–Suen) =====
+export function zhangSuenThinning(mask: BinaryMask): Skeleton {
   const { w, h } = mask;
   let data = mask.data.slice();
-  let changed;
-  const idx = (x, y) => y * w + x;
-  const Nsum = (x, y) => {
+  let changed: boolean;
+  const idx = (x: number, y: number) => y * w + x;
+  const Nsum = (x: number, y: number): number => {
     let n = 0;
     for (let dy = -1; dy <= 1; dy++)
       for (let dx = -1; dx <= 1; dx++) {
@@ -264,8 +345,8 @@ export function zhangSuenThinning(mask) {
       }
     return n;
   };
-  const Atrans = (x, y) => {
-    const p = (dx, dy) => {
+  const Atrans = (x: number, y: number): number => {
+    const p = (dx: number, dy: number) => {
       const nx = x + dx,
         ny = y + dy;
       return nx >= 0 && ny >= 0 && nx < w && ny < h ? data[idx(nx, ny)] : 0;
@@ -280,14 +361,13 @@ export function zhangSuenThinning(mask) {
       p9 = p(-1, -1);
     const seq = [p2, p3, p4, p5, p6, p7, p8, p9, p2];
     let A = 0;
-    for (let i = 0; i < seq.length - 1; i++) {
+    for (let i = 0; i < seq.length - 1; i++)
       if (seq[i] === 0 && seq[i + 1] === 1) A++;
-    }
     return A;
   };
   do {
     changed = false;
-    const del = [];
+    const del: number[] = [];
     for (let y = 1; y < h - 1; y++)
       for (let x = 1; x < w - 1; x++) {
         if (!data[idx(x, y)]) continue;
@@ -305,7 +385,7 @@ export function zhangSuenThinning(mask) {
       }
     for (const i of del) data[i] = 0;
     if (del.length) changed = true;
-    const del2 = [];
+    const del2: number[] = [];
     for (let y = 1; y < h - 1; y++)
       for (let x = 1; x < w - 1; x++) {
         if (!data[idx(x, y)]) continue;
@@ -327,12 +407,12 @@ export function zhangSuenThinning(mask) {
   return { w, h, data };
 }
 
-// Longest path on skeleton
-export function longestSkeletonPath(sk) {
+// ===== Longest path on skeleton =====
+export function longestSkeletonPath(sk: Skeleton): Point[] {
   const { w, h, data } = sk;
-  const idx = (x, y) => y * w + x;
-  const neighbors = (x, y) => {
-    const out = [];
+  const idx = (x: number, y: number) => y * w + x;
+  const neighbors = (x: number, y: number): Point[] => {
+    const out: Point[] = [];
     for (let dy = -1; dy <= 1; dy++)
       for (let dx = -1; dx <= 1; dx++) {
         if (!dx && !dy) continue;
@@ -343,14 +423,14 @@ export function longestSkeletonPath(sk) {
       }
     return out;
   };
-  const nodes = [];
+  const nodes: Point[] = [];
   for (let y = 0; y < h; y++)
     for (let x = 0; x < w; x++)
       if (data[idx(x, y)]) {
         const deg = neighbors(x, y).length;
         if (deg !== 2) nodes.push({ x, y });
       }
-  let seed = null;
+  let seed: Point | null = null;
   for (const n of nodes) {
     const deg = neighbors(n.x, n.y).length;
     if (deg === 1) {
@@ -359,25 +439,20 @@ export function longestSkeletonPath(sk) {
     }
   }
   if (!seed) {
-    for (let y = 0; y < h; y++) {
-      let found = false;
-      for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h && !seed; y++)
+      for (let x = 0; x < w; x++)
         if (data[idx(x, y)]) {
           seed = { x, y };
-          found = true;
           break;
         }
-      }
-      if (found) break;
-    }
     if (!seed) return [];
   }
   const a = farthestFrom(seed);
   const b = farthestFrom(a.node);
   return reconstructPath(a.node, b.node);
 
-  function farthestFrom(start) {
-    const q = [];
+  function farthestFrom(start: Point): { node: Point; prev: Int32Array } {
+    const q: number[] = [];
     const seen = new Int8Array(w * h);
     const prev = new Int32Array(w * h);
     prev.fill(-1);
@@ -386,7 +461,7 @@ export function longestSkeletonPath(sk) {
     seen[sidx] = 1;
     let last = sidx;
     while (q.length) {
-      const cur = q.shift();
+      const cur = q.shift()!;
       last = cur;
       const cx = cur % w,
         cy = (cur / w) | 0;
@@ -404,8 +479,9 @@ export function longestSkeletonPath(sk) {
       ly = (last / w) | 0;
     return { node: { x: lx, y: ly }, prev };
   }
-  function reconstructPath(start, end) {
-    const q = [];
+
+  function reconstructPath(start: Point, end: Point): Point[] {
+    const q: number[] = [];
     const seen = new Int8Array(w * h);
     const prev = new Int32Array(w * h);
     prev.fill(-1);
@@ -414,7 +490,7 @@ export function longestSkeletonPath(sk) {
     q.push(sidx);
     seen[sidx] = 1;
     while (q.length) {
-      const cur = q.shift();
+      const cur = q.shift()!;
       if (cur === eidx) break;
       const cx = cur % w,
         cy = (cur / w) | 0;
@@ -428,11 +504,9 @@ export function longestSkeletonPath(sk) {
         }
       }
     }
-    const path = [];
+    const path: Point[] = [];
     let cur = eidx;
-    if (prev[cur] === -1 && cur !== sidx) {
-      return path;
-    }
+    if (prev[cur] === -1 && cur !== sidx) return path;
     while (cur !== -1) {
       const cx = cur % w,
         cy = (cur / w) | 0;
@@ -442,14 +516,19 @@ export function longestSkeletonPath(sk) {
     }
     path.reverse();
     const step = Math.max(1, Math.floor(path.length / 800));
-    const out = [];
+    const out: Point[] = [];
     for (let i = 0; i < path.length; i += step) out.push(path[i]);
     return out;
   }
 }
 
-// PCA median path
-export function computeMedianPathPCA(points, settings, W, H) {
+// ===== PCA median path =====
+export function computeMedianPathPCA(
+  points: ReadonlyArray<Point>,
+  settings: MedianPCASettings,
+  W: number,
+  H: number
+): { points: Point[] } {
   const N = points.length;
   if (N === 0) return { points: [] };
   let mx = 0,
@@ -483,8 +562,8 @@ export function computeMedianPathPCA(points, settings, W, H) {
     Math.abs(evx) + Math.abs(evy) < 1e-8 ? { x: 1, y: 0 } : { x: evx, y: evy }
   );
   const v = { x: -u.y, y: u.x };
-  const ts = new Array(N),
-    ss = new Array(N);
+  const ts = new Array<number>(N),
+    ss = new Array<number>(N);
   let tMin = Infinity,
     tMax = -Infinity;
   for (let i = 0; i < N; i++) {
@@ -500,14 +579,14 @@ export function computeMedianPathPCA(points, settings, W, H) {
   const B = Math.max(10, Math.min(1000, settings.bins ?? 120));
   const binW = (tMax - tMin) / B;
 
-  function buildMedPts(minPerBin) {
-    const arr = [];
+  function buildMedPts(minPerBin: number): Point[] {
+    const arr: Point[] = [];
     for (let b = 0; b < B; b++) {
       const t0 = tMin + b * binW;
       const t1 = t0 + binW;
       let sumT = 0;
       let count = 0;
-      const sVals = [];
+      const sVals: number[] = [];
       for (let i = 0; i < N; i++) {
         const t = ts[i];
         if (t >= t0 && t < t1) {
@@ -536,29 +615,35 @@ export function computeMedianPathPCA(points, settings, W, H) {
   let medPts = buildMedPts(minPerBin);
   if (medPts.length < 3) {
     medPts = buildMedPts(Math.max(1, Math.floor(minPerBin / 3)));
-    if (medPts.length < 3) {
-      medPts = buildMedPts(1);
-    }
+    if (medPts.length < 3) medPts = buildMedPts(1);
   }
 
-  let P = medPts;
-  for (let it = 0; it < (settings.smoothIter ?? 0); it++) {
-    P = smoothOnce(P);
-  }
-  if ((settings.epsilon ?? 0) > 0 && P.length > 2) {
-    P = rdpSimplify(P, settings.epsilon);
-  }
+  let P: Point[] = medPts;
+  for (let it = 0; it < (settings.smoothIter ?? 0); it++) P = smoothOnce(P);
+  if ((settings.epsilon ?? 0) > 0 && P.length > 2)
+    P = rdpSimplify(P, settings.epsilon!);
   return { points: P };
 }
 
-// Compute PCA info (debug helper)
-export function computePCAOnMask(mask, bins) {
+// ===== Compute PCA info (debug helper) =====
+export function computePCAOnMask(
+  mask: BinaryMask,
+  bins: number
+): {
+  mx: number;
+  my: number;
+  u: Point;
+  v: Point;
+  tMin: number;
+  tMax: number;
+  bins: number;
+} | null {
   const pts = pointsFromMask(mask);
   const N = pts.length;
   if (N === 0) return null;
   let mx = 0,
     my = 0;
-  for (let p of pts) {
+  for (const p of pts) {
     mx += p.x;
     my += p.y;
   }
@@ -567,7 +652,7 @@ export function computePCAOnMask(mask, bins) {
   let sxx = 0,
     syy = 0,
     sxy = 0;
-  for (let p of pts) {
+  for (const p of pts) {
     const dx = p.x - mx,
       dy = p.y - my;
     sxx += dx * dx;
@@ -589,7 +674,7 @@ export function computePCAOnMask(mask, bins) {
   const v = { x: -u.y, y: u.x };
   let tMin = Infinity,
     tMax = -Infinity;
-  for (let p of pts) {
+  for (const p of pts) {
     const dx = p.x - mx,
       dy = p.y - my;
     const t = dx * u.x + dy * u.y;
@@ -599,14 +684,14 @@ export function computePCAOnMask(mask, bins) {
   return { mx, my, u, v, tMin, tMax, bins };
 }
 
-// Geometry helpers
-export function clamp(v, a, b) {
+// ===== Geometry helpers =====
+export function clamp(v: number, a: number, b: number): number {
   return Math.max(a, Math.min(b, v));
 }
 
-export function smoothOnce(P) {
+export function smoothOnce(P: ReadonlyArray<Point>): Point[] {
   if (P.length <= 2) return P.slice();
-  const Q = [P[0]];
+  const Q: Point[] = [P[0]];
   for (let i = 1; i < P.length - 1; i++) {
     Q.push({
       x: (P[i - 1].x + 2 * P[i].x + P[i + 1].x) / 4,
@@ -617,13 +702,13 @@ export function smoothOnce(P) {
   return Q;
 }
 
-export function normalize(v) {
+export function normalize(v: Point): Point {
   const n = Math.hypot(v.x, v.y) || 1;
   return { x: v.x / n, y: v.y / n };
 }
 
-export function rdpSimplify(pts, eps) {
-  const dmax = (p, a, b) => {
+export function rdpSimplify(pts: ReadonlyArray<Point>, eps: number): Point[] {
+  const dmax = (p: Point, a: Point, b: Point): number => {
     const ABx = b.x - a.x,
       ABy = b.y - a.y;
     const len2 = ABx * ABx + ABy * ABy || 1e-9;
@@ -633,8 +718,8 @@ export function rdpSimplify(pts, eps) {
       Y = a.y + t * ABy;
     return Math.hypot(p.x - X, p.y - Y);
   };
-  function rdp(arr) {
-    if (arr.length <= 2) return arr;
+  function rdp(arr: ReadonlyArray<Point>): Point[] {
+    if (arr.length <= 2) return arr.slice() as Point[];
     const a = arr[0],
       b = arr[arr.length - 1];
     let idx = -1,
@@ -655,7 +740,7 @@ export function rdpSimplify(pts, eps) {
   return rdp(pts);
 }
 
-export function polylinePath(pts) {
+export function polylinePath(pts: ReadonlyArray<Point>): string {
   if (!pts.length) return "";
   let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
   for (let i = 1; i < pts.length; i++)
@@ -663,11 +748,22 @@ export function polylinePath(pts) {
   return d;
 }
 
-// Extraction orchestrator
-export function extractPathsFromFinalMask(finalMask, method, settings, W, H) {
-  const dList = [];
-  const pointsList = [];
-  let skeletonForDebug = null;
+// ===== Extraction orchestrator =====
+export function extractPathsFromFinalMask(
+  finalMask: BinaryMask,
+  method: "skeleton" | "pca",
+  settings: ExtractSettings,
+  W: number,
+  H: number
+): {
+  dList: string[];
+  pointsList: Point[][];
+  skeletonForDebug: Skeleton | null;
+} {
+  const dList: string[] = [];
+  const pointsList: Point[][] = [];
+  let skeletonForDebug: Skeleton | null = null;
+
   if (method === "skeleton") {
     const skAll = zhangSuenThinning(finalMask);
     skeletonForDebug = skAll;
