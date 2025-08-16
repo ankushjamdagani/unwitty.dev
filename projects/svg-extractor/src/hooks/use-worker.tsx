@@ -1,13 +1,13 @@
 import { useRef, useCallback, useState } from "react";
 
-function useWorker() {
+function useWorker(workerScript) {
   const workerRef = useRef<Worker>(null);
   const [hasWorker, setHasWorker] = useState(false);
   const jobIdRef = useRef({ next: 1, current: 0 });
 
   const initWorker = useCallback(() => {
     try {
-      const w = new Worker("/worker.js");
+      const w = new workerScript();
       workerRef.current = w;
       setHasWorker(true);
       return w;

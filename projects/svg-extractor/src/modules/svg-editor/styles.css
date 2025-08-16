@@ -153,4 +153,43 @@
     border-radius: 4px;
     border: 1px solid #0002;
   }
+
+  /* ----------- */
+  /* Components list */
+  #compList {
+    max-height: 220px;
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #0a0f16;
+    padding: 6px;
+  }
+  #compList .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 8px;
+  }
+  #compList .row:nth-child(odd) {
+    background: #0b1118;
+  }
+  #compList .badge {
+    font-size: 12px;
+    color: #9aa6b6;
+  }
+
+  /* Focus & a11y */
+  :where(button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--accent2);
+    outline-offset: 2px;
+  }
+
+  #miniSvg {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: #0a0f16;
+    border-radius: 6px;
+  }
 }

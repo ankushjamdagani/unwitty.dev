@@ -2,7 +2,7 @@ import "./styles.css";
 
 type PanelProps = {
   title: string;
-  children: React.JSX.Element;
+  children: React.JSX.Element | React.JSX.Element[];
   open: boolean;
 };
 
