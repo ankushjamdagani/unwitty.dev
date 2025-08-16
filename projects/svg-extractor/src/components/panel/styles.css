@@ -1,0 +1,37 @@
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #0c1016;
+  overflow: hidden;
+
+  .panel > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 10px 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0d121a;
+  }
+
+  .panel > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .panel > summary:focus-visible {
+    outline: 2px solid var(--accent2);
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+
+  .panel[open] > summary {
+    background: #0e1420;
+  }
+
+  .panel .content {
+    padding: 10px 12px;
+    display: grid;
+    gap: 10px;
+  }
+}

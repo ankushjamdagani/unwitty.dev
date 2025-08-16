@@ -1,0 +1,30 @@
+.busy-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(20, 24, 32, 0.85);
+  color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(203, 213, 225, 0.35);
+    border-top-color: #4fd1ff;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
