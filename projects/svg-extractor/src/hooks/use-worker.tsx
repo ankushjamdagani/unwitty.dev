@@ -1,3 +1,4 @@
+/// <reference types="vite-plugin-comlink/client" />
 "use client";
 
 import { useRef, useCallback, useState } from "react";
