@@ -26,7 +26,7 @@ import {
 import ExtractorWorker from "../../workers/extractor-worker?worker";
 
 import { CenterPreview } from "./components/center-preview";
-import RightControls from "./components/right-controls/RightControls";
+import { RightControls } from "./components/right-controls";
 import { LeftControls } from "./components/left-controls";
 
 const kpiOptions: { label: string; key: Stats }[] = [
@@ -620,7 +620,5 @@ function Extractor() {
     </div>
   );
 }
-
-export { ExtractorWorker };
 
 export default Extractor;
