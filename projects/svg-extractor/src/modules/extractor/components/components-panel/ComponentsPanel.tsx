@@ -1,5 +1,5 @@
 import Panel from "../../../../components/panel";
-import { CCResult, ComponentType } from "../../Extractor.types";
+import type { CCResult, ComponentType } from "../../../../types";
 
 type ComponentsPanelProps = {
   livePreview: boolean;

@@ -16,7 +16,10 @@ export function maskFromLabels(
   set: Set<number>
 ): BinaryMask {
   const out = new Uint8Array(cc.w * cc.h);
-  for (let i = 0; i < out.length; i++) if (set.has(cc.labels[i])) out[i] = 1;
+  for (let i = 0; i < out.length; i++) {
+    const labelItem = cc.labels[i];
+    if (labelItem && set.has(labelItem)) out[i] = 1;
+  }
   return { w: cc.w, h: cc.h, data: out };
 }
 
@@ -42,8 +45,10 @@ export function connectedComponents(mask: BinaryMask): ConnectedComponents {
       tail++;
       let area = 0;
       while (head < tail) {
-        const cx = qx[head],
-          cy = qy[head];
+        const cx = qx[head];
+        const cy = qy[head];
+        if (!cx || !cy) continue;
+
         head++;
         area++;
         for (let dy = -1; dy <= 1; dy++)

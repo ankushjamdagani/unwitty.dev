@@ -12,10 +12,7 @@ export function selectColorMaskMulti(
   tol: number,
   metric: MetricColor,
   invert: boolean
-): {
-  w: number;
-  h: number;
-  data: Uint8Array;
+): BinaryMask & {
   de: Float32Array;
   minDE: number;
   maxDE: number;
@@ -34,10 +31,11 @@ export function selectColorMaskMulti(
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++, iPix++) {
       const i = (y * w + x) * 4;
-      const r = data[i],
-        g = data[i + 1],
-        b = data[i + 2],
-        a = data[i + 3];
+      const r = data[i]!,
+        g = data[i + 1]!,
+        b = data[i + 2]!,
+        a = data[i + 3]!;
+
       if (a <= 10) {
         de[iPix] = 0;
         out[iPix] = 0;

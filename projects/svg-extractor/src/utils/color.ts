@@ -13,8 +13,9 @@ export function rgbToHex(r: number, g: number, b: number): string {
 /** Parse HEX color string into RGB object */
 export function hexToRgbObj(hex: string): RGB {
   const m = /^#([0-9a-f]{6})$/i.exec(hex);
-  if (!m) return { r: 0, g: 0, b: 0 };
-  const n = parseInt(m[1], 16);
+  const colorStr = m?.[1];
+  if (!colorStr) return { r: 0, g: 0, b: 0 };
+  const n = parseInt(colorStr, 16);
   return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
 }
 

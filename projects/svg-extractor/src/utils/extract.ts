@@ -33,7 +33,8 @@ export function extractPathsFromFinalMask(
     skeletonForDebug = skAll;
     const ccSk = connectedComponents(skAll);
     for (let l = 1; l < ccSk.sizes.length; l++) {
-      if (ccSk.sizes[l] < 2) continue;
+      const ccSkItem = ccSk.sizes[l];
+      if (ccSkItem && ccSkItem < 2) continue;
       const skL = maskFromLabels(ccSk, new Set([l]));
       let poly = longestSkeletonPath(skL);
       if (poly && poly.length >= 2) {
@@ -48,7 +49,8 @@ export function extractPathsFromFinalMask(
   } else {
     const ccKeep = connectedComponents(finalMask);
     for (let l = 1; l < ccKeep.sizes.length; l++) {
-      if (ccKeep.sizes[l] < 2) continue;
+      const ccKeepItem = ccKeep.sizes[l];
+      if (ccKeepItem && ccKeepItem < 2) continue;
       const mL = maskFromLabels(ccKeep, new Set([l]));
       const pts = pointsFromMask(mL);
       const out = computeMedianPathPCA(

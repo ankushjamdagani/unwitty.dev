@@ -136,7 +136,7 @@ function Extractor() {
 
   const cx = () => imgCanvasRef.current?.getContext("2d")!;
   const mx = () => maskCanvasRef.current?.getContext("2d")!;
-  const dx = () => debugCanvasRef.current?.getContext("2d")!;
+  // const dx = () => debugCanvasRef.current?.getContext("2d")!;
 
   /* ---- Rendering helpers ---- */
   const renderMask = useCallback(

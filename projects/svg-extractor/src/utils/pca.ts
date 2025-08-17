@@ -17,8 +17,8 @@ export function computeMedianPathPCA(
   let mx = 0,
     my = 0;
   for (let i = 0; i < N; i++) {
-    mx += points[i].x;
-    my += points[i].y;
+    mx += points[i]!.x;
+    my += points[i]!.y;
   }
   mx /= N;
   my /= N;
@@ -26,8 +26,8 @@ export function computeMedianPathPCA(
     syy = 0,
     sxy = 0;
   for (let i = 0; i < N; i++) {
-    const dx = points[i].x - mx;
-    const dy = points[i].y - my;
+    const dx = points[i]!.x - mx;
+    const dy = points[i]!.y - my;
     sxx += dx * dx;
     syy += dy * dy;
     sxy += dx * dy;
@@ -50,8 +50,8 @@ export function computeMedianPathPCA(
   let tMin = Infinity,
     tMax = -Infinity;
   for (let i = 0; i < N; i++) {
-    const dx = points[i].x - mx;
-    const dy = points[i].y - my;
+    const dx = points[i]!.x - mx;
+    const dy = points[i]!.y - my;
     const t = dx * u.x + dy * u.y;
     const s = dx * v.x + dy * v.y;
     ts[i] = t;
@@ -71,11 +71,11 @@ export function computeMedianPathPCA(
       let count = 0;
       const sVals: number[] = [];
       for (let i = 0; i < N; i++) {
-        const t = ts[i];
+        const t = ts[i]!;
         if (t >= t0 && t < t1) {
           sumT += t;
           count++;
-          sVals.push(ss[i]);
+          sVals.push(ss[i]!);
         }
       }
       if (count >= minPerBin) {
@@ -85,9 +85,9 @@ export function computeMedianPathPCA(
         const sMed =
           sVals.length % 2 === 1
             ? sVals[mid | 0]
-            : 0.5 * (sVals[mid | 0] + sVals[(mid + 1) | 0]);
-        const px = mx + u.x * tC + v.x * sMed;
-        const py = my + u.y * tC + v.y * sMed;
+            : 0.5 * (sVals[mid | 0]! + sVals[(mid + 1) | 0]!);
+        const px = mx + u.x * tC + v.x * sMed!;
+        const py = my + u.y * tC + v.y * sMed!;
         arr.push({ x: clamp(px, 0, W - 1), y: clamp(py, 0, H - 1) });
       }
     }

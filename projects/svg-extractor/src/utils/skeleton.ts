@@ -49,10 +49,10 @@ export function zhangSuenThinning(mask: BinaryMask): Skeleton {
         if (N < 2 || N > 6) continue;
         const A = Atrans(x, y);
         if (A !== 1) continue;
-        const p2 = data[idx(x, y - 1)],
-          p4 = data[idx(x + 1, y)],
-          p6 = data[idx(x, y + 1)],
-          p8 = data[idx(x - 1, y)];
+        const p2 = data[idx(x, y - 1)]!,
+          p4 = data[idx(x + 1, y)]!,
+          p6 = data[idx(x, y + 1)]!,
+          p8 = data[idx(x - 1, y)]!;
         if (p2 * p4 * p6 !== 0) continue;
         if (p4 * p6 * p8 !== 0) continue;
         del.push(idx(x, y));
@@ -67,10 +67,10 @@ export function zhangSuenThinning(mask: BinaryMask): Skeleton {
         if (N < 2 || N > 6) continue;
         const A = Atrans(x, y);
         if (A !== 1) continue;
-        const p2 = data[idx(x, y - 1)],
-          p4 = data[idx(x + 1, y)],
-          p6 = data[idx(x, y + 1)],
-          p8 = data[idx(x - 1, y)];
+        const p2 = data[idx(x, y - 1)]!,
+          p4 = data[idx(x + 1, y)]!,
+          p6 = data[idx(x, y + 1)]!,
+          p8 = data[idx(x - 1, y)]!;
         if (p2 * p4 * p8 !== 0) continue;
         if (p2 * p6 * p8 !== 0) continue;
         del2.push(idx(x, y));
@@ -187,12 +187,12 @@ export function longestSkeletonPath(sk: Skeleton): Point[] {
         cy = (cur / w) | 0;
       path.push({ x: cx, y: cy });
       if (cur === sidx) break;
-      cur = prev[cur];
+      cur = prev[cur]!;
     }
     path.reverse();
     const step = Math.max(1, Math.floor(path.length / 800));
     const out: Point[] = [];
-    for (let i = 0; i < path.length; i += step) out.push(path[i]);
+    for (let i = 0; i < path.length; i += step) out.push(path[i]!);
     return out;
   }
 }

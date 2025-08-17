@@ -1,4 +1,4 @@
-import { Stats } from "../../Extractor.types";
+import { Stats } from "../../../../types";
 import "./styles.css";
 
 export type KPIProps = {

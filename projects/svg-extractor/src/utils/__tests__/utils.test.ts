@@ -23,7 +23,7 @@ import {
   extractPathsFromFinalMask,
 } from "../";
 
-import type { RasterData } from "../../types";
+import { MetricColor, type RasterData } from "../../types";
 
 function mkMask(w: number, h: number, ones: Array<[number, number]>) {
   const data = new Uint8Array(w * h);
@@ -177,13 +177,25 @@ function solidRaster(
 describe("mask selection", () => {
   test("selects solid red with tight tolerance", () => {
     const raster = solidRaster(4, 4, [255, 0, 0, 255]);
-    const res = selectColorMaskMulti(raster, ["#ff0000"], 2, "de2000", false);
+    const res = selectColorMaskMulti(
+      raster,
+      ["#ff0000"],
+      2,
+      MetricColor.p2,
+      false
+    );
     expect(res.data.every((v) => v === 1)).toBe(true);
   });
 
   test("inverts selection when invert=true", () => {
     const raster = solidRaster(2, 2, [0, 255, 0, 255]);
-    const res = selectColorMaskMulti(raster, ["#00ff00"], 2, "de2000", true);
+    const res = selectColorMaskMulti(
+      raster,
+      ["#00ff00"],
+      2,
+      MetricColor.p2,
+      true
+    );
     expect(res.data.every((v) => v === 0)).toBe(true);
   });
 });

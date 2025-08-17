@@ -8,14 +8,26 @@ export function clamp(v: number, a: number, b: number): number {
 /** Smooth polyline once using weighted average */
 export function smoothOnce(P: ReadonlyArray<Point>): Point[] {
   if (P.length <= 2) return P.slice();
-  const Q: Point[] = [P[0]];
+
+  const pFirst = P.at(0)!;
+  const pLast = P.at(-1)!;
+
+  const Q: Point[] = [pFirst];
   for (let i = 1; i < P.length - 1; i++) {
+    const curr = P[i];
+    const prev = P[i - 1];
+    const next = P[i + 1];
+
+    if (!prev || !curr || !next) continue;
+
     Q.push({
-      x: (P[i - 1].x + 2 * P[i].x + P[i + 1].x) / 4,
-      y: (P[i - 1].y + 2 * P[i].y + P[i + 1].y) / 4,
+      x: (prev.x + 2 * curr.x + next.x) / 4,
+      y: (prev.y + 2 * curr.y + next.y) / 4,
     });
   }
-  Q.push(P[P.length - 1]);
+
+  Q.push(pLast);
+
   return Q;
 }
 
@@ -39,22 +51,29 @@ export function rdpSimplify(pts: ReadonlyArray<Point>, eps: number): Point[] {
   };
   function rdp(arr: ReadonlyArray<Point>): Point[] {
     if (arr.length <= 2) return arr.slice() as Point[];
-    const a = arr[0],
-      b = arr[arr.length - 1];
-    let idx = -1,
-      maxd = -1;
+
+    const pFirst = arr[0]!;
+    const pLast = arr[arr.length - 1]!;
+
+    let idx = -1;
+    let maxd = -1;
+
     for (let i = 1; i < arr.length - 1; i++) {
-      const d = dmax(arr[i], a, b);
+      const pt = arr[i];
+      if (!pt) continue;
+
+      const d = dmax(pt, pFirst, pLast);
       if (d > maxd) {
         maxd = d;
         idx = i;
       }
     }
+
     if (maxd > eps) {
       const L = rdp(arr.slice(0, idx + 1));
       const R = rdp(arr.slice(idx));
       return L.slice(0, -1).concat(R);
-    } else return [a, b];
+    } else return [pFirst, pLast];
   }
   return rdp(pts);
 }
@@ -62,8 +81,15 @@ export function rdpSimplify(pts: ReadonlyArray<Point>, eps: number): Point[] {
 /** Convert points to SVG polyline path string */
 export function polylinePath(pts: ReadonlyArray<Point>): string {
   if (!pts.length) return "";
-  let d = `M ${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
-  for (let i = 1; i < pts.length; i++)
-    d += ` L ${pts[i].x.toFixed(2)} ${pts[i].y.toFixed(2)}`;
+
+  const pFirst = pts[0]!;
+  let d = `M ${pFirst.x.toFixed(2)} ${pFirst.y.toFixed(2)}`;
+
+  for (let i = 1; i < pts.length; i++) {
+    const ptI = pts[i];
+    if (!ptI) continue;
+
+    d += ` L ${ptI.x.toFixed(2)} ${ptI.y.toFixed(2)}`;
+  }
   return d;
 }
