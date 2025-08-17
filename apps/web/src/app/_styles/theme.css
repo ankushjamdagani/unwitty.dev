@@ -16,6 +16,7 @@
   --border-width-thin: 1px;
   --border-width: 2px;
   --border-width-thick: 3px;
+  --border-width-extra-thick: 4px;
 
   /* Font Families */
   --font-mono:
@@ -67,4 +68,8 @@
   --focus-color: orange;
 
   --body-bgfilter: none;
+
+  .dark-invert {
+    filter: invert();
+  }
 }
