@@ -1,6 +1,8 @@
 import { ComponentType, MetricColor } from "../types";
 import * as Utils from "../utils";
 
+const self = globalThis;
+
 type PayloadProps = {
   width: number;
   height: number;
@@ -102,7 +104,8 @@ self.onmessage = function (e) {
       skeleton = { w: skAll.w, h: skAll.h, buffer: skAll.data.buffer };
       const ccSk = Utils.connectedComponents(skAll);
       for (let l = 1; l < ccSk.sizes.length; l++) {
-        if (ccSk.sizes[l] < 2) continue;
+        const ccSkItem = ccSk.sizes[l];
+        if (ccSkItem && ccSkItem < 2) continue;
         const skL = Utils.maskFromLabels(ccSk, new Set([l]));
         let poly = Utils.longestSkeletonPath(skL);
         if (poly && poly.length >= 2) {
@@ -116,7 +119,8 @@ self.onmessage = function (e) {
       postProgress(jobId, "Extracting PCA median…");
       const ccKeep = Utils.connectedComponents(finalMask);
       for (let l = 1; l < ccKeep.sizes.length; l++) {
-        if (ccKeep.sizes[l] < 2) continue;
+        const ccKeepItem = ccKeep.sizes[l];
+        if (ccKeepItem && ccKeepItem < 2) continue;
         const mL = Utils.maskFromLabels(ccKeep, new Set([l]));
         const pts = Utils.pointsFromMask(mL);
         const out = Utils.computeMedianPathPCA(
@@ -166,15 +170,13 @@ self.onmessage = function (e) {
         skeleton,
       },
     },
-    [finalMask.data.buffer, sel.de.buffer, cc.labels.buffer].concat(
-      skeleton ? [skeleton.buffer] : []
-    )
+    {
+      transfer: [finalMask.data.buffer, sel.de.buffer, cc.labels.buffer].concat(
+        skeleton ? [skeleton.buffer] : []
+      ),
+    }
   );
 };
 
-// let code = ExtractorWorker.toString();
-// code = code.substring(code.indexOf("{") + 1, code.lastIndexOf("}"));
-// const blob = new Blob([code], { type: "application/javascript" });
-// const workerScript = URL.createObjectURL(blob);
-
-// export default workerScript;
+// This is the crucial part for Next.js compatibility
+export default null;

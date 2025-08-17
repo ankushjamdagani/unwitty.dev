@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 
 // Projects
 // import { GameboyShell } from "@project/gameboy-shell";
@@ -97,20 +98,18 @@ export const ProjectsConfig = {
       githubLink: "",
       previewLink: "",
       previewElement: () => {
-        const GameboyShell = React.lazy(() =>
-          import("@project/gameboy-shell").then((module) => ({
-            default: module.GameboyShell,
-          }))
+        const GameboyShell = dynamic(
+          () =>
+            import("@project/gameboy-shell").then((module) => ({
+              default: module.GameboyShell,
+            })),
+          { ssr: true, loading: () => <p>Loading...</p> }
         );
 
-        console.log("---------- previewElement - Gameboy");
-
         return (
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <GameboyShell>
-              <div>Hello</div>
-            </GameboyShell>
-          </React.Suspense>
+          <GameboyShell>
+            <div>Hello</div>
+          </GameboyShell>
         );
       },
     },
@@ -138,19 +137,15 @@ export const ProjectsConfig = {
       githubLink: "",
       previewLink: "",
       previewElement: () => {
-        const SvgEditor = React.lazy(() =>
-          import("@project/svg-editor").then((module) => ({
-            default: module.SvgEditor,
-          }))
+        const SvgEditor = dynamic(
+          () =>
+            import("@project/svg-editor").then((module) => ({
+              default: module.SvgEditor,
+            })),
+          { ssr: true, loading: () => <p>Loading...</p> }
         );
 
-        console.log("---------- previewElement - SvgEditor");
-
-        return (
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <SvgEditor />
-          </React.Suspense>
-        );
+        return <SvgEditor />;
       },
     },
   },

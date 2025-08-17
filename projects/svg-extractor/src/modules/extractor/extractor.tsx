@@ -14,6 +14,7 @@ import {
 } from "../../utils";
 
 import {
+  BinaryMask,
   CCResult,
   ComponentType,
   DEMatrix,
@@ -121,7 +122,7 @@ function Extractor() {
   });
 
   // Internal state mirrors
-  const imgRef = useRef(new Image());
+  const imgRef = useRef<HTMLImageElement>(null);
   const loadedRef = useRef(false);
   const lastMaskRef = useRef<MaskBitmap>(null);
   const lastDERef = useRef<DEMatrix>(null);
@@ -426,15 +427,14 @@ function Extractor() {
         min: mask.minDE,
         max: mask.maxDE,
       };
-      let cleaned: {
-        w: any;
-        h: any;
-        data: Uint8Array<ArrayBuffer>;
-      } = mask;
+
+      let cleaned: BinaryMask = mask;
       for (let i = 0; i < Number(erodeIter); i++) cleaned = erode(cleaned);
       for (let i = 0; i < Number(dilateIter); i++) cleaned = dilate(cleaned);
+
       const cc = connectedComponents(cleaned);
       lastCCRef.current = cc;
+
       let finalMask = cleaned;
       if (compMode === ComponentType.largest) {
         let keep = -1,
@@ -521,7 +521,7 @@ function Extractor() {
       <h1>SVG Editor (Polyline)</h1>
       <div className="sub">
         Drop an image → choose one or more target colors → tune tolerance. Paths
-        use only <b>M/L</b>. Region picking and alignment snapping are removed.
+        use only <b>M/L</b>.
       </div>
       <div className="panels-container">
         <div className="panel-container panel-left">

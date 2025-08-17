@@ -79,7 +79,6 @@ function TargetsControls({
             hexRef.current = (e.target as HTMLInputElement).value;
           }}
         />
-        <div />
         <div>
           <button className="small" onClick={addTarget}>
             Add target
