@@ -1,11 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-// Projects
-// import { GameboyShell } from "@project/gameboy-shell";
-// import { SvgEditor } from "@project/svg-editor";
-// import { Tetris } from '@/app/_components/Tetris';
-
 export enum ProjectType {
   GameboyTetris = "gameboy_tetris",
   SvgEditor = "svg_editor",
