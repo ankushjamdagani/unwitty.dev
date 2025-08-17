@@ -3,14 +3,22 @@ import React, { ReactNode, useState } from "react";
 import "./GameboyShell.css";
 
 function GameboyShell({ children }: { children: ReactNode }) {
-  const [isDebug, setDebug] = useState(false);
+  const [isDebug, setDebug] = useState(true);
   const [deg, setDeg] = useState([20, 20]);
 
   return (
     <>
       {isDebug && (
-        <div style={{ background: "#000", padding: "50px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginRight: "100px",
+          }}
+        >
+          <h3>Debug</h3>
           <label>
+            Rotate X:
             <input
               style={{
                 background: "#ddd",
@@ -27,6 +35,7 @@ function GameboyShell({ children }: { children: ReactNode }) {
             />
           </label>
           <label>
+            Rotate Y:
             <input
               style={{
                 background: "#ddd",
@@ -80,9 +89,7 @@ function GameboyShell({ children }: { children: ReactNode }) {
               LIVE
             </div>
             <div className="gs-screen-content">
-              <div className="gs-screen-content-wrapper">
-                {children}
-              </div>
+              <div className="gs-screen-content-wrapper">{children}</div>
             </div>
           </section>
           <section className="gs-brand">

@@ -36,12 +36,31 @@ function TargetsControls({
   extraTargets,
   setExtraTargets,
 }: TargetsControlsProps) {
-  const hexRef = useRef("#00ff88");
+  const currentColor = useRef<string>("");
+
+  const getColor = (color: string): [string, boolean] => {
+    const hex = (color || "").toString().trim().toLowerCase();
+    const validColor = /^#([0-9a-f]{6})$/.test(hex);
+
+    return [hex, validColor];
+  };
+
+  const onColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value;
+    const [color, validColor] = getColor(inputValue);
+    currentColor.current = inputValue;
+
+    if (validColor) {
+      setPrimaryColor(color);
+      debouncedCompute(livePreview);
+    }
+  };
 
   const addTarget = () => {
-    const hex = (hexRef.current || "").toString().trim().toLowerCase();
-    if (/^#([0-9a-f]{6})$/.test(hex) && !extraTargets.includes(hex)) {
-      setExtraTargets([...extraTargets, hex]);
+    const [color, validColor] = getColor(primaryColor);
+
+    if (validColor && !extraTargets.includes(color)) {
+      setExtraTargets([...extraTargets, color]);
       debouncedCompute(livePreview);
     }
   };
@@ -63,21 +82,11 @@ function TargetsControls({
         <div style={{ flex: 1 }} />
       </div>
       <div className="grid-2">
-        <input
-          type="color"
-          value={primaryColor}
-          onChange={(e) => {
-            setPrimaryColor(e.target.value);
-            debouncedCompute(livePreview);
-          }}
-        />
+        <input type="color" value={primaryColor} onChange={onColorChange} />
         <input
           type="text"
-          defaultValue="#00ff88"
-          placeholder="#rrggbb"
-          onInput={(e) => {
-            hexRef.current = (e.target as HTMLInputElement).value;
-          }}
+          defaultValue={primaryColor}
+          onChange={onColorChange}
         />
         <div>
           <button className="small" onClick={addTarget}>

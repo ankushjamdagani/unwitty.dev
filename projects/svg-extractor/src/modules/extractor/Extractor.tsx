@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 import "./styles.css";
 
@@ -61,7 +61,12 @@ const kpiOptions: { label: string; key: Stats }[] = [
   },
 ];
 
-const DEFAULT_TARGET_COLOR = "#00cc66";
+const DEFAULT_TARGET_COLOR = "#ff1005";
+const PATH_ATTRIBUTES = {
+  strokeColor: "#00ff00",
+  strokeWidth: "6",
+  fillColor: "none",
+};
 
 function Extractor() {
   // Refs
@@ -81,7 +86,7 @@ function Extractor() {
   const [invertMask, setInvertMask] = useState(false);
   const [maskOpacity, setMaskOpacity] = useState(50);
   const [colorMetric, setColorMetric] = useState<MetricColor>(MetricColor.p2);
-  const [tolerance, setTolerance] = useState(20);
+  const [tolerance, setTolerance] = useState(8);
 
   // Targets (fully controlled) — no window deps
   const [primaryColor, setPrimaryColor] = useState(DEFAULT_TARGET_COLOR);
@@ -172,11 +177,11 @@ function Extractor() {
           "path"
         );
         p.setAttribute("d", d);
-        p.setAttribute("fill", "none");
-        p.setAttribute("stroke", "#6be675");
-        p.setAttribute("stroke-width", "2");
-        p.setAttribute("stroke-linecap", "round");
-        p.setAttribute("stroke-linejoin", "round");
+        p.setAttribute("fill", PATH_ATTRIBUTES.fillColor);
+        p.setAttribute("stroke", PATH_ATTRIBUTES.strokeColor);
+        p.setAttribute("stroke-width", PATH_ATTRIBUTES.strokeWidth);
+        p.setAttribute("stroke-linecap", "square");
+        p.setAttribute("stroke-linejoin", "square");
         svg.appendChild(p);
       }
     },
@@ -513,6 +518,20 @@ function Extractor() {
     (wantPath = false) => debounce(() => compute(wantPath), 120),
     [debounce, compute]
   );
+
+  const createFile = useCallback(async () => {
+    let response = await fetch("/images/projects/svg-extractor.jpeg");
+    let data = await response.blob();
+    let metadata = {
+      type: "image/jpeg",
+    };
+    let file = new File([data], "test.jpg", metadata);
+    onFile(file);
+  }, [onFile]);
+
+  useEffect(() => {
+    createFile();
+  }, [createFile]);
 
   return (
     <div className="extractor-container">
