@@ -1,5 +1,9 @@
 .project-wrapper {
-  padding: 16px var(--horizontal-gap);
+  padding: 16px;
+
+  .wrap-content {
+    margin: 0 var(--horizontal-gap);
+  }
 
   /* -------- Header section -------- */
 
@@ -45,7 +49,7 @@
     content: '"';
     font-size: 4em;
     position: absolute;
-    left: -0.25em;
+    left: 0;
   }
 
   /* ---------- Preview section --------- */

@@ -6,12 +6,18 @@ export enum ProjectType {
   SvgEditor = "svg_editor",
 }
 
+export enum ProjectState {
+  InProgress,
+  Completed,
+}
+
 export const ProjectsMeta = {
   [ProjectType.GameboyTetris]: {
-    title: "Gameboy - Tetris",
+    title: "Gameboy Shell",
     description: "Gameboy like mobile experience for Tetris in retro style",
+    status: ProjectState.InProgress,
     thumbnail: {
-      src: "/images/projects/gameboy_tetris.jpeg",
+      src: "/images/projects/gameboy-tetris.svg",
       type: "image",
     },
     tags: [
@@ -40,8 +46,9 @@ export const ProjectsMeta = {
   [ProjectType.SvgEditor]: {
     title: "SVG Editor",
     description: "SVG extraction from image and points editor",
+    status: ProjectState.InProgress,
     thumbnail: {
-      src: "/images/projects/gameboy_tetris.jpeg",
+      src: "/images/projects/svg-editor.svg",
       type: "image",
     },
     tags: [

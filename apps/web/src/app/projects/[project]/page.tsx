@@ -28,7 +28,7 @@ export default function Project({
 
   return (
     <main className="project-wrapper">
-      <header className="project-header">
+      <header className="project-header wrap-content">
         <BreadCrumb
           options={[
             { path: "/", label: "Home" },
@@ -56,14 +56,17 @@ export default function Project({
         </ul>
       </header>
 
-      <blockquote cite="https://www.huxley.net/bnw/four.html">
+      <blockquote
+        className="wrap-content"
+        cite="https://www.huxley.net/bnw/four.html"
+      >
         <h3>Info;</h3>
         <p>{projectConfig.description}</p>
       </blockquote>
 
       <ProjectPreview {...projectConfig.project} />
 
-      <footer className="project-footer">
+      <footer className="project-footer wrap-content">
         <ul className="tags-wrapper">
           {projectConfig.tags.map((tag) => (
             <li key={tag.id} className="tag">

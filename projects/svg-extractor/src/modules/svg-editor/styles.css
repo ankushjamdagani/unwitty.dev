@@ -11,7 +11,7 @@
   color: var(--text);
   padding: 16px;
   display: flex;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   flex-direction: column;
   font:
@@ -66,6 +66,10 @@
   input[type="text"],
   input[type="color"] {
     width: 100%;
+  }
+
+  input[type="range"] {
+    all: revert;
   }
 
   select,

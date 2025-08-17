@@ -23,19 +23,19 @@ export function Projects() {
                 href={`/projects/${project}`}
                 className="project-item shadow-box"
               >
-                <div className="details">
-                  <h3 className="title">{projectConfig.title}</h3>
-                  <p className="description">{projectConfig.description}</p>
-                </div>
                 {projectConfig.thumbnail.type == "image" && (
                   <Image
                     src={projectConfig.thumbnail.src}
                     alt={projectConfig.title}
                     width={200}
                     height={200}
-                    className="preview-thumb"
+                    className="preview-thumb dark-invert"
                   />
                 )}
+                <div className="details">
+                  <h3 className="title">{projectConfig.title}</h3>
+                  <p className="description">{projectConfig.description}</p>
+                </div>
               </Link>
             </li>
           );
