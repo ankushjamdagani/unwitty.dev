@@ -10,8 +10,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@project/gameboy-shell": "workspace:*",
     "@common/ui": "workspace:*",
+    "@project/gameboy-shell": "workspace:*",
+    "@project/svg-editor": "workspace:*",
     "@uidotdev/usehooks": "^2.4.1",
     "next": "^15.4.6",
     "react": "^19.1.1",
@@ -21,12 +22,11 @@
   "devDependencies": {
     "@common/eslint-config": "workspace:*",
     "@common/typescript-config": "workspace:*",
-    "@types/node": "^24.2.1",
-    "@types/react": "^19.1.9",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "eslint": "^9.33.0",
     "eslint-config-next": "15.4.6",
-    "leva": "^0.10.0",
-    "typescript": "^5.9.2"
+    "leva": "^0.10.0"
   }
 }

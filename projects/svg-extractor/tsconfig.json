@@ -1,0 +1,9 @@
+{
+  "extends": "@common/typescript-config/reactjs.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["vitest/globals"]
+  },
+  "include": ["src", "src/modules/extractor/Extractor.worker.js"],
+  "exclude": ["node_modules", "dist"]
+}

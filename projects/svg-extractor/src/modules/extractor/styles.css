@@ -1,0 +1,29 @@
+.extractor-container {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  /* Layout */
+  .panels-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) minmax(0, 2fr) minmax(320px, 1fr);
+    gap: 16px;
+  }
+
+  .panel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  @media (max-width: 980px) {
+    .panels-container {
+      grid-template-columns: 1fr;
+    }
+  }
+}
