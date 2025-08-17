@@ -24,8 +24,6 @@ import {
   Stats,
 } from "../../types";
 
-import ExtractorWorker from "../../workers/extractor-worker?worker";
-
 import { CenterPreview } from "./components/center-preview";
 import { RightControls } from "./components/right-controls";
 import { LeftControls } from "./components/left-controls";
@@ -132,7 +130,7 @@ function Extractor() {
   // View transform
   const viewRef = useRef({ scale: 1, x: 0, y: 0 });
   const debounce = useDebounce();
-  const { post } = useWorker(ExtractorWorker);
+  const { post } = useWorker("../../workers/extractor-worker?worker");
 
   const cx = () => imgCanvasRef.current?.getContext("2d")!;
   const mx = () => maskCanvasRef.current?.getContext("2d")!;

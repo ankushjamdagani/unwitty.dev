@@ -2,20 +2,16 @@
 
 import { useRef, useCallback, useState } from "react";
 
-function useWorker(
-  workerScript: new (
-    options?: { name?: string | undefined } | undefined
-  ) => Worker
-) {
-  const workerRef = useRef<Worker>(null);
+function useWorker(workerPath: string) {
+  const workerRef = useRef<any>(null);
   const [hasWorker, setHasWorker] = useState(false);
   const jobIdRef = useRef({ next: 1, current: 0 });
 
   const initWorker = useCallback(() => {
-    if (!workerScript) return;
+    if (!workerPath || typeof ComlinkWorker === "undefined") return;
 
     try {
-      const w = new workerScript();
+      const w = new ComlinkWorker(new URL(workerPath, import.meta.url));
       workerRef.current = w;
       setHasWorker(true);
       return w;
@@ -37,8 +33,9 @@ function useWorker(
       if (!w) return false;
       const jobId = jobIdRef.current.next++;
       jobIdRef.current.current = jobId;
-      w.onmessage = (e) => onMessage && onMessage(e, jobId);
-      w.onerror = onError || ((err) => console.error("Worker error", err));
+      w.onmessage = (e: MessageEvent<any>) => onMessage && onMessage(e, jobId);
+      w.onerror =
+        onError || ((err: ErrorEvent) => console.error("Worker error", err));
       try {
         w.postMessage({ type: "compute", jobId, payload, buffer }, [buffer]);
         return true;
