@@ -1,7 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
 
-import "./styles.css";
-
 import useDebounce from "../../hooks/use-debounce";
 import useWorker from "../../hooks/use-worker";
 import {
@@ -534,107 +532,100 @@ function Extractor() {
   }, [createFile]);
 
   return (
-    <div className="extractor-container">
-      <h1>SVG Editor (Polyline)</h1>
-      <div className="sub">
-        Drop an image → choose one or more target colors → tune tolerance. Paths
-        use only <b>M/L</b>.
+    <>
+      <div className="panel-container panel-left hidden">
+        <LeftControls
+          processScale={processScale}
+          setProcessScale={setProcessScale}
+          livePreview={livePreview}
+          setLivePreview={setLivePreview}
+          zoomPct={zoomPct}
+          setZoom={setZoom}
+          doZoomFit={doZoomFit}
+          debouncedCompute={debouncedCompute}
+          onFile={onFile}
+          compMode={compMode}
+          setCompMode={setCompMode}
+          selectedLabels={selectedLabels}
+          setSelectedLabels={setSelectedLabels}
+          lastCCRef={lastCCRef}
+          invertMask={invertMask}
+          setInvertMask={setInvertMask}
+          maskOpacity={maskOpacity}
+          setMaskOpacity={setMaskOpacity}
+          colorMetric={colorMetric}
+          setColorMetric={setColorMetric}
+          tolerance={tolerance}
+          setTolerance={setTolerance}
+          primaryColor={primaryColor}
+          setPrimaryColor={setPrimaryColor}
+          extraTargets={extraTargets}
+          setExtraTargets={setExtraTargets}
+        />
       </div>
-      <div className="panels-container">
-        <div className="panel-container panel-left">
-          <LeftControls
-            processScale={processScale}
-            setProcessScale={setProcessScale}
-            livePreview={livePreview}
-            setLivePreview={setLivePreview}
-            zoomPct={zoomPct}
-            setZoom={setZoom}
-            doZoomFit={doZoomFit}
-            debouncedCompute={debouncedCompute}
-            onFile={onFile}
-            compMode={compMode}
-            setCompMode={setCompMode}
-            selectedLabels={selectedLabels}
-            setSelectedLabels={setSelectedLabels}
-            lastCCRef={lastCCRef}
-            invertMask={invertMask}
-            setInvertMask={setInvertMask}
-            maskOpacity={maskOpacity}
-            setMaskOpacity={setMaskOpacity}
-            colorMetric={colorMetric}
-            setColorMetric={setColorMetric}
-            tolerance={tolerance}
-            setTolerance={setTolerance}
-            primaryColor={primaryColor}
-            setPrimaryColor={setPrimaryColor}
-            extraTargets={extraTargets}
-            setExtraTargets={setExtraTargets}
-          />
-        </div>
-        <div className="panel-container panel-center">
-          <CenterPreview
-            previewRef={previewRef}
-            stageRef={stageRef}
-            imgCanvasRef={imgCanvasRef}
-            maskCanvasRef={maskCanvasRef}
-            debugCanvasRef={debugCanvasRef}
-            overlaySvgRef={overlaySvgRef}
-            onFile={onFile}
-            viewMask={viewMask}
-            viewPath={viewPath}
-            busyMessage={busyMessage}
-            loadedFile={loadedRef.current}
-          />
-        </div>
-        <div className="panel-container panel-right">
-          <RightControls
-            busyMessage={busyMessage}
-            erodeIter={erodeIter}
-            setErodeIter={setErodeIter}
-            dilateIter={dilateIter}
-            setDilateIter={setDilateIter}
-            method={method}
-            setMethod={setMethod}
-            smoothIter={smoothIter}
-            setSmoothIter={setSmoothIter}
-            epsilon={epsilon}
-            setEpsilon={setEpsilon}
-            viewMask={viewMask}
-            setViewMask={setViewMask}
-            viewPath={viewPath}
-            setViewPath={setViewPath}
-            viewComponents={viewComponents}
-            setViewComponents={setViewComponents}
-            viewPoints={viewPoints}
-            setViewPoints={setViewPoints}
-            viewSkeleton={viewSkeleton}
-            setViewSkeleton={setViewSkeleton}
-            dbgEndpoints={dbgEndpoints}
-            setDbgEndpoints={setDbgEndpoints}
-            dbgHeatmap={dbgHeatmap}
-            setDbgHeatmap={setDbgHeatmap}
-            dbgPCA={dbgPCA}
-            setDbgPCA={setDbgPCA}
-            heatOpacity={heatOpacity}
-            setHeatOpacity={setHeatOpacity}
-            debouncedCompute={debouncedCompute}
-            pathLines={pathLines}
-            miniSvgRef={miniSvgRef}
-            imgCanvasRef={imgCanvasRef}
-            maskCanvasRef={maskCanvasRef}
-            debugCanvasRef={debugCanvasRef}
-            overlaySvgRef={overlaySvgRef}
-            lastMask={lastMaskRef.current}
-            lastSkel={lastSkelRef.current}
-            setPathLines={setPathLines}
-            kpiOptions={kpiOptions.map((op) => ({
-              ...op,
-              value: stats[op.key],
-            }))}
-          />
-        </div>
+      <div className="panel-container panel-canvas">
+        <CenterPreview
+          previewRef={previewRef}
+          stageRef={stageRef}
+          imgCanvasRef={imgCanvasRef}
+          maskCanvasRef={maskCanvasRef}
+          debugCanvasRef={debugCanvasRef}
+          overlaySvgRef={overlaySvgRef}
+          onFile={onFile}
+          viewMask={viewMask}
+          viewPath={viewPath}
+          busyMessage={busyMessage}
+          loadedFile={loadedRef.current}
+        />
       </div>
-    </div>
+      <div className="panel-container panel-right hidden">
+        <RightControls
+          busyMessage={busyMessage}
+          erodeIter={erodeIter}
+          setErodeIter={setErodeIter}
+          dilateIter={dilateIter}
+          setDilateIter={setDilateIter}
+          method={method}
+          setMethod={setMethod}
+          smoothIter={smoothIter}
+          setSmoothIter={setSmoothIter}
+          epsilon={epsilon}
+          setEpsilon={setEpsilon}
+          viewMask={viewMask}
+          setViewMask={setViewMask}
+          viewPath={viewPath}
+          setViewPath={setViewPath}
+          viewComponents={viewComponents}
+          setViewComponents={setViewComponents}
+          viewPoints={viewPoints}
+          setViewPoints={setViewPoints}
+          viewSkeleton={viewSkeleton}
+          setViewSkeleton={setViewSkeleton}
+          dbgEndpoints={dbgEndpoints}
+          setDbgEndpoints={setDbgEndpoints}
+          dbgHeatmap={dbgHeatmap}
+          setDbgHeatmap={setDbgHeatmap}
+          dbgPCA={dbgPCA}
+          setDbgPCA={setDbgPCA}
+          heatOpacity={heatOpacity}
+          setHeatOpacity={setHeatOpacity}
+          debouncedCompute={debouncedCompute}
+          pathLines={pathLines}
+          miniSvgRef={miniSvgRef}
+          imgCanvasRef={imgCanvasRef}
+          maskCanvasRef={maskCanvasRef}
+          debugCanvasRef={debugCanvasRef}
+          overlaySvgRef={overlaySvgRef}
+          lastMask={lastMaskRef.current}
+          lastSkel={lastSkelRef.current}
+          setPathLines={setPathLines}
+          kpiOptions={kpiOptions.map((op) => ({
+            ...op,
+            value: stats[op.key],
+          }))}
+        />
+      </div>
+    </>
   );
 }
 

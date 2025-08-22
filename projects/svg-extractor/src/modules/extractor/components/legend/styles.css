@@ -10,7 +10,7 @@
     align-items: center;
     padding: 6px 8px;
     border-radius: 999px;
-    background: #0b1118;
+    background: var(--btn-bg);
     border: 1px solid var(--border);
   }
   .dot {
