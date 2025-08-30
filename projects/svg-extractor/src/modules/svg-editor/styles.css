@@ -201,17 +201,19 @@
     border: 1px solid #0002;
   }
 
+  /* https://www.youtube.com/watch?v=8_NQ7ARXz8c */
+
   .controls-panel {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 32px;
+    right: 32px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 8px;
     z-index: 1;
-    width: fit-content;
+    /* width: fit-content; */
   }
 
   .controls-panel-primary {
@@ -222,8 +224,10 @@
     display: flex;
     gap: 8px;
     padding: 8px;
-    background: #f0e7e4;
+    background: var(--bg);
     border-radius: 36px;
+    align-items: center;
+    justify-content: center;
   }
 
   .control-item {
@@ -231,6 +235,16 @@
     min-height: var(--control-item-size);
     min-width: var(--control-item-size);
     transition: 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .v-separator {
+    height: calc(var(--control-item-size) * 0.8);
+    width: 2px;
+    background: var(--border);
+    opacity: 0.5;
   }
 
   .control-item.anim-scale {
@@ -263,6 +277,7 @@
     height: var(--toggle-size);
     width: var(--toggle-size);
     transition: 0.25s ease;
+    color: var(--panel);
 
     &:hover {
       transform: scale(1.2);
