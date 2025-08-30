@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* animations */
 @keyframes anim-spin {
   from {
@@ -130,13 +132,13 @@
   }
 
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     appearance: none;
-    border: 1px solid var(--border);
-    background: var(--btn-bg);
-    color: var(--text);
-    padding: 8px 12px;
-    border-radius: 8px;
     cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
   }
 
   button.primary {
@@ -223,21 +225,23 @@
   .controls-list {
     display: flex;
     gap: 8px;
-    padding: 8px;
+    padding: 6px 8px;
     background: var(--bg);
     border-radius: 36px;
     align-items: center;
     justify-content: center;
   }
 
-  .control-item {
-    border-radius: 36px;
-    min-height: var(--control-item-size);
-    min-width: var(--control-item-size);
+  button.control-item {
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--btn-bg);
+    color: var(--text);
+    aspect-ratio: 1 / 1;
     transition: 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    &:hover {
+      transform: scale(1.15);
+    }
   }
 
   .v-separator {
@@ -247,24 +251,28 @@
     opacity: 0.5;
   }
 
-  .control-item.anim-scale {
+  button.control-item-primary {
+    background: var(--accent);
+    border: solid 8px var(--accent-border);
+    position: relative;
+    transition: 0.25s ease;
+    color: var(--panel);
+
     &:hover {
-      transform: scale(1.15);
+      transform: scale(1.2) rotate(90deg);
     }
-  }
-  .control-item.anim-pop-out {
-    &:hover {
-      transform: scale(1.2) translateY(-44%);
-    }
-  }
-  .control-item.anim-up {
-    &:hover {
-      transform: translateY(-24%);
-    }
-  }
-  .control-item.anim-border {
-    &:hover {
-      border-width: 10px;
+
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      position: absolute;
+      border: solid 2px var(--accent-border);
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      animation: anim-pulse-expand 1s infinite linear;
     }
   }
 
