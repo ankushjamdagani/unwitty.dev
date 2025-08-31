@@ -1,0 +1,48 @@
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+
+  .preview {
+    position: relative;
+    /* min-height: 560px; */
+    background: var(--panel);
+    border: 1px dashed var(--border-contrast);
+    border-radius: 14px;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  #stage {
+    position: relative;
+    transform-origin: top left;
+  }
+
+  #imgCanvas {
+    display: block;
+  }
+
+  #maskCanvas,
+  #debugCanvas,
+  #overlaySvg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+  }
+
+  #maskCanvas {
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.5;
+  }
+
+  #debugCanvas {
+    pointer-events: none;
+  }
+
+  #overlaySvg {
+    pointer-events: none;
+  }
+}
