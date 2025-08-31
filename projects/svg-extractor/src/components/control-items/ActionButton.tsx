@@ -7,7 +7,7 @@ export enum Size {
 }
 
 type ActionButtonProps = {
-  extraStyles?: string;
+  className?: string;
   icon: IconType;
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   size?: Size;
@@ -20,14 +20,17 @@ const SizeClasses = {
 };
 
 export default function ActionButton({
-  extraStyles,
+  className,
   icon,
   onClick,
   size = Size.md,
 }: ActionButtonProps) {
   const IconComponent = icon;
   return (
-    <button className={`control-item ${extraStyles || ""}`} onClick={onClick}>
+    <button
+      className={`cursor-pointer border border-gray-300 rounded-4xl bg-gray-200 h-10 aspect-square flex items-center justify-center transition-transform hover:scale-110 ${className || ""}`}
+      onClick={onClick}
+    >
       <IconComponent className={`${SizeClasses[size]}`} />
     </button>
   );

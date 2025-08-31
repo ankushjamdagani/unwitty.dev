@@ -4,6 +4,6 @@
     "outDir": "dist",
     "types": ["vitest/globals"]
   },
-  "include": ["src", "src/modules/extractor/Extractor.worker.js"],
+  "include": ["src", "src/modules/__old__/extractor/Extractor.worker.js"],
   "exclude": ["node_modules", "dist"]
 }
