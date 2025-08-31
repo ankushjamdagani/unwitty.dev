@@ -5,14 +5,11 @@ import "./styles.css";
 
 import { PrimaryPanel } from "./panels/primary-panel";
 import { ActionButton } from "../../components/control-items";
-import {
-  FloatingPanel,
-  FloatingPanelContainer,
-} from "../../components/floating-panel";
+import { FloatingPanelContainer } from "../../components/floating-panel";
 
 function SvgEditor() {
   return (
-    <article className="bg-gray-100 relative w-full h-full flex dark:invert dark:hue-rotate-90">
+    <article className="svg-editor-container bg-gray-100 relative w-full h-full flex dark:invert dark:hue-rotate-90">
       <FloatingPanelContainer>
         <div className="col-start-1 col-end-2 -row-start-1 -row-end-2 self-end">
           <ActionButton

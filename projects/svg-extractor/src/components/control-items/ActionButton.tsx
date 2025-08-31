@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import { Toggle } from "@base-ui-components/react/toggle";
 
 export enum Size {
   sm,
@@ -7,11 +8,9 @@ export enum Size {
 }
 
 type ActionButtonProps = {
-  className?: string;
   icon: IconType;
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  size?: Size;
-};
+  iconSize?: Size;
+} & Toggle.Props;
 
 const SizeClasses = {
   [Size.sm]: "h-2 w-2",
@@ -20,18 +19,23 @@ const SizeClasses = {
 };
 
 export default function ActionButton({
-  className,
   icon,
-  onClick,
-  size = Size.md,
+  iconSize = Size.md,
+  ...props
 }: ActionButtonProps) {
   const IconComponent = icon;
   return (
-    <button
-      className={`cursor-pointer border border-gray-300 rounded-4xl bg-gray-200 h-10 aspect-square flex items-center justify-center transition-transform hover:scale-110 ${className || ""}`}
-      onClick={onClick}
-    >
-      <IconComponent className={`${SizeClasses[size]}`} />
-    </button>
+    <Toggle
+      {...props}
+      render={(props, state) => (
+        <button
+          type="button"
+          {...props}
+          className={`cursor-pointer border border-gray-300 rounded-4xl bg-gray-200 h-10 aspect-square flex items-center justify-center transition-transform hover:scale-110 ${state.pressed ? "bg-gray-800 text-white" : ""} ${props.className || ""}`}
+        >
+          <IconComponent className={`${SizeClasses[iconSize]}`} />
+        </button>
+      )}
+    />
   );
 }
