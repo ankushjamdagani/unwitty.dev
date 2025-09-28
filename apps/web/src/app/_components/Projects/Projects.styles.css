@@ -14,6 +14,9 @@
   }
 
   .project-item-wrapper {
+    position: relative;
+    overflow: hidden;
+
     .project-item {
       display: flex;
       flex: 1;
@@ -44,6 +47,31 @@
 
     .description {
       font-size: var(--font-xs);
+    }
+
+    .project-in-progress-indicator span {
+      background: white;
+      padding: 2px 16px;
+    }
+
+    .project-in-progress-indicator {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 40px;
+      z-index: 1;
+      background: repeating-linear-gradient(
+        45deg,
+        black 5px,
+        black 10px,
+        transparent 10px,
+        transparent 15px
+      );
+      border: solid 1px black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
     }
   }
 

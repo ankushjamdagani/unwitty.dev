@@ -6,7 +6,7 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 import "./Projects.styles.css";
 
-import { ProjectsMeta, ProjectType } from "@/configs/projects";
+import { ProjectsMeta, ProjectState, ProjectType } from "@/configs/projects";
 
 const List = [ProjectType.GameboyTetris, ProjectType.SvgEditor];
 
@@ -19,6 +19,11 @@ export function Projects() {
           const projectConfig = ProjectsMeta[project];
           return (
             <li key={project} className={`project-item-wrapper ${project}`}>
+              {projectConfig.status === ProjectState.InProgress && (
+                <div className="project-in-progress-indicator">
+                  <span>Under Development</span>
+                </div>
+              )}
               <Link
                 href={`/projects/${project}`}
                 className="project-item shadow-box"
