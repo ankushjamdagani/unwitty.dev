@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 452" role="img" aria-labelledby="t d">
+  <title id="t">Web-XR Editor – 3D Move Gizmo</title>
+  <desc id="d">Browser frame with an isometric cube and X/Y/Z move handles</desc>
+  <style>
+    .s{stroke:#000;fill:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+    .m{stroke:#000;fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+    .f{stroke:#000;fill:none;stroke-width:4}
+  </style>
+
+  <!-- Browser frame -->
+  <rect x="6" y="6" width="402" height="440" rx="24" class="s"/>
+  <line x1="6" y1="66" x2="402" y2="66" class="s"/>
+  <circle cx="44" cy="36" r="8" class="f"/>
+  <circle cx="84" cy="36" r="8" class="f"/>
+  <circle cx="120" cy="36" r="8" class="f"/>
+
+  <!-- Cube (isometric) -->
+  <g id="cube" transform="translate(-15,20)">
+    <polygon points="216,110 276,145 216,180 156,145" class="m"/>
+    <path d="M276 145v70l-60 35-60-35v-70" class="m"/>
+    <path d="M216 180v70" class="m"/>
+  </g>
+
+  <!-- Optional label -->
+  <text x="201" y="360" text-anchor="middle"
+        font-size="88" font-family="Inter,Helvetica,Arial,sans-serif">XR</text>
+</svg>

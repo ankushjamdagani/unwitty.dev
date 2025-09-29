@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 import "./Projects.styles.css";
 
 import { ProjectsMeta, ProjectState, ProjectType } from "@/configs/projects";
 
-const List = [ProjectType.GameboyTetris, ProjectType.SvgEditor];
+const List = [
+  ProjectType.GameboyTetris,
+  ProjectType.SvgEditor,
+  ProjectType.XREditor,
+];
 
 export function Projects() {
   return (
@@ -46,15 +49,6 @@ export function Projects() {
           );
         })}
       </ul>
-      <footer>
-        <button className="project-prev" aria-label="Previous projects">
-          <FaAngleLeft />
-        </button>
-        <div className="seperator-rect"></div>
-        <button className="project-next" aria-label="Next projects">
-          <FaAngleRight />
-        </button>
-      </footer>
     </section>
   );
 }
