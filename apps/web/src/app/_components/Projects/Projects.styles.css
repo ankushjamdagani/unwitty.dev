@@ -1,3 +1,12 @@
+@keyframes bg-move {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 8px;
+  }
+}
+
 #projects {
   ul {
     display: grid;
@@ -15,7 +24,7 @@
 
   .project-item-wrapper {
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     .project-item {
       display: flex;
@@ -53,26 +62,32 @@
     .project-in-progress-indicator span {
       background: white;
       padding: 2px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     .project-in-progress-indicator {
       position: absolute;
-      left: 0;
-      right: 0;
-      height: 40px;
+      left: -4px;
+      top: -4px;
+      right: -4px;
+      height: 60px;
       z-index: 1;
       background: repeating-linear-gradient(
         45deg,
-        black 5px,
-        black 10px,
-        transparent 10px,
-        transparent 15px
+        black 4px,
+        black 6px,
+        transparent 7px,
+        transparent 10px
       );
-      border: solid 1px black;
+      background-attachment: fixed;
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1;
+      animation: bg-move 0.35s linear infinite;
     }
   }
 

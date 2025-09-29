@@ -6,6 +6,7 @@ import Image from "next/image";
 import "./Projects.styles.css";
 
 import { ProjectsMeta, ProjectState, ProjectType } from "@/configs/projects";
+import { LuTriangleAlert } from "react-icons/lu";
 
 const List = [
   ProjectType.GameboyTetris,
@@ -24,7 +25,10 @@ export function Projects() {
             <li key={project} className={`project-item-wrapper ${project}`}>
               {projectConfig.status === ProjectState.InProgress && (
                 <div className="project-in-progress-indicator">
-                  <span>Under Development</span>
+                  <span>
+                    <LuTriangleAlert />
+                    Under Development
+                  </span>
                 </div>
               )}
               <Link
