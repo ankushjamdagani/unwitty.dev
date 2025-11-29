@@ -11,10 +11,10 @@ export function Cursor() {
     // --- Just for practicing ---
     // - remove cursor
     // - later it will be handled by `is-cursor-interactive` class in css
-    document.body.style.cursor = "none";
-    document
-      .querySelectorAll("a, button")
-      .forEach((el) => ((el as HTMLElement).style.cursor = "none"));
+    // document.body.style.cursor = "none";
+    // document
+    //   .querySelectorAll("a, button")
+    //   .forEach((el) => ((el as HTMLElement).style.cursor = "none"));
 
     function mouseHandler(evt: MouseEvent) {
       if (!cursorRef.current) return;

@@ -60,12 +60,8 @@
     }
 
     .project-in-progress-indicator span {
-      background: white;
+      background: rgb(var(--background-rgb));
       padding: 2px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
 
     .project-in-progress-indicator {
@@ -77,8 +73,8 @@
       z-index: 1;
       background: repeating-linear-gradient(
         45deg,
-        black 4px,
-        black 6px,
+        rgb(var(--foreground-rgb)) 4px,
+        rgb(var(--foreground-rgb)) 6px,
         transparent 7px,
         transparent 10px
       );

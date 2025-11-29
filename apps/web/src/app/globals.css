@@ -163,7 +163,7 @@ h3 {
 }
 
 .shadow-box {
-  background-color: rgb(var(--background-rgb));
+  background-color: rgba(var(--background-rgb), 0.5);
   border-radius: var(--border-radius);
   border: solid var(--border-width-extra-thick) rgb(var(--foreground-rgb));
   display: flex;
