@@ -11,7 +11,14 @@ const List = [
   ProjectType.GameboyTetris,
   ProjectType.SvgEditor,
   ProjectType.XREditor,
+  ProjectType.SongGenerator,
 ];
+
+const StatusLabel = {
+  [ProjectState.ToBeStarted]: "To Be Started",
+  [ProjectState.InProgress]: "Under Development",
+  [ProjectState.Completed]: "Completed",
+};
 
 export function Projects() {
   return (
@@ -22,9 +29,9 @@ export function Projects() {
           const projectConfig = ProjectsMeta[project];
           return (
             <li key={project} className={`project-item-wrapper ${project}`}>
-              {projectConfig.status === ProjectState.InProgress && (
+              {projectConfig.status !== ProjectState.Completed && (
                 <div className="project-in-progress-indicator">
-                  <span>Under Development</span>
+                  <span>{StatusLabel[projectConfig.status]}</span>
                 </div>
               )}
               <Link

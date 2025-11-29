@@ -1,0 +1,32 @@
+{
+  "name": "@project/song-generator",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/SongGenerator.tsx"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest --run"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tone": "^15.1.22",
+    "vitest": "^3.2.4"
+  },
+  "devDependencies": {
+    "@common/eslint-config": "workspace:*",
+    "@common/typescript-config": "workspace:*",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.4",
+    "globals": "^16.4.0",
+    "vite": "^7.1.2"
+  }
+}
