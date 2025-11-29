@@ -2,13 +2,23 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 import "./Projects.styles.css";
 
-import { ProjectsMeta, ProjectType } from "@/configs/projects";
+import { ProjectsMeta, ProjectState, ProjectType } from "@/configs/projects";
 
-const List = [ProjectType.GameboyTetris, ProjectType.SvgEditor];
+const List = [
+  ProjectType.GameboyTetris,
+  ProjectType.SvgEditor,
+  ProjectType.XREditor,
+  ProjectType.SongGenerator,
+];
+
+const StatusLabel = {
+  [ProjectState.ToBeStarted]: "To Be Started",
+  [ProjectState.InProgress]: "Under Development",
+  [ProjectState.Completed]: "Completed",
+};
 
 export function Projects() {
   return (
@@ -19,6 +29,11 @@ export function Projects() {
           const projectConfig = ProjectsMeta[project];
           return (
             <li key={project} className={`project-item-wrapper ${project}`}>
+              {projectConfig.status !== ProjectState.Completed && (
+                <div className="project-in-progress-indicator">
+                  <span>{StatusLabel[projectConfig.status]}</span>
+                </div>
+              )}
               <Link
                 href={`/projects/${project}`}
                 className="project-item shadow-box"
@@ -41,15 +56,6 @@ export function Projects() {
           );
         })}
       </ul>
-      <footer>
-        <button className="project-prev" aria-label="Previous projects">
-          <FaAngleLeft />
-        </button>
-        <div className="seperator-rect"></div>
-        <button className="project-next" aria-label="Next projects">
-          <FaAngleRight />
-        </button>
-      </footer>
     </section>
   );
 }
