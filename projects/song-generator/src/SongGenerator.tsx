@@ -215,7 +215,7 @@ function SongGenerator() {
 
   // Refs
   const chordSynthRef = useRef<Tone.PolySynth | null>(null);
-  const leadSynthRef = useRef<Tone.Synth | null>(null);
+  const leadSynthRef = useRef<Tone.FMSynth | null>(null);
   const bassSynthRef = useRef<Tone.MonoSynth | null>(null);
   const arpSynthRef = useRef<Tone.PluckSynth | null>(null);
   const guitarSynthRef = useRef<Tone.PluckSynth | null>(null);
@@ -541,7 +541,7 @@ function SongGenerator() {
         setCurrentSection(evt.section);
         if (padEnabled) {
           chordSynthRef.current!.triggerAttackRelease(
-            CHORDS[evt.chord!],
+            CHORDS[evt.chord!] || [],
             "1m",
             time
           );
@@ -585,9 +585,12 @@ function SongGenerator() {
       }
 
       if (arpEnabled) {
-        const arpNotes = buildArpNotes(evt.chord ? CHORDS[evt.chord] : []);
+        const arpNotes = buildArpNotes(
+          evt.chord ? CHORDS[evt.chord] || [] : []
+        );
         const arpStep = SECS_PER_BEAT / 2; // eighth-note pulse
         arpNotes.forEach((note, idx) => {
+          if (!note) return;
           Tone.Transport.schedule(
             (time) => {
               arpSynthRef.current!.triggerAttackRelease(note, "16n", time, 0.4);
