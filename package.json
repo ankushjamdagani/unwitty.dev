@@ -15,7 +15,7 @@
     "@common/typescript-config": "workspace:*",
     "@turbo/gen": "^2.5.6",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.6"
+    "turbo": "^2.9.9"
   },
   "packageManager": "pnpm@10.14.0",
   "engines": {
