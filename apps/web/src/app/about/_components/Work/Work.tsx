@@ -11,6 +11,29 @@ import { GoArrowUpRight } from "react-icons/go";
 
 const Jobs = [
   {
+    company: "Atlassian",
+    link: {
+      website: "https://www.atlassian.com/",
+      linkedin: "https://www.linkedin.com/company/atlassian/about/",
+    },
+    logo: "/images/company-logo/atlassian.svg",
+    startDate: "2026-01-01",
+    endDate: "",
+    description: "",
+    title: "Senior Software Engineer - Fullstack",
+    techStack: [
+      "typescript",
+      "react.js",
+      "golang",
+      "microservices",
+      "postgreSQL",
+      "AWS SQS",
+      "Terraform",
+      "AWS EC2",
+      "ECS",
+    ],
+  },
+  {
     company: "Uber",
     link: {
       website: "https://www.uber.com/",
