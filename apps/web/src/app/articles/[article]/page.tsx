@@ -26,7 +26,7 @@ export default function Article() {
           ]}
         />
 
-        <h1 className="my-8 text-[3.5rem] font-bold">
+        <h1 className="my-8 leading-tight font-bold">
           Beware!! This is going to be a randomly generated blog.
         </h1>
 
@@ -52,7 +52,7 @@ export default function Article() {
 
       <section className="px-[var(--horizontal-gap)] py-4 text-[1.2em] leading-[1.75em]">
         <blockquote
-          className={`relative mb-[1.4em] italic px-[3em] py-[2em] text-left before:absolute before:left-0 before:top-0 before:text-[4em] before:content-['"']`}
+          className={`relative italic px-[3em] my-[4em] text-left before:absolute before:left-0 before:top-0 before:text-[4em] before:content-['"']`}
           cite="https://www.huxley.net/bnw/four.html"
         >
           <h3 className="mb-2 mt-4 text-[2em]">TLDR;</h3>
@@ -81,8 +81,10 @@ export default function Article() {
           scelerisque felis imperdiet proin fermentum leo vel. Consectetur purus
           ut faucibus pulvinar elementum. Enim sit amet venenatis urna cursus.
           Porta non pulvinar neque laoreet suspendisse interdum consectetur.
-          Auctor urna nunc id cursus metus aliquam eleifend. Quam{" "}
-          <a className="border-dashed border-b">pellentesque</a>
+          Auctor urna nunc id cursus metus aliquam eleifend. Quam
+          <a className="border-dashed border-b border-gray-900 bg-blue-200 px-1 mx-1">
+            pellentesque
+          </a>
           nec nam aliquam sem et tortor consequat id.
         </p>
 
@@ -100,7 +102,7 @@ export default function Article() {
           augue. Mattis nunc sed blandit libero
         </p>
 
-        <h2 className="mb-2 mt-4 text-[3em]">Some random heading</h2>
+        <h2 className="my-4 leading-tight">Some random heading</h2>
 
         <figure className="mx-[-2em] mb-[1.4em]">
           <Image
@@ -126,7 +128,7 @@ export default function Article() {
         </p>
 
         <blockquote
-          className={`relative mb-[1.4em] italic px-[3em] py-[2em] text-left before:absolute before:left-0 before:top-0 before:text-[4em] before:content-['"']`}
+          className={`relative italic px-[3em] my-[4em] text-left before:absolute before:left-0 before:top-0 before:text-[4em] before:content-['"']`}
           cite="https://www.huxley.net/bnw/four.html"
         >
           <p className="mb-6">
@@ -150,7 +152,7 @@ export default function Article() {
           in metus vulputate eu scelerisque.
         </p>
 
-        <ul className="mb-6 ml-16 list-outside list-square leading-[1.5em]">
+        <ul className="mb-6 ml-16 list-inside list-[square] leading-[1.5em]">
           <li className="mb-1">This is a bulleted list</li>
           <li className="mb-1">This is a bulleted list</li>
           <li className="mb-1">This is a bulleted list</li>
@@ -166,7 +168,7 @@ export default function Article() {
           lectus. Dolor sit amet cons
         </p>
 
-        <ol className="mb-6 ml-16 list-outside list-decimal leading-[1.5em]">
+        <ol className="mb-6 ml-16 list-outside list-[decimal] leading-[1.5em]">
           <li className="mb-1">This is a numbered list</li>
           <li className="mb-1">This is a numbered list</li>
           <li className="mb-1">This is a numbered list</li>

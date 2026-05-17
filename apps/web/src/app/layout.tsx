@@ -5,7 +5,7 @@ import { Montserrat } from "next/font/google";
 import { CursorInverted } from "@/components/CursorInveted";
 // import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
 
-import "./globals.css";
+import "./_styles/globals.css";
 // import { CursorWind } from "@/components/CursorWind";
 import { LevaDebugger } from "@/components/LevaDebugger";
 import { Nav } from "./_components/Nav";
