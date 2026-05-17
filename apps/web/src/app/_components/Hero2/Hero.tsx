@@ -7,8 +7,6 @@ import {
   FaXTwitter,
 } from "react-icons/fa6";
 
-import "./Hero.styles.css";
-
 import { Time } from "@/components/Time";
 import { AnimatedWordList } from "@/components/AnimatedWordList";
 import { TypeWord, TypeWordCursor } from "@/components/TypeWord";
@@ -73,14 +71,19 @@ const SocialLinks = [
 
 export function Hero() {
   return (
-    <section id="home">
-      <h1>Ankush J.</h1>
+    <section
+      id="home"
+      className="ml-[var(--horizontal-gap)] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height))] flex-col justify-center gap-4"
+    >
+      <h1 className="first-letter:bg-foreground first-letter:text-background first-letter:rounded first-letter:mr-1 first-letter:px-3 font-bold">
+        Ankush J.
+      </h1>
 
-      <p className="pseudo-name">
+      <p className="pseudo-name border-foreground my-5 mb-3 max-w-[480px] border-y-2 border-dashed py-1 text-[0.85em] italic">
         a.k.a. <strong>Unwitty</strong>.dev
       </p>
 
-      <p>
+      <p className="max-w-[480px]">
         Frontend Developer for 7 years, now full-stack for the past{" "}
         {new Date().getFullYear() - new Date(2024, 4, 1).getFullYear()} -
         weaving digital tales and embracing the lazy coder&apos;s lifestyle.{" "}
@@ -108,7 +111,7 @@ export function Hero() {
 
       <div className="seperator-rect"></div>
 
-      <ul className="social-links">
+      <ul className="flex w-full items-start gap-2">
         {SocialLinks.map((link) => (
           <li key={link.label}>
             <Link
@@ -116,6 +119,7 @@ export function Hero() {
               aria-label={link.label}
               target="_blank"
               rel="noopener noreferrer"
+              className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
             >
               {link.icon}
             </Link>
@@ -123,22 +127,23 @@ export function Hero() {
         ))}
       </ul>
 
-      <div className="right-panel">
-        <figure className="rotating-hero-image">
+      <div className="absolute bottom-0 left-[calc(480px+4em)] top-0 flex w-[300px] flex-col justify-center">
+        <figure className="bg-background rounded border-foreground hover:z-base p-3 pb-2 text-center transition-[filter,transform] duration-300 [filter:grayscale(1)] [transform:translateY(0px)_translateX(10px)_rotateZ(7deg)_scale(1)] hover:scale-110 hover:[filter:grayscale(0)] hover:[transform:translateY(0px)_translateX(10px)_rotateZ(-4deg)_scale(1.2)] border-2 border-dashed">
           <Image
             alt="Profile Picture"
             height={300}
             src="/images/profile.png"
             width={200}
+            className="border-background aspect-[1/1.15] w-full flex-1 rounded border-b-2 object-cover"
             style={{
               objectPosition: "top",
             }}
           />
-          <figcaption style={{ fontWeight: "bold" }}>Hakuna Matata</figcaption>
+          <figcaption className="font-bold">Hakuna Matata</figcaption>
         </figure>
       </div>
 
-      <footer>
+      <footer className="text-xs absolute bottom-0 left-0 right-[var(--horizontal-gap)] flex justify-between py-2 pl-0 pr-4">
         <em>
           Based in India →{" "}
           <strong>

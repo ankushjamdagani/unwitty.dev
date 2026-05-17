@@ -7,8 +7,6 @@ import { GoArrowUpRight } from "react-icons/go";
 
 import { ThemeToggle } from "./ThemeToggle";
 
-import "./Nav.styles.css";
-
 import useMostVisibileItem from "@/hooks/useMostVisibleItem";
 
 const Links = [
@@ -45,35 +43,46 @@ export function Nav() {
   const activePath = `/#${activeElement?.id}`;
 
   return (
-    <header id="navigation-bar">
+    <header
+      id="navigation-bar"
+      className="bg-background border-foreground z-nav h-nav sticky top-0 mb-2 flex items-center justify-between border-b-[length:var(--border-width)] border-dashed px-[var(--horizontal-gap)]"
+    >
       <span>
-        <Link href="/#home" id="logo">
+        <Link
+          href="/#home"
+          id="logo"
+          className="bg-foreground rounded px-2 py-1 font-bold text-background"
+        >
           Unwitty
         </Link>
         {"  "}.dev
       </span>
       <nav>
-        <ul>
+        <ul className="flex items-center text-[0.875em]">
           {Links.map((link) => (
             <React.Fragment key={link.path}>
-              <li>
+              <li className="px-2">
                 <Link
                   href={link.path}
                   prefetch={true}
-                  className={activePath === link.path ? "active" : ""}
+                  className={`inline-flex rounded p-2 hover:font-bold ${
+                    activePath === link.path ? "font-bold" : ""
+                  }`}
                   aria-current={path === link.path}
                 >
                   <>
                     {link.label}
-                    {link.icon ? link.icon() : null}
+                    {link.icon ? (
+                      <span className="ml-1 mt-[2px]">{link.icon()}</span>
+                    ) : null}
                   </>
                 </Link>
               </li>
 
-              <div className="seperator-rect-sm"></div>
+              <div className="seperator-rect-sm last-of-type:hidden"></div>
             </React.Fragment>
           ))}
-          <li>
+          <li className="px-2">
             <ThemeToggle />
           </li>
         </ul>

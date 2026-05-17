@@ -2,7 +2,6 @@
 
 import { useMouse } from "@uidotdev/usehooks";
 
-import "./CursorWind.styles.css";
 import { useEffect } from "react";
 
 let baseFrequency = 0.05;
@@ -20,6 +19,7 @@ export function CursorWind() {
     <>
       <div
         id="cursor-wind"
+        className="z-above-all pointer-events-none absolute h-[1000px] w-[1000px] rounded-full [backdrop-filter:url(#displacementFilter)] [mask:radial-gradient(black,transparent_70%)]"
         style={{
           left: `${mouse.elementX - 50}px`,
           top: `${mouse.elementY - 50}px`,
@@ -30,11 +30,7 @@ export function CursorWind() {
         height="200"
         viewBox="0 0 220 220"
         xmlns="http://www.w3.org/2000/svg"
-        style={{
-          // position: "absolute",
-          left: `${mouse.elementX - 50}px`,
-          top: `${mouse.elementY - 50}px`,
-        }}
+        className="hidden"
       >
         <filter id="displacementFilter">
           <feTurbulence

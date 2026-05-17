@@ -2,20 +2,10 @@
 
 import { useEffect, useRef } from "react";
 
-import "./Cursor.styles.css";
-
 export function Cursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // --- Just for practicing ---
-    // - remove cursor
-    // - later it will be handled by `is-cursor-interactive` class in css
-    // document.body.style.cursor = "none";
-    // document
-    //   .querySelectorAll("a, button")
-    //   .forEach((el) => ((el as HTMLElement).style.cursor = "none"));
-
     function mouseHandler(evt: MouseEvent) {
       if (!cursorRef.current) return;
 
@@ -42,5 +32,11 @@ export function Cursor() {
     };
   }, []);
 
-  return <div id="cursor" ref={cursorRef}></div>;
+  return (
+    <div
+      id="cursor"
+      ref={cursorRef}
+      className="z-above-all pointer-events-none fixed h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full backdrop-invert backdrop-grayscale transition-[width,height] duration-200"
+    ></div>
+  );
 }

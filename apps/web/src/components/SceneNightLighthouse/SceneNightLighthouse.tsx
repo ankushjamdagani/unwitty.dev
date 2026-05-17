@@ -2,8 +2,6 @@
 
 import { useControls } from "leva";
 
-import "./SceneNightLighthouse.styles.css";
-
 export function SceneNightLighthouse() {
   const { sunFeDisplacementMap, cloudsFeDisplacementMap } = useControls({
     sunFeDisplacementMap: 10,
@@ -11,12 +9,32 @@ export function SceneNightLighthouse() {
   });
 
   return (
-    <div id="SceneNightLighthouse">
-      <div id="sun"></div>
-      <div id="clouds"></div>
-      <div id="sea"></div>
+    <div
+      id="SceneNightLighthouse"
+      className="z-below-all absolute bottom-0 left-0 right-0 top-[var(--nav-height)] opacity-75"
+      style={{
+        background:
+          "linear-gradient(to top, transparent 50%, rgba(var(--foreground-rgb), 0.2) 100%), rgb(var(--background-rgb)) repeating-linear-gradient(0deg, transparent, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0.1) 7px)",
+      }}
+    >
+      <div
+        id="sun"
+        className="bg-foreground absolute left-[100px] top-[100px] h-[100px] w-[100px] rounded-full [filter:url(#sun-decompose)]"
+      ></div>
+      <div
+        id="clouds"
+        className="absolute left-[50px] top-[150px] h-[100px] w-[200px] rounded-full [filter:url(#wavy-clouds)_invert(1)] [background:radial-gradient(rgb(var(--foreground-rgb)),transparent_40%)] after:absolute after:left-[-150px] after:top-[-40px] after:h-[140px] after:w-[530px] after:rounded-full after:opacity-50 after:content-[''] after:[background:radial-gradient(rgb(var(--foreground-rgb)),transparent_40%)] after:[filter:url(#wavy-clouds)_invert(1)]"
+      ></div>
+      <div
+        id="sea"
+        className="absolute bottom-0 left-[-20px] right-[var(--horizontal-gap)] h-[140px] [filter:url(#nightSea)]"
+        style={{
+          background:
+            "linear-gradient(to top, transparent 50%, rgba(var(--foreground-rgb), 0.2) 100%), rgb(var(--background-rgb)) repeating-linear-gradient(0deg, transparent, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0.1) 7px)",
+        }}
+      ></div>
 
-      <svg>
+      <svg className="hidden">
         <defs>
           <filter id="sun-decompose">
             <feTurbulence

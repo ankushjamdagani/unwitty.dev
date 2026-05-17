@@ -9,12 +9,13 @@ import {
 import { AnimatedWordList } from "@/components/AnimatedWordList";
 import { Time } from "@/components/Time";
 
-import "./Hero.styles.css";
-
 export function Hero() {
   return (
-    <section id="hero" className="--left-aligned">
-      <h1>
+    <section
+      id="hero"
+      className="border-foreground ml-[max(16px,calc((100vw-800px)/2))] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height)/2)] flex-col items-start justify-center gap-4 border-l-[length:var(--border-width)] border-dashed py-16 pl-4 text-left"
+    >
+      <h1 className="text-[4.5em] leading-[1.15em]">
         Hello <br />
         I&apos;m <b>Ankush</b>
       </h1>
@@ -37,30 +38,42 @@ export function Hero() {
 
       <div className="seperator-rect"></div>
 
-      <ul>
+      <ul className="flex gap-2">
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaGithub />
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaXTwitter />
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaLinkedinIn />
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaRegEnvelope />
           </Link>
         </li>
       </ul>
 
-      <footer>
+      <footer className="text-xs absolute bottom-0 left-0 flex w-full justify-between py-2 pl-0 pr-4">
         <em>
           Based in India →{" "}
           <strong>
