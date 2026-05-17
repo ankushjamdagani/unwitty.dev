@@ -2,7 +2,6 @@
 
 import { useMouse } from "@uidotdev/usehooks";
 
-import "./CursorInverted.styles.css";
 import { useEffect } from "react";
 
 export function CursorInverted() {
@@ -16,6 +15,7 @@ export function CursorInverted() {
     <>
       <div
         id="cursor-inverted"
+        className="z-above-all pointer-events-none absolute h-[100px] w-[100px] rounded-full backdrop-invert"
         style={{
           left: `${mouse.elementX - 50}px`,
           top: `${mouse.elementY - 50}px`,

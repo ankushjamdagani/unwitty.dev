@@ -6,8 +6,6 @@ import Link from "next/link";
 import { GoArrowUpRight } from "react-icons/go";
 import { MdFullscreen } from "react-icons/md";
 
-import "./ProjectPreview.styles.css";
-
 export function ProjectPreview({
   githubLink,
   previewElement: PreviewElement,
@@ -29,26 +27,28 @@ export function ProjectPreview({
 
   return (
     <section
-      className={`project-preview ${isFullscreen ? "fullscreen" : ""}`}
+      className={`bg-background rounded border-foreground mb-[2em] flex min-h-[80vh] w-full flex-col items-start overflow-auto scroll-smooth border-solid border-[length:var(--border-width)] ${
+        isFullscreen ? "z-overlay fixed inset-0 h-screen" : "relative"
+      }`}
       ref={wrapperRef}
     >
-      <header className="project-preview-header">
+      <header className="bg-foreground text-background text-xs z-[1] flex h-10 w-full items-center justify-between px-2 border-background border-b border-dashed">
         <p>Preview</p>
-        <div className="preview-controls">
-          <Link href={githubLink} target="_blank">
-            Github <GoArrowUpRight />
+        <div className="flex items-center gap-4">
+          <Link href={githubLink} target="_blank" className="flex items-center gap-1">
+            Github <GoArrowUpRight className="text-base" />
           </Link>
           |
-          <button onClick={openFullscreen}>
-            Fullscreen <MdFullscreen />
+          <button onClick={openFullscreen} className="flex items-center gap-1">
+            Fullscreen <MdFullscreen className="text-base" />
           </button>
         </div>
       </header>
-      <div className="project-preview-content">
+      <div className="flex h-[calc(100%-80px)] max-h-screen w-full justify-center overflow-auto">
         <PreviewElement />
       </div>
-      <footer className="project-preview-footer">
-        <ul>
+      <footer className="bg-foreground text-background text-xs z-[1] flex h-10 w-full items-center justify-between px-2 border-background border-t border-dashed">
+        <ul className="flex gap-2 p-2">
           <li className="badge">100 FCP</li>
           <li className="badge">89 FID</li>
           <li className="badge">99 CLS</li>

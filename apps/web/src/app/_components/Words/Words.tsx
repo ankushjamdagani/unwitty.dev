@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
-import "./Words.styles.css";
-
 const List = [
   {
     id: "blog 1",
@@ -65,23 +63,30 @@ export function Words() {
   return (
     <section id="words" className="container">
       <h2>Thoughts</h2>
-      <ul>
+      <ul className="group/list flex">
         {List.map((post) => (
-          <li key={post.id}>
+          <li
+            key={post.id}
+            className="group-hover/list:opacity-50 hover:!opacity-100 flex w-full items-stretch justify-stretch transition-all duration-300"
+          >
             <Link
               aria-label={post.title}
-              className="post shadow-box"
+              className="post shadow-box flex-col justify-start p-4 text-left"
               href={`/articles/${post.id}`}
             >
               <Image
                 alt={post.title}
-                className="post-thumb"
+                className="post-thumb bg-foreground rounded-sm aspect-square w-full"
                 height={240}
                 src={post.thumbnail.src}
                 width={240}
               />
-              <h3 className="post-title">{post.title}</h3>
-              <p className="post-description">{post.description}</p>
+              <h3 className="post-title my-4 w-[240px] overflow-hidden text-ellipsis whitespace-nowrap text-[1.2em] font-bold">
+                {post.title}
+              </h3>
+              <p className="post-description mb-4 w-full text-[0.85em]">
+                {post.description}
+              </p>
             </Link>
           </li>
         ))}

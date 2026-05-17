@@ -11,8 +11,6 @@ import {
   type RotatingCardsItem,
 } from "@/components/RotatingCards";
 
-import "./Introduction.styles.css";
-
 const Images: RotatingCardsItem[] = [
   {
     src: "/images/about1.jpeg",
@@ -36,12 +34,15 @@ const Images: RotatingCardsItem[] = [
 
 export function Introduction() {
   return (
-    <section id="container-introduction">
-      <h1>About me</h1>
+    <section
+      id="container-introduction"
+      className="ml-[var(--horizontal-gap)] relative flex flex-col gap-4 pl-4 pt-16"
+    >
+      <h1 className="text-[4.5em] font-bold">About me</h1>
 
       <div className="seperator-rect"></div>
 
-      <p>
+      <p className="max-w-[480px]">
         Frontend Developer for 7 years, weaving digital tales and embracing the
         lazy coder&apos;s lifestyle. <br /> <br />
         <strong>❤️ all things Javascript.</strong>
@@ -54,30 +55,42 @@ export function Introduction() {
 
       <div className="seperator-rect"></div>
 
-      <ul className="social-links">
+      <ul className="flex w-full items-start gap-2">
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaGithub />
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaXTwitter />
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaLinkedinIn />
           </Link>
         </li>
         <li>
-          <Link href="#">
+          <Link
+            href="#"
+            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+          >
             <FaRegEnvelope />
           </Link>
         </li>
       </ul>
 
-      <div className="right-panel">
+      <div className="absolute bottom-0 right-[var(--horizontal-gap)] top-[calc(64px+4em)] w-[300px]">
         <RotatingCards list={Images} />
       </div>
     </section>

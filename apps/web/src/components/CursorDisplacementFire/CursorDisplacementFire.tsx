@@ -2,7 +2,6 @@
 
 import { useMouse } from "@uidotdev/usehooks";
 
-import "./CursorDisplacementFire.styles.css";
 import { useEffect } from "react";
 
 export function CursorDisplacementFire() {
@@ -16,12 +15,13 @@ export function CursorDisplacementFire() {
     <>
       <div
         id="cursor-displacement-fire"
+        className="z-above-all pointer-events-none absolute h-[100px] w-[100px] rounded-full [backdrop-filter:url(#displacementFilter)] [filter:url(#displacementFilter)]"
         style={{
           left: `${mouse.elementX - 50}px`,
           top: `${mouse.elementY - 50}px`,
         }}
       ></div>
-      <svg xmlns="http://www.w3.org/2000/svg">
+      <svg xmlns="http://www.w3.org/2000/svg" className="hidden">
         <filter id="displacementFilter">
           <feTurbulence
             id="turbulence"

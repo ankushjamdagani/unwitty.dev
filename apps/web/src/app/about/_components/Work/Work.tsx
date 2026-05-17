@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import "./Work.styles.css";
 import { GoArrowUpRight } from "react-icons/go";
 
 /**
@@ -135,36 +134,40 @@ const Jobs = [
 
 export function Work() {
   return (
-    <section id="work" className="container">
+    <section id="work" className="container items-start w-full">
       <h2>Work History</h2>
-      <ul className="content-list">
+      <ul className="flex flex-col gap-16 p-8 pl-[var(--horizontal-gap)] pr-8 w-full">
         {Jobs.map((job) => (
-          <li key={job.company} className="content-item">
-            <div className="start-time">
-              <time className="year">
+          <li
+            key={job.company}
+            className="relative flex w-full max-w-[640px] flex-col flex-wrap gap-4"
+          >
+            <div className="border-foreground border-b-2 border-dashed pb-1">
+              <time className="text-[2.75em]">
                 {new Date(job.startDate).getFullYear()}
               </time>
-              <time className="month">
+              <time className="bg-background text-xs absolute left-0 top-[5.15em] pr-2 uppercase">
                 {new Date(job.startDate).toLocaleString("default", {
                   month: "long",
                 })}
               </time>
             </div>
 
-            <header>
+            <header className="flex flex-1 items-center justify-start gap-4 mt-4">
               <Image
                 src={job.logo}
                 alt={job.company}
                 width={40}
                 height={40}
-                className="company-logo"
+                className="rounded grayscale aspect-square"
               />
               <div>
-                <h3>
+                <h3 className="text-lg font-bold">
                   <Link
                     href={job.link.linkedin}
                     aria-label={job.company}
                     target="_blank"
+                    className="inline-flex items-end gap-2"
                   >
                     {job.company}
                     <GoArrowUpRight />
@@ -175,9 +178,12 @@ export function Work() {
               </div>
             </header>
 
-            <ul className="tech-list">
+            <ul className="flex flex-wrap gap-2">
               {job.techStack.map((item) => (
-                <li key={item} className="tech-item">
+                <li
+                  key={item}
+                  className="text-xs rounded-[2px] border-thin border-solid border-foreground px-1 py-[2px]"
+                >
                   {item}{" "}
                 </li>
               ))}

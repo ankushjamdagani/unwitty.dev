@@ -2,22 +2,22 @@ import { BsCalendar2Date } from "react-icons/bs";
 
 import { BreadCrumb } from "@/app/_components/Breadcrumb";
 
-import "./Article.styles.css";
 import Image from "next/image";
 
 export default function Article() {
   return (
-    <main className="article-wrapper">
-      <section className="article-cover">
+    <main className="-mt-2">
+      <section className="h-full max-h-[500px] w-full overflow-hidden">
         <Image
           src="/images/projects/gameboy_tetris.jpeg"
           alt="some text"
           width="1024"
           height="400"
+          className="h-full w-full object-cover"
         />
       </section>
 
-      <header className="article-header">
+      <header className="px-[var(--horizontal-gap)] py-4">
         <BreadCrumb
           options={[
             { path: "/", label: "Home" },
@@ -26,29 +26,37 @@ export default function Article() {
           ]}
         />
 
-        <h1>Beware!! This is going to be a randomly generated blog.</h1>
+        <h1 className="my-8 text-[3.5rem] font-bold">
+          Beware!! This is going to be a randomly generated blog.
+        </h1>
 
-        <ul className="article-meta">
-          <li className="article-author">
+        <ul className="flex items-center gap-8">
+          <li className="flex items-center gap-2">
             <Image
               src="/images/projects/gameboy_tetris.jpeg"
               alt="some text"
               width="32"
               height="32"
+              className="h-8 w-8 rounded-full"
             />
-            <a href="/about">Ankush Jamdagani</a>
+            <a href="/about" className="hover:underline">
+              Ankush Jamdagani
+            </a>
           </li>
 
-          <li className="article-date">
+          <li className="flex items-center gap-2">
             <BsCalendar2Date /> <time>{new Date().toDateString()}</time>
           </li>
         </ul>
       </header>
 
-      <section className="article-content">
-        <blockquote cite="https://www.huxley.net/bnw/four.html">
-          <h3>TLDR;</h3>
-          <p>
+      <section className="px-[var(--horizontal-gap)] py-4 text-[1.2em] leading-[1.75em]">
+        <blockquote
+          className={`relative mb-[1.4em] italic px-[3em] py-[2em] text-left before:absolute before:left-0 before:top-0 before:text-[4em] before:content-['"']`}
+          cite="https://www.huxley.net/bnw/four.html"
+        >
+          <h3 className="mb-2 mt-4 text-[2em]">TLDR;</h3>
+          <p className="mb-6">
             Words can be like X-rays, if you use them properly—they’ll go
             through anything. You read and you’re pierced. Sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Nisl nunc mi ipsum
@@ -60,27 +68,29 @@ export default function Article() {
           </p>
         </blockquote>
 
-        <div className="line-seperator"></div>
+        <div className="bg-foreground my-8 h-[1px] w-full opacity-20"></div>
 
-        <p>
+        <p className="mb-6">
           Lorem ipsum dolor sit amet,{" "}
-          <code className="code-inline">conse c t et ur</code> adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Nisl nunc mi ipsum faucibus vitae aliquet. risus nec feugiat in
-          fermentum posuere. Neque sodales ut etiam sit. Vulputate eu
+          <code className="bg-foreground text-background rounded px-2 font-mono overflow-auto whitespace-pre [tab-size:4]">
+            conse c t et ur
+          </code>{" "}
+          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Nisl nunc mi ipsum faucibus vitae aliquet. risus nec
+          feugiat in fermentum posuere. Neque sodales ut etiam sit. Vulputate eu
           scelerisque felis imperdiet proin fermentum leo vel. Consectetur purus
           ut faucibus pulvinar elementum. Enim sit amet venenatis urna cursus.
           Porta non pulvinar neque laoreet suspendisse interdum consectetur.
           Auctor urna nunc id cursus metus aliquam eleifend. Quam{" "}
-          <a>pellentesque</a>
+          <a className="border-dashed border-b">pellentesque</a>
           nec nam aliquam sem et tortor consequat id.
         </p>
 
-        <code className="code-block">
+        <code className="bg-foreground text-background rounded-lg mx-[-2em] my-8 block overflow-auto whitespace-pre px-8 py-4 font-mono [tab-size:4]">
           def test(): print(&quot;this is block code&quot;)
         </code>
 
-        <p>
+        <p className="mb-6">
           Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum.
           Nibh mauris cursus mattis molestie a iaculis at erat. Enim neque
           volutpat ac tincidunt vitae semper quis lectus. Tellus mauris a diam
@@ -90,19 +100,22 @@ export default function Article() {
           augue. Mattis nunc sed blandit libero
         </p>
 
-        <h2>Some random heading</h2>
+        <h2 className="mb-2 mt-4 text-[3em]">Some random heading</h2>
 
-        <figure>
+        <figure className="mx-[-2em] mb-[1.4em]">
           <Image
             src="/images/projects/gameboy_tetris.jpeg"
             alt="some text"
             width="400"
             height="400"
+            className="border-foreground rounded-lg block w-full border-2 border-dashed"
           />
-          <figcaption>An elephant at sunset</figcaption>
+          <figcaption className="text-center text-sm italic">
+            An elephant at sunset
+          </figcaption>
         </figure>
 
-        <p>
+        <p className="mb-6">
           Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum.
           Nibh mauris cursus mattis molestie a iaculis at erat. Enim neque
           volutpat ac tincidunt vitae semper quis lectus. Tellus mauris a diam
@@ -112,8 +125,11 @@ export default function Article() {
           augue. Mattis nunc sed blandit libero
         </p>
 
-        <blockquote cite="https://www.huxley.net/bnw/four.html">
-          <p>
+        <blockquote
+          className={`relative mb-[1.4em] italic px-[3em] py-[2em] text-left before:absolute before:left-0 before:top-0 before:text-[4em] before:content-['"']`}
+          cite="https://www.huxley.net/bnw/four.html"
+        >
+          <p className="mb-6">
             Words can be like X-rays, if you use them properly—they’ll go
             through anything. You read and you’re pierced.
           </p>
@@ -122,7 +138,7 @@ export default function Article() {
           </footer>
         </blockquote>
 
-        <p>
+        <p className="mb-6">
           volutpat sed cras ornare. Amet mattis vulputate enim nulla aliquet
           porttitor lacus luctus. Bibendum ut tristique et egestas quis ipsum
           suspendisse ultrices. Imperdiet sed euismod nisi porta lorem mollis
@@ -134,14 +150,14 @@ export default function Article() {
           in metus vulputate eu scelerisque.
         </p>
 
-        <ul className="list-bullet">
-          <li>This is a bulleted list</li>
-          <li>This is a bulleted list</li>
-          <li>This is a bulleted list</li>
-          <li>This is a bulleted list</li>
+        <ul className="mb-6 ml-16 list-outside list-square leading-[1.5em]">
+          <li className="mb-1">This is a bulleted list</li>
+          <li className="mb-1">This is a bulleted list</li>
+          <li className="mb-1">This is a bulleted list</li>
+          <li className="mb-1">This is a bulleted list</li>
         </ul>
 
-        <p>
+        <p className="mb-6">
           Ut tellus elementum sagittis vitae. Pretium nibh ipsum consequat nisl
           vel pretium lectus. Rhoncus urna neque viverra justo nec ultrices dui.
           Nunc lobortis mattis aliquam faucibus purus in massa tempor. Morbi
@@ -150,14 +166,14 @@ export default function Article() {
           lectus. Dolor sit amet cons
         </p>
 
-        <ol className="list-numbered">
-          <li>This is a numbered list</li>
-          <li>This is a numbered list</li>
-          <li>This is a numbered list</li>
-          <li>This is a numbered list</li>
+        <ol className="mb-6 ml-16 list-outside list-decimal leading-[1.5em]">
+          <li className="mb-1">This is a numbered list</li>
+          <li className="mb-1">This is a numbered list</li>
+          <li className="mb-1">This is a numbered list</li>
+          <li className="mb-1">This is a numbered list</li>
         </ol>
 
-        <p>
+        <p className="mb-6">
           Ut tellus elementum sagittis vitae. Pretium nibh ipsum consequat nisl
           vel pretium lectus. Rhoncus urna neque viverra justo nec ultrices dui.
           Nunc lobortis mattis aliquam faucibus purus in massa tempor. Morbi
@@ -166,14 +182,14 @@ export default function Article() {
           lectus. Dolor sit amet cons
         </p>
 
-        <ol className="list-alpha">
-          <li>This is a alphabetical list</li>
-          <li>This is a alphabetical list</li>
-          <li>This is a alphabetical list</li>
-          <li>This is a alphabetical list</li>
+        <ol className="mb-6 ml-16 list-outside list-[upper-alpha] leading-[1.5em]">
+          <li className="mb-1">This is a alphabetical list</li>
+          <li className="mb-1">This is a alphabetical list</li>
+          <li className="mb-1">This is a alphabetical list</li>
+          <li className="mb-1">This is a alphabetical list</li>
         </ol>
 
-        <p>
+        <p className="mb-6">
           Ut tellus elementum sagittis vitae. Pretium nibh ipsum consequat nisl
           vel pretium lectus. Rhoncus urna neque viverra justo nec ultrices dui.
           Nunc lobortis mattis aliquam faucibus purus in massa tempor. Morbi
@@ -189,7 +205,7 @@ export default function Article() {
           vivamus arcu. Habitant morbi tristique senectus et netus et.
         </p>
 
-        <p>
+        <p className="mb-6">
           Convallis convallis tellus id interdum velit laoreet. Aliquam nulla
           facilisi cras fermentum. Id interdum velit laoreet id donec. Id diam
           vel quam elementum pulvinar. Consequat nisl vel pretium lectus. Eu
@@ -204,7 +220,7 @@ export default function Article() {
           ultricies.
         </p>
 
-        <p>
+        <p className="mb-6">
           Eget nullam non nisi est. Ut pharetra sit amet aliquam id. Aliquam ut
           porttitor leo a diam sollicitudin tempor. Urna id volutpat lacus
           laoreet non curabitur. Neque viverra justo nec ultrices dui sapien
@@ -218,13 +234,23 @@ export default function Article() {
         </p>
       </section>
 
-      <footer className="article-footer">
-        <ul className="tags-wrapper">
-          <li className="tag">Typescript</li>
-          <li className="tag">Web Security</li>
-          <li className="tag">DDOS attack</li>
-          <li className="tag">CSRF Attacks</li>
-          <li className="tag">Content Security Policies</li>
+      <footer className="px-[var(--horizontal-gap)] py-4">
+        <ul className="mb-8 flex gap-2">
+          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+            Typescript
+          </li>
+          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+            Web Security
+          </li>
+          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+            DDOS attack
+          </li>
+          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+            CSRF Attacks
+          </li>
+          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+            Content Security Policies
+          </li>
         </ul>
       </footer>
     </main>

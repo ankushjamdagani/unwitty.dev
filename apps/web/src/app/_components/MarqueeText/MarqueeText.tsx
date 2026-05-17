@@ -1,5 +1,3 @@
-import "./MarqueeText.styles.css";
-
 const words = [
   "Full-Stack Developer",
   "フルスタック開発者",
@@ -19,39 +17,53 @@ const words = [
 ];
 
 export function MarqueeText() {
+  const listItems = (
+    <ul className="animate-marquee flex min-w-full flex-shrink-0 gap-8 py-2">
+      {words.map((word, index) => (
+        <li
+          key={word + index}
+          className="after:bg-foreground relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
+        >
+          {word}
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <div id="marquee-text-wrapper">
-      <div className="marquee-text marquee-text-primary">
-        <ul>
-          {words.map((word, index) => (
-            <li key={word + index} className="word">
-              {word}
-            </li>
-          ))}
-        </ul>
-        <ul aria-hidden>
-          {words.map((word, index) => (
-            <li key={word + index} className="word">
-              {word}
-            </li>
-          ))}
-        </ul>
+    <div
+      id="marquee-text-wrapper"
+      className="h-marquee w-full whitespace-nowrap"
+    >
+      <div className="bg-background border-foreground z-normal relative flex -rotate-[1.5deg] origin-right overflow-hidden border-y-[length:var(--border-width)] border-dashed opacity-80 transition-transform select-none">
+        {listItems}
+        <div aria-hidden className="flex">
+          {listItems}
+        </div>
       </div>
-      <div className="marquee-text marquee-text-secondary">
-        <ul>
+      <div className="bg-background border-foreground relative flex rotate-[1.5deg] origin-right overflow-hidden border-y-[length:var(--border-width)] border-dashed opacity-20 transition-transform select-none [&>ul]:direction-reverse">
+        <ul className="animate-marquee flex min-w-full flex-shrink-0 gap-8 py-2 [animation-direction:reverse]">
           {words.map((word, index) => (
-            <li key={word + index} className="word">
+            <li
+              key={word + index}
+              className="after:bg-foreground relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
+            >
               {word}
             </li>
           ))}
         </ul>
-        <ul aria-hidden>
-          {words.map((word, index) => (
-            <li key={word + index} className="word">
-              {word}
-            </li>
-          ))}
-        </ul>
+        <div aria-hidden className="flex">
+          <ul className="animate-marquee flex min-w-full flex-shrink-0 gap-8 py-2 [animation-direction:reverse]">
+            {words.map((word, index) => (
+              <li
+                key={word + index}
+                className="after:bg-foreground relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
+              >
+                {word}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
