@@ -4,8 +4,7 @@ import { Montserrat } from "next/font/google";
 
 import "../_styles/globals.css";
 import { Footer } from "../_components/Footer";
-import { Cursor } from "@/components/Cursor";
-import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { Nav } from "../_components/Nav2";
 
 // Inter is a variable font. Don't need weights
 // const font = Inter({ subsets: ["latin"] });
@@ -23,10 +22,9 @@ export default function LifeRootLayout({
 }) {
   return (
     <>
+      <Nav />
       {children}
       <Footer />
-      <Cursor />
-      <NoiseOverlay />
     </>
   );
 }

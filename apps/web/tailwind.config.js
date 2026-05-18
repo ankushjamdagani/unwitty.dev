@@ -6,6 +6,16 @@ module.exports = {
       colors: {
         foreground: "rgb(var(--foreground-rgb))",
         background: "rgb(var(--background-rgb))",
+        paper: "rgb(var(--paper-rgb))",
+        "paper-2": "rgb(var(--paper-2-rgb))",
+        ink: "rgb(var(--ink-rgb))",
+        "ink-2": "rgb(var(--ink-2-rgb))",
+        "ink-3": "rgb(var(--ink-3-rgb))",
+        status: "rgb(var(--status-rgb))",
+      },
+      fontFamily: {
+        "mono-display": "var(--font-mono-display), ui-monospace, monospace",
+        "serif-display": "var(--font-serif-display), serif",
       },
       borderRadius: {
         DEFAULT: "var(--border-radius)",

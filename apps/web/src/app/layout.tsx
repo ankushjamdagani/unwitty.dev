@@ -1,13 +1,32 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { JetBrains_Mono, Instrument_Serif } from "next/font/google";
+import { CursorInverted } from "@/components/CursorInveted";
+import { Cursor } from "@/components/Cursor";
+// import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
+// import { CursorWind } from "@/components/CursorWind";
+// import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 import "./_styles/globals.css";
 import { LevaDebugger } from "@/components/LevaDebugger";
 
-// Inter is a variable font. Don't need weights
-// const font = Inter({ subsets: ["latin"] });
-const font = Montserrat({ subsets: ["latin"] });
+// const font = Montserrat({
+//   subsets: ["latin"],
+//   variable: "--font-montserrat",
+// });
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-mono-display",
+});
+
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif-display",
+});
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -22,8 +41,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
-      <body className={`${font.className} monos`}>
+      <body className={`${jetbrains.variable} ${instrument.variable} monos`}>
         {children}
+        <Cursor />
+        <CursorInverted />
+
+        {/* <NoiseOverlay /> */}
         <React.Suspense fallback={null}>
           <LevaDebugger />
         </React.Suspense>

@@ -3,6 +3,23 @@
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
 
+  /* Shared paper/ink palette (warm cream by default) */
+  --paper-rgb: 236, 234, 227;
+  --paper-2-rgb: 226, 223, 213;
+  --ink-rgb: 21, 20, 15;
+  --ink-2-rgb: 95, 94, 85;
+  --ink-3-rgb: 164, 162, 153;
+  --paper: rgb(var(--paper-rgb));
+  --paper-2: rgb(var(--paper-2-rgb));
+  --ink: rgb(var(--ink-rgb));
+  --ink-2: rgb(var(--ink-2-rgb));
+  --ink-3: rgb(var(--ink-3-rgb));
+  --hair: rgba(var(--ink-rgb), 0.18);
+  --dot: rgba(var(--ink-rgb), 0.22);
+  --grid-size: 22px;
+  --dot-size: 1.1px;
+  --status-rgb: 46, 125, 79;
+
   /* Accessibility Styles */
   --focus-color: crimson;
   --focus-outline: dotted 2px var(--focus-color);
@@ -69,7 +86,23 @@
 
   --body-bgfilter: none;
 
+  --paper-rgb: 19, 19, 15;
+  --paper-2-rgb: 26, 26, 20;
+  --ink-rgb: 237, 233, 221;
+  --ink-2-rgb: 154, 152, 140;
+  --ink-3-rgb: 94, 92, 83;
+  --hair: rgba(var(--ink-rgb), 0.18);
+  --dot: rgba(var(--ink-rgb), 0.25);
+
   .dark-invert {
     filter: invert();
   }
+}
+
+[data-theme="cool"] {
+  --paper-rgb: 237, 238, 238;
+  --paper-2-rgb: 226, 228, 226;
+  --ink-rgb: 14, 20, 26;
+  --ink-2-rgb: 86, 96, 106;
+  --ink-3-rgb: 156, 164, 170;
 }
