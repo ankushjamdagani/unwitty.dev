@@ -57,6 +57,56 @@ export function Welcome() {
     [busy, router],
   );
 
+  const bgRef = useRef<HTMLDivElement>(null);
+  const compRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let raf: number | null = null;
+    const target = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+    const COMP_FACTOR = 0.4;
+    const SHADOW_FACTOR = 0.1;
+    const tick = () => {
+      current.x += (target.x - current.x) * 0.08;
+      current.y += (target.y - current.y) * 0.08;
+      const bg = bgRef.current;
+      const comp = compRef.current;
+      if (bg) {
+        bg.style.transform = `translate3d(${current.x.toFixed(2)}px, ${current.y.toFixed(2)}px, 0)`;
+      }
+      if (comp) {
+        comp.style.transform = `translate3d(${(current.x * COMP_FACTOR).toFixed(2)}px, ${(current.y * COMP_FACTOR).toFixed(2)}px, 0)`;
+        comp.style.setProperty(
+          "--shadow-x",
+          `${(current.x * SHADOW_FACTOR).toFixed(2)}px`,
+        );
+        comp.style.setProperty(
+          "--shadow-y",
+          `${(current.y * SHADOW_FACTOR).toFixed(2)}px`,
+        );
+      }
+      if (
+        Math.abs(target.x - current.x) > 0.05 ||
+        Math.abs(target.y - current.y) > 0.05
+      ) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        raf = null;
+      }
+    };
+    const onMove = (e: MouseEvent) => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      target.x = -((e.clientX - w / 2) / (w / 2)) * 30;
+      target.y = -((e.clientY - h / 2) / (h / 2)) * 30;
+      if (raf === null) raf = requestAnimationFrame(tick);
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (raf !== null) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowUp") {
@@ -81,19 +131,29 @@ export function Welcome() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-paper font-mono-display text-ink antialiased">
-      <div className={styles.paper}></div>
-      <div className={styles.grain}></div>
+      <div ref={bgRef} className={styles.bgWrap}>
+        <div className={styles.paper}></div>
+        <div
+          className={`${styles.paperOverlayBottom} ${hover === "work" ? styles.paperOverlayOn : ""}`}
+        ></div>
+        <div
+          className={`${styles.paperOverlayTop} ${hover === "life" ? styles.paperOverlayOn : ""}`}
+        ></div>
+        <div className={styles.grain}></div>
+      </div>
 
       <div className="relative grid h-screen w-screen grid-rows-[auto_1fr_auto]">
         <Nav />
         <main className="relative flex items-center justify-center">
-          <Composition
-            hover={hover}
-            selected={selected}
-            onHover={onHover}
-            onSelect={onSelect}
-            copy={{ work: "Work", life: "Life" }}
-          />
+          <div ref={compRef} className={styles.compWrap}>
+            <Composition
+              hover={hover}
+              selected={selected}
+              onHover={onHover}
+              onSelect={onSelect}
+              copy={{ work: "Work", life: "Life" }}
+            />
+          </div>
         </main>
         <Botbar />
       </div>
