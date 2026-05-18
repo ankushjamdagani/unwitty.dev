@@ -2,8 +2,10 @@ import React from "react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
-import "./_styles/globals.css";
-import { LevaDebugger } from "@/components/LevaDebugger";
+import "../_styles/globals.css";
+import { Footer } from "../_components/Footer";
+import { Cursor } from "@/components/Cursor";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 // Inter is a variable font. Don't need weights
 // const font = Inter({ subsets: ["latin"] });
@@ -14,20 +16,17 @@ export const metadata: Metadata = {
   description: "Personal portfolio for Ankush Jamdagani aka Unwitty Dev",
 };
 
-export default function RootLayout({
+export default function LifeRootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <link rel="icon" href="/images/favicon.png" sizes="any" />
-      <body className={`${font.className} monos`}>
-        {children}
-        <React.Suspense fallback={null}>
-          <LevaDebugger />
-        </React.Suspense>
-      </body>
-    </html>
+    <>
+      {children}
+      <Footer />
+      <Cursor />
+      <NoiseOverlay />
+    </>
   );
 }
