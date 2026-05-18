@@ -7,7 +7,7 @@ import { Botbar } from "./Chrome";
 import { Composition, type Choice } from "./Composition";
 import { Transition } from "./Transition";
 import styles from "./Welcome.module.css";
-import { Nav } from "../Nav2";
+import { Nav, NavVariant } from "../Nav";
 
 const ROUTES: Record<Choice, string> = {
   work: "/work",
@@ -23,6 +23,15 @@ export function Welcome() {
   const [busy, setBusy] = useState(false);
   const hoverRef = useRef<Choice | null>(null);
   hoverRef.current = hover;
+  const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (navTimeoutRef.current !== null) {
+        clearTimeout(navTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
@@ -50,7 +59,7 @@ export function Welcome() {
       if (busy) return;
       setBusy(true);
       setSelected(which);
-      setTimeout(() => {
+      navTimeoutRef.current = setTimeout(() => {
         router.push(ROUTES[which]);
       }, TRANSITION_MS);
     },
@@ -143,7 +152,7 @@ export function Welcome() {
       </div>
 
       <div className="relative grid h-screen w-screen grid-rows-[auto_1fr_auto]">
-        <Nav />
+        <Nav variant={NavVariant.WELCOME} />
         <main className="relative flex items-center justify-center">
           <div ref={compRef} className={styles.compWrap}>
             <Composition

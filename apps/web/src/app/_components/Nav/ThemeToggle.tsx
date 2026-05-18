@@ -55,7 +55,7 @@ export function ThemeToggle() {
   return (
     <div id="theme-switcher">
       <button aria-label={ariaLabel} onClick={toggleTheme} className="p-2">
-        {theme == themeOptions.light ? <FaMoon /> : <FaSun />}
+        {theme === themeOptions.light ? <FaMoon /> : <FaSun />}
       </button>
     </div>
   );

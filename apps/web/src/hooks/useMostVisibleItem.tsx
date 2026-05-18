@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import throttle from "@/utils/throttle";
 
-export default function useMostVisibileItemOnScroll<T extends HTMLElement>(
+export default function useMostVisibleItem<T extends HTMLElement>(
   selector: string,
   updateDelay: number = 100
 ) {

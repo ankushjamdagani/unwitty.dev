@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import { JetBrains_Mono, Instrument_Serif } from "next/font/google";
-import { CursorInverted } from "@/components/CursorInveted";
+// import { CursorInverted } from "@/components/CursorInveted";
 import { Cursor } from "@/components/Cursor";
 // import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
 // import { CursorWind } from "@/components/CursorWind";
@@ -44,7 +44,7 @@ export default function RootLayout({
       <body className={`${jetbrains.variable} ${instrument.variable} monos`}>
         {children}
         <Cursor />
-        <CursorInverted />
+        {/* <CursorInverted /> */}
 
         {/* <NoiseOverlay /> */}
         <React.Suspense fallback={null}>

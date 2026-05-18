@@ -39,7 +39,7 @@ export function Botbar() {
   return (
     <footer className="flex items-end justify-between pb-6 text-[11px] text-ink-2 px-[var(--horizontal-gap)]">
       <em>
-        Status → <strong></strong>
+        Status →{" "}
         <AnimatedWordList transitionTime={3000}>
           {Status.map((st) => (
             <strong key={st.label}>{st.label}</strong>

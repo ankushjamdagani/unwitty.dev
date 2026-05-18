@@ -7,49 +7,53 @@ import { GoArrowUpRight } from "react-icons/go";
 
 import { ThemeToggle } from "./ThemeToggle";
 
-import useMostVisibileItem from "@/hooks/useMostVisibleItem";
+import useMostVisibleItem from "@/hooks/useMostVisibleItem";
 
-const Links = [
-  // {
-  //   path: "#hero",
-  //   label: "Hero",
-  // },
-  {
-    path: "/#projects",
-    label: "Experiments",
-  },
-  {
-    path: "/#words",
-    label: "Thoughts",
-  },
-  {
-    path: "/#work",
-    label: "Work",
-  },
-  // {
-  //   path: "/about",
-  //   label: "About me",
-  // },
-  {
-    path: "#resume",
-    label: "Resume",
-    icon: () => <GoArrowUpRight />,
-  },
-];
+export enum NavVariant {
+  WELCOME = "welcome",
+  WORK = "work",
+  LIFE = "life",
+}
 
-export function Nav() {
+const Links = {
+  [NavVariant.WORK]: [
+    {
+      path: "/#projects",
+      label: "Experiments",
+    },
+    {
+      path: "/#words",
+      label: "Thoughts",
+    },
+    {
+      path: "/#work",
+      label: "Work",
+    },
+    {
+      path: "#resume",
+      label: "Resume",
+      icon: () => <GoArrowUpRight />,
+    },
+  ],
+  [NavVariant.LIFE]: [],
+  [NavVariant.WELCOME]: [],
+};
+
+export function Nav({ variant }: { variant: NavVariant }) {
   const path = usePathname();
-  const activeElement = useMostVisibileItem("main > section[id]");
+  const activeElement = useMostVisibleItem("main > section[id]");
   const activePath = `/#${activeElement?.id}`;
+
+  const links = Links[variant];
 
   return (
     <header
       id="navigation-bar"
-      className="bg-background border-foreground z-nav h-nav sticky top-0 mb-2 flex items-center justify-between border-b-[length:var(--border-width)] border-dashed px-[var(--horizontal-gap)]"
+      className="border-ink-2 z-nav h-nav sticky top-0 flex items-center justify-between border-b-[length:var(--border-width)] border-dashed px-[var(--horizontal-gap)]"
     >
       <span>
         <Link
-          href="/#home"
+          href="/"
           id="logo"
           className="bg-foreground rounded px-2 py-1 font-bold text-background"
         >
@@ -59,7 +63,7 @@ export function Nav() {
       </span>
       <nav>
         <ul className="flex items-center text-[0.875em]">
-          {Links.map((link) => (
+          {links.map((link) => (
             <React.Fragment key={link.path}>
               <li className="px-2">
                 <Link
