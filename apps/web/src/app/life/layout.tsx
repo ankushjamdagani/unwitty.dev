@@ -17,10 +17,10 @@ export default function LifeRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="font-serif-display">
       <Nav variant={NavVariant.LIFE} />
       {children}
       <Footer />
-    </>
+    </div>
   );
 }

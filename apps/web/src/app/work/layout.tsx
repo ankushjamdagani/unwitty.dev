@@ -17,10 +17,10 @@ export default function WorkRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="font-mono-display">
       <Nav variant={NavVariant.WORK} />
       {children}
       <Footer />
-    </>
+    </div>
   );
 }
