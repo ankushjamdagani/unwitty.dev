@@ -41,7 +41,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
-      <body className={`${jetbrains.variable} ${instrument.variable} monos`}>
+      <body
+        className={`${jetbrains.variable} ${instrument.variable} font-mono-display`}
+      >
         <div className="grain-overlay" />
         {children}
         <Cursor />
