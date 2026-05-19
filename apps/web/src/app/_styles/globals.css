@@ -123,7 +123,7 @@
   }
 
   [class^="seperator"] {
-    @apply bg-foreground;
+    @apply bg-fg-contrast;
   }
 
   .seperator-sq {
@@ -147,9 +147,9 @@
   }
 
   .shadow-box-v0 {
-    @apply bg-background rounded border-[length:var(--border-width)] border-foreground flex w-full relative items-center justify-center;
+    @apply bg-canvas-contrast rounded border-[length:var(--border-width-md)] border-fg-contrast flex w-full relative items-center justify-center;
     &::after {
-      @apply bg-foreground rounded content-[""] h-full left-0 absolute top-0 w-full z-below-all;
+      @apply bg-fg-contrast rounded content-[""] h-full left-0 absolute top-0 w-full z-below-all;
     }
     &:hover::after {
       @apply left-[0.35em] top-[0.35em];
@@ -157,11 +157,11 @@
   }
 
   .shadow-box {
-    @apply bg-[rgba(var(--background-rgb),0.5)] rounded border-[length:var(--border-width-extra-thick)] border-foreground flex w-full relative items-center justify-center;
+    @apply bg-canvas-contrast/50 rounded border-[length:var(--border-width-extra-thick)] border-fg-contrast flex w-full relative items-center justify-center;
   }
 
   .highlight-inverted {
-    @apply text-background bg-foreground;
+    @apply text-canvas-contrast bg-fg-contrast;
   }
 
   .badge {
@@ -174,7 +174,7 @@ html {
 }
 
 body {
-  @apply text-foreground bg-background tracking-[0.075em] relative;
+  @apply text-fg-contrast bg-canvas-contrast tracking-[0.075em] relative;
 
   &.mono {
     @apply text-[14px] font-mono;
@@ -206,7 +206,7 @@ h3 {
 }
 
 ::selection {
-  @apply text-background bg-foreground;
+  @apply text-canvas-contrast bg-fg-contrast;
 }
 
 a,

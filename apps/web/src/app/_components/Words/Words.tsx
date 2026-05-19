@@ -76,7 +76,7 @@ export function Words() {
             >
               <Image
                 alt={post.title}
-                className="post-thumb bg-foreground rounded-sm aspect-square w-full"
+                className="post-thumb bg-fg-contrast rounded-sm aspect-square w-full"
                 height={240}
                 src={post.thumbnail.src}
                 width={240}

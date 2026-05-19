@@ -22,7 +22,7 @@ export function MarqueeText() {
       {words.map((word, index) => (
         <li
           key={word + index}
-          className="after:bg-foreground relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
+          className="after:bg-fg-contrast relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
         >
           {word}
         </li>
@@ -35,18 +35,18 @@ export function MarqueeText() {
       id="marquee-text-wrapper"
       className="h-marquee w-full whitespace-nowrap"
     >
-      <div className="bg-background border-foreground z-normal relative flex -rotate-[1.5deg] origin-right overflow-hidden border-y-[length:var(--border-width)] border-dashed opacity-80 transition-transform select-none">
+      <div className="bg-canvas-contrast border-fg-contrast z-normal relative flex -rotate-[1.5deg] origin-right overflow-hidden border-y-[length:var(--border-width-md)] border-dashed opacity-80 transition-transform select-none">
         {listItems}
         <div aria-hidden className="flex">
           {listItems}
         </div>
       </div>
-      <div className="bg-background border-foreground relative flex rotate-[1.5deg] origin-right overflow-hidden border-y-[length:var(--border-width)] border-dashed opacity-20 transition-transform select-none [&>ul]:direction-reverse">
+      <div className="bg-canvas-contrast border-fg-contrast relative flex rotate-[1.5deg] origin-right overflow-hidden border-y-[length:var(--border-width-md)] border-dashed opacity-20 transition-transform select-none [&>ul]:direction-reverse">
         <ul className="animate-marquee flex min-w-full flex-shrink-0 gap-8 py-2 [animation-direction:reverse]">
           {words.map((word, index) => (
             <li
               key={word + index}
-              className="after:bg-foreground relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
+              className="after:bg-fg-contrast relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
             >
               {word}
             </li>
@@ -57,7 +57,7 @@ export function MarqueeText() {
             {words.map((word, index) => (
               <li
                 key={word + index}
-                className="after:bg-foreground relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
+                className="after:bg-fg-contrast relative after:absolute after:right-[-18px] after:top-[10px] after:aspect-square after:w-[6px] after:rotate-45 after:translate-x-[-50%] after:translate-y-[-50%] after:content-['']"
               >
                 {word}
               </li>

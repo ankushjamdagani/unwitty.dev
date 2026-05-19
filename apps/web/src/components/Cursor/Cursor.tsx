@@ -36,7 +36,7 @@ export function Cursor() {
     <div
       id="cursor"
       ref={cursorRef}
-      className="z-above-all pointer-events-none fixed h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full backdrop-invert backdrop-grayscale transition-[width,height] duration-200"
+      className="z-overlay pointer-events-none fixed h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full backdrop-invert backdrop-grayscale transition-[width,height] duration-200"
     ></div>
   );
 }

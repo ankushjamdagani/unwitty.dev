@@ -51,8 +51,8 @@ function Anno({
 }) {
   return (
     <span
-      className={`absolute ${pos} pointer-events-none z-[4] font-mono-display text-[10px] font-normal leading-[1.2] tracking-[0.18em] uppercase transition-[color,opacity] duration-[250ms] max-[680px]:text-[9px] ${
-        active ? "text-ink" : "text-ink-2"
+      className={`absolute ${pos} pointer-events-none z-[4] font-mono-display text-xxs font-normal leading-[1.2] tracking-[0.18em] uppercase transition-[color,opacity] duration-[250ms] max-[680px]:text-[9px] ${
+        active ? "text-fg" : "text-fg-muted"
       }`}
     >
       {children}
@@ -61,7 +61,7 @@ function Anno({
 }
 
 function Lead() {
-  return <span className="mx-[6px] inline-block text-ink-3">·</span>;
+  return <span className="mx-[6px] inline-block text-fg-subtle">·</span>;
 }
 
 function Label({
@@ -78,11 +78,11 @@ function Label({
   const active = hover === which;
   const dimmed = hover !== null && hover !== which;
 
-  const base = `absolute left-0 right-0 text-center z-[4] text-ink ${LABEL_TRANSITION}`;
+  const base = `absolute left-0 right-0 text-center z-[4] text-fg ${LABEL_TRANSITION}`;
   const work =
-    "top-[32%] font-mono-display font-medium leading-none tracking-[0.04em] text-[clamp(28px,4.6vmin,52px)]";
+    "top-[32%] font-mono-display font-medium leading-none tracking-[0.04em] text-display-sm";
   const life =
-    "top-[61%] italic font-light font-serif-display leading-none tracking-[-0.02em] text-[clamp(40px,7vmin,76px)]";
+    "top-[61%] italic font-light font-serif-display leading-none tracking-[-0.02em] text-display-md";
 
   const transform = isWork
     ? active
@@ -96,7 +96,7 @@ function Label({
   return (
     <div className={`${base} ${isWork ? work : life} ${transform} ${opacity}`}>
       <span
-        className={`align-middle font-mono-display tracking-[0.04em] text-ink-2 italic mr-[1em] text-lg`}
+        className={`align-middle font-mono-display tracking-[0.04em] text-fg-muted italic mr-[1em] text-lg`}
       >
         {numText}
       </span>
@@ -112,7 +112,7 @@ function Enter({ which, hover }: { which: Choice; hover: Choice | null }) {
   const restingTransform = isWork ? "translate-y-[8px]" : "-translate-y-[8px]";
   return (
     <div
-      className={`absolute left-0 right-0 text-center font-mono-display text-[10.5px] font-normal leading-none tracking-[0.32em] uppercase text-ink-2 pointer-events-none z-[4] transition-[opacity,transform] duration-[250ms] ${pos} ${
+      className={`absolute left-0 right-0 text-center font-mono-display text-[10.5px] font-normal leading-none tracking-[0.32em] uppercase text-fg-muted pointer-events-none z-[4] transition-[opacity,transform] duration-[250ms] ${pos} ${
         active
           ? "opacity-[0.85] translate-y-0"
           : `opacity-0 ${restingTransform}`
@@ -176,7 +176,7 @@ export function Composition({
         workActive={workActive}
         lifeActive={lifeActive}
       />
-      <div className="absolute left-[8%] right-[8%] top-1/2 z-[3] h-px -translate-y-[0.5px] bg-ink opacity-70"></div>
+      <div className="absolute left-[8%] right-[8%] top-1/2 z-[3] h-px -translate-y-[0.5px] bg-fg opacity-70"></div>
 
       <Annotations hover={hover} />
 

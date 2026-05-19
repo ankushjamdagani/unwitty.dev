@@ -42,12 +42,12 @@ export function Projects() {
                   className="absolute -left-1 -right-1 -top-1 z-[1] flex h-[60px] items-center justify-center overflow-hidden"
                   style={{
                     background:
-                      "repeating-linear-gradient(45deg, rgb(var(--foreground-rgb)) 4px, rgb(var(--foreground-rgb)) 6px, transparent 7px, transparent 10px)",
+                      "repeating-linear-gradient(45deg, rgb(var(--fg-contrast)) 4px, rgb(var(--fg-contrast)) 6px, transparent 7px, transparent 10px)",
                     backgroundAttachment: "fixed",
                     animation: "bg-move 0.35s linear infinite",
                   }}
                 >
-                  <span className="bg-background px-4 py-[2px]">
+                  <span className="bg-canvas-contrast px-4 py-[2px]">
                     {StatusLabel[projectConfig.status]}
                   </span>
                 </div>
@@ -65,7 +65,7 @@ export function Projects() {
                     className="preview-thumb dark-invert transition-transform duration-500 group-hover:-translate-y-4"
                   />
                 )}
-                <div className="details border-foreground border-t-[length:var(--border-width-extra-thick)] p-4 w-full">
+                <div className="details border-fg-contrast border-t-[length:var(--border-width-extra-thick)] p-4 w-full">
                   <h3 className="title text-lg pb-2">{projectConfig.title}</h3>
                   <p className="description text-xs">
                     {projectConfig.description}

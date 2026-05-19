@@ -75,11 +75,11 @@ export function Hero() {
       id="home"
       className="ml-[var(--horizontal-gap)] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height))] flex-col justify-center gap-4"
     >
-      <h1 className="first-letter:bg-foreground first-letter:text-background first-letter:rounded first-letter:mr-1 first-letter:px-3 font-bold">
+      <h1 className="first-letter:bg-fg-contrast first-letter:text-canvas-contrast first-letter:rounded first-letter:mr-1 first-letter:px-3 font-bold">
         Ankush J.
       </h1>
 
-      <p className="pseudo-name border-foreground my-5 mb-3 max-w-[480px] border-y-2 border-dashed py-1 text-[0.85em] italic">
+      <p className="pseudo-name border-fg-contrast my-5 mb-3 max-w-[480px] border-y-2 border-dashed py-1 text-[0.85em] italic">
         a.k.a. <strong>Unwitty</strong>.dev
       </p>
 
@@ -119,7 +119,7 @@ export function Hero() {
               aria-label={link.label}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+              className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
             >
               {link.icon}
             </Link>
@@ -128,13 +128,13 @@ export function Hero() {
       </ul>
 
       <div className="absolute bottom-0 left-[calc(480px+4em)] top-0 flex w-[300px] flex-col justify-center">
-        <figure className="bg-background rounded border-foreground hover:z-base p-3 pb-2 text-center transition-[filter,transform] duration-300 [filter:grayscale(1)] [transform:translateY(0px)_translateX(10px)_rotateZ(7deg)_scale(1)] hover:scale-110 hover:[filter:grayscale(0)] hover:[transform:translateY(0px)_translateX(10px)_rotateZ(-4deg)_scale(1.2)] border-2 border-dashed">
+        <figure className="bg-canvas-contrast rounded border-fg-contrast hover:z-base p-3 pb-2 text-center transition-[filter,transform] duration-300 [filter:grayscale(1)] [transform:translateY(0px)_translateX(10px)_rotateZ(7deg)_scale(1)] hover:scale-110 hover:[filter:grayscale(0)] hover:[transform:translateY(0px)_translateX(10px)_rotateZ(-4deg)_scale(1.2)] border-2 border-dashed">
           <Image
             alt="Profile Picture"
             height={300}
             src="/images/profile.png"
             width={200}
-            className="border-background aspect-[1/1.15] w-full flex-1 rounded border-b-2 object-cover"
+            className="border-canvas-contrast aspect-[1/1.15] w-full flex-1 rounded border-b-2 object-cover"
             style={{
               objectPosition: "top",
             }}

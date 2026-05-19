@@ -8,7 +8,7 @@ const typeToClassName = {
   [TypeWordCursor.VERT_THIN]: "h-[1.25em] w-[0.125em] top-[0.25em] left-[0.25em]",
   [TypeWordCursor.VERT_THICK]: "h-[1.25em] w-[0.375em] top-[0.25em] left-[0.25em]",
   [TypeWordCursor.VERT_THICK_BORDERED]:
-    "h-[1.25em] w-[0.375em] top-[0.25em] left-[0.25em] bg-background border border-solid",
+    "h-[1.25em] w-[0.375em] top-[0.25em] left-[0.25em] bg-canvas-contrast border border-solid",
 };
 
 export function TypeWord({
@@ -40,7 +40,7 @@ export function TypeWord({
     <>
       {characters.slice(0, visibleItems)}
       <span
-        className={`bg-foreground relative inline-flex ${typeToClassName[cursorType]} ${
+        className={`bg-fg-contrast relative inline-flex ${typeToClassName[cursorType]} ${
           visibleItems == totalItems ? "animate-[blink-animation_1s_steps(5,start)_infinite]" : ""
         }`}
       ></span>

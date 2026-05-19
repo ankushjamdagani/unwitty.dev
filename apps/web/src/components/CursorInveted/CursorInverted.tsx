@@ -15,7 +15,7 @@ export function CursorInverted() {
     <>
       <div
         id="cursor-inverted"
-        className="z-above-all pointer-events-none absolute h-[100px] w-[100px] rounded-full backdrop-invert"
+        className="z-overlay pointer-events-none absolute h-[100px] w-[100px] rounded-full backdrop-invert"
         style={{
           left: `${mouse.elementX - 50}px`,
           top: `${mouse.elementY - 50}px`,

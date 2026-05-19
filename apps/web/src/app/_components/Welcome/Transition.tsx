@@ -10,13 +10,13 @@ export function Transition({ selected }: TransitionProps) {
   return (
     <>
       <div
-        className={`fixed inset-0 z-[50] bg-paper pointer-events-none transition-opacity duration-[550ms] ease-in-out ${on ? "opacity-100" : "opacity-0"}`}
+        className={`fixed inset-0 z-[50] bg-canvas pointer-events-none transition-opacity duration-[550ms] ease-in-out ${on ? "opacity-100" : "opacity-0"}`}
       />
       <div
-        className={`fixed inset-0 z-[60] flex items-center justify-center pointer-events-none text-center font-mono-display text-[12px] font-medium leading-[1.6] tracking-[0.18em] text-ink [transition:opacity_0.35s_ease_0.25s] ${on ? "opacity-100" : "opacity-0"}`}
+        className={`fixed inset-0 z-[60] flex items-center justify-center pointer-events-none text-center font-mono-display text-xs font-medium leading-[1.6] tracking-[0.18em] text-fg [transition:opacity_0.35s_ease_0.25s] ${on ? "opacity-100" : "opacity-0"}`}
       >
         <div>
-          <span className="block tracking-[0.22em] text-ink-2">
+          <span className="block tracking-[0.22em] text-fg-muted">
             REDIRECTING →
           </span>
           <span
@@ -28,7 +28,7 @@ export function Transition({ selected }: TransitionProps) {
           >
             {isWork ? "work" : "life"}
           </span>
-          <span className="mt-[10px] block tracking-[0.22em] text-ink-2">
+          <span className="mt-[10px] block tracking-[0.22em] text-fg-muted">
             {isWork ? "unwitty.dev / work" : "unwitty.dev / personal"}
           </span>
         </div>

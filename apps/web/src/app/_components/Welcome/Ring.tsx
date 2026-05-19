@@ -39,17 +39,17 @@ export function Ring({
       <g
         style={{
           filter:
-            "drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 0px) 0 rgb(var(--ink-rgb)))",
+            "drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 0px) 0 rgb(var(--fg)))",
         }}
       >
         <g filter="url(#rough)" stroke="none">
           <path
             d="M 80 300 A 220 220 0 0 1 520 300 Z"
-            fill="rgb(var(--paper-rgb))"
+            fill="rgb(var(--canvas))"
           />
           <path
             d="M 80 300 A 220 220 0 0 0 520 300 Z"
-            fill="rgb(var(--paper-2-rgb))"
+            fill="rgb(var(--canvas-raised))"
           />
         </g>
       </g>

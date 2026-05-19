@@ -58,13 +58,13 @@ export function Nav({ variant }: { variant: NavVariant }) {
   return (
     <header
       id="navigation-bar"
-      className="border-ink-2 z-nav h-nav sticky top-0 flex items-center justify-between border-b-[length:var(--border-width)] border-dashed px-[var(--horizontal-gap)]"
+      className="border-fg-muted z-nav h-nav sticky top-0 flex items-center justify-between border-b-[length:var(--border-width-md)] border-dashed px-[var(--horizontal-gap)]"
     >
       <span>
         <Link
           href="/"
           id="logo"
-          className="bg-foreground rounded px-2 py-1 font-bold text-background"
+          className="bg-fg-contrast rounded px-2 py-1 font-bold text-canvas-contrast"
         >
           Unwitty
         </Link>

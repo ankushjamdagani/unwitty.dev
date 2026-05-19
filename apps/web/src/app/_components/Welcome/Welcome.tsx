@@ -140,7 +140,7 @@ export function Welcome() {
   }, [onHover, onSelect]);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-paper font-mono-display text-ink antialiased">
+    <div className="relative h-screen w-screen overflow-hidden bg-canvas font-mono-display text-fg antialiased">
       <div ref={bgRef} className={styles.bgWrap}>
         <div className={styles.paper}></div>
         <div

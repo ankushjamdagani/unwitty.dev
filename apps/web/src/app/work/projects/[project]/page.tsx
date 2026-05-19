@@ -73,7 +73,7 @@ export default function Project({
           {projectConfig.tags.map((tag) => (
             <li
               key={tag.id}
-              className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold"
+              className="text-xs border-fg-contrast rounded-[2px] border-thin border-solid p-1 font-bold"
             >
               {tag.label}
             </li>
@@ -87,7 +87,7 @@ export default function Project({
               <li key={post.id} className="w-[calc((100%-32px)/3)]">
                 <Link
                   href={post.link}
-                  className="hover:bg-foreground hover:text-background border-foreground flex h-[200px] w-full items-start rounded-[2px] border-thin border-solid p-4 text-[1.5rem] transition-colors"
+                  className="hover:bg-fg-contrast hover:text-canvas-contrast border-fg-contrast flex h-[200px] w-full items-start rounded-[2px] border-thin border-solid p-4 text-[1.5rem] transition-colors"
                 >
                   {post.label}
                 </Link>

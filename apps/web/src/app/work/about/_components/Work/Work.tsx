@@ -165,11 +165,11 @@ export function Work() {
             key={job.company}
             className="relative flex w-full max-w-[640px] flex-col flex-wrap gap-4"
           >
-            <div className="border-foreground border-b-2 border-dashed pb-1">
+            <div className="border-fg-contrast border-b-2 border-dashed pb-1">
               <time className="text-[2.75em]">
                 {new Date(job.startDate).getFullYear()}
               </time>
-              <time className="bg-background text-xs absolute left-0 top-[5.15em] pr-2 uppercase">
+              <time className="bg-canvas-contrast text-xs absolute left-0 top-[5.15em] pr-2 uppercase">
                 {new Date(job.startDate).toLocaleString("default", {
                   month: "long",
                 })}
@@ -205,7 +205,7 @@ export function Work() {
               {job.techStack.map((item) => (
                 <li
                   key={item}
-                  className="text-xs rounded-[2px] border-thin border-solid border-foreground px-1 py-[2px]"
+                  className="text-xs rounded-[2px] border-thin border-solid border-fg-contrast px-1 py-[2px]"
                 >
                   {item}{" "}
                 </li>

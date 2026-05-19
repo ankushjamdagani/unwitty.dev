@@ -20,10 +20,10 @@
       0 0 / var(--grid-size) var(--grid-size),
     linear-gradient(
       180deg,
-      var(--paper) 0%,
-      var(--paper) 50%,
-      var(--paper-2) 50%,
-      var(--paper-2) 100%
+      rgb(var(--canvas)) 0%,
+      rgb(var(--canvas)) 50%,
+      rgb(var(--canvas-raised)) 50%,
+      rgb(var(--canvas-raised)) 100%
     );
 }
 
@@ -51,7 +51,7 @@
         transparent calc(var(--dot-size) + 0.4px)
       )
       0 0 / var(--grid-size) var(--grid-size),
-    var(--paper);
+    rgb(var(--canvas));
   mask: linear-gradient(
     180deg,
     transparent 0%,
@@ -74,7 +74,7 @@
         transparent calc(var(--dot-size) + 0.4px)
       )
       0 0 / var(--grid-size) var(--grid-size),
-    var(--paper-2);
+    rgb(var(--canvas-raised));
   mask: linear-gradient(
     180deg,
     black 0%,

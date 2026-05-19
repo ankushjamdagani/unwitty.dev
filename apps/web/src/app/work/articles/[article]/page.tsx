@@ -68,11 +68,11 @@ export default function Article() {
           </p>
         </blockquote>
 
-        <div className="bg-foreground my-8 h-[1px] w-full opacity-20"></div>
+        <div className="bg-fg-contrast my-8 h-[1px] w-full opacity-20"></div>
 
         <p className="mb-6">
           Lorem ipsum dolor sit amet,{" "}
-          <code className="bg-foreground text-background rounded px-2 font-mono overflow-auto whitespace-pre [tab-size:4]">
+          <code className="bg-fg-contrast text-canvas-contrast rounded px-2 font-mono overflow-auto whitespace-pre [tab-size:4]">
             conse c t et ur
           </code>{" "}
           adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -82,13 +82,13 @@ export default function Article() {
           ut faucibus pulvinar elementum. Enim sit amet venenatis urna cursus.
           Porta non pulvinar neque laoreet suspendisse interdum consectetur.
           Auctor urna nunc id cursus metus aliquam eleifend. Quam
-          <a className="border-dashed border-b border-gray-900 bg-blue-200 px-1 mx-1">
+          <a className="border-dashed border-b border-fg-muted bg-accent/20 px-1 mx-1">
             pellentesque
           </a>
           nec nam aliquam sem et tortor consequat id.
         </p>
 
-        <code className="bg-foreground text-background rounded-lg mx-[-2em] my-8 block overflow-auto whitespace-pre px-8 py-4 font-mono [tab-size:4]">
+        <code className="bg-fg-contrast text-canvas-contrast rounded-lg mx-[-2em] my-8 block overflow-auto whitespace-pre px-8 py-4 font-mono [tab-size:4]">
           def test(): print(&quot;this is block code&quot;)
         </code>
 
@@ -110,7 +110,7 @@ export default function Article() {
             alt="some text"
             width="400"
             height="400"
-            className="border-foreground rounded-lg block w-full border-2 border-dashed"
+            className="border-fg-contrast rounded-lg block w-full border-2 border-dashed"
           />
           <figcaption className="text-center text-sm italic">
             An elephant at sunset
@@ -238,19 +238,19 @@ export default function Article() {
 
       <footer className="px-[var(--horizontal-gap)] py-4">
         <ul className="mb-8 flex gap-2">
-          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+          <li className="text-xs border-fg-contrast rounded-[2px] border-thin border-solid p-1 font-bold">
             Typescript
           </li>
-          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+          <li className="text-xs border-fg-contrast rounded-[2px] border-thin border-solid p-1 font-bold">
             Web Security
           </li>
-          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+          <li className="text-xs border-fg-contrast rounded-[2px] border-thin border-solid p-1 font-bold">
             DDOS attack
           </li>
-          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+          <li className="text-xs border-fg-contrast rounded-[2px] border-thin border-solid p-1 font-bold">
             CSRF Attacks
           </li>
-          <li className="text-xs border-foreground rounded-[2px] border-thin border-solid p-1 font-bold">
+          <li className="text-xs border-fg-contrast rounded-[2px] border-thin border-solid p-1 font-bold">
             Content Security Policies
           </li>
         </ul>

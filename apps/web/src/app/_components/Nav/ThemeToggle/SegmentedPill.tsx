@@ -23,11 +23,11 @@ export function SegmentedPill() {
     <div
       role="radiogroup"
       aria-label="Theme"
-      className="border-thin border-ink-2 relative inline-flex items-center rounded-full border-dashed bg-[rgba(var(--paper-rgb),0.6)] p-[2px]"
+      className="border-thin border-fg-muted relative inline-flex items-center rounded-full border-dashed bg-canvas/60 p-[2px]"
     >
       <span
         aria-hidden="true"
-        className="bg-foreground absolute top-[2px] bottom-[2px] rounded-full"
+        className="bg-fg-contrast absolute top-[2px] bottom-[2px] rounded-full"
         style={{
           width: "calc((100% - 4px) / 3)",
           left: `calc(2px + ${activeIndex} * ((100% - 4px) / 3))`,
@@ -47,7 +47,7 @@ export function SegmentedPill() {
             onClick={() => setTheme(opt.theme)}
             className="relative z-base flex h-7 w-7 items-center justify-center rounded-full text-sm transition-colors duration-200"
             style={{
-              color: active ? "rgb(var(--background-rgb))" : undefined,
+              color: active ? "rgb(var(--canvas-contrast))" : undefined,
             }}
           >
             <Icon />

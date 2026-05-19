@@ -20,13 +20,13 @@ export function RotaryDial() {
         type="button"
         onClick={cycleTheme}
         aria-label={`Theme: ${active.label}. Click to cycle.`}
-        className="border-thin border-ink-2 relative h-10 w-10 rounded-full border-dashed bg-[rgba(var(--paper-rgb),0.6)] focus-visible:outline-[var(--focus-outline)]"
+        className="border-thin border-fg-muted relative h-10 w-10 rounded-full border-dashed bg-canvas/60 focus-visible:outline-[var(--focus-outline)]"
       >
         {DIAL.map((d) => (
           <span
             key={d.theme}
             aria-hidden="true"
-            className="bg-ink-3 absolute left-1/2 top-1/2 h-[2px] w-[5px]"
+            className="bg-fg-subtle absolute left-1/2 top-1/2 h-[2px] w-[5px]"
             style={{
               transform: `translate(-50%, -50%) rotate(${d.angle}deg) translateY(-14px)`,
               opacity: d.theme === active.theme ? 0 : 0.6,
@@ -35,7 +35,7 @@ export function RotaryDial() {
         ))}
         <span
           aria-hidden="true"
-          className="bg-foreground absolute left-1/2 top-1/2 h-[12px] w-[3px] rounded-full"
+          className="bg-fg-contrast absolute left-1/2 top-1/2 h-icon-sm w-[3px] rounded-full"
           style={{
             transform: `translate(-50%, -100%) rotate(${active.angle}deg)`,
             transformOrigin: "50% 100%",
@@ -44,13 +44,13 @@ export function RotaryDial() {
         />
         <span
           aria-hidden="true"
-          className="bg-foreground absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+          className="bg-fg-contrast absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full"
         />
       </button>
       <div
         role="radiogroup"
         aria-label="Theme"
-        className="ml-2 hidden flex-col gap-[2px] text-[10px] uppercase tracking-wider sm:flex"
+        className="ml-2 hidden flex-col gap-[2px] text-xxs uppercase tracking-wider sm:flex"
       >
         {DIAL.map((d) => (
           <button

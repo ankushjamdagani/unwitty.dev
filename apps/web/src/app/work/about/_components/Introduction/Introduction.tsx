@@ -59,7 +59,7 @@ export function Introduction() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaGithub />
           </Link>
@@ -67,7 +67,7 @@ export function Introduction() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaXTwitter />
           </Link>
@@ -75,7 +75,7 @@ export function Introduction() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaLinkedinIn />
           </Link>
@@ -83,7 +83,7 @@ export function Introduction() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaRegEnvelope />
           </Link>
