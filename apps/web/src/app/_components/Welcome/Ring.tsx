@@ -36,7 +36,7 @@ export function Ring({
             numOctaves={2}
             seed={3}
           />
-          <feDisplacementMap in="SourceGraphic" scale={4.5} />
+          <feDisplacementMap in="SourceGraphic" scale={5} />
         </filter>
       </defs>
 

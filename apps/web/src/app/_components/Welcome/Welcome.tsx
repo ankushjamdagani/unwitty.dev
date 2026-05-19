@@ -74,7 +74,7 @@ export function Welcome() {
     const target = { x: 0, y: 0 };
     const current = { x: 0, y: 0 };
     const COMP_FACTOR = 0.4;
-    const SHADOW_FACTOR = 0.1;
+    const SHADOW_FACTOR = 0.2;
     const tick = () => {
       current.x += (target.x - current.x) * 0.08;
       current.y += (target.y - current.y) * 0.08;
