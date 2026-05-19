@@ -39,7 +39,7 @@ export default function Article() {
               height="32"
               className="h-8 w-8 rounded-full"
             />
-            <a href="/about" className="hover:underline">
+            <a href="/work/about" className="hover:underline">
               Ankush Jamdagani
             </a>
           </li>

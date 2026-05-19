@@ -9,11 +9,7 @@ import { Transition } from "./Transition";
 import styles from "./Welcome.module.css";
 import { Nav } from "../Nav";
 import { NavVariant } from "../Nav/variants";
-
-const ROUTES: Record<Choice, string> = {
-  work: "/work",
-  life: "/life",
-};
+import { ROUTES } from "@/configs/constants";
 
 const TRANSITION_MS = 1100;
 
@@ -140,7 +136,7 @@ export function Welcome() {
   }, [onHover, onSelect]);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-canvas font-mono-display text-fg antialiased">
+    <div className="relative h-screen w-screen overflow-hidden font-mono-display text-fg antialiased">
       <div ref={bgRef} className={styles.bgWrap}>
         <div className={styles.paper}></div>
         <div
@@ -149,7 +145,6 @@ export function Welcome() {
         <div
           className={`${styles.paperOverlayTop} ${hover === "life" ? styles.paperOverlayOn : ""}`}
         ></div>
-        <div className={styles.grain}></div>
       </div>
 
       <div className="relative grid h-screen w-screen grid-rows-[auto_1fr_auto]">

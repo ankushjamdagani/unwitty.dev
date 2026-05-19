@@ -5,8 +5,19 @@ import {
   FaRegEnvelope,
   FaXTwitter,
 } from "react-icons/fa6";
+import { SOCIAL_LINKS } from "@/configs/constants";
+
+const SocialIcons: Record<string, React.ReactNode> = {
+  GitHub: <FaGithub />,
+  Twitter: <FaXTwitter />,
+  LinkedIn: <FaLinkedinIn />,
+  Email: <FaRegEnvelope />,
+};
 
 export function Footer() {
+  const email =
+    SOCIAL_LINKS.find((link) => link.label === "Email")?.url || "mailto:";
+
   return (
     <footer id="footer">
       <blockquote className="border-0 border-t border-dashed border-fg-contrast text-xs py-4 text-center">
@@ -23,42 +34,22 @@ export function Footer() {
             "repeating-radial-gradient(circle at var(--circle-x) var(--circle-y), transparent, transparent var(--transparent-bar-width), rgb(var(--fg-contrast)) var(--transparent-bar-width), rgb(var(--fg-contrast)) calc((var(--transparent-bar-width) + var(--black-bar-width))))",
         }}
       >
-        <Link href="email:#" className="text-[2em]">
-          hello@unwitty.dev
+        <Link href={email} className="text-[2em]">
+          {email.replace("mailto:", "")}
         </Link>
         <ul className="flex gap-2">
-          <li>
-            <Link
-              href="#"
-              className="border-canvas-contrast hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-            >
-              <FaGithub />
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#"
-              className="border-canvas-contrast hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-            >
-              <FaXTwitter />
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#"
-              className="border-canvas-contrast hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-            >
-              <FaLinkedinIn />
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="#"
-              className="border-canvas-contrast hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-            >
-              <FaRegEnvelope />
-            </Link>
-          </li>
+          {SOCIAL_LINKS.map((link) => (
+            <li key={link.label}>
+              <Link
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-canvas-contrast hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+              >
+                {SocialIcons[link.label]}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </footer>

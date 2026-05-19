@@ -174,19 +174,31 @@ html {
 }
 
 body {
-  @apply text-fg-contrast bg-canvas-contrast tracking-[0.075em] relative;
+  @apply bg-canvas text-fg-contrast tracking-[0.075em] relative antialiased;
 
   &.mono {
     @apply text-[14px] font-mono;
   }
 
+  /* Dot pattern background */
   &:after {
-    @apply bg-scroll bg-[url(/images/dots.svg)] content-[""] h-full left-0 opacity-30 absolute top-0 w-full -z-10 [filter:var(--body-bgfilter)];
+    @apply pointer-events-none fixed inset-0 -z-10 content-[""];
+    background: radial-gradient(
+        var(--dot) var(--dot-size),
+        transparent calc(var(--dot-size) + 0.4px)
+      )
+      0 0 / var(--grid-size) var(--grid-size);
   }
 }
 
-[data-theme="light"] body:after {
-  @apply opacity-60;
+.grain-overlay {
+  @apply pointer-events-none fixed inset-0 z-[99999] opacity-[0.3] mix-blend-multiply animate-[noise_150ms_steps(8)_infinite];
+  background-image: url("/images/noise-web.webp");
+  background-size: 500px;
+}
+
+[data-theme="dark"] .grain-overlay {
+  @apply mix-blend-hard-light;
 }
 
 p {

@@ -42,6 +42,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
       <body className={`${jetbrains.variable} ${instrument.variable} monos`}>
+        <div className="grain-overlay" />
         {children}
         <Cursor />
         {/* <CursorInverted /> */}

@@ -53,7 +53,7 @@ export function Projects() {
                 </div>
               )}
               <Link
-                href={`/projects/${project}`}
+                href={`/work/projects/${project}`}
                 className="project-item shadow-box group flex flex-1 items-center justify-center overflow-hidden pl-10"
               >
                 {projectConfig.thumbnail.type == "image" && (

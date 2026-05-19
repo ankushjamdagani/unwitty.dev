@@ -47,7 +47,7 @@ export default function Project({
               height="32"
               className="h-8 w-8 rounded-full"
             />
-            <a href="/about" className="hover:underline">
+            <a href="/work/about" className="hover:underline">
               {AuthorConfig.name}
             </a>
           </li>

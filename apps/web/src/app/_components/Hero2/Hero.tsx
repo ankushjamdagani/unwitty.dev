@@ -10,6 +10,7 @@ import {
 import { Time } from "@/components/Time";
 import { AnimatedWordList } from "@/components/AnimatedWordList";
 import { TypeWord, TypeWordCursor } from "@/components/TypeWord";
+import { SOCIAL_LINKS, STATUS } from "@/configs/constants";
 
 const LoveAllThings = [
   {
@@ -34,46 +35,18 @@ const LoveAllThings = [
   },
 ];
 
-const Status = [
-  {
-    label: "Open to Work",
-  },
-  {
-    label: "Open to Collaborate",
-  },
-  {
-    label: "Open to Innovate",
-  },
-];
-
-const SocialLinks = [
-  {
-    label: "GitHub",
-    icon: <FaGithub />,
-    url: "https://github.com/ankushjamdagani",
-  },
-  {
-    label: "Twitter",
-    icon: <FaXTwitter />,
-    url: "https://twitter.com/ankushjamdagani",
-  },
-  {
-    label: "LinkedIn",
-    icon: <FaLinkedinIn />,
-    url: "https://www.linkedin.com/in/ankushjamdagani/",
-  },
-  {
-    label: "Email",
-    icon: <FaRegEnvelope />,
-    url: "mailto:anqushjamdagani@gmail.com",
-  },
-];
+const SocialIcons: Record<string, React.ReactNode> = {
+  GitHub: <FaGithub />,
+  Twitter: <FaXTwitter />,
+  LinkedIn: <FaLinkedinIn />,
+  Email: <FaRegEnvelope />,
+};
 
 export function Hero() {
   return (
     <section
       id="home"
-      className="ml-[var(--horizontal-gap)] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height))] flex-col justify-center gap-4"
+      className="px-[var(--horizontal-gap)] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height))] flex-col justify-center gap-4"
     >
       <h1 className="first-letter:bg-fg-contrast first-letter:text-canvas-contrast first-letter:rounded first-letter:mr-1 first-letter:px-3 font-bold">
         Ankush J.
@@ -112,7 +85,7 @@ export function Hero() {
       <div className="seperator-rect"></div>
 
       <ul className="flex w-full items-start gap-2">
-        {SocialLinks.map((link) => (
+        {SOCIAL_LINKS.map((link) => (
           <li key={link.label}>
             <Link
               href={link.url}
@@ -121,13 +94,13 @@ export function Hero() {
               rel="noopener noreferrer"
               className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
             >
-              {link.icon}
+              {SocialIcons[link.label]}
             </Link>
           </li>
         ))}
       </ul>
 
-      <div className="absolute bottom-0 left-[calc(480px+4em)] top-0 flex w-[300px] flex-col justify-center">
+      <div className="absolute bottom-0 left-[calc(480px+var(--horizontal-gap)+4em)] top-0 flex w-[300px] flex-col justify-center max-[1200px]:hidden">
         <figure className="bg-canvas-contrast rounded border-fg-contrast hover:z-base p-3 pb-2 text-center transition-[filter,transform] duration-300 [filter:grayscale(1)] [transform:translateY(0px)_translateX(10px)_rotateZ(7deg)_scale(1)] hover:scale-110 hover:[filter:grayscale(0)] hover:[transform:translateY(0px)_translateX(10px)_rotateZ(-4deg)_scale(1.2)] border-2 border-dashed">
           <Image
             alt="Profile Picture"
@@ -143,7 +116,7 @@ export function Hero() {
         </figure>
       </div>
 
-      <footer className="text-xs absolute bottom-0 left-0 right-[var(--horizontal-gap)] flex justify-between py-2 pl-0 pr-4">
+      <footer className="text-xs absolute bottom-0 left-[var(--horizontal-gap)] right-[var(--horizontal-gap)] flex justify-between py-6">
         <em>
           Based in India →{" "}
           <strong>
@@ -151,10 +124,10 @@ export function Hero() {
           </strong>
         </em>
         <em>
-          Status → <strong></strong>
+          Status →{" "}
           <AnimatedWordList transitionTime={2000}>
-            {Status.map((st) => (
-              <strong key={st.label}>{st.label}</strong>
+            {STATUS.map((st) => (
+              <strong key={st.label}>{st.label.replace(/_/g, " ")}</strong>
             ))}
           </AnimatedWordList>
         </em>

@@ -28,7 +28,7 @@ const getLinks = (variant: NavVariant | string) => {
           label: "Work",
         },
         {
-          path: "/work#resume",
+          path: "/work/about",
           label: "Resume",
           icon: () => <GoArrowUpRight />,
         },
