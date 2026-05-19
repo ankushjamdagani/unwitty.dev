@@ -8,43 +8,52 @@ import { GoArrowUpRight } from "react-icons/go";
 import { ThemeToggle } from "./ThemeToggle";
 
 import useMostVisibleItem from "@/hooks/useMostVisibleItem";
+import { NavVariant } from "./variants";
 
-export enum NavVariant {
-  WELCOME = "welcome",
-  WORK = "work",
-  LIFE = "life",
-}
-
-const Links = {
-  [NavVariant.WORK]: [
-    {
-      path: "/#projects",
-      label: "Experiments",
-    },
-    {
-      path: "/#words",
-      label: "Thoughts",
-    },
-    {
-      path: "/#work",
-      label: "Work",
-    },
-    {
-      path: "#resume",
-      label: "Resume",
-      icon: () => <GoArrowUpRight />,
-    },
-  ],
-  [NavVariant.LIFE]: [],
-  [NavVariant.WELCOME]: [],
+const getLinks = (variant: NavVariant | string) => {
+  switch (variant) {
+    case NavVariant.WORK:
+    case "work":
+      return [
+        {
+          path: "/work#projects",
+          label: "Experiments",
+        },
+        {
+          path: "/work#words",
+          label: "Thoughts",
+        },
+        {
+          path: "/work#work",
+          label: "Work",
+        },
+        {
+          path: "/work#resume",
+          label: "Resume",
+          icon: () => <GoArrowUpRight />,
+        },
+      ];
+    case NavVariant.LIFE:
+    case "life":
+      return [
+        {
+          path: "/life",
+          label: "Home",
+        },
+      ];
+    case NavVariant.WELCOME:
+    case "welcome":
+    default:
+      return [];
+  }
 };
 
 export function Nav({ variant }: { variant: NavVariant }) {
   const path = usePathname();
   const activeElement = useMostVisibleItem("main > section[id]");
-  const activePath = `/#${activeElement?.id}`;
+  const activePath = `/work#${activeElement?.id}`;
 
-  const links = Links[variant];
+  const links = getLinks(variant);
 
   return (
     <header

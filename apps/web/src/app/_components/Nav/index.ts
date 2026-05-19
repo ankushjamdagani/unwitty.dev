@@ -1,1 +1,2 @@
-export { Nav, NavVariant } from "./Nav";
+export { Nav } from "./Nav";
+export { NavVariant } from "./variants";

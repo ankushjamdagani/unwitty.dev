@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import "../_styles/globals.css";
 import { Footer } from "../_components/Footer";
 import { Nav } from "../_components/Nav";
+import { NavVariant } from "../_components/Nav/variants";
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -17,7 +18,7 @@ export default function LifeRootLayout({
 }) {
   return (
     <>
-      <Nav />
+      <Nav variant={NavVariant.LIFE} />
       {children}
       <Footer />
     </>

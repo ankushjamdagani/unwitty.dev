@@ -32,7 +32,7 @@ export function Ring({
         <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.018"
+            baseFrequency="0.028"
             numOctaves={2}
             seed={3}
           />

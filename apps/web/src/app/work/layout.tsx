@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import "../_styles/globals.css";
 import { Nav } from "../_components/Nav";
+import { NavVariant } from "../_components/Nav/variants";
 import { Footer } from "../_components/Footer";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function WorkRootLayout({
 }) {
   return (
     <>
-      <Nav />
+      <Nav variant={NavVariant.WORK} />
       {children}
       <Footer />
     </>

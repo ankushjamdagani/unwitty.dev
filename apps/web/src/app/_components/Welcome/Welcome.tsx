@@ -7,7 +7,8 @@ import { Botbar } from "./Chrome";
 import { Composition, type Choice } from "./Composition";
 import { Transition } from "./Transition";
 import styles from "./Welcome.module.css";
-import { Nav, NavVariant } from "../Nav";
+import { Nav } from "../Nav";
+import { NavVariant } from "../Nav/variants";
 
 const ROUTES: Record<Choice, string> = {
   work: "/work",

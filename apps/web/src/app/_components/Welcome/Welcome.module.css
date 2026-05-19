@@ -129,8 +129,8 @@
 }
 
 .dashFlowCW {
-  animation: flowCW 0.9s linear infinite;
+  animation: flowCW 0.35s linear infinite;
 }
 .dashFlowCCW {
-  animation: flowCCW 1.1s linear infinite;
+  animation: flowCCW 0.5s linear infinite;
 }

@@ -82,7 +82,7 @@ function Label({
   const work =
     "top-[32%] font-mono-display font-medium leading-none tracking-[0.04em] text-[clamp(28px,4.6vmin,52px)]";
   const life =
-    "top-[62%] italic font-light font-serif-display leading-none tracking-[-0.02em] text-[clamp(40px,7vmin,76px)]";
+    "top-[61%] italic font-light font-serif-display leading-none tracking-[-0.02em] text-[clamp(40px,7vmin,76px)]";
 
   const transform = isWork
     ? active
@@ -108,7 +108,7 @@ function Label({
 function Enter({ which, hover }: { which: Choice; hover: Choice | null }) {
   const isWork = which === "work";
   const active = hover === which;
-  const pos = isWork ? "top-[26%]" : "top-[75%]";
+  const pos = isWork ? "top-[25%]" : "top-[75%]";
   const restingTransform = isWork ? "translate-y-[8px]" : "-translate-y-[8px]";
   return (
     <div
