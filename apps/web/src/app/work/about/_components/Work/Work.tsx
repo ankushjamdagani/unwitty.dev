@@ -169,7 +169,7 @@ export function Work() {
               <time className="text-[2.75em]">
                 {new Date(job.startDate).getFullYear()}
               </time>
-              <time className="bg-canvas-contrast text-xs absolute left-0 top-[5.15em] pr-2 uppercase">
+              <time className="bg-canvas text-xs absolute left-0 top-[5.15em] pr-2 uppercase">
                 {new Date(job.startDate).toLocaleString("default", {
                   month: "long",
                 })}
@@ -182,7 +182,7 @@ export function Work() {
                 alt={job.company}
                 width={40}
                 height={40}
-                className="rounded grayscale aspect-square"
+                className="rounded aspect-square themed-filter"
               />
               <div>
                 <h3 className="text-lg font-bold">

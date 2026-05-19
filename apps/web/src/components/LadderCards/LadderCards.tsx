@@ -19,7 +19,7 @@ export function LadderCards({ list }: { list: LadderCardsItem[] }) {
         {list.map((image) => (
           <li
             key={image.alt}
-            className="w-full cursor-pointer p-4 grayscale transition-all duration-300 hover:grayscale-0"
+            className="w-full cursor-pointer p-4 themed-filter"
           >
             <figure className="flex h-full w-full flex-col gap-4">
               <Image

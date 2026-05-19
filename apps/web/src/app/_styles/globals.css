@@ -167,6 +167,15 @@
   .badge {
     @apply border-thin border-solid rounded-[2px] text-xs px-1 py-[2px];
   }
+
+  .themed-filter {
+    filter: var(--image-filter);
+    transition: filter 300ms ease;
+  }
+
+  .themed-filter:hover {
+    filter: none;
+  }
 }
 
 html {

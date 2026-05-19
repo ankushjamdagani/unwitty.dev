@@ -100,8 +100,8 @@ export function Hero() {
         ))}
       </ul>
 
-      <div className="absolute bottom-0 left-[calc(480px+var(--horizontal-gap)+4em)] top-0 flex w-[300px] flex-col justify-center max-[1200px]:hidden">
-        <figure className="bg-canvas-contrast rounded border-fg-contrast hover:z-base p-3 pb-2 text-center transition-[filter,transform] duration-300 [filter:grayscale(1)] [transform:translateY(0px)_translateX(10px)_rotateZ(7deg)_scale(1)] hover:scale-110 hover:[filter:grayscale(0)] hover:[transform:translateY(0px)_translateX(10px)_rotateZ(-4deg)_scale(1.2)] border-2 border-dashed">
+      <div className="absolute bottom-0 left-[calc(480px+var(--horizontal-gap)+4em)] top-0 flex w-[300px] flex-col justify-center">
+        <figure className="bg-canvas-contrast rounded border-fg-contrast hover:z-base themed-filter p-3 pb-2 text-center transition-[filter,transform] duration-300 [transform:translateY(0px)_translateX(10px)_rotateZ(7deg)_scale(1)] hover:scale-110 hover:[transform:translateY(0px)_translateX(10px)_rotateZ(-4deg)_scale(1.2)] border-2 border-dashed">
           <Image
             alt="Profile Picture"
             height={300}
