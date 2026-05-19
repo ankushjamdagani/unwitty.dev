@@ -1,41 +1,22 @@
+/* =====================================================
+   Non-theme design tokens
+   Radii, borders, typography, z-index, layout, focus.
+   Active theme palette is selected by [data-theme] below.
+   ===================================================== */
 :root {
-  /* Color variables */
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-
-  /* Shared paper/ink palette (warm cream by default) */
-  --paper-rgb: 236, 234, 227;
-  --paper-2-rgb: 226, 223, 213;
-  --ink-rgb: 21, 20, 15;
-  --ink-2-rgb: 95, 94, 85;
-  --ink-3-rgb: 164, 162, 153;
-  --paper: rgb(var(--paper-rgb));
-  --paper-2: rgb(var(--paper-2-rgb));
-  --ink: rgb(var(--ink-rgb));
-  --ink-2: rgb(var(--ink-2-rgb));
-  --ink-3: rgb(var(--ink-3-rgb));
-  --hair: rgba(var(--ink-rgb), 0.18);
-  --dot: rgba(var(--ink-rgb), 0.22);
-  --grid-size: 22px;
-  --dot-size: 1.1px;
-  --status-rgb: 46, 125, 79;
-
-  /* Accessibility Styles */
-  --focus-color: crimson;
-  --focus-outline: dotted 2px var(--focus-color);
-  --focus-outline-offset: 2px;
-
-  /* Box variables */
+  /* Radii */
   --border-radius-sm: 1px;
   --border-radius: 3px;
   --border-radius-md: 5px;
   --border-radius-lg: 8px;
+
+  /* Border widths */
   --border-width-thin: 1px;
   --border-width: 2px;
   --border-width-thick: 3px;
   --border-width-extra-thick: 4px;
 
-  /* Font Families */
+  /* Font families */
   --font-mono:
     ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
@@ -46,13 +27,13 @@
     Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
 
-  /* Font Sizes */
+  /* Font sizes */
   --font-xs: 0.75rem;
   --font-sm: 0.875rem;
   --font-md: 1rem;
   --font-lg: 1.25rem;
 
-  /* Z-Index */
+  /* Z-index */
   --z-index-below-all: -1;
   --z-index-base: 1;
   --z-index-normal: 11;
@@ -61,48 +42,88 @@
   --z-index-overlay: 11111;
   --z-index-above-all: 11111;
 
-  /* Components */
+  /* Layout */
   --nav-height: 50px;
   --marquee-height: 80px;
   --max-content-width: 920px;
-
   --horizontal-gap: max(0px, calc((100vw - var(--max-content-width)) / 2));
-  --body-bgfilter: invert(1);
+
+  /* Texture */
+  --grid-size: 22px;
+  --dot-size: 1.1px;
+
+  /* Focus */
+  --focus-outline: dotted 2px var(--focus-color);
+  --focus-outline-offset: 2px;
 
   color-scheme: light dark;
+
+  /* Derived color tokens - resolve against the active theme's *-rgb vars */
+  --paper: rgb(var(--paper-rgb));
+  --paper-2: rgb(var(--paper-2-rgb));
+  --ink: rgb(var(--ink-rgb));
+  --ink-2: rgb(var(--ink-2-rgb));
+  --ink-3: rgb(var(--ink-3-rgb));
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-  }
-} */
+/* =====================================================
+   Theme palettes
+   Default (no [data-theme] / [data-theme="light"]): warm cream.
+   ===================================================== */
+:root,
+[data-theme="light"] {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+
+  --paper-rgb: 236, 234, 227;
+  --paper-2-rgb: 226, 223, 213;
+  --ink-rgb: 21, 20, 15;
+  --ink-2-rgb: 95, 94, 85;
+  --ink-3-rgb: 164, 162, 153;
+
+  --hair: rgba(var(--ink-rgb), 0.18);
+  --dot: rgba(var(--ink-rgb), 0.22);
+
+  --status-rgb: 46, 125, 79;
+  --focus-color: crimson;
+  --body-bgfilter: invert(1);
+}
+
+[data-theme="warm"] {
+  --foreground-rgb: 48, 38, 28;
+  --background-rgb: 250, 244, 232;
+
+  --paper-rgb: 245, 236, 218;
+  --paper-2-rgb: 236, 225, 202;
+  --ink-rgb: 48, 38, 28;
+  --ink-2-rgb: 118, 104, 82;
+  --ink-3-rgb: 188, 172, 144;
+
+  --hair: rgba(var(--ink-rgb), 0.2);
+  --dot: rgba(var(--ink-rgb), 0.24);
+
+  --status-rgb: 140, 90, 40;
+  --focus-color: #b87333;
+  --body-bgfilter: sepia(0.2) saturate(1.1);
+}
 
 [data-theme="dark"] {
   --foreground-rgb: 255, 255, 255;
   --background-rgb: 0, 0, 0;
-  --focus-color: orange;
-
-  --body-bgfilter: none;
 
   --paper-rgb: 19, 19, 15;
   --paper-2-rgb: 26, 26, 20;
   --ink-rgb: 237, 233, 221;
   --ink-2-rgb: 154, 152, 140;
   --ink-3-rgb: 94, 92, 83;
+
   --hair: rgba(var(--ink-rgb), 0.18);
   --dot: rgba(var(--ink-rgb), 0.25);
+
+  --focus-color: orange;
+  --body-bgfilter: none;
 
   .dark-invert {
     filter: invert();
   }
-}
-
-[data-theme="cool"] {
-  --paper-rgb: 237, 238, 238;
-  --paper-2-rgb: 226, 228, 226;
-  --ink-rgb: 14, 20, 26;
-  --ink-2-rgb: 86, 96, 106;
-  --ink-3-rgb: 156, 164, 170;
 }

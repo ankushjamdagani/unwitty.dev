@@ -20,10 +20,6 @@ export function Ring({
   return (
     <svg
       className="absolute inset-0 h-full w-full overflow-visible"
-      style={{
-        filter:
-          "drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 0px) 0 rgb(0 0 0 / 1))",
-      }}
       viewBox="0 0 600 600"
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
@@ -40,15 +36,22 @@ export function Ring({
         </filter>
       </defs>
 
-      <g filter="url(#rough)" stroke="none">
-        <path
-          d="M 80 300 A 220 220 0 0 1 520 300 Z"
-          fill="rgb(var(--paper-rgb))"
-        />
-        <path
-          d="M 80 300 A 220 220 0 0 0 520 300 Z"
-          fill="rgb(var(--paper-2-rgb))"
-        />
+      <g
+        style={{
+          filter:
+            "drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 0px) 0 rgb(var(--ink-rgb)))",
+        }}
+      >
+        <g filter="url(#rough)" stroke="none">
+          <path
+            d="M 80 300 A 220 220 0 0 1 520 300 Z"
+            fill="rgb(var(--paper-rgb))"
+          />
+          <path
+            d="M 80 300 A 220 220 0 0 0 520 300 Z"
+            fill="rgb(var(--paper-2-rgb))"
+          />
+        </g>
       </g>
 
       <g

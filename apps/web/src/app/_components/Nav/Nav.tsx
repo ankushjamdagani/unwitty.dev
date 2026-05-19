@@ -68,7 +68,7 @@ export function Nav({ variant }: { variant: NavVariant }) {
         >
           Unwitty
         </Link>
-        {"  "}.dev
+        .dev
       </span>
       <nav>
         <ul className="flex items-center text-[0.875em]">
