@@ -1,6 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { JetBrains_Mono, Instrument_Serif, Ephesis } from "next/font/google";
+import {
+  JetBrains_Mono,
+  Cormorant_Garamond,
+  Italianno,
+  Spectral,
+} from "next/font/google";
 // import { CursorInverted } from "@/components/CursorInveted";
 import { Cursor } from "@/components/Cursor";
 // import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
@@ -9,6 +14,7 @@ import { Cursor } from "@/components/Cursor";
 
 import "./_styles/globals.css";
 import { LevaDebugger } from "@/components/LevaDebugger";
+import { BgVignetteControl } from "./work/_components/BgVignetteControl";
 
 // const font = Montserrat({
 //   subsets: ["latin"],
@@ -18,19 +24,26 @@ import { LevaDebugger } from "@/components/LevaDebugger";
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-  variable: "--font-mono-display",
+  variable: "--font-work-body",
 });
 
-const instrument = Ephesis({
+const spectral = Spectral({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-cursive-display",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-work-heading",
 });
 
-const ephesis = Ephesis({
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-life-body",
+});
+
+const italianno = Italianno({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-cursive-display",
+  variable: "--font-life-heading",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
       <body
-        className={`${jetbrains.variable} ${instrument.variable} ${ephesis.variable} font-mono-display`}
+        className={`${jetbrains.variable} ${spectral.variable} ${cormorant.variable} ${italianno.variable} font-work-body`}
       >
         <div className="grain-overlay" />
         {children}
@@ -58,6 +71,7 @@ export default function RootLayout({
         <React.Suspense fallback={null}>
           <LevaDebugger />
         </React.Suspense>
+        <BgVignetteControl />
       </body>
     </html>
   );

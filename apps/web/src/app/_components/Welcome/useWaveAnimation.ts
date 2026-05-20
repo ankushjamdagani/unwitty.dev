@@ -27,6 +27,10 @@ function makeWavyBottom(
   return d;
 }
 
+const AMP_DAMP_PER_SEC = 7.67;
+const PHASE_RATE_PER_SEC = 2.7;
+const MAX_DT = 1 / 30;
+
 export function useWaveAnimation(active: boolean): WavePaths {
   const [paths, setPaths] = useState<WavePaths>({ wave: null, echo: null });
   const stateRef = useRef({
@@ -34,6 +38,7 @@ export function useWaveAnimation(active: boolean): WavePaths {
     target: 0,
     phase: 0,
     raf: null as number | null,
+    lastT: 0,
   });
 
   useEffect(() => {
@@ -41,9 +46,13 @@ export function useWaveAnimation(active: boolean): WavePaths {
     s.target = active ? 18 : 0;
     if (s.raf !== null) return;
 
-    const tick = () => {
-      s.amp += (s.target - s.amp) * 0.12;
-      s.phase += 0.045;
+    s.lastT = 0;
+    const tick = (now: number) => {
+      const dt = s.lastT === 0 ? 1 / 60 : Math.min((now - s.lastT) / 1000, MAX_DT);
+      s.lastT = now;
+
+      s.amp += (s.target - s.amp) * (1 - Math.exp(-AMP_DAMP_PER_SEC * dt));
+      s.phase += PHASE_RATE_PER_SEC * dt;
       const d1 = makeWavyBottom(s.amp, 5, 96, s.phase);
       const d2 = makeWavyBottom(s.amp * 0.6, 7, 96, s.phase * 1.35 + 1.4);
       setPaths({ wave: d1, echo: d2 });
@@ -53,7 +62,6 @@ export function useWaveAnimation(active: boolean): WavePaths {
       } else {
         s.raf = null;
         s.amp = 0;
-        setPaths({ wave: null, echo: null });
       }
     };
     s.raf = requestAnimationFrame(tick);
@@ -62,7 +70,10 @@ export function useWaveAnimation(active: boolean): WavePaths {
   useEffect(() => {
     return () => {
       const s = stateRef.current;
-      if (s.raf !== null) cancelAnimationFrame(s.raf);
+      if (s.raf !== null) {
+        cancelAnimationFrame(s.raf);
+        s.raf = null;
+      }
     };
   }, []);
 

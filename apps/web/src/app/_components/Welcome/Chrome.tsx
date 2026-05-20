@@ -27,7 +27,7 @@ export function Botbar() {
 
 function Key({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex h-icon-md min-w-[var(--icon-md)] items-center justify-center rounded-[2px] border-thin border-fg bg-transparent px-[6px] font-mono-display text-[11px] font-medium leading-none text-fg">
+    <span className="inline-flex h-icon-md min-w-[var(--icon-md)] items-center justify-center rounded-[2px] border-thin border-fg bg-transparent px-[6px] text-[11px] font-medium leading-none text-fg">
       {children}
     </span>
   );

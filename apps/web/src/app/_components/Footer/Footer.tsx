@@ -35,7 +35,7 @@ export function Footer() {
         }}
       >
         <Link href={email} className="text-[2em]">
-          {email.replace("mailto:", "")}
+          Say Hello
         </Link>
         <ul className="flex gap-2">
           {SOCIAL_LINKS.map((link) => (

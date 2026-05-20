@@ -51,7 +51,7 @@ function Anno({
 }) {
   return (
     <span
-      className={`absolute ${pos} pointer-events-none z-[4] font-mono-display text-xxs font-normal leading-[1.2] tracking-[0.18em] uppercase transition-[color,opacity] duration-[250ms] max-[680px]:text-[9px] ${
+      className={`absolute ${pos} pointer-events-none z-[4] text-xxs font-normal leading-[1.2] tracking-[0.18em] uppercase transition-[color,opacity] duration-[250ms] max-[680px]:text-[9px] ${
         active ? "text-fg" : "text-fg-muted"
       }`}
     >
@@ -78,25 +78,17 @@ function Label({
   const active = hover === which;
   const dimmed = hover !== null && hover !== which;
 
-  const base = `absolute left-0 right-0 text-center z-[4] text-fg ${LABEL_TRANSITION}`;
-  const work =
-    "top-[32%] font-mono-display font-medium leading-none tracking-[0.04em] text-display-sm";
-  const life =
-    "top-[61%] italic font-light font-serif-display leading-none tracking-[-0.02em] text-display-md";
+  const base = `absolute left-0 right-0 leading-none text-center z-[4] text-fg ${LABEL_TRANSITION}`;
+  const work = "top-[36%] font-normal font-work-heading text-display-sm";
+  const life = "top-[58%] font-medium font-life-heading text-display-md";
 
-  const transform = isWork
-    ? active
-      ? "scale-[1.04] tracking-[0.06em]"
-      : ""
-    : active
-      ? "scale-[1.03]"
-      : "";
+  const transform = active ? "scale-[1.04] tracking-wider" : "";
   const opacity = dimmed ? "opacity-[0.32]" : "";
 
   return (
     <div className={`${base} ${isWork ? work : life} ${transform} ${opacity}`}>
       <span
-        className={`align-middle font-mono-display tracking-[0.04em] text-fg-muted italic mr-[1em] text-lg`}
+        className={`align-middle font-work-body text-fg-muted italic mr-[1em] text-lg`}
       >
         {numText}
       </span>
@@ -108,11 +100,13 @@ function Label({
 function Enter({ which, hover }: { which: Choice; hover: Choice | null }) {
   const isWork = which === "work";
   const active = hover === which;
-  const pos = isWork ? "top-[25%]" : "top-[75%]";
-  const restingTransform = isWork ? "translate-y-[8px]" : "-translate-y-[8px]";
+  const pos = isWork ? "top-[27.5%]" : "top-[73%]";
+  const restingTransform = isWork
+    ? "translate-y-[10px]"
+    : "-translate-y-[10px]";
   return (
     <div
-      className={`absolute left-0 right-0 text-center font-mono-display text-[10.5px] font-normal leading-none tracking-[0.32em] uppercase text-fg-muted pointer-events-none z-[4] transition-[opacity,transform] duration-[250ms] ${pos} ${
+      className={`absolute left-0 right-0 text-center text-[10.5px] font-normal leading-none tracking-[0.32em] uppercase text-fg-muted pointer-events-none z-[4] transition-[opacity,transform] duration-[250ms] ${pos} ${
         active
           ? "opacity-[0.85] translate-y-0"
           : `opacity-0 ${restingTransform}`

@@ -17,7 +17,7 @@ export default function WorkRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="font-mono-display">
+    <div className="theme-work font-work-body">
       <Nav variant={NavVariant.WORK} />
       {children}
       <Footer />

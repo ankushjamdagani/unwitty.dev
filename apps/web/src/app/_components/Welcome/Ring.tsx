@@ -30,7 +30,7 @@ export function Ring({
             type="fractalNoise"
             baseFrequency="0.028"
             numOctaves={2}
-            seed={3}
+            seed={9}
           />
           <feDisplacementMap in="SourceGraphic" scale={5} />
         </filter>

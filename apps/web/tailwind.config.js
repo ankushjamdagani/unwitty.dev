@@ -14,8 +14,10 @@ module.exports = {
         accent: "rgb(var(--accent) / <alpha-value>)",
       },
       fontFamily: {
-        "mono-display": "var(--font-mono-display), ui-monospace, monospace",
-        "serif-display": "var(--font-serif-display), serif",
+        "work-body": "var(--font-work-body), ui-monospace, monospace",
+        "work-heading": "var(--font-work-heading), serif",
+        "life-body": "var(--font-life-body), serif",
+        "life-heading": "var(--font-life-heading), cursive",
       },
       borderRadius: {
         DEFAULT: "var(--border-radius)",

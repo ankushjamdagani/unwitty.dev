@@ -176,6 +176,16 @@
   .themed-filter:hover {
     filter: none;
   }
+
+  .theme-work :is(h1, h2, h3),
+  .theme-work .display-font {
+    font-family: var(--font-work-heading), serif;
+  }
+
+  .theme-life :is(h1, h2, h3),
+  .theme-life .display-font {
+    font-family: var(--font-life-heading), cursive;
+  }
 }
 
 html {
@@ -220,7 +230,7 @@ body {
 }
 
 .grain-overlay {
-  @apply pointer-events-none fixed inset-0 z-[99999] opacity-[0.3] mix-blend-multiply animate-[noise_150ms_steps(8)_infinite];
+  @apply pointer-events-none fixed inset-0 z-[99999] opacity-[0.2] mix-blend-multiply animate-[noise_150ms_steps(8)_infinite];
   background-image: url("/images/noise-web.webp");
   background-size: 500px;
 }
