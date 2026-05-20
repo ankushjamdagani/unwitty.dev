@@ -198,6 +198,25 @@ body {
       )
       0 0 / var(--grid-size) var(--grid-size);
   }
+
+  &:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 35%,
+      rgb(var(--vignette) / var(--vignette-mid)) 75%,
+      rgb(var(--vignette) / var(--vignette-edge)) 100%
+    );
+    z-index: 1;
+  }
+
+  :where(html[data-vignette="off"]) &:before {
+    display: none;
+  }
 }
 
 .grain-overlay {

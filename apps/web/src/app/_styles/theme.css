@@ -70,6 +70,10 @@
 
   --dot: rgb(var(--fg) / 0.22);
 
+  --vignette: var(--fg);
+  --vignette-mid: 0.16;
+  --vignette-edge: 0.32;
+
   --focus: crimson;
   --body-bgfilter: invert(1);
   --image-filter: grayscale(1) opacity(0.7);
@@ -90,9 +94,14 @@
 
   --dot: rgb(var(--fg) / 0.24);
 
+  --vignette: var(--fg);
+  --vignette-mid: 0.16;
+  --vignette-edge: 0.32;
+
   --focus: #b87333;
   --body-bgfilter: sepia(0.2) saturate(1.1);
-  --image-filter: grayscale(1) sepia(1) hue-rotate(-15deg) saturate(0.5) opacity(0.8);
+  --image-filter: grayscale(1) sepia(1) hue-rotate(-15deg) saturate(0.5)
+    opacity(0.8);
 }
 
 /* =====================================================
@@ -109,6 +118,10 @@
   --accent: 46 125 79;
 
   --dot: rgb(var(--fg) / 0.25);
+
+  --vignette: var(--fg);
+  --vignette-mid: 0.08;
+  --vignette-edge: 0.16;
 
   --focus: orange;
   --body-bgfilter: none;

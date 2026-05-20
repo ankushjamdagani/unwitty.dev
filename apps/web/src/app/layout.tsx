@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { JetBrains_Mono, Instrument_Serif } from "next/font/google";
+import { JetBrains_Mono, Instrument_Serif, Ephesis } from "next/font/google";
 // import { CursorInverted } from "@/components/CursorInveted";
 import { Cursor } from "@/components/Cursor";
 // import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
@@ -21,11 +21,16 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-mono-display",
 });
 
-const instrument = Instrument_Serif({
+const instrument = Ephesis({
   subsets: ["latin"],
   weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-serif-display",
+  variable: "--font-cursive-display",
+});
+
+const ephesis = Ephesis({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-cursive-display",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +47,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
       <body
-        className={`${jetbrains.variable} ${instrument.variable} font-mono-display`}
+        className={`${jetbrains.variable} ${instrument.variable} ${ephesis.variable} font-mono-display`}
       >
         <div className="grain-overlay" />
         {children}
