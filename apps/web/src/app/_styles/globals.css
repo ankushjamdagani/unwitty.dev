@@ -222,10 +222,12 @@ body {
       rgb(var(--vignette) / var(--vignette-edge)) 100%
     );
     z-index: 1;
+    opacity: 0;
+    transition: opacity 900ms ease-out;
   }
 
-  :where(html[data-vignette="off"]) &:before {
-    display: none;
+  &:where([data-vignette="on"]):before {
+    opacity: 1;
   }
 }
 

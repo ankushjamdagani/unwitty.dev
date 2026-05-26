@@ -39,6 +39,19 @@ export function Welcome() {
   }, []);
 
   useEffect(() => {
+    const root = document.body;
+    root.setAttribute("data-vignette", "on");
+    return () => {
+      root.removeAttribute("data-vignette");
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!selected) return;
+    document.body.removeAttribute("data-vignette");
+  }, [selected]);
+
+  useEffect(() => {
     router.prefetch(ROUTES.work);
     router.prefetch(ROUTES.life);
   }, [router]);

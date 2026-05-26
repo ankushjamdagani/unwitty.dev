@@ -61,6 +61,7 @@ export default function RootLayout({
       <link rel="icon" href="/images/favicon.png" sizes="any" />
       <body
         className={`${jetbrains.variable} ${spectral.variable} ${cormorant.variable} ${italianno.variable} font-work-body`}
+        data-vignette="on"
       >
         <div className="grain-overlay" />
         {children}
