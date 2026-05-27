@@ -50,6 +50,10 @@
   --focus-outline: dotted 2px var(--focus);
   --focus-outline-offset: 2px;
 
+  /* Ledger Styles */
+  --ledger-outline: 71 71 64; /* #474740 */
+  --ledger-surface: 28 27 27; /* #1c1b1b */
+
   color-scheme: light dark;
 }
 
@@ -68,7 +72,8 @@
   --fg-subtle: 164 162 153;
   --accent: 46 125 79;
 
-  --dot: rgb(var(--fg) / 0.22);
+  --dot: rgb(var(--fg) / 0.08); /* Faded but visible across all pages */
+  --dot-strong: rgb(var(--fg) / 0.22); /* Full intensity for welcome */
 
   --vignette: var(--fg);
   --vignette-mid: 0.16;
@@ -92,7 +97,8 @@
   --fg-subtle: 188 172 144;
   --accent: 140 90 40;
 
-  --dot: rgb(var(--fg) / 0.24);
+  --dot: rgb(var(--fg) / 0.1);
+  --dot-strong: rgb(var(--fg) / 0.24);
 
   --vignette: var(--fg);
   --vignette-mid: 0.16;
@@ -117,7 +123,8 @@
   --fg-subtle: 94 92 83;
   --accent: 46 125 79;
 
-  --dot: rgb(var(--fg) / 0.25);
+  --dot: rgb(var(--fg) / 0.1);
+  --dot-strong: rgb(var(--fg) / 0.25);
 
   --vignette: var(--fg);
   --vignette-mid: 0.08;

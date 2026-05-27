@@ -58,7 +58,7 @@ export function Nav({ variant }: { variant: NavVariant }) {
   return (
     <header
       id="navigation-bar"
-      className="border-fg-muted z-nav h-nav sticky top-0 flex items-center justify-between border-b-[length:var(--border-width-md)] border-dashed px-[var(--horizontal-gap)]"
+      className={`border-fg-muted ${variant !== NavVariant.WELCOME ? "bg-canvas-raised" : ""} z-nav h-nav sticky top-0 flex items-center justify-between border-b-[length:var(--border-width-md)] border-dashed px-[var(--horizontal-gap)]`}
     >
       <span>
         <Link

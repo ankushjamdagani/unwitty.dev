@@ -12,12 +12,15 @@ module.exports = {
         "fg-muted": "rgb(var(--fg-muted) / <alpha-value>)",
         "fg-subtle": "rgb(var(--fg-subtle) / <alpha-value>)",
         accent: "rgb(var(--accent) / <alpha-value>)",
+        "ledger-outline": "rgb(var(--ledger-outline) / <alpha-value>)",
+        "ledger-surface": "rgb(var(--ledger-surface) / <alpha-value>)",
       },
       fontFamily: {
         "work-body": "var(--font-work-body), ui-monospace, monospace",
         "work-heading": "var(--font-work-heading), serif",
         "life-body": "var(--font-life-body), serif",
         "life-heading": "var(--font-life-heading), cursive",
+        "ledger-serif": "var(--font-life-body), serif",
       },
       borderRadius: {
         DEFAULT: "var(--border-radius)",

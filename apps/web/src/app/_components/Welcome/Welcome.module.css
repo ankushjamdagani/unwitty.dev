@@ -14,7 +14,7 @@
   inset: 0;
   background:
     radial-gradient(
-        var(--dot) var(--dot-size),
+        var(--dot-strong) var(--dot-size),
         transparent calc(var(--dot-size) + 0.4px)
       )
       0 0 / var(--grid-size) var(--grid-size),
@@ -38,7 +38,7 @@
 .paperOverlayBottom {
   background:
     radial-gradient(
-        var(--dot) var(--dot-size),
+        var(--dot-strong) var(--dot-size),
         transparent calc(var(--dot-size) + 0.4px)
       )
       0 0 / var(--grid-size) var(--grid-size),
@@ -61,7 +61,7 @@
 .paperOverlayTop {
   background:
     radial-gradient(
-        var(--dot) var(--dot-size),
+        var(--dot-strong) var(--dot-size),
         transparent calc(var(--dot-size) + 0.4px)
       )
       0 0 / var(--grid-size) var(--grid-size),

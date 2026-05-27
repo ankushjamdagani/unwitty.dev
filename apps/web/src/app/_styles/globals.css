@@ -168,6 +168,50 @@
     @apply border-thin border-solid rounded-[2px] text-xs px-1 py-[2px];
   }
 
+  .dot-line {
+    background-image: linear-gradient(
+      to right,
+      rgb(var(--ledger-outline)) 10%,
+      rgba(255, 255, 255, 0) 0%
+    );
+    background-position: bottom;
+    background-size: 4px 1px;
+    background-repeat: repeat-x;
+  }
+
+  .scanline {
+    @apply w-full h-[100px] z-[100] fixed bottom-full pointer-events-none opacity-10;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      bottom: 100%;
+    }
+    100% {
+      bottom: -100px;
+    }
+  }
+
+  @keyframes marquee-border {
+    from {
+      background-position:
+        0 0,
+        0 100%;
+    }
+    to {
+      background-position:
+        20px 0,
+        20px 100%;
+    }
+  }
+
   .themed-filter {
     filter: var(--image-filter);
     transition: filter 300ms ease;
@@ -201,9 +245,17 @@ body {
 
   /* Dot pattern background */
   &:after {
-    @apply pointer-events-none fixed inset-0 -z-10 content-[""];
+    @apply pointer-events-none fixed inset-0 -z-10 content-[""] transition-[background-color,opacity] duration-700 ease-in-out;
     background: radial-gradient(
         var(--dot) var(--dot-size),
+        transparent calc(var(--dot-size) + 0.4px)
+      )
+      0 0 / var(--grid-size) var(--grid-size);
+  }
+
+  &[data-welcome="true"]:after {
+    background: radial-gradient(
+        var(--dot-strong) var(--dot-size),
         transparent calc(var(--dot-size) + 0.4px)
       )
       0 0 / var(--grid-size) var(--grid-size);

@@ -41,8 +41,10 @@ export function Welcome() {
   useEffect(() => {
     const root = document.body;
     root.setAttribute("data-vignette", "on");
+    root.setAttribute("data-welcome", "true");
     return () => {
       root.removeAttribute("data-vignette");
+      root.removeAttribute("data-welcome");
     };
   }, []);
 
@@ -69,6 +71,10 @@ export function Welcome() {
       if (busy) return;
       setBusy(true);
       setSelected(which);
+      
+      // Trigger the background fade by removing the data-welcome attribute
+      document.body.removeAttribute("data-welcome");
+      
       navTimeoutRef.current = setTimeout(() => {
         router.push(ROUTES[which]);
       }, TRANSITION_MS);

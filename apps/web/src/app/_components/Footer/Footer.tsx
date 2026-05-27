@@ -24,7 +24,7 @@ export function Footer() {
         “Art is the elimination of the unnecessary.” - Pablo Picasso
       </blockquote>
       <div
-        className="content flex min-h-[75vh] flex-col items-center justify-center gap-8 py-[200px] text-canvas-contrast"
+        className="content flex min-h-[75vh] flex-col items-center justify-center gap-8 py-[200px] text-canvas"
         style={{
           animation: "circles-zoom 1s linear forwards",
           animationRange: "entry 0% entry 99%",
@@ -44,7 +44,7 @@ export function Footer() {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-canvas-contrast hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+                className="border-canvas hover:bg-canvas-contrast hover:text-fg-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
               >
                 {SocialIcons[link.label]}
               </Link>
