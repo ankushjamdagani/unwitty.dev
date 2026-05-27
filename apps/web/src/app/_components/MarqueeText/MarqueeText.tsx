@@ -10,10 +10,9 @@ const words = [
   "Creative Technologist",
 ];
 
-// Combining SVG filter and CSS drop-shadow to match the Welcome screen's Ring aesthetic
+// Combining SVG filter to match the Welcome screen's Ring aesthetic
 const combinedFilterStyle = {
-  filter:
-    "url(#ledger-rough) drop-shadow(var(--shadow-x, 0px) var(--shadow-y, 0px) 0px rgb(var(--ledger-outline) / 0.4))",
+  filter: "url(#ledger-rough)",
 };
 
 const borderAnimationStyle = (direction: string) => ({
