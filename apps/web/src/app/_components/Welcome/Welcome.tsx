@@ -71,10 +71,10 @@ export function Welcome() {
       if (busy) return;
       setBusy(true);
       setSelected(which);
-      
+
       // Trigger the background fade by removing the data-welcome attribute
       document.body.removeAttribute("data-welcome");
-      
+
       navTimeoutRef.current = setTimeout(() => {
         router.push(ROUTES[which]);
       }, TRANSITION_MS);

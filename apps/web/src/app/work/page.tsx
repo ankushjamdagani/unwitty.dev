@@ -10,7 +10,7 @@ export default function WorkHome() {
   return (
     <div className="theme-work">
       <LedgerShell>
-        <div className="w-full max-w-content mx-auto px-4 -mb-12">
+        <div className="w-full max-w-content mx-auto px-4">
           <LedgerHero />
         </div>
 

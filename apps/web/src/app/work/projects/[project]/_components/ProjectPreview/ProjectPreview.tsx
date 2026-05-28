@@ -35,7 +35,11 @@ export function ProjectPreview({
       <header className="bg-fg-contrast text-canvas-contrast text-xs z-[1] flex h-10 w-full items-center justify-between px-2 border-canvas-contrast border-b border-dashed">
         <p>Preview</p>
         <div className="flex items-center gap-4">
-          <Link href={githubLink} target="_blank" className="flex items-center gap-1">
+          <Link
+            href={githubLink}
+            target="_blank"
+            className="flex items-center gap-1"
+          >
             Github <GoArrowUpRight className="text-base" />
           </Link>
           |

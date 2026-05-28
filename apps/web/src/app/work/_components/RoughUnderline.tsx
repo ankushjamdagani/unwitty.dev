@@ -1,6 +1,12 @@
 import React from "react";
 
-export const RoughUnderline = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+export const RoughUnderline = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
     <span className={`relative inline-block ${className}`}>
       {children}

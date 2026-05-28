@@ -51,7 +51,7 @@ export function useTheme() {
     try {
       window.localStorage.setItem(STORAGE_KEY, next);
       window.dispatchEvent(
-        new StorageEvent("storage", { key: STORAGE_KEY, newValue: next })
+        new StorageEvent("storage", { key: STORAGE_KEY, newValue: next }),
       );
     } catch {
       /* localStorage may be unavailable */

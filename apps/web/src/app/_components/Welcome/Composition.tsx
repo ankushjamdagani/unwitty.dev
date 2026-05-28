@@ -128,7 +128,11 @@ function Zone({
   onSelect: (which: Choice) => void;
   ariaLabel: string;
 }) {
-  const vert = which === "work" ? "-top-[6%] h-[56%]" : "-bottom-[6%] h-[56%]";
+  const isWork = which === "work";
+  // The ring has a radius of 220 in a 600 unit viewBox, which is 73.33% of the container width.
+  // We use clip-path to split the circular hover area into top and bottom halves.
+  const clip = isWork ? "inset(0 0 50% 0)" : "inset(50% 0 0 0)";
+
   return (
     <button
       type="button"
@@ -137,7 +141,8 @@ function Zone({
       onMouseLeave={() => onHover(null)}
       onFocus={() => onHover(which)}
       onClick={() => onSelect(which)}
-      className={`absolute -left-[6%] -right-[6%] ${vert} z-[5] cursor-pointer appearance-none border-0 bg-transparent p-0 m-0 font-[inherit] text-inherit outline-0 focus-visible:outline focus-visible:outline-1 focus-visible:outline-dashed focus-visible:outline-ink-3 focus-visible:[outline-offset:-6px]`}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[73.4%] h-[73.4%] rounded-full z-[5] cursor-pointer appearance-none border-0 bg-transparent p-0 m-0 font-[inherit] text-inherit outline-0 focus-visible:outline focus-visible:outline-1 focus-visible:outline-dashed focus-visible:outline-ink-3 focus-visible:[outline-offset:-6px]"
+      style={{ clipPath: clip }}
     />
   );
 }

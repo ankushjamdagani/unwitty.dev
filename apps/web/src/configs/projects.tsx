@@ -170,7 +170,7 @@ export const ProjectsConfig = {
             import("@project/gameboy-shell").then((module) => ({
               default: module.GameboyShell,
             })),
-          { ssr: true, loading: () => <p>Loading...</p> }
+          { ssr: true, loading: () => <p>Loading...</p> },
         );
 
         return (
@@ -209,7 +209,7 @@ export const ProjectsConfig = {
             import("@project/svg-editor").then((module) => ({
               default: module.SvgEditor,
             })),
-          { ssr: true, loading: () => <p>Loading...</p> }
+          { ssr: true, loading: () => <p>Loading...</p> },
         );
 
         return <SvgEditor />;
@@ -271,7 +271,7 @@ export const ProjectsConfig = {
             import("@project/song-generator").then((module) => ({
               default: module.SongGenerator,
             })),
-          { ssr: true, loading: () => <p>Loading...</p> }
+          { ssr: true, loading: () => <p>Loading...</p> },
         );
 
         return <SongGenerator />;

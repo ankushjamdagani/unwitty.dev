@@ -48,7 +48,8 @@ export function useWaveAnimation(active: boolean): WavePaths {
 
     s.lastT = 0;
     const tick = (now: number) => {
-      const dt = s.lastT === 0 ? 1 / 60 : Math.min((now - s.lastT) / 1000, MAX_DT);
+      const dt =
+        s.lastT === 0 ? 1 / 60 : Math.min((now - s.lastT) / 1000, MAX_DT);
       s.lastT = now;
 
       s.amp += (s.target - s.amp) * (1 - Math.exp(-AMP_DAMP_PER_SEC * dt));

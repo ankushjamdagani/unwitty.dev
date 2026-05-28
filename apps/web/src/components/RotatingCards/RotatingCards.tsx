@@ -27,7 +27,9 @@ export function RotatingCards({ list }: { list: RotatingCardsItem[] }) {
           group-hover:[&:nth-child(3)]:translate-x-[10px] group-hover:[&:nth-child(3)]:-translate-y-[10px] group-hover:[&:nth-child(3)]:rotate-[15deg]"
         >
           <figure className="flex h-full w-full flex-col gap-4">
-            <figcaption className="text-center font-bold">{image.alt}</figcaption>
+            <figcaption className="text-center font-bold">
+              {image.alt}
+            </figcaption>
             <Image
               {...image}
               alt={image.alt}

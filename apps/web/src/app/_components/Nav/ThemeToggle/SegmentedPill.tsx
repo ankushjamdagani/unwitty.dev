@@ -16,7 +16,7 @@ export function SegmentedPill() {
   const { theme, setTheme } = useTheme();
   const activeIndex = Math.max(
     0,
-    OPTIONS.findIndex((o) => o.theme === theme)
+    OPTIONS.findIndex((o) => o.theme === theme),
   );
 
   return (
