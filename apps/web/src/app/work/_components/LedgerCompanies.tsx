@@ -92,7 +92,7 @@ export const LedgerCompanies = () => {
         <div className="relative">
           <div className="absolute -right-8 top-0 bottom-0 w-4 border-r border-t border-b border-ledger-outline/30 [filter:url(#ledger-rough)]" />
           <div className="absolute -right-14 top-1/2 -translate-y-1/2 rotate-90">
-            <span className="text-[9px] uppercase tracking-[0.4em] opacity-40 font-bold whitespace-nowrap">
+            <span className="text-xxs uppercase tracking-[0.4em] opacity-40 font-bold whitespace-nowrap">
               Fullstack
             </span>
           </div>
@@ -102,7 +102,7 @@ export const LedgerCompanies = () => {
         </div>
 
         {/* Wellness Gap Section: Subtle Neutral Flare */}
-        <div className="py-12 md:py-16 my-4 relative flex justify-center items-center min-h-[200px] select-none overflow-visible">
+        <div className="relative flex justify-center items-center select-none overflow-visible">
           {/* Spreading Sunlight Flare - Neutral & Subdued */}
           <div className="absolute inset-0 pointer-events-none flex items-center justify-center overflow-visible">
             {/* Core Glow (Centered) - Using neutral contrast color with very low opacity */}
@@ -115,12 +115,12 @@ export const LedgerCompanies = () => {
           {/* Central Stamp */}
           <div className="relative z-10 rotate-[-6deg] hover:rotate-0 transition-transform duration-500 scale-110 md:scale-125 cursor-default group/stamp">
             <div className="absolute inset-0 bg-fg-muted/5 rounded-xl blur-2xl group-hover/stamp:bg-fg-muted/10 transition-colors" />
-            <div className="relative border-2 border-dashed border-ledger-outline/40 px-10 py-6 rounded-xl flex flex-col items-center [filter:url(#ledger-rough)] backdrop-blur-[4px] bg-canvas/40 shadow-xl">
+            <div className="relative px-10 py-6 rounded-xl flex flex-col items-center">
               <span className="text-[9px] uppercase tracking-[0.4em] font-black opacity-50 mb-1">
                 Life Event
               </span>
               <span className="text-2xl font-work-heading uppercase text-fg-contrast/80 tracking-tighter">
-                🍁 Wellness Year
+                🍁 Wellness Year 🍀
               </span>
               <div className="mt-2 flex items-center gap-2">
                 <div className="h-px w-4 bg-ledger-outline/30" />
@@ -136,7 +136,7 @@ export const LedgerCompanies = () => {
         <div className="relative">
           <div className="absolute -right-8 top-0 bottom-0 w-4 border-r border-t border-b border-ledger-outline/30 [filter:url(#ledger-rough)]" />
           <div className="absolute -right-14 top-1/2 -translate-y-1/2 rotate-90">
-            <span className="text-[9px] uppercase tracking-[0.4em] opacity-40 font-bold whitespace-nowrap">
+            <span className="text-xxs uppercase tracking-[0.4em] opacity-40 font-bold whitespace-nowrap">
               Frontend
             </span>
           </div>
