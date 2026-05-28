@@ -140,17 +140,19 @@ const OverlapHero = ({ text }: { text: React.ReactNode }) => (
 );
 
 const BleedOverlapHero = ({ text }: { text: React.ReactNode }) => (
-  <HeroContainer>
-    <div className="flex w-full h-full max-w-6xl items-center relative">
-      <div className="absolute left-0 top-0 w-[45%] h-full grayscale opacity-20 contrast-150 mix-blend-multiply">
-        <Image
-          src="/images/profile.png"
-          alt="Bleed"
-          fill
-          className="object-cover object-center"
-        />
-      </div>
+  <HeroContainer className="w-screen max-w-[100vw] relative left-1/2 -translate-x-1/2 !px-0 -mb-6">
+    {/* Background image expanding to the complete left of the viewport and taking full height */}
+    <div className="absolute left-0 top-0 bottom-0 w-[50vw] md:w-[45vw] grayscale opacity-20 contrast-150 mix-blend-multiply">
+      <Image
+        src="/images/profile.png"
+        alt="Bleed"
+        fill
+        className="object-cover object-top"
+        priority
+      />
+    </div>
 
+    <div className="flex w-full h-full max-w-6xl items-center relative px-4 md:px-0">
       <div className="ml-[35%] flex-1 relative z-base bg-canvas/80 backdrop-blur-md p-12 border-l border-ledger-outline/10">
         <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-ledger-outline/40 to-transparent" />
 

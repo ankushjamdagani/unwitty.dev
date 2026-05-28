@@ -40,7 +40,7 @@ export function MarqueeText() {
   return (
     <div
       id="marquee-text-wrapper"
-      className="h-marquee w-full whitespace-nowrap overflow-visible py-4"
+      className="h-marquee w-full whitespace-nowrap overflow-visible"
     >
       {/* Primary Marquee Bar */}
       <div className="z-normal relative flex -rotate-[1.2deg] origin-right overflow-hidden select-none">
