@@ -1,14 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useLedgerTheme } from "../_context/LedgerThemeContext";
 import Link from "next/link";
-import {
-  FiLayers,
-  FiEdit3,
-  FiTag,
-  FiBookOpen,
-  FiBookmark,
-} from "react-icons/fi";
+
 
 const RESUME_VARIANTS = [
   "ledger-bracket",
@@ -20,11 +15,17 @@ const RESUME_VARIANTS = [
 type ResumeVariant = (typeof RESUME_VARIANTS)[number];
 
 export const LedgerResume = () => {
-  const [activeVariant, setActiveVariant] =
-    useState<ResumeVariant>("ledger-bracket");
+  const { theme } = useLedgerTheme();
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
   const [isDocked, setIsDocked] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const activeVariant: ResumeVariant =
+    theme === "blueprint"
+      ? "ticket-stub"
+      : theme === "editorial" || theme === "hybrid"
+        ? "ledger-bracket"
+        : "index-card";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -380,20 +381,7 @@ export const LedgerResume = () => {
     }
   };
 
-  const getVariantIcon = (style: ResumeVariant) => {
-    switch (style) {
-      case "ledger-bracket":
-        return <FiLayers className="w-3.5 h-3.5" />;
-      case "margin-note":
-        return <FiEdit3 className="w-3.5 h-3.5" />;
-      case "stamp-imprint":
-        return <FiTag className="w-3.5 h-3.5" />;
-      case "index-card":
-        return <FiBookOpen className="w-3.5 h-3.5" />;
-      case "ticket-stub":
-        return <FiBookmark className="w-3.5 h-3.5" />;
-    }
-  };
+
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -406,31 +394,7 @@ export const LedgerResume = () => {
         <div className="flex-grow h-px bg-ledger-outline opacity-20 [filter:url(#ledger-rough)]"></div>
       </div>
 
-      {/* Variant switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8 w-full max-w-2xl relative z-base">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-fg-muted opacity-45">
-          Resume UI Experiments ({RESUME_VARIANTS.indexOf(activeVariant) + 1}/
-          {RESUME_VARIANTS.length})
-        </span>
 
-        <div className="flex items-center gap-1 bg-canvas-raised border border-ledger-outline/20 p-1 rounded-lg overflow-x-auto max-w-full no-scrollbar">
-          {RESUME_VARIANTS.map((style) => (
-            <button
-              key={style}
-              onClick={() => setActiveVariant(style)}
-              className={`px-2.5 h-7 rounded flex items-center gap-1.5 text-[8.5px] font-mono uppercase tracking-widest border shrink-0 transition-all duration-300 ${
-                activeVariant === style
-                  ? "bg-fg-contrast text-canvas border-fg-contrast shadow-sm font-bold"
-                  : "border-transparent hover:bg-ledger-outline/10 text-fg-muted hover:text-fg-contrast"
-              }`}
-              title={`Switch to ${style}`}
-            >
-              {getVariantIcon(style)}
-              <span>{style.replace("-", " ")}</span>
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Inline dock sentinel */}
       <div

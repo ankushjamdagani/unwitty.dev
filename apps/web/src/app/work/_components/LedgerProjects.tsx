@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useLedgerTheme } from "../_context/LedgerThemeContext";
 import Link from "next/link";
 import { ProjectsMeta, ProjectState, ProjectType } from "@/configs/projects";
-import { FiLayout, FiSliders, FiList, FiTrendingUp, FiFolder } from "react-icons/fi";
+
 
 const List = [
   ProjectType.GameboyTetris,
@@ -18,8 +19,7 @@ const StatusLabel: Record<ProjectState, string> = {
   [ProjectState.Completed]: "Completed",
 };
 
-const LAYOUTS = ["editorial-grid", "editorial-interlocking", "editorial-masonry", "editorial-staircase", "editorial-overlap"] as const;
-type LayoutStyle = (typeof LAYOUTS)[number];
+
 
 /* -------------------------------------------------------------------------- */
 /*         1. Editorial Grid: The Staggered Asymmetric Slate                  */
@@ -310,7 +310,14 @@ const EditorialOverlapVariant = () => {
 /*                               Main Component                               */
 /* -------------------------------------------------------------------------- */
 export const LedgerProjects = () => {
-  const [layoutStyle, setLayoutStyle] = useState<LayoutStyle>("editorial-grid");
+  const { theme } = useLedgerTheme();
+
+  const layoutStyle: string =
+    theme === "blueprint" || theme === "hybrid"
+      ? "editorial-staircase"
+      : theme === "editorial"
+        ? "editorial-overlap"
+        : "editorial-interlocking";
 
   const renderLayout = () => {
     switch (layoutStyle) {
@@ -329,21 +336,6 @@ export const LedgerProjects = () => {
     }
   };
 
-  const getLayoutIcon = (style: LayoutStyle) => {
-    switch (style) {
-      case "editorial-grid":
-        return <FiSliders className="w-3.5 h-3.5" />;
-      case "editorial-interlocking":
-        return <FiTrendingUp className="w-3.5 h-3.5" />;
-      case "editorial-masonry":
-        return <FiLayout className="w-3.5 h-3.5" />;
-      case "editorial-staircase":
-        return <FiList className="w-3.5 h-3.5" />;
-      case "editorial-overlap":
-        return <FiFolder className="w-3.5 h-3.5" />;
-    }
-  };
-
   return (
     <section className="mb-24 scroll-mt-32 relative group/projects" id="projects">
       {/* Decorative absolute background number */}
@@ -352,34 +344,13 @@ export const LedgerProjects = () => {
       </div>
 
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 relative z-base">
-        <div className="flex items-center gap-4">
-          <span className="text-[11px] font-medium text-fg-muted opacity-40">
-            /
-          </span>
-          <h2 className="text-[11px] font-medium uppercase tracking-[0.4em] text-fg-contrast">
-            Experiments
-          </h2>
-        </div>
-
-        {/* Minimal Layout Selector Pill */}
-        <div className="flex items-center gap-1.5 bg-canvas-raised border border-ledger-outline/20 p-1 rounded-lg">
-          {LAYOUTS.map((style) => (
-            <button
-              key={style}
-              onClick={() => setLayoutStyle(style)}
-              className={`px-3 h-7 rounded flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-widest border transition-all duration-300 ${
-                layoutStyle === style
-                  ? "bg-fg-contrast text-canvas border-fg-contrast shadow-sm"
-                  : "border-transparent hover:bg-ledger-outline/10 text-fg-muted hover:text-fg-contrast"
-              }`}
-              title={`Switch to ${style} layout`}
-            >
-              {getLayoutIcon(style)}
-              <span className="hidden md:inline">{style.replace("editorial-", "").replace("-", " ")}</span>
-            </button>
-          ))}
-        </div>
+      <div className="flex items-center gap-4 mb-12 relative z-base">
+        <span className="text-[11px] font-medium text-fg-muted opacity-40">
+          /
+        </span>
+        <h2 className="text-[11px] font-medium uppercase tracking-[0.4em] text-fg-contrast">
+          Experiments
+        </h2>
       </div>
 
       {/* Render selected high-fidelity variant */}

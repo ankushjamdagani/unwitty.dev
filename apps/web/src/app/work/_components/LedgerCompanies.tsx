@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useLedgerTheme } from "../_context/LedgerThemeContext";
 
 const companies = [
   {
@@ -47,8 +48,7 @@ const companies = [
   },
 ];
 
-const LAYOUTS = ["timeline", "grid", "classic"] as const;
-type LayoutStyle = (typeof LAYOUTS)[number];
+
 
 /* -------------------------------------------------------------------------- */
 /*                               Layout Variants                              */
@@ -66,15 +66,15 @@ const TimelineCompanies = ({
 }) => (
   <div className="relative z-base space-y-8">
     {/* Continuous Timeline Thread */}
-    <div className="absolute right-[120px] md:right-[200px] top-3 bottom-3 w-px bg-ledger-outline/20 [filter:url(#ledger-rough)]" />
+    <div className="absolute right-[120px] md:right-[230px] top-3 bottom-3 w-px bg-ledger-outline/20 [filter:url(#ledger-rough)]" />
 
     {/* Section 01: Fullstack */}
-    <div className="relative pr-[155px] md:pr-[260px]">
+    <div className="relative pr-[155px] md:pr-[290px]">
       {/* Timeline Node */}
-      <div className="absolute right-[120px] md:right-[200px] translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
+      <div className="absolute right-[120px] md:right-[230px] translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
 
       {/* Group Heading on the Right of the line */}
-      <div className="absolute right-0 w-[100px] md:w-[170px] text-left top-0.5 select-none flex flex-col items-start">
+      <div className="absolute right-0 w-[100px] md:w-[200px] text-left top-0.5 select-none flex flex-col items-start pl-4">
         <span className="text-[9px] md:text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">SEC_01</span>
         <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">Fullstack</h3>
         <span className="text-[8px] md:text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-2 opacity-60">System core & architecture</span>
@@ -86,9 +86,9 @@ const TimelineCompanies = ({
     </div>
 
     {/* Wellness Gap Section */}
-    <div className="relative pr-[155px] md:pr-[260px] flex justify-end items-center select-none overflow-visible">
+    <div className="relative pr-[155px] md:pr-[290px] flex justify-end items-center select-none overflow-visible">
       {/* Active Ping Node Container (ensures perfect centering of pulsing animation) */}
-      <div className="absolute right-[120px] md:right-[200px] translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center overflow-visible z-10">
+      <div className="absolute right-[120px] md:right-[230px] translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center overflow-visible z-10">
         <div className="absolute w-5 h-5 rounded-full bg-accent/30 animate-ping" />
         <div className="absolute w-3 h-3 rounded-full bg-accent border-2 border-canvas" />
       </div>
@@ -114,12 +114,12 @@ const TimelineCompanies = ({
     </div>
 
     {/* Section 02: Frontend */}
-    <div className="relative pr-[155px] md:pr-[260px]">
+    <div className="relative pr-[155px] md:pr-[290px]">
       {/* Timeline Node */}
-      <div className="absolute right-[120px] md:right-[200px] translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
+      <div className="absolute right-[120px] md:right-[230px] translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
 
       {/* Group Heading on the Right of the line */}
-      <div className="absolute right-0 w-[100px] md:w-[170px] text-left top-0.5 select-none flex flex-col items-start">
+      <div className="absolute right-0 w-[100px] md:w-[200px] text-left top-0.5 select-none flex flex-col items-start pl-4">
         <span className="text-[9px] md:text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">SEC_02</span>
         <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">Frontend</h3>
         <span className="text-[8px] md:text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-2 opacity-60">User interfaces & craft</span>
@@ -253,10 +253,17 @@ const ClassicCompanies = ({
 /* -------------------------------------------------------------------------- */
 
 export const LedgerCompanies = () => {
-  const [layoutStyle, setLayoutStyle] = useState<LayoutStyle>("timeline");
+  const { theme } = useLedgerTheme();
 
   const fullstackCompanies = companies.filter((c) => c.type === "fullstack");
   const frontendCompanies = companies.filter((c) => c.type === "frontend");
+
+  const layoutStyle =
+    theme === "blueprint" || theme === "hybrid"
+      ? "timeline"
+      : theme === "editorial"
+        ? "classic"
+        : "grid";
 
   const renderCompany = (company: (typeof companies)[0]) => (
     <div
@@ -330,30 +337,6 @@ export const LedgerCompanies = () => {
       </div>
 
       {renderLayout()}
-
-      {/* Experiment Switcher */}
-      <div className="absolute -bottom-10 right-0 flex items-center gap-4 bg-canvas/80 backdrop-blur-sm border border-ledger-outline/20 p-2 rounded-lg opacity-0 group-hover/companies:opacity-100 transition-opacity z-overlay">
-        <div className="flex flex-col gap-1">
-          <span className="text-[9px] uppercase tracking-tighter text-fg-muted font-bold px-1">
-            Ledger Experiments
-          </span>
-          <div className="flex flex-wrap gap-1 max-w-[400px]">
-            {LAYOUTS.map((l) => (
-              <button
-                key={l}
-                onClick={() => setLayoutStyle(l)}
-                className={`px-3 h-6 rounded flex items-center justify-center text-[10px] border transition-colors uppercase tracking-widest ${
-                  layoutStyle === l
-                    ? "bg-fg-contrast text-canvas border-fg-contrast"
-                    : "border-ledger-outline/30 hover:bg-ledger-outline/10"
-                }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

@@ -5,6 +5,7 @@ import "../_styles/globals.css";
 import { Nav } from "../_components/Nav";
 import { NavVariant } from "../_components/Nav/variants";
 import { Footer } from "../_components/Footer";
+import { LedgerThemeProvider } from "./_context/LedgerThemeContext";
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -17,10 +18,12 @@ export default function WorkRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-work font-work-body">
-      <Nav variant={NavVariant.WORK} />
-      {children}
-      <Footer />
-    </div>
+    <LedgerThemeProvider>
+      <div className="theme-work font-work-body">
+        <Nav variant={NavVariant.WORK} />
+        {children}
+        <Footer />
+      </div>
+    </LedgerThemeProvider>
   );
 }

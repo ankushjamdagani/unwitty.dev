@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { GoArrowUpRight } from "react-icons/go";
 
 import { ThemeToggle } from "./ThemeToggle";
+import { DraftController } from "../../work/_components/DraftController";
 
 import useMostVisibleItem from "@/hooks/useMostVisibleItem";
 import { NavVariant } from "./variants";
@@ -98,6 +99,11 @@ export function Nav({ variant }: { variant: NavVariant }) {
           <li className="px-2">
             <ThemeToggle />
           </li>
+          {variant === NavVariant.WORK && (
+            <li className="px-2 border-l border-dashed border-ledger-outline/30 pl-4 ml-2">
+              <DraftController />
+            </li>
+          )}
         </ul>
       </nav>
     </header>

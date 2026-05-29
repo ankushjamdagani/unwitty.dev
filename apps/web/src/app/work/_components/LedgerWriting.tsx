@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useLedgerTheme } from "../_context/LedgerThemeContext";
 
 const articles = [
   {
@@ -55,19 +56,7 @@ const articles = [
 
 type Article = (typeof articles)[number];
 
-const LAYOUTS = [
-  "dot-line",
-  "indexed-panel",
-  "stacked-panel",
-  "ruled-panel",
-  "filmstrip-roll",
-  "postage-stack",
-  "typewriter",
-  "timeline-vert",
-  "boarding-pass",
-  "morse-feed",
-] as const;
-type LayoutStyle = (typeof LAYOUTS)[number];
+
 
 const CYCLE_MS = 4000;
 
@@ -890,10 +879,22 @@ const MorseFeedLayout = ({
 /* -------------------------------------------------------------------------- */
 
 export const LedgerWriting = () => {
-  const [layoutStyle, setLayoutStyle] = useState<LayoutStyle>("dot-line");
-  const [panelVariant, setPanelVariant] =
-    useState<PanelVariant>("standard");
+  const { theme } = useLedgerTheme();
   const state = usePreviewCycle(articles);
+
+  const layoutStyle: string =
+    theme === "blueprint"
+      ? "typewriter"
+      : theme === "editorial"
+        ? "ruled-panel"
+        : "dot-line";
+
+  const panelVariant: PanelVariant =
+    theme === "blueprint"
+      ? "receipt"
+      : theme === "editorial"
+        ? "polaroid"
+        : "standard";
 
   const renderLayout = () => {
     const props = { items: articles, state, variant: panelVariant };
@@ -941,50 +942,6 @@ export const LedgerWriting = () => {
       </div>
 
       {renderLayout()}
-
-      {/* Experiment Switcher */}
-      <div className="absolute -bottom-10 right-0 flex flex-col gap-3 bg-canvas/80 backdrop-blur-sm border border-ledger-outline/20 p-2 rounded-lg opacity-0 group-hover/writing:opacity-100 transition-opacity z-overlay">
-        <div className="flex flex-col gap-1">
-          <span className="text-[9px] uppercase tracking-tighter text-fg-muted font-bold px-1">
-            Writing Experiments
-          </span>
-          <div className="flex flex-wrap gap-1 max-w-[560px]">
-            {LAYOUTS.map((l) => (
-              <button
-                key={l}
-                onClick={() => setLayoutStyle(l)}
-                className={`px-3 h-6 rounded flex items-center justify-center text-[10px] border transition-colors uppercase tracking-widest ${
-                  layoutStyle === l
-                    ? "bg-fg-contrast text-canvas border-fg-contrast"
-                    : "border-ledger-outline/30 hover:bg-ledger-outline/10"
-                }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-col gap-1 border-t border-ledger-outline/20 pt-2">
-          <span className="text-[9px] uppercase tracking-tighter text-fg-muted font-bold px-1">
-            Preview Panel
-          </span>
-          <div className="flex flex-wrap gap-1 max-w-[560px]">
-            {PANELS.map((p) => (
-              <button
-                key={p}
-                onClick={() => setPanelVariant(p)}
-                className={`px-3 h-6 rounded flex items-center justify-center text-[10px] border transition-colors uppercase tracking-widest ${
-                  panelVariant === p
-                    ? "bg-accent text-canvas border-accent"
-                    : "border-ledger-outline/30 hover:bg-ledger-outline/10"
-                }`}
-              >
-                {p}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
