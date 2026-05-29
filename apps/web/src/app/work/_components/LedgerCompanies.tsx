@@ -80,7 +80,7 @@ const TimelineCompanies = ({
         <span className="text-[8px] md:text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-2 opacity-60">System core & architecture</span>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {fullstackCompanies.map(renderCompany)}
       </div>
     </div>
@@ -125,7 +125,7 @@ const TimelineCompanies = ({
         <span className="text-[8px] md:text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-2 opacity-60">User interfaces & craft</span>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {frontendCompanies.map(renderCompany)}
       </div>
     </div>
@@ -146,7 +146,7 @@ const GridCompanies = ({
     {/* Fullstack Row */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       {/* Left Column (Company rows) */}
-      <div className="md:col-span-3 md:order-1 space-y-4">
+      <div className="md:col-span-3 md:order-1 space-y-2">
         {fullstackCompanies.map(renderCompany)}
       </div>
       {/* Right Column (Header) */}
@@ -176,7 +176,7 @@ const GridCompanies = ({
     {/* Frontend Row */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       {/* Left Column (Company rows) */}
-      <div className="md:col-span-3 md:order-1 space-y-4">
+      <div className="md:col-span-3 md:order-1 space-y-2">
         {frontendCompanies.map(renderCompany)}
       </div>
       {/* Right Column (Header) */}
@@ -207,7 +207,7 @@ const ClassicCompanies = ({
           Fullstack
         </span>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-1">
         {fullstackCompanies.map(renderCompany)}
       </div>
     </div>
@@ -241,7 +241,7 @@ const ClassicCompanies = ({
           Frontend
         </span>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-1">
         {frontendCompanies.map(renderCompany)}
       </div>
     </div>
@@ -268,7 +268,7 @@ export const LedgerCompanies = () => {
   const renderCompany = (company: (typeof companies)[0]) => (
     <div
       key={`${company.name}-${company.period}`}
-      className="group flex flex-col md:flex-row md:items-center py-3 px-4 -mx-4 cursor-default justify-between rounded transition-all duration-300"
+      className="group flex flex-col md:flex-row md:items-center py-2 px-4 -mx-4 cursor-default justify-between rounded transition-all duration-300"
     >
       <h3 className="text-2xl font-work-heading text-fg-contrast transition-colors">
         {company.name}

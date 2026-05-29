@@ -20,9 +20,9 @@ export function Footer() {
 
   return (
     <footer id="footer">
-      <blockquote className="border-0 border-t border-dashed border-fg-contrast text-xs py-4 text-center">
+      {/* <blockquote className="border-0 border-t border-dashed border-fg-contrast text-xs py-4 text-center">
         “Art is the elimination of the unnecessary.” - Pablo Picasso
-      </blockquote>
+      </blockquote> */}
       <div
         className="content flex min-h-[75vh] flex-col items-center justify-center gap-8 py-[200px] text-canvas"
         style={{

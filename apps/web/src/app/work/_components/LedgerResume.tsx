@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useLedgerTheme } from "../_context/LedgerThemeContext";
 import Link from "next/link";
 
-
 const RESUME_VARIANTS = [
   "ledger-bracket",
   "margin-note",
@@ -52,7 +51,7 @@ export const LedgerResume = () => {
         <Link
           href="/resume.pdf"
           target="_blank"
-          className="group inline-flex flex-col items-center py-2 px-4 rounded bg-canvas-raised/90 backdrop-blur-md border border-ledger-outline/20 hover:border-accent/40 shadow-2xl transition-all duration-500 hover:-translate-y-0.5 cursor-pointer"
+          className="group inline-flex flex-col items-center py-2 px-4 rounded border border-dashed border-ledger-outline/20 hover:border-accent/40 transition-all duration-500 hover:-translate-y-0.5 cursor-pointer"
         >
           <span className="text-[7px] font-mono text-fg-muted uppercase tracking-[0.25em] mb-0.5 transition-colors duration-500 group-hover:text-accent">
             CLASS: DOCUMENTS // DOCKET_04
@@ -231,7 +230,10 @@ export const LedgerResume = () => {
           href="/resume.pdf"
           target="_blank"
           className="group inline-flex items-center gap-3 py-2.5 px-4 bg-canvas-raised/90 backdrop-blur-md border border-ledger-outline/25 hover:border-accent/50 shadow-2xl transition-all duration-500 hover:-translate-y-0.5"
-          style={{ clipPath: "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%)" }}
+          style={{
+            clipPath:
+              "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%)",
+          }}
         >
           <span className="font-mono text-[9px] font-bold tracking-[0.2em] text-accent uppercase">
             R · 04
@@ -249,7 +251,10 @@ export const LedgerResume = () => {
         href="/resume.pdf"
         target="_blank"
         className="group relative flex flex-col w-full max-w-md p-6 bg-canvas-raised/40 hover:bg-canvas-raised/60 border border-ledger-outline/20 hover:border-accent/40 transition-all duration-500 cursor-pointer"
-        style={{ clipPath: "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%)" }}
+        style={{
+          clipPath:
+            "polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%)",
+        }}
       >
         <div className="absolute top-0 right-0 w-[18px] h-[18px] border-b border-l border-ledger-outline/20 group-hover:border-accent/40 transition-colors" />
         <div className="flex items-center justify-between border-b border-dashed border-ledger-outline/20 pb-2 mb-4">
@@ -381,20 +386,16 @@ export const LedgerResume = () => {
     }
   };
 
-
-
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mb-8">
       {/* Separator */}
-      <div className="flex items-center gap-4 w-full mb-16 relative z-base justify-center select-none">
+      <div className="flex items-center gap-4 w-full mb-8 relative z-base justify-center select-none">
         <div className="flex-grow h-px bg-ledger-outline opacity-20 [filter:url(#ledger-rough)]"></div>
         <span className="text-[10px] font-mono text-fg-muted uppercase tracking-[0.3em]">
           *** SEC_04_EOF // RESUME ***
         </span>
         <div className="flex-grow h-px bg-ledger-outline opacity-20 [filter:url(#ledger-rough)]"></div>
       </div>
-
-
 
       {/* Inline dock sentinel */}
       <div
