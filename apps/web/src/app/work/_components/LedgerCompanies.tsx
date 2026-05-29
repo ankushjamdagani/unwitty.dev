@@ -66,15 +66,15 @@ const TimelineCompanies = ({
 }) => (
   <div className="relative z-base space-y-8">
     {/* Continuous Timeline Thread */}
-    <div className="absolute left-[120px] md:left-[200px] top-3 bottom-3 w-px bg-ledger-outline/20 [filter:url(#ledger-rough)]" />
+    <div className="absolute right-[120px] md:right-[200px] top-3 bottom-3 w-px bg-ledger-outline/20 [filter:url(#ledger-rough)]" />
 
     {/* Section 01: Fullstack */}
-    <div className="relative pl-[155px] md:pl-[260px]">
+    <div className="relative pr-[155px] md:pr-[260px]">
       {/* Timeline Node */}
-      <div className="absolute left-[120px] md:left-[200px] -translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
-      
-      {/* Group Heading on the Left of the line */}
-      <div className="absolute left-0 w-[100px] md:w-[170px] text-right top-0.5 select-none flex flex-col items-end">
+      <div className="absolute right-[120px] md:right-[200px] translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
+
+      {/* Group Heading on the Right of the line */}
+      <div className="absolute right-0 w-[100px] md:w-[170px] text-left top-0.5 select-none flex flex-col items-start">
         <span className="text-[9px] md:text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">SEC_01</span>
         <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">Fullstack</h3>
         <span className="text-[8px] md:text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-2 opacity-60">System core & architecture</span>
@@ -86,16 +86,16 @@ const TimelineCompanies = ({
     </div>
 
     {/* Wellness Gap Section */}
-    <div className="relative pl-[155px] md:pl-[260px] flex justify-start items-center select-none overflow-visible">
+    <div className="relative pr-[155px] md:pr-[260px] flex justify-end items-center select-none overflow-visible">
       {/* Active Ping Node Container (ensures perfect centering of pulsing animation) */}
-      <div className="absolute left-[120px] md:left-[200px] -translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center overflow-visible z-10">
+      <div className="absolute right-[120px] md:right-[200px] translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center overflow-visible z-10">
         <div className="absolute w-5 h-5 rounded-full bg-accent/30 animate-ping" />
         <div className="absolute w-3 h-3 rounded-full bg-accent border-2 border-canvas" />
       </div>
 
       {/* Central Stamp (Borderless, slightly rotated, transparent) */}
       <div className="relative z-10 cursor-default rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
-        <div className="relative flex flex-col items-start">
+        <div className="relative flex flex-col items-end">
           <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-accent mb-1">
             Life Chapter
           </span>
@@ -114,12 +114,12 @@ const TimelineCompanies = ({
     </div>
 
     {/* Section 02: Frontend */}
-    <div className="relative pl-[155px] md:pl-[260px]">
+    <div className="relative pr-[155px] md:pr-[260px]">
       {/* Timeline Node */}
-      <div className="absolute left-[120px] md:left-[200px] -translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
-      
-      {/* Group Heading on the Left of the line */}
-      <div className="absolute left-0 w-[100px] md:w-[170px] text-right top-0.5 select-none flex flex-col items-end">
+      <div className="absolute right-[120px] md:right-[200px] translate-x-1/2 top-2.5 w-[9px] h-[9px] rounded-full border-2 border-accent bg-canvas z-10 transition-transform duration-300 hover:scale-125" />
+
+      {/* Group Heading on the Right of the line */}
+      <div className="absolute right-0 w-[100px] md:w-[170px] text-left top-0.5 select-none flex flex-col items-start">
         <span className="text-[9px] md:text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">SEC_02</span>
         <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">Frontend</h3>
         <span className="text-[8px] md:text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-2 opacity-60">User interfaces & craft</span>
@@ -145,45 +145,45 @@ const GridCompanies = ({
   <div className="relative z-base space-y-12">
     {/* Fullstack Row */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-      {/* Left Column (Header) */}
-      <div className="md:col-span-1 py-3 flex flex-col justify-start border-b md:border-b-0 md:border-r border-ledger-outline/20 select-none">
+      {/* Left Column (Company rows) */}
+      <div className="md:col-span-3 md:order-1 space-y-4">
+        {fullstackCompanies.map(renderCompany)}
+      </div>
+      {/* Right Column (Header) */}
+      <div className="md:col-span-1 md:order-2 py-3 flex flex-col justify-start border-b md:border-b-0 md:border-l border-ledger-outline/20 md:pl-8 select-none">
         <span className="text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">SEC_01</span>
         <h3 className="text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">Fullstack</h3>
         <span className="text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-3 opacity-60">System core & architecture</span>
-      </div>
-      {/* Right Column (Company rows) */}
-      <div className="md:col-span-3 space-y-4">
-        {fullstackCompanies.map(renderCompany)}
       </div>
     </div>
 
     {/* Wellness Year Row - Clean Separator banner */}
     <div className="py-8 relative overflow-hidden border-y border-ledger-outline/10">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <span className="text-2xl opacity-60">🍁</span>
-          <div>
+        <span className="text-xs font-mono text-accent border border-accent/20 bg-accent/[0.03] px-4 py-1.5 rounded-lg font-bold order-2 sm:order-1">
+          2023 — 2024
+        </span>
+        <div className="flex items-center gap-4 order-1 sm:order-2">
+          <div className="text-right">
             <h4 className="text-xs uppercase tracking-[0.2em] font-extrabold text-fg-contrast">Wellness Year</h4>
             <p className="text-[9px] text-fg-muted uppercase tracking-widest mt-0.5">Life Chapter & Recalibration</p>
           </div>
+          <span className="text-2xl opacity-60">🍁</span>
         </div>
-        <span className="text-xs font-mono text-accent border border-accent/20 bg-accent/[0.03] px-4 py-1.5 rounded-lg font-bold">
-          2023 — 2024
-        </span>
       </div>
     </div>
 
     {/* Frontend Row */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-      {/* Left Column (Header) */}
-      <div className="md:col-span-1 py-3 flex flex-col justify-start border-b md:border-b-0 md:border-r border-ledger-outline/20 select-none">
+      {/* Left Column (Company rows) */}
+      <div className="md:col-span-3 md:order-1 space-y-4">
+        {frontendCompanies.map(renderCompany)}
+      </div>
+      {/* Right Column (Header) */}
+      <div className="md:col-span-1 md:order-2 py-3 flex flex-col justify-start border-b md:border-b-0 md:border-l border-ledger-outline/20 md:pl-8 select-none">
         <span className="text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">SEC_02</span>
         <h3 className="text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">Frontend</h3>
         <span className="text-[9px] text-fg-muted tracking-wider hidden md:block uppercase mt-3 opacity-60">User interfaces & craft</span>
-      </div>
-      {/* Right Column (Company rows) */}
-      <div className="md:col-span-3 space-y-4">
-        {frontendCompanies.map(renderCompany)}
       </div>
     </div>
   </div>
