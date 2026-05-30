@@ -79,8 +79,8 @@ function Label({
   const dimmed = hover !== null && hover !== which;
 
   const base = `absolute left-0 right-0 leading-none text-center z-[4] text-fg ${LABEL_TRANSITION}`;
-  const work = "top-[36%] font-normal font-work-heading text-display-sm";
-  const life = "top-[58%] font-medium font-life-heading text-display-md";
+  const work = "top-[36%] font-normal font-display text-display-sm";
+  const life = "top-[58%] font-medium font-expressive text-display-md";
 
   const transform = active ? "scale-[1.04] tracking-wider" : "";
   const opacity = dimmed ? "opacity-[0.32]" : "";
@@ -88,7 +88,7 @@ function Label({
   return (
     <div className={`${base} ${isWork ? work : life} ${transform} ${opacity}`}>
       <span
-        className={`align-middle font-work-body text-fg-muted italic mr-[1em] text-lg`}
+        className={`align-middle font-technical text-fg-muted italic mr-[1em] text-lg`}
       >
         {numText}
       </span>

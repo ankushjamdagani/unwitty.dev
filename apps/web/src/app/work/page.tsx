@@ -20,11 +20,9 @@ export default function WorkHome() {
           <LedgerCompanies />
           <LedgerWriting />
           <LedgerProjects />
-
           <LedgerResume />
         </div>
       </LedgerShell>
     </div>
   );
 }
-

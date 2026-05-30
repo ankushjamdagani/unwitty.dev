@@ -22,7 +22,7 @@ export default function WorkRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-work font-work-body">
+    <div className="theme-work font-technical">
       <Nav />
       <SectionRail anchors={WORK_ANCHORS} />
       {children}

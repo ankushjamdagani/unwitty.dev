@@ -11,24 +11,24 @@ const LedgerBracket = ({ isFloating = false }: { isFloating?: boolean }) => {
         target="_blank"
         className="group inline-flex flex-col items-center py-2 px-4 rounded border border-dashed border-ledger-outline/20 hover:border-accent/40 transition-all duration-500 hover:-translate-y-0.5 cursor-pointer"
       >
-        <span className="text-[7px] font-mono text-fg-muted uppercase tracking-[0.25em] mb-0.5 transition-colors duration-500 group-hover:text-accent">
+        <span className="text-[7px] font-technical text-fg-muted uppercase tracking-[0.25em] mb-0.5 transition-colors duration-500 group-hover:text-accent">
           CLASS: DOCUMENTS // DOCKET_04
         </span>
         <div className="relative flex items-center py-0.5">
-          <span className="text-sm text-ledger-outline/30 group-hover:text-accent group-hover:-translate-x-1.5 transition-all duration-500 font-mono font-light">
+          <span className="text-sm text-ledger-outline/30 group-hover:text-accent group-hover:-translate-x-1.5 transition-all duration-500 font-technical font-light">
             [
           </span>
-          <span className="font-work-body text-fg-muted italic mr-1.5 text-[10px] transition-transform duration-500 group-hover:-translate-x-0.5">
+          <span className="font-technical text-fg-muted italic mr-1.5 text-[10px] transition-transform duration-500 group-hover:-translate-x-0.5">
             04 /
           </span>
-          <span className="font-work-heading text-xs font-medium tracking-[0.25em] group-hover:tracking-[0.35em] text-fg-contrast group-hover:text-accent transition-all duration-700 uppercase">
+          <span className="font-display text-xs font-medium tracking-[0.25em] group-hover:tracking-[0.35em] text-fg-contrast group-hover:text-accent transition-all duration-700 uppercase">
             RESUME
           </span>
-          <span className="text-sm text-ledger-outline/30 group-hover:text-accent group-hover:translate-x-1.5 transition-all duration-500 font-mono font-light">
+          <span className="text-sm text-ledger-outline/30 group-hover:text-accent group-hover:translate-x-1.5 transition-all duration-500 font-technical font-light">
             ]
           </span>
         </div>
-        <span className="text-[7px] font-mono text-fg-muted uppercase tracking-[0.2em] mt-0.5 transition-colors duration-500 group-hover:text-accent">
+        <span className="text-[7px] font-technical text-fg-muted uppercase tracking-[0.2em] mt-0.5 transition-colors duration-500 group-hover:text-accent">
           ACCESS · IN_ENG ↗
         </span>
       </Link>
@@ -41,24 +41,24 @@ const LedgerBracket = ({ isFloating = false }: { isFloating?: boolean }) => {
       target="_blank"
       className="group inline-flex flex-col items-center p-6 cursor-pointer"
     >
-      <span className="text-[8px] font-mono text-fg-muted uppercase tracking-[0.25em] mb-2 transition-colors duration-500 group-hover:text-accent">
+      <span className="text-[8px] font-technical text-fg-muted uppercase tracking-[0.25em] mb-2 transition-colors duration-500 group-hover:text-accent">
         CLASS: DOCUMENTS // DOCKET_04
       </span>
       <div className="relative flex items-center py-3">
-        <span className="text-xl text-ledger-outline/30 group-hover:text-accent group-hover:-translate-x-3 transition-all duration-500 font-mono font-light">
+        <span className="text-xl text-ledger-outline/30 group-hover:text-accent group-hover:-translate-x-3 transition-all duration-500 font-technical font-light">
           [
         </span>
-        <span className="font-work-body text-fg-muted italic mr-3 text-sm transition-transform duration-500 group-hover:-translate-x-1">
+        <span className="font-technical text-fg-muted italic mr-3 text-sm transition-transform duration-500 group-hover:-translate-x-1">
           04 /
         </span>
-        <span className="font-work-heading text-xl font-medium tracking-[0.25em] group-hover:tracking-[0.45em] text-fg-contrast group-hover:text-accent transition-all duration-700 uppercase">
+        <span className="font-display text-xl font-medium tracking-[0.25em] group-hover:tracking-[0.45em] text-fg-contrast group-hover:text-accent transition-all duration-700 uppercase">
           RESUME
         </span>
-        <span className="text-xl text-ledger-outline/30 group-hover:text-accent group-hover:translate-x-3 transition-all duration-500 font-mono font-light">
+        <span className="text-xl text-ledger-outline/30 group-hover:text-accent group-hover:translate-x-3 transition-all duration-500 font-technical font-light">
           ]
         </span>
       </div>
-      <span className="text-[8px] font-mono text-fg-muted uppercase tracking-[0.2em] mt-2 transition-colors duration-500 group-hover:text-accent">
+      <span className="text-[8px] font-technical text-fg-muted uppercase tracking-[0.2em] mt-2 transition-colors duration-500 group-hover:text-accent">
         ACCESS_SPECIFICATION · IN_ENG ↗
       </span>
     </Link>
@@ -90,7 +90,7 @@ export const LedgerResume = () => {
     <div className="w-full flex flex-col items-center mb-8">
       <div className="flex items-center gap-4 w-full mb-8 relative z-base justify-center select-none">
         <div className="flex-grow h-px bg-ledger-outline opacity-20 [filter:url(#ledger-rough)]"></div>
-        <span className="text-[10px] font-mono text-fg-muted uppercase tracking-[0.3em]">
+        <span className="text-[10px] font-technical text-fg-muted uppercase tracking-[0.3em]">
           *** SEC_04_EOF // RESUME ***
         </span>
         <div className="flex-grow h-px bg-ledger-outline opacity-20 [filter:url(#ledger-rough)]"></div>

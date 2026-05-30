@@ -72,7 +72,7 @@ const usePreviewCycle = (items: Article[]) => {
 
   const fallback = items[index] ?? items[0]!;
   const active = hoveredId
-    ? items.find((a) => a.id === hoveredId) ?? fallback
+    ? (items.find((a) => a.id === hoveredId) ?? fallback)
     : fallback;
 
   return { active, index, isPaused, setHoveredId };
@@ -115,7 +115,7 @@ const DotsIndicator = ({ items, state }: PanelProps) => {
 };
 
 const StatusPill = ({ state }: { state: CycleState }) => (
-  <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-fg-muted opacity-60 flex items-center gap-1.5">
+  <span className="text-[9px] font-technical uppercase tracking-[0.25em] text-fg-muted opacity-60 flex items-center gap-1.5">
     <span
       className={`w-1 h-1 rounded-full ${
         state.isPaused ? "bg-fg-muted" : "bg-accent animate-pulse"
@@ -142,10 +142,10 @@ const StandardPanel = ({ items, state }: PanelProps) => {
       <RoughDivider />
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between">
-          <span className="text-[9px] font-mono text-accent font-bold tracking-[0.25em] uppercase">
+          <span className="text-[9px] font-technical text-accent font-bold tracking-[0.25em] uppercase">
             Preview
           </span>
-          <span className="text-[9px] font-mono text-fg-muted tracking-[0.2em] uppercase">
+          <span className="text-[9px] font-technical text-fg-muted tracking-[0.2em] uppercase">
             {String(activeIdx + 1).padStart(2, "0")} /{" "}
             {String(items.length).padStart(2, "0")}
           </span>
@@ -154,20 +154,20 @@ const StandardPanel = ({ items, state }: PanelProps) => {
         <ProgressBar state={state} />
       </div>
       <a href={`/work/articles/${active.id}`} className="group block">
-        <span className="text-[9px] font-mono text-fg-muted tracking-[0.2em] uppercase block">
+        <span className="text-[9px] font-technical text-fg-muted tracking-[0.2em] uppercase block">
           {active.date}
           <span className="opacity-30 mx-1.5">·</span>
           {active.duration}
           <span className="opacity-30 mx-1.5">·</span>
           <span className="text-accent font-bold">{active.id}</span>
         </span>
-        <h4 className="text-sm font-ledger-serif italic text-fg-contrast group-hover:text-accent transition-colors leading-snug mt-1">
-          {active.title}
+        <h4 className="text-sm font-display italic text-fg-contrast group-hover:text-accent transition-colors leading-snug mt-1">
+          {active.title} sdfsdf
         </h4>
-        <p className="text-[11px] text-fg-muted leading-snug mt-1.5 font-work-body">
+        <p className="text-[11px] text-fg-muted leading-snug mt-1.5 font-technical">
           {active.excerpt}
         </p>
-        <span className="text-[9px] font-mono text-fg-muted group-hover:text-accent tracking-[0.2em] uppercase mt-2 inline-block transition-colors">
+        <span className="text-[9px] font-technical text-fg-muted group-hover:text-accent tracking-[0.2em] uppercase mt-2 inline-block transition-colors">
           Read entry ↗
         </span>
       </a>
@@ -204,10 +204,7 @@ export const LedgerWriting = () => {
   const state = usePreviewCycle(articles);
 
   return (
-    <section
-      className="mb-24 scroll-mt-32 relative group/writing"
-      id="writing"
-    >
+    <section className="mb-24 scroll-mt-32 relative group/writing" id="writing">
       <style>{`@keyframes lw-preview-progress { from { width: 0%; } to { width: 100%; } }`}</style>
       <div className="absolute -left-72 opacity-[0.03] pointer-events-none select-none">
         <span className="text-[14rem] font-serif leading-none italic">02</span>
@@ -232,7 +229,7 @@ export const LedgerWriting = () => {
               isActive={article.id === state.active.id}
               className="group flex justify-between items-center gap-6 py-4 dot-line hover:translate-x-2 data-[active=true]:translate-x-1 transition-transform duration-300"
             >
-              <span className="flex-1 text-xl md:text-2xl text-fg-contrast italic font-ledger-serif group-hover:text-accent group-data-[active=true]:text-accent transition-colors leading-snug">
+              <span className="flex-1 text-xl md:text-xl text-fg-contrast italic font-display group-hover:text-accent group-data-[active=true]:text-accent transition-colors leading-snug">
                 {article.title}
               </span>
               <span className="text-fg-muted text-base group-hover:text-accent group-hover:translate-x-1 group-data-[active=true]:text-accent transition-all">

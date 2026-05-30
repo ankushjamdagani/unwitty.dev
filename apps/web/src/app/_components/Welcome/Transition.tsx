@@ -20,14 +20,14 @@ export function Transition({ selected }: TransitionProps) {
         }}
       />
       <div
-        className={`fixed inset-0 z-overlay flex items-center justify-center pointer-events-none text-center font-work-body text-xs font-medium leading-[1.6] tracking-[0.18em] text-fg [transition:opacity_0.35s_ease_0.25s] ${on ? "opacity-100" : "opacity-0"}`}
+        className={`fixed inset-0 z-overlay flex items-center justify-center pointer-events-none text-center font-technical text-xs font-medium leading-[1.6] tracking-[0.18em] text-fg [transition:opacity_0.35s_ease_0.25s] ${on ? "opacity-100" : "opacity-0"}`}
       >
         <div>
           <span className="block tracking-[0.22em] text-fg-muted">
             REDIRECTING →
           </span>
           <span
-            className={`mt-[14px] block leading-none display-font ${isWork ? "font-work-heading text-[40px] font-medium not-italic  tracking-[0.04em]" : "font-life-heading text-[56px] font-light italic leading-none tracking-[-0.01em]"} `}
+            className={`mt-[14px] block leading-none ${isWork ? "font-display text-[40px] font-medium not-italic  tracking-[0.04em]" : "font-expressive text-[56px] font-light italic leading-none tracking-[-0.01em]"} `}
           >
             {isWork ? "Work" : "Life"}
           </span>

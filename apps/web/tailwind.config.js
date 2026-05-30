@@ -16,11 +16,10 @@ module.exports = {
         "ledger-surface": "rgb(var(--ledger-surface) / <alpha-value>)",
       },
       fontFamily: {
-        "work-body": "var(--font-work-body), ui-monospace, monospace",
-        "work-heading": "var(--font-work-heading), serif",
-        "life-body": "var(--font-life-body), serif",
-        "life-heading": "var(--font-life-heading), cursive",
-        "ledger-serif": "var(--font-life-body), serif",
+        technical: "var(--font-technical), ui-monospace, monospace",
+        display: "var(--font-display), serif",
+        editorial: "var(--font-editorial), serif",
+        expressive: "var(--font-expressive), cursive",
       },
       borderRadius: {
         DEFAULT: "var(--border-radius)",

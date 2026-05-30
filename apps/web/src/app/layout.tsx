@@ -24,26 +24,26 @@ import { BgVignetteControl } from "./work/_components/BgVignetteControl";
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
-  variable: "--font-work-body",
+  variable: "--font-technical",
 });
 
 const spectral = Spectral({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-work-heading",
+  variable: "--font-display",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-life-body",
+  variable: "--font-editorial",
 });
 
 const italianno = Italianno({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-life-heading",
+  variable: "--font-expressive",
 });
 
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
       <body
-        className={`${jetbrains.variable} ${spectral.variable} ${cormorant.variable} ${italianno.variable} font-work-body`}
+        className={`${jetbrains.variable} ${spectral.variable} ${cormorant.variable} ${italianno.variable} font-technical`}
       >
         <div className="grain-overlay" />
         {children}

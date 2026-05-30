@@ -36,7 +36,7 @@ export const LedgerProjects = () => {
         </h2>
       </div>
 
-      <div className="font-work-body grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-20 relative z-base">
+      <div className="font-technical grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-20 relative z-base">
         {List.map((project, idx) => {
           const config = ProjectsMeta[project];
           const spanClass =
@@ -48,7 +48,7 @@ export const LedgerProjects = () => {
               className={`group flex flex-col justify-between transition-all duration-500 ${spanClass}`}
             >
               <div>
-                <span className="text-[10px] font-mono tracking-widest text-fg-contrast/30 select-none block mb-3 uppercase">
+                <span className="text-[10px] font-technical tracking-widest text-fg-contrast/30 select-none block mb-3 uppercase">
                   {"/00"}
                   {idx + 1}
                   {" // "}
@@ -58,7 +58,7 @@ export const LedgerProjects = () => {
                   href={`/work/projects/${project}`}
                   className="hover:text-accent inline-block"
                 >
-                  <h3 className="text-3xl font-work-heading font-medium tracking-tight text-fg-contrast hover:text-accent transition-colors">
+                  <h3 className="text-3xl font-display font-medium tracking-tight text-fg-contrast hover:text-accent transition-colors">
                     {config.title}
                   </h3>
                 </Link>
@@ -71,7 +71,7 @@ export const LedgerProjects = () => {
                 {config.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag.id}
-                    className="text-[9px] font-mono tracking-widest text-fg-subtle uppercase border-b border-ledger-outline/25"
+                    className="text-[9px] font-technical tracking-widest text-fg-subtle uppercase border-b border-ledger-outline/25"
                   >
                     #{tag.label}
                   </span>

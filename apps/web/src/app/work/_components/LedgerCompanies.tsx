@@ -57,7 +57,7 @@ const renderCompany = (company: (typeof companies)[0]) => (
     key={`${company.name}-${company.period}`}
     className="group flex flex-col md:flex-row md:items-center py-2 px-4 -mx-4 cursor-default justify-between rounded transition-all duration-300"
   >
-    <h3 className="text-2xl font-work-heading text-fg-contrast transition-colors">
+    <h3 className="text-2xl font-display text-fg-contrast transition-colors">
       {company.name}
     </h3>
     <div className="hidden md:inline-block flex-1 h-px mx-6 bg-ledger-outline/20 transition-colors" />
@@ -99,7 +99,7 @@ export const LedgerCompanies = () => {
         </div>
         <aside className="md:col-span-3 md:pl-6 pt-3 md:pt-0 pb-12 select-none relative flex flex-col items-start">
           <RoughDivider />
-          <span className="text-[9px] md:text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">
+          <span className="text-[9px] md:text-[10px] font-technical text-accent font-bold tracking-widest block mb-1">
             SEC_01
           </span>
           <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">
@@ -116,12 +116,12 @@ export const LedgerCompanies = () => {
               <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-accent mb-1">
                 Life Chapter
               </span>
-              <span className="text-xl font-work-heading uppercase text-fg-contrast/90 tracking-tighter">
+              <span className="text-xl font-display uppercase text-fg-contrast/90 tracking-tighter">
                 🍁 Wellness Year 🍀
               </span>
               <div className="mt-2 flex items-center gap-2">
                 <div className="h-px w-3 bg-ledger-outline/20" />
-                <span className="text-[9px] font-mono opacity-50 uppercase tracking-widest">
+                <span className="text-[9px] font-technical opacity-50 uppercase tracking-widest">
                   2023 — 2024
                 </span>
                 <div className="h-px w-3 bg-ledger-outline/20" />
@@ -138,7 +138,7 @@ export const LedgerCompanies = () => {
         </div>
         <aside className="md:col-span-3 md:pl-6 pt-3 md:pt-0 select-none relative flex flex-col items-start">
           <RoughDivider />
-          <span className="text-[9px] md:text-[10px] font-mono text-accent font-bold tracking-widest block mb-1">
+          <span className="text-[9px] md:text-[10px] font-technical text-accent font-bold tracking-widest block mb-1">
             SEC_02
           </span>
           <h3 className="text-xs md:text-sm font-black uppercase tracking-[0.3em] text-fg-contrast leading-tight">

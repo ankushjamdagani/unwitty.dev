@@ -16,7 +16,7 @@ export default function LifeRootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="theme-life font-life-body">
+    <div className="theme-life font-editorial">
       <Nav />
       {children}
       <Footer />

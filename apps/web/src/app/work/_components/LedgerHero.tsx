@@ -6,11 +6,11 @@ import { RoughUnderline } from "./RoughUnderline";
 const CHOSEN_TEXT = (
   <>
     I spend my days writing code, and even more time{" "}
-    <RoughUnderline className="italic font-ledger-serif">
+    <RoughUnderline className="italic font-editorial">
       deleting it.
     </RoughUnderline>{" "}
     Building robust software by aggressively{" "}
-    <RoughUnderline className="italic font-ledger-serif">
+    <RoughUnderline className="italic font-editorial">
       eliminating the unnecessary.
     </RoughUnderline>
   </>
@@ -22,12 +22,12 @@ const UniversalMetadata = ({ className = "" }: { className?: string }) => (
   >
     <div className="flex items-center gap-2">
       <span className="opacity-40">LOC:</span>
-      <span className="text-fg-contrast font-mono">28.5N 77.2E // IN</span>
+      <span className="text-fg-contrast font-technical">28.5N 77.2E // IN</span>
     </div>
     <div className="hidden sm:block w-px h-3 bg-ledger-outline/20" />
     <div className="flex items-center gap-2">
       <span className="opacity-40">Status:</span>
-      <span className="flex items-center gap-2 text-accent font-bold font-mono">
+      <span className="flex items-center gap-2 text-accent font-bold font-technical">
         <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
         Available_for_work
       </span>
@@ -82,7 +82,7 @@ const CenterpieceFrame = ({
 
       {/* Real-time HUD overlays */}
       <div
-        className={`absolute top-3 left-4 font-mono text-[6.5px] uppercase tracking-[0.25em] text-fg-muted select-none flex flex-col gap-0.5 transition-all duration-500 ${
+        className={`absolute top-3 left-4 font-technical text-[6.5px] uppercase tracking-[0.25em] text-fg-muted select-none flex flex-col gap-0.5 transition-all duration-500 ${
           collapsed
             ? "opacity-0 translate-y-[-10px] pointer-events-none"
             : "opacity-100"
@@ -93,7 +93,7 @@ const CenterpieceFrame = ({
       </div>
 
       <div
-        className={`absolute bottom-3 right-4 font-mono text-[5.5px] tracking-widest text-fg-muted opacity-50 uppercase transition-all duration-500 ${
+        className={`absolute bottom-3 right-4 font-technical text-[5.5px] tracking-widest text-fg-muted opacity-50 uppercase transition-all duration-500 ${
           collapsed
             ? "opacity-0 translate-y-[10px] pointer-events-none"
             : "opacity-100"
@@ -506,7 +506,7 @@ const ArchitecturalProjection = () => {
                     <text
                       x={pt3.x + 20}
                       y={pt3.y - projHeight / 2 + 2}
-                      className="font-mono text-[5px] fill-accent font-bold tracking-wider"
+                      className="font-technical text-[5px] fill-accent font-bold tracking-wider"
                     >
                       H:{projHeight.toFixed(0)}px
                     </text>
@@ -777,11 +777,11 @@ const BlueprintHero = ({ text }: { text: React.ReactNode }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full relative z-base">
         <div className="lg:col-span-7 flex flex-col justify-center">
-          <div className="mb-6 text-[8px] font-mono tracking-[0.5em] text-accent uppercase font-bold">
+          <div className="mb-6 text-[8px] font-technical tracking-[0.5em] text-accent uppercase font-bold">
             {"// SCHEMA_01 : TECHNICAL_BLUEPRINT"}
           </div>
           <h1
-            className="text-3xl md:text-5xl text-fg-contrast leading-[1.25] font-work-heading tracking-tight mb-10 transition-transform duration-300"
+            className="text-3xl md:text-5xl text-fg-contrast leading-[1.25] font-display tracking-tight mb-10 transition-transform duration-300"
             style={{
               transform: `translate3d(${(currentPos.x * 0.15).toFixed(2)}px, ${(currentPos.y * 0.15).toFixed(2)}px, 0)`,
             }}
@@ -806,7 +806,7 @@ const BlueprintHero = ({ text }: { text: React.ReactNode }) => {
               <button
                 key={v}
                 onClick={() => setRightVariant(v)}
-                className={`px-3 py-1 rounded-lg text-[7px] font-mono uppercase tracking-[0.1em] transition-all duration-200 font-bold ${
+                className={`px-3 py-1 rounded-lg text-[7px] font-technical uppercase tracking-[0.1em] transition-all duration-200 font-bold ${
                   rightVariant === v
                     ? "bg-accent text-canvas scale-[1.05]"
                     : "text-fg-muted hover:text-fg-contrast hover:bg-canvas-raised"

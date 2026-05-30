@@ -17,7 +17,7 @@ export function Nav() {
 
   return (
     <header
-      className={`sticky top-0 z-nav border-b border-dashed border-fg-muted/30 transition-colors duration-300 ${
+      className={`sticky top-0 z-nav border-b border-dashed border-fg-muted/30 transition-colors duration-300 font-technical ${
         scrolled ? "bg-canvas/60 backdrop-blur-md" : ""
       }`}
     >

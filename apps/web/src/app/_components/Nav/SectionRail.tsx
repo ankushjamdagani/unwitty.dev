@@ -70,7 +70,7 @@ export function SectionRail({ anchors }: { anchors: RailAnchor[] }) {
             className="group relative flex items-center justify-end"
           >
             <span
-              className={`mr-2 hidden font-mono text-[10px] uppercase tracking-[0.25em] transition-opacity md:inline ${
+              className={`mr-2 hidden font-technical text-[10px] uppercase tracking-[0.25em] transition-opacity md:inline ${
                 isActive
                   ? "text-fg-contrast opacity-100"
                   : "text-fg-muted opacity-0 group-hover:opacity-100"

@@ -72,7 +72,7 @@ export default function Article() {
 
         <p className="mb-6">
           Lorem ipsum dolor sit amet,{" "}
-          <code className="bg-fg-contrast text-canvas-contrast rounded px-2 font-mono overflow-auto whitespace-pre [tab-size:4]">
+          <code className="bg-fg-contrast text-canvas-contrast rounded px-2 font-technical overflow-auto whitespace-pre [tab-size:4]">
             conse c t et ur
           </code>{" "}
           adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -88,7 +88,7 @@ export default function Article() {
           nec nam aliquam sem et tortor consequat id.
         </p>
 
-        <code className="bg-fg-contrast text-canvas-contrast rounded-lg mx-[-2em] my-8 block overflow-auto whitespace-pre px-8 py-4 font-mono [tab-size:4]">
+        <code className="bg-fg-contrast text-canvas-contrast rounded-lg mx-[-2em] my-8 block overflow-auto whitespace-pre px-8 py-4 font-technical [tab-size:4]">
           def test(): print(&quot;this is block code&quot;)
         </code>
 
