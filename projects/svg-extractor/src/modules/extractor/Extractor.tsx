@@ -162,7 +162,7 @@ function Extractor() {
         maskCanvasRef.current.style.opacity = String(maskOpacity / 100);
       }
     },
-    [viewMask, maskOpacity]
+    [viewMask, maskOpacity],
   );
 
   const renderOverlay = useCallback(
@@ -174,7 +174,7 @@ function Extractor() {
       for (const d of dList) {
         const p = document.createElementNS(
           "http://www.w3.org/2000/svg",
-          "path"
+          "path",
         );
         p.setAttribute("d", d);
         p.setAttribute("fill", PATH_ATTRIBUTES.fillColor);
@@ -185,7 +185,7 @@ function Extractor() {
         svg.appendChild(p);
       }
     },
-    [viewPath]
+    [viewPath],
   );
 
   const renderMini = useCallback((dList: string[]) => {
@@ -205,14 +205,14 @@ function Extractor() {
     const paths = dList
       .map(
         (d) =>
-          `<path d="${d}" fill="none" stroke="#6be675" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`
+          `<path d="${d}" fill="none" stroke="#6be675" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`,
       )
       .join("\r\n");
     mini.setAttribute("viewBox", `0 0 ${W} ${H}`);
     mini.setAttribute("width", "220");
     mini.setAttribute(
       "height",
-      String(Math.max(80, Math.round((H * 220) / Math.max(1, W))))
+      String(Math.max(80, Math.round((H * 220) / Math.max(1, W)))),
     );
     mini.innerHTML = paths;
   }, []);
@@ -249,7 +249,7 @@ function Extractor() {
       }
       applyView();
     },
-    [applyView]
+    [applyView],
   );
 
   const doZoomFit = useCallback(() => {
@@ -272,7 +272,7 @@ function Extractor() {
       v.scale = Math.max(0.25, Math.min(4, pct / 100));
       applyView();
     },
-    [applyView]
+    [applyView],
   );
 
   /* ---- Load image ---- */
@@ -308,7 +308,7 @@ function Extractor() {
       };
       fr.readAsDataURL(file);
     },
-    [drawImageToCanvas]
+    [drawImageToCanvas],
   );
 
   /* ---- Compute pipeline ---- */
@@ -379,7 +379,7 @@ function Extractor() {
         // For manual mode, keep selection separate — it's fully controlled; do not auto-change selectedLabels
       }
     },
-    [renderMask, renderOverlay, renderMini, extraTargets.length]
+    [renderMask, renderOverlay, renderMini, extraTargets.length],
   );
 
   const compute = useCallback(
@@ -421,7 +421,7 @@ function Extractor() {
         allHex,
         Number(tolerance),
         colorMetric,
-        invertMask
+        invertMask,
       );
       lastDERef.current = {
         w: mask.w,
@@ -474,7 +474,7 @@ function Extractor() {
           method,
           { smoothIter: Number(smoothIter), epsilon: Number(epsilon) },
           imgC.width,
-          imgC.height
+          imgC.height,
         );
         dList = res.dList.slice();
         lastSkelRef.current = res.skeletonForDebug || null;
@@ -511,12 +511,12 @@ function Extractor() {
       renderMask,
       renderOverlay,
       renderMini,
-    ]
+    ],
   );
 
   const debouncedCompute = useCallback(
     (wantPath = false) => debounce(() => compute(wantPath), 120),
-    [debounce, compute]
+    [debounce, compute],
   );
 
   const createFile = useCallback(async () => {

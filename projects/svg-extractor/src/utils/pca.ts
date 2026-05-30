@@ -10,7 +10,7 @@ export function computeMedianPathPCA(
   points: ReadonlyArray<Point>,
   settings: MedianPCASettings,
   W: number,
-  H: number
+  H: number,
 ): { points: Point[] } {
   const N = points.length;
   if (N === 0) return { points: [] };
@@ -42,7 +42,7 @@ export function computeMedianPathPCA(
   const evx = sxy;
   const evy = lambda1 - sxx;
   let u = normalize(
-    Math.abs(evx) + Math.abs(evy) < 1e-8 ? { x: 1, y: 0 } : { x: evx, y: evy }
+    Math.abs(evx) + Math.abs(evy) < 1e-8 ? { x: 1, y: 0 } : { x: evx, y: evy },
   );
   const v = { x: -u.y, y: u.x };
   const ts = new Array<number>(N),
@@ -141,7 +141,7 @@ export function computePCAOnMask(mask: BinaryMask, bins: number) {
   const evx = sxy,
     evy = lambda1 - sxx;
   const u = normalize(
-    Math.abs(evx) + Math.abs(evy) < 1e-8 ? { x: 1, y: 0 } : { x: evx, y: evy }
+    Math.abs(evx) + Math.abs(evy) < 1e-8 ? { x: 1, y: 0 } : { x: evx, y: evy },
   );
   const v = { x: -u.y, y: u.x };
   let tMin = Infinity,

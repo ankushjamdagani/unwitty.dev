@@ -53,7 +53,7 @@ self.onmessage = function (e) {
     hexList,
     tolerance,
     colorMetric,
-    invert
+    invert,
   );
 
   // 2) Morphology
@@ -127,7 +127,7 @@ self.onmessage = function (e) {
           pts,
           { bins: 120, minPerBin: 30, smoothIter, epsilon, curved: false },
           width,
-          height
+          height,
         );
         let poly = out.points;
         if (poly && poly.length >= 2) {
@@ -172,9 +172,9 @@ self.onmessage = function (e) {
     },
     {
       transfer: [finalMask.data.buffer, sel.de.buffer, cc.labels.buffer].concat(
-        skeleton ? [skeleton.buffer] : []
+        skeleton ? [skeleton.buffer] : [],
       ),
-    }
+    },
   );
 };
 

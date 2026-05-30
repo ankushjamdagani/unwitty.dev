@@ -12,5 +12,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <AppCanvas />
       <AppUI />
     </>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

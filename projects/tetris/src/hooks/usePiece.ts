@@ -83,7 +83,7 @@ export function getPiecePixels(piece: Piece) {
 
 function getRandomPiece(): Piece {
   const allPieces = Object.values(PieceType).filter(
-    (val) => typeof val === "number"
+    (val) => typeof val === "number",
   );
   const pieceType =
     allPieces[Math.floor(Math.random() * allPieces.length)] || PieceType.S;
@@ -98,7 +98,7 @@ function getRandomPiece(): Piece {
 
 function keepInRange(
   position: [number, number],
-  resolution: Resolution
+  resolution: Resolution,
 ): [number, number] {
   return [
     numberInRange(-resolution / 2, resolution / 2, position[0]),
@@ -164,7 +164,7 @@ export function usePiece({
         };
       });
     },
-    [resolution]
+    [resolution],
   );
 
   const reset = useCallback(() => {

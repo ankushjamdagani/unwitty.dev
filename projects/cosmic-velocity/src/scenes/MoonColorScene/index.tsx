@@ -23,8 +23,8 @@ const GameConfig = {
         new THREE.Spherical(
           MOON_SIZE + PLAYER_OFFSET_DISTANCE,
           Math.PI / 4,
-          Math.PI / 4
-        )
+          Math.PI / 4,
+        ),
       ),
     },
   },

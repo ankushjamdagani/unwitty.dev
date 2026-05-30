@@ -27,7 +27,7 @@ const getInitialState = ({
   board:
     defaultState?.board ||
     Array.from({ length: resolution }, () =>
-      Array.from({ length: resolution }, () => 0)
+      Array.from({ length: resolution }, () => 0),
     ), // Pixel Empty)
 });
 
@@ -37,7 +37,7 @@ export function useGameBoard({
   tick,
 }: useGameBoardProps) {
   const [state, setState] = useState(() =>
-    getInitialState({ defaultState, resolution })
+    getInitialState({ defaultState, resolution }),
   );
   const { board } = state;
 
@@ -72,7 +72,7 @@ export function useGameBoard({
 
       return false;
     },
-    [board]
+    [board],
   );
 
   const addToBoard = useCallback(
@@ -106,7 +106,7 @@ export function useGameBoard({
         board: [...board],
       }));
     },
-    [board]
+    [board],
   );
 
   const isPixelActive = (pixel: number): boolean => {
@@ -116,7 +116,7 @@ export function useGameBoard({
   const getCollapsableRows = useCallback((board: Board) => {
     return board.reduce((collapsableRows, row, rowIndex) => {
       const isRowCollapsable = row.every((pixel: BoardPixel) =>
-        isPixelActive(pixel)
+        isPixelActive(pixel),
       );
 
       if (isRowCollapsable) {

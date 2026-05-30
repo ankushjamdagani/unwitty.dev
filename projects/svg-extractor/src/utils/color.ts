@@ -118,6 +118,6 @@ export function deltaE00(lab1: Lab, lab2: Lab): number {
     Math.pow(dLp / Sl, 2) +
       Math.pow(dCp / Sc, 2) +
       Math.pow(dHp / Sh, 2) +
-      Rt * (dCp / Sc) * (dHp / Sh)
+      Rt * (dCp / Sc) * (dHp / Sh),
   );
 }

@@ -19,8 +19,10 @@ export interface PieceProps {
 }
 
 export function Piece(props: PieceProps) {
-  return <div>
-    <h2>Piece Data</h2>
-    <pre>{JSON.stringify(props, undefined, 4)}</pre>
-  </div>;
+  return (
+    <div>
+      <h2>Piece Data</h2>
+      <pre>{JSON.stringify(props, undefined, 4)}</pre>
+    </div>
+  );
 }

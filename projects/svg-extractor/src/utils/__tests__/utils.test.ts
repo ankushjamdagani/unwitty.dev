@@ -43,7 +43,7 @@ function blockMask(
   x0: number,
   y0: number,
   x1: number,
-  y1: number
+  y1: number,
 ) {
   const data = new Uint8Array(w * h);
   for (let y = y0; y <= y1; y++)
@@ -162,7 +162,7 @@ describe("morphology", () => {
 function solidRaster(
   w: number,
   h: number,
-  rgba: [number, number, number, number]
+  rgba: [number, number, number, number],
 ): RasterData {
   const data = new Uint8ClampedArray(w * h * 4);
   for (let i = 0; i < w * h; i++) {
@@ -182,7 +182,7 @@ describe("mask selection", () => {
       ["#ff0000"],
       2,
       MetricColor.p2,
-      false
+      false,
     );
     expect(res.data.every((v) => v === 1)).toBe(true);
   });
@@ -194,7 +194,7 @@ describe("mask selection", () => {
       ["#00ff00"],
       2,
       MetricColor.p2,
-      true
+      true,
     );
     expect(res.data.every((v) => v === 0)).toBe(true);
   });
@@ -213,7 +213,7 @@ describe("PCA median path", () => {
       pts,
       { bins: 16, minPerBin: 3, smoothIter: 1, epsilon: 0.1 },
       100,
-      100
+      100,
     );
     expect(out.points.length).toBeGreaterThan(2);
   });
@@ -244,7 +244,7 @@ describe("extract orchestrator", () => {
       "pca",
       { smoothIter: 1, epsilon: 0.5 },
       m.w,
-      m.h
+      m.h,
     );
     expect(dList.length).toBeGreaterThan(0);
     expect(pointsList.length).toBeGreaterThan(0);

@@ -22,7 +22,7 @@ function Player() {
       angle: Math.PI * 0.25,
       penumbra: 0.2,
       decay: 1,
-    }
+    },
   );
 
   const { offset } = useControls("player camera", {

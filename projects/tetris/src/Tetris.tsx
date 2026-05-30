@@ -48,7 +48,7 @@ export interface TetrisProps {
         score: number;
         level: number;
       };
-    }
+    },
   ) => void;
 
   /**
@@ -63,7 +63,7 @@ export interface TetrisProps {
         score: number;
         level: number;
       };
-    }
+    },
   ) => void;
 }
 

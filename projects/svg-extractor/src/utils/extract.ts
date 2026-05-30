@@ -18,7 +18,7 @@ export function extractPathsFromFinalMask(
   method: "skeleton" | "pca",
   settings: ExtractSettings,
   W: number,
-  H: number
+  H: number,
 ): {
   dList: string[];
   pointsList: Point[][];
@@ -63,7 +63,7 @@ export function extractPathsFromFinalMask(
           curved: false,
         },
         W,
-        H
+        H,
       );
       let poly = out.points;
       if (poly && poly.length >= 2) {

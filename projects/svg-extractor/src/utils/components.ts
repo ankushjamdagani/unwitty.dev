@@ -13,7 +13,7 @@ export function pointsFromMask(mask: BinaryMask) {
 /** Create binary mask by selecting pixels belonging to given labels */
 export function maskFromLabels(
   cc: ConnectedComponents,
-  set: Set<number>
+  set: Set<number>,
 ): BinaryMask {
   const out = new Uint8Array(cc.w * cc.h);
   for (let i = 0; i < out.length; i++) {

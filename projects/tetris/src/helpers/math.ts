@@ -52,7 +52,7 @@ export function rotateMatrix<T>(matrix: T[][], rotation: Rotation): T[][] {
 
     default:
       throw new Error(
-        "Invalid rotation angle. Allowed values: 0, 90, 180, 270."
+        "Invalid rotation angle. Allowed values: 0, 90, 180, 270.",
       );
   }
 }

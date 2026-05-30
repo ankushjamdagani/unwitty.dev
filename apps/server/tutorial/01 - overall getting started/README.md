@@ -9,7 +9,6 @@
 5. Built in concurrency using Goroutines
 6. Simplicity with syntax and garbage collection
 
-
 ### Tuts
 
 - Go is just opposite from JS in some places
@@ -119,7 +118,7 @@
       ```
     - cant be instantiated
   - Pointers
-    - usual pointers - * for declaration, * for getting and setting values, & for address
+    - usual pointers - _ for declaration, _ for getting and setting values, & for address
     - arrays are not assigned/passed by reference. Hence, address needs to be passed
     - slices are by default assigned/passed by reference
 - Loops
@@ -160,10 +159,11 @@
     - Cores = 8
     - Function execution = 40ms
     - Run 1000 times with go routines
-    - Total time = (1000 * 40) / 8 = 5s
+    - Total time = (1000 \* 40) / 8 = 5s
   - add `go` in front of function. `go heavyFunction()`
   - WaitGroups
     - just like counter to mark - Add (increment), Done(decrement), Wait, when counter is back to 0
+
       ```go
       var wg = sync.WaitGroup{}
 
@@ -176,14 +176,16 @@
       for j := 0; j < 10; j++ {
         wg.Add(1)
         go heavyFunction()
-      } 
+      }
 
       wg.Wait()
       fmt.Println("All done")
       ```
+
   - Mutex
     - Locks read or (read & write) for preventing memory corruption
     - sync.Mutex
+
       ```go
       // for Full locks
       var mut = sync.Mutex()
@@ -192,7 +194,9 @@
       // other go routines can't read or write till this is released
       mut.Unlock()
       ```
+
     - sync.RWMutex
+
       ```go
       // for Full locks
       var mut = sync.RWMutex()
@@ -202,10 +206,11 @@
       mut.Unlock()
 
       mut.RLock()
-      // other go routines can READ 
+      // other go routines can READ
       // other go routing will wait for WRITE till this is released
       mut.RUnlock()
       ```
+
   - Channels
     - Hold data, thread safe (avoid data race), listen for add/remove so that we can block code execution
     - `channel <- data` push - waits till channel has space for new data
@@ -216,7 +221,7 @@
       - multiple processes can push to channel upto buffer-length and don't have to wait for readers to make room in channel
       - write-read cycle will be faster
       - channel reader can still process long tasks even after all channels have pushed
-    - `Select` 
+    - `Select`
       - keeps on listening to events on channel
       - once 1 channel gets a message -> execute statement and exit
       ```go
@@ -230,6 +235,7 @@
   - Generics
     - to support multiple types for a function or structs
     - also supports type as `any`
+
       ```go
       func sumGeneric[T int | float32 | float64](arr []T) T {
         var sum T
@@ -241,7 +247,9 @@
         return sum
       }
       ```
+
     - can be used with structs as well
+
       ```go
       type genericId[T int | string] struct {
         id T

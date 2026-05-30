@@ -7,5 +7,5 @@ import { SvgEditor } from "./modules/svg-editor";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <SvgEditor />
-  </StrictMode>
+  </StrictMode>,
 );
