@@ -10,5 +10,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <GameboyShell>
       <div>Hello</div>
     </GameboyShell>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

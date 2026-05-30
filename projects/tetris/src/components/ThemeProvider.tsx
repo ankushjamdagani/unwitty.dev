@@ -47,7 +47,7 @@ export const ThemeContext = createContext({});
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<(typeof ThemeConfigMap)[Theme]>(
-    ThemeConfigMap[Theme.LIGHT]
+    ThemeConfigMap[Theme.LIGHT],
   );
 
   function updateTheme(theme: Theme) {

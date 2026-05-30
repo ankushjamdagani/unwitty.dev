@@ -11,7 +11,7 @@ export function selectColorMaskMulti(
   hexList: ReadonlyArray<string>,
   tol: number,
   metric: MetricColor,
-  invert: boolean
+  invert: boolean,
 ): BinaryMask & {
   de: Float32Array;
   minDE: number;
@@ -23,7 +23,7 @@ export function selectColorMaskMulti(
   const out = new Uint8Array(w * h);
   const de = new Float32Array(w * h);
   const labs = hexList.map((hx) =>
-    rgbToLab(...(Object.values(hexToRgbObj(hx)) as [number, number, number]))
+    rgbToLab(...(Object.values(hexToRgbObj(hx)) as [number, number, number])),
   );
   let iPix = 0;
   let minDE = Number.POSITIVE_INFINITY,

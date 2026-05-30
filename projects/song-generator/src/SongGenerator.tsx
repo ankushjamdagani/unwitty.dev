@@ -423,7 +423,7 @@ function SongGenerator() {
     guitarBodySynth.chain(guitarGain, reverb, masterBus);
     const tablaLowGain = new Tone.Gain(tablaEnabled ? tablaLevel : 0);
     const tablaHighGain = new Tone.Gain(
-      tablaEnabled ? tablaLevel * TABLA_HIGH_RATIO : 0
+      tablaEnabled ? tablaLevel * TABLA_HIGH_RATIO : 0,
     );
     tablaLow.chain(tablaLowGain, reverb, masterBus);
     tablaHigh.chain(tablaHighGain, reverb, masterBus);
@@ -543,7 +543,7 @@ function SongGenerator() {
           chordSynthRef.current!.triggerAttackRelease(
             CHORDS[evt.chord!] || [],
             "1m",
-            time
+            time,
           );
         }
       }, evt.time);
@@ -564,13 +564,13 @@ function SongGenerator() {
               raiseOctave(note, 1),
               "8n",
               time,
-              velocity
+              velocity,
             );
             guitarBodySynthRef.current!.triggerAttackRelease(
               note,
               "8n",
               time,
-              velocity * 0.65
+              velocity * 0.65,
             );
           }, targetTime);
           lastGuitarTime = targetTime;
@@ -586,7 +586,7 @@ function SongGenerator() {
 
       if (arpEnabled) {
         const arpNotes = buildArpNotes(
-          evt.chord ? CHORDS[evt.chord] || [] : []
+          evt.chord ? CHORDS[evt.chord] || [] : [],
         );
         const arpStep = SECS_PER_BEAT / 2; // eighth-note pulse
         arpNotes.forEach((note, idx) => {
@@ -595,7 +595,7 @@ function SongGenerator() {
             (time) => {
               arpSynthRef.current!.triggerAttackRelease(note, "16n", time, 0.4);
             },
-            evt.time + idx * arpStep
+            evt.time + idx * arpStep,
           );
         });
       }
@@ -617,7 +617,7 @@ function SongGenerator() {
               tablaHighNoiseRef.current.triggerAttackRelease(
                 hit.duration,
                 time,
-                velocity * 0.9
+                velocity * 0.9,
               );
             }
           }, tablaTime);
@@ -639,7 +639,7 @@ function SongGenerator() {
               note,
               duration,
               time,
-              event.velocity ?? 0.8
+              event.velocity ?? 0.8,
             );
           }, cursor);
         }

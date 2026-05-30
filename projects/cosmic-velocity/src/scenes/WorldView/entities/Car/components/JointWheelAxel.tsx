@@ -13,7 +13,7 @@ const JointWheelAxel = ({ axel, wheel, bodyAnchor, canDrive }) => {
   ]);
 
   const forwardPressed = useKeyboardControls<Controls>(
-    (state) => state.forward
+    (state) => state.forward,
   );
   const backwardPressed = useKeyboardControls<Controls>((state) => state.back);
 

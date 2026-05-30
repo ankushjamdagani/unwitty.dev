@@ -21,7 +21,7 @@ function Player() {
       angle: Math.PI * 0.25,
       penumbra: 0.2,
       decay: 1,
-    }
+    },
   );
 
   const { offset } = useControls("player camera", {
@@ -54,7 +54,7 @@ function Player() {
     camera.position.set(
       playerPos.x + offset[0],
       playerPos.y + offset[1],
-      playerPos.z + offset[2]
+      playerPos.z + offset[2],
     );
     camera.lookAt(playerPos);
 

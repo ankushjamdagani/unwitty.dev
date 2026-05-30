@@ -13,32 +13,32 @@
   },
   "dependencies": {
     "@common/ui": "workspace:*",
-    "@react-three/drei": "^10.6.1",
-    "@react-three/fiber": "^9.3.0",
-    "@react-three/rapier": "^2.1.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/rapier": "^2.2.0",
     "@types/three": "^0.179.0",
     "normalize.css": "^8.0.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "sanitize.css": "^13.0.0",
     "three": "^0.179.1",
-    "zustand": "^5.0.7"
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@common/eslint-config": "workspace:*",
     "@common/typescript-config": "workspace:*",
     "@types/eslint": "^9.6.1",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react-swc": "^4.0.0",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.3.1",
     "browserslist-to-esbuild": "^2.1.1",
-    "eslint": "^9.33.0",
-    "leva": "^0.10.0",
+    "eslint": "^9.39.4",
+    "leva": "^0.10.1",
     "r3f-perf": "^7.2.3",
-    "vite": "^7.1.2",
-    "vite-plugin-glsl": "^1.5.1",
-    "vite-plugin-pwa": "^1.0.2",
+    "vite": "^7.3.3",
+    "vite-plugin-glsl": "^1.6.0",
+    "vite-plugin-pwa": "^1.3.0",
     "vite-plugin-top-level-await": "^1.6.0",
-    "vite-plugin-wasm": "^3.5.0"
+    "vite-plugin-wasm": "^3.6.0"
   }
 }

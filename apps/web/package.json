@@ -16,21 +16,21 @@
     "@project/svg-editor": "workspace:*",
     "@uidotdev/usehooks": "^2.4.1",
     "next": "15.4.10",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-icons": "^5.5.0"
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-icons": "^5.6.0"
   },
   "devDependencies": {
     "@common/eslint-config": "workspace:*",
     "@common/typescript-config": "workspace:*",
-    "@types/node": "^24.3.0",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
+    "@types/node": "^24.12.4",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.5.0",
-    "eslint": "^9.33.0",
+    "eslint": "^9.39.4",
     "eslint-config-next": "15.4.6",
-    "leva": "^0.10.0",
-    "postcss": "^8.5.14",
+    "leva": "^0.10.1",
+    "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19"
   }
 }

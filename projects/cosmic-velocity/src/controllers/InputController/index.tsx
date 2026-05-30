@@ -12,7 +12,7 @@ function InputController({ children }) {
       { name: Controls.right, keys: ["ArrowRight", "KeyD"] },
       { name: Controls.jump, keys: ["Space"] },
     ],
-    []
+    [],
   );
 
   return <KeyboardControls map={map}>{children}</KeyboardControls>;

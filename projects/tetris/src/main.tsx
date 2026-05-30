@@ -8,5 +8,5 @@ import { Tetris } from "./Tetris";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Tetris />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

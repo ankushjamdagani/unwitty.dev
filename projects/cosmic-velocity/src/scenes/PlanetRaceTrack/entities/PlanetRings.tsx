@@ -44,7 +44,7 @@ function PlanetRings({ config }) {
   const gridLinesRadius = generateNumberPairs(
     planetSize,
     mapScale,
-    numberOfGrids
+    numberOfGrids,
   );
 
   return (

@@ -6,5 +6,5 @@ import { SongGenerator } from "./SongGenerator";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <SongGenerator />
-  </StrictMode>
+  </StrictMode>,
 );

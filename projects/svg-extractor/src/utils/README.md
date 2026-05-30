@@ -58,13 +58,13 @@ const {
   ["#ff0000", "#00ff00"], // targets
   12, // tolerance in ΔE units
   "de2000", // metric: "de2000" | "de1976"
-  false // invert selection
+  false, // invert selection
 );
 
 // 3) Extract a central path with PCA
 const cc = connectedComponents({ w, h, data: maskData });
 const label = cc.sizes.findIndex(
-  (s, i) => i > 0 && s === Math.max(...cc.sizes)
+  (s, i) => i > 0 && s === Math.max(...cc.sizes),
 );
 const single = maskFromLabels(cc, new Set([label]));
 const pts = pointsFromMask(single);
@@ -72,7 +72,7 @@ const { points } = computeMedianPathPCA(
   pts,
   { bins: 120, minPerBin: 30, smoothIter: 2, epsilon: 1.5 },
   w,
-  h
+  h,
 );
 const d = polylinePath(points); // SVG path string (M/L only)
 ```
@@ -86,7 +86,7 @@ const { dList } = extractPathsFromFinalMask(
   "skeleton",
   { smoothIter: 1, epsilon: 1.0 },
   w,
-  h
+  h,
 );
 ```
 
