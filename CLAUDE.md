@@ -37,17 +37,18 @@ pnpm clean
 
 **Monorepo layout** managed by pnpm workspaces + Turbo:
 
-| Path | Package | Purpose |
-|---|---|---|
-| `apps/web` | `@app/portfolio` | Next.js 15 portfolio site |
-| `projects/*` | `@project/*` | Standalone Vite + React interactive projects |
-| `packages/ui` | `@common/ui` | Shared React component library |
-| `packages/eslint-config` | `@common/eslint-config` | Shared ESLint configs |
-| `packages/typescript-config` | `@common/typescript-config` | Shared `tsconfig` bases |
+| Path                         | Package                     | Purpose                                      |
+| ---------------------------- | --------------------------- | -------------------------------------------- |
+| `apps/web`                   | `@app/portfolio`            | Next.js 15 portfolio site                    |
+| `projects/*`                 | `@project/*`                | Standalone Vite + React interactive projects |
+| `packages/ui`                | `@common/ui`                | Shared React component library               |
+| `packages/eslint-config`     | `@common/eslint-config`     | Shared ESLint configs                        |
+| `packages/typescript-config` | `@common/typescript-config` | Shared `tsconfig` bases                      |
 
 **How projects plug into the portfolio:** `apps/web/src/configs/projects.tsx` defines all project metadata and dynamic imports. Each `@project/*` package is a Vite-built React component consumed by the Next.js app. `next.config.js` transpiles `@common/ui` via `transpilePackages`.
 
 **`apps/web` source layout:**
+
 - `src/app/` — Next.js App Router pages and route-level layout components
 - `src/app/_components/` — Page-section components (Nav, Hero, Projects, Footer, etc.)
 - `src/app/_styles/` — Global CSS: `theme.css` (all CSS variables), `globals.css` (Tailwind directives + `@layer components`)
@@ -60,6 +61,7 @@ pnpm clean
 The app uses **Tailwind CSS 3** with an extensive CSS custom-property theme — do not hardcode colour or spacing values directly.
 
 **Theme variables** (defined in `src/app/_styles/theme.css`):
+
 - Colors: `--foreground-rgb` / `--background-rgb` in raw RGB (`r g b`) format — use `rgb(var(--foreground-rgb))` or the Tailwind aliases `text-foreground` / `bg-background`
 - Border widths: `--border-width`, `--border-width-thick`, `--border-width-extra-thick`
 - Z-index: `--z-index-below-all` (−1) … `--z-index-above-all` (11111), mapped to Tailwind `z-below-all` / `z-above-all` etc.

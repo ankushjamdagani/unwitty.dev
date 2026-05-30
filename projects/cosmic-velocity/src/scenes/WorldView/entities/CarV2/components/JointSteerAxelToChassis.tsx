@@ -27,7 +27,7 @@ const JointSteerAxelToChassis = ({ body, axel, bodyAnchor }) => {
     joint.current?.configureMotorPosition(
       targetPos,
       AXLE_TO_CHASSIS_JOINT_STIFFNESS,
-      AXLE_TO_CHASSIS_JOINT_DAMPING
+      AXLE_TO_CHASSIS_JOINT_DAMPING,
     );
   }, [leftPressed, rightPressed]);
 

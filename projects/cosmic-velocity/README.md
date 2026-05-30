@@ -42,7 +42,6 @@ Personal portfolio 3D experience based on `react-three-fiber`
 - Language: [TypeScript](https://www.typescriptlang.org/)
 
 - UI
-
   - [React](https://react.dev/)
   - [Next.js](https://nextjs.org/)
 
@@ -51,23 +50,19 @@ Personal portfolio 3D experience based on `react-three-fiber`
   - [Web Animation](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API) and [View Transition](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API) API
 
 - 3D
-
   - [ThreeJS](https://threejs.org/)
   - [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/)
 
 - State Management
-
   - [Zustand](https://docs.pmnd.rs/zustand/)
   - [React Query](https://tanstack.com/query/latest/)
 
 - Helpers
-
   - [Drei](https://drei.pmnd.rs/)
   - [usehooks-ts](https://usehooks-ts.com/)
   - [lodash-es](https://www.npmjs.com/package/lodash-es)
 
 - Dev Helpers
-
   - [ESLint](https://eslint.org/) - Also, use `eslint-config-prettier` to turn off prettier rules in eslint
   - [Prettier](https://prettier.io/)
   - [Vite](https://vitejs.dev/guide/)
@@ -78,7 +73,6 @@ Personal portfolio 3D experience based on `react-three-fiber`
   - Normalize CSS
 
 - Dev Ops
-
   - [Monitoring: Sentry](https://sentry.io/welcome/)
   - [Logging: Axiom](https://axiom.co/)
 

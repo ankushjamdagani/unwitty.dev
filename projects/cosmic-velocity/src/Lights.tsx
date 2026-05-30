@@ -12,7 +12,7 @@ function Lights({ debugMode }: { debugMode: boolean }) {
     debugMode && directionalLightRef,
     THREE.DirectionalLightHelper,
     1,
-    "red"
+    "red",
   );
 
   const { pointLight, ambientLight } = useControls("light", {

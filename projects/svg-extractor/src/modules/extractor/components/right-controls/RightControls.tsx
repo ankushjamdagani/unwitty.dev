@@ -126,7 +126,7 @@ function RightControls({
     const paths = pathLines
       .map(
         (d: string) =>
-          `<path d="${d}" fill="none" stroke="#6be675" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`
+          `<path d="${d}" fill="none" stroke="#6be675" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`,
       )
       .join("\r\n");
     const svg = `<?xml version="1.0" encoding="UTF-8"?>
@@ -177,21 +177,21 @@ function RightControls({
         0,
         0,
         imgCanvasRef.current.width,
-        imgCanvasRef.current.height
+        imgCanvasRef.current.height,
       );
     if (mx && maskCanvasRef.current)
       mx.clearRect(
         0,
         0,
         maskCanvasRef.current.width,
-        maskCanvasRef.current.height
+        maskCanvasRef.current.height,
       );
     if (dx && debugCanvasRef.current)
       dx.clearRect(
         0,
         0,
         debugCanvasRef.current.width,
-        debugCanvasRef.current.height
+        debugCanvasRef.current.height,
       );
     if (overlaySvgRef.current) overlaySvgRef.current.innerHTML = "";
 

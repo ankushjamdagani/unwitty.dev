@@ -22,10 +22,10 @@ const WHEELS = getWheels();
 function Car() {
   const chassisRef = useRef<RapierRigidBody>(null);
   const wheelsRef = useRef<RefObject<RapierRigidBody>[]>(
-    WHEELS.map(() => createRef())
+    WHEELS.map(() => createRef()),
   );
   const axelsRef = useRef<RefObject<RapierRigidBody>[]>(
-    WHEELS.map(() => createRef())
+    WHEELS.map(() => createRef()),
   );
 
   return (

@@ -28,7 +28,7 @@ function useWorker(workerPath: string) {
       payload: any,
       buffer: ArrayBufferLike,
       onMessage: (evt: MessageEvent<any>, jobId: number) => void,
-      onError: (this: AbstractWorker, ev: ErrorEvent) => any
+      onError: (this: AbstractWorker, ev: ErrorEvent) => any,
     ) => {
       let w = workerRef.current || initWorker();
       if (!w) return false;
@@ -46,7 +46,7 @@ function useWorker(workerPath: string) {
         return false;
       }
     },
-    [initWorker]
+    [initWorker],
   );
 
   return { hasWorker, post };

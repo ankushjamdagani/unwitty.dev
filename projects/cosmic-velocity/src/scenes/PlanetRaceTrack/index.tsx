@@ -45,8 +45,8 @@ function PlanetRaceTrack({ config: _globalConfig }) {
             new THREE.Spherical(
               planetSize + planetSize / 10,
               Math.PI / 4,
-              Math.PI / 4
-            )
+              Math.PI / 4,
+            ),
           ),
         },
       },

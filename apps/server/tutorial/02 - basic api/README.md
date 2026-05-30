@@ -5,4 +5,3 @@
 ```curl
 curl -H "Authorization: 123ABC" "http://localhost:8000/account/coins/?username=alex"
 ```
-
