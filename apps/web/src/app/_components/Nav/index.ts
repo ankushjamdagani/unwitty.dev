@@ -1,2 +1,3 @@
 export { Nav } from "./Nav";
-export { NavVariant } from "./variants";
+export { SectionRail } from "./SectionRail";
+export type { RailAnchor } from "./SectionRail";

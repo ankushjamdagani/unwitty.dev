@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import "../_styles/globals.css";
 import { Footer } from "../_components/Footer";
 import { Nav } from "../_components/Nav";
-import { NavVariant } from "../_components/Nav/variants";
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -18,7 +17,7 @@ export default function LifeRootLayout({
 }) {
   return (
     <div className="theme-life font-life-body">
-      <Nav variant={NavVariant.LIFE} />
+      <Nav />
       {children}
       <Footer />
     </div>

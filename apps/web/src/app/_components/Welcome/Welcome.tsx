@@ -8,7 +8,6 @@ import { Composition, type Choice } from "./Composition";
 import { Transition } from "./Transition";
 import styles from "./Welcome.module.css";
 import { Nav } from "../Nav";
-import { NavVariant } from "../Nav/variants";
 import { ROUTES } from "@/configs/constants";
 
 const TRANSITION_MS = 1100;
@@ -167,7 +166,7 @@ export function Welcome() {
       </div>
 
       <div className="relative grid h-screen w-screen grid-rows-[auto_1fr_auto]">
-        <Nav variant={NavVariant.WELCOME} />
+        <Nav />
         <main className="relative flex items-center justify-center">
           <div ref={compRef} className={styles.compWrap}>
             <Composition

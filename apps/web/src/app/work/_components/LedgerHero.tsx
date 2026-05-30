@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { RoughUnderline } from "./RoughUnderline";
-import { useLedgerTheme } from "../_context/LedgerThemeContext";
 
 const CHOSEN_TEXT = (
   <>
@@ -51,21 +50,7 @@ const HeroContainer = ({
   </section>
 );
 
-export const LedgerHero = () => {
-  const { theme } = useLedgerTheme();
-
-  switch (theme) {
-    case "blueprint":
-    case "hybrid":
-      return <BlueprintHero text={CHOSEN_TEXT} />;
-    case "editorial":
-      return <EditorialHero text={CHOSEN_TEXT} />;
-    case "structural":
-      return <StructuralHero text={CHOSEN_TEXT} />;
-    default:
-      return <BlueprintHero text={CHOSEN_TEXT} />;
-  }
-};
+export const LedgerHero = () => <BlueprintHero text={CHOSEN_TEXT} />;
 
 /* -------------------------------------------------------------------------- */
 /*             1. Blueprint Hero Components                                  */
@@ -830,140 +815,6 @@ const BlueprintHero = ({ text }: { text: React.ReactNode }) => {
                 {v}
               </button>
             ))}
-          </div>
-        </div>
-      </div>
-    </HeroContainer>
-  );
-};
-/* -------------------------------------------------------------------------- */
-/*             2. Editorial Hero (Typographic Serif Overlay)                 */
-/* -------------------------------------------------------------------------- */
-
-const EditorialHero = ({ text }: { text: React.ReactNode }) => {
-  return (
-    <HeroContainer className="w-full">
-      {/* Editorial side margins */}
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-ledger-outline/20" />
-      <div className="absolute right-0 top-0 bottom-0 w-px bg-ledger-outline/20" />
-
-      {/* Decorative vertical background index */}
-      <div className="absolute left-6 top-12 opacity-5 font-work-heading text-[8rem] font-bold italic select-none pointer-events-none">
-        01
-      </div>
-
-      <div className="flex flex-col items-center justify-center max-w-4xl text-center px-4 relative z-base">
-        <div className="mb-6 text-[8px] font-mono tracking-[0.4em] text-accent uppercase font-bold">
-          * FOLIO_01 // EDITORIAL_CLASSIC
-        </div>
-
-        <h1 className="text-3xl md:text-5xl text-fg-contrast leading-[1.3] font-work-heading tracking-tight mb-12 max-w-3xl">
-          {text}
-        </h1>
-
-        <div className="flex flex-col items-center gap-6">
-          <UniversalMetadata className="justify-center" />
-
-          {/* Double-bordered certified stamp seal */}
-          <div
-            className="relative flex flex-col items-center p-4 bg-canvas/40 backdrop-blur-[2px] border-2 border-double border-ledger-outline/30 rounded-lg rotate-[-2deg] select-none hover:rotate-0 transition-transform duration-500 max-w-xs"
-            style={{ filter: "url(#ledger-rough)" }}
-          >
-            <div className="text-[7px] font-mono tracking-[0.25em] text-fg-muted uppercase mb-1">
-              OFFICE OF RECORD · CERTIFIED
-            </div>
-            <div className="font-work-heading text-sm font-bold tracking-[0.2em] text-fg-contrast uppercase">
-              ANKUSH JAMDAGANI
-            </div>
-            <div className="mt-1.5 flex items-center gap-1.5 text-[8px] font-mono tracking-widest text-accent uppercase">
-              <span>★ APPROVED ★</span>
-              <span className="opacity-30">·</span>
-              <span>2026</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </HeroContainer>
-  );
-};
-
-/* -------------------------------------------------------------------------- */
-/*             3. Structural Hero (Asymmetric Open Grid)                     */
-/* -------------------------------------------------------------------------- */
-
-const StructuralHero = ({ text }: { text: React.ReactNode }) => {
-  return (
-    <HeroContainer className="w-full !px-0">
-      <div className="w-full h-full grid grid-cols-1 lg:grid-cols-12 border border-ledger-outline/25 relative z-base bg-canvas-contrast/30">
-        {/* Left Grid Block: Hero Title */}
-        <div className="lg:col-span-8 p-8 md:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-ledger-outline/25">
-          <div className="flex items-center justify-between select-none">
-            <span className="text-[9px] font-mono tracking-[0.3em] text-accent font-bold uppercase">
-              SEC_001 // STRUCTURAL_GRID
-            </span>
-            <span className="text-[9px] font-mono tracking-[0.25em] text-fg-muted uppercase opacity-55">
-              PAGE.REF / 001
-            </span>
-          </div>
-
-          <div className="my-10 lg:my-0">
-            <h1 className="text-3xl md:text-[2.75rem] text-fg-contrast leading-[1.25] font-work-heading tracking-tight">
-              {text}
-            </h1>
-          </div>
-
-          <UniversalMetadata />
-        </div>
-
-        {/* Right Grid Block: Engineering Specs Table */}
-        <div className="lg:col-span-4 p-8 flex flex-col justify-between bg-canvas-raised/40 select-none">
-          <div className="font-mono text-[9px] font-bold text-fg-muted uppercase tracking-[0.35em] border-b border-ledger-outline/25 pb-2 mb-6">
-            {"// SPECIFICATION_SHEET"}
-          </div>
-
-          <div className="flex-1 space-y-4 font-mono text-[10px] uppercase tracking-wider text-fg-muted">
-            <div className="flex justify-between items-center py-1.5 border-b border-dashed border-ledger-outline/15">
-              <span>Focus</span>
-              <span className="text-fg-contrast font-bold">
-                Systems & Craft
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-1.5 border-b border-dashed border-ledger-outline/15">
-              <span>Stack</span>
-              <span className="text-fg-contrast font-bold">
-                TS / React / Rust
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-1.5 border-b border-dashed border-ledger-outline/15">
-              <span>Timezone</span>
-              <span className="text-fg-contrast font-bold">GMT +5:30</span>
-            </div>
-            <div className="flex justify-between items-center py-1.5 border-b border-dashed border-ledger-outline/15">
-              <span>Revision</span>
-              <span className="text-fg-contrast font-bold font-mono">
-                v4.0.26
-              </span>
-            </div>
-          </div>
-
-          {/* Graphic Grid Placeholder */}
-          <div className="mt-8 border border-dashed border-ledger-outline/35 aspect-[3/1] flex items-center justify-center text-accent/50">
-            <svg
-              className="w-full h-full opacity-30 text-ledger-outline"
-              stroke="currentColor"
-              strokeWidth="0.8"
-            >
-              <line x1="0" y1="0" x2="100%" y2="100%" />
-              <line x1="100%" y1="0" x2="0" y2="100%" />
-              <circle
-                cx="50%"
-                cy="50%"
-                r="20"
-                fill="none"
-                strokeWidth="1"
-                strokeDasharray="3 3"
-              />
-            </svg>
           </div>
         </div>
       </div>
