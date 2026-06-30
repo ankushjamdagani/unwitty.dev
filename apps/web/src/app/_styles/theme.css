@@ -71,8 +71,10 @@
   --fg-muted: 95 94 85;
   --fg-subtle: 164 162 153;
   --accent: 46 125 79;
+  --bezel-bg: color-mix(in srgb, rgb(var(--fg-contrast)) 75%, rgb(var(--canvas)));
+  --bezel-fg: rgb(var(--canvas));
 
-  --dot: rgb(var(--fg) / 0.08); /* Faded but visible across all pages */
+  --dot: rgb(var(--fg) / 0.14); /* Faded but visible across all pages */
   --dot-strong: rgb(var(--fg) / 0.22); /* Full intensity for welcome */
 
   --vignette: var(--fg);
@@ -96,6 +98,8 @@
   --fg-muted: 118 104 82;
   --fg-subtle: 188 172 144;
   --accent: 140 90 40;
+  --bezel-bg: color-mix(in srgb, rgb(var(--fg-contrast)) 75%, rgb(var(--canvas)));
+  --bezel-fg: rgb(var(--canvas));
 
   --dot: rgb(var(--fg) / 0.1);
   --dot-strong: rgb(var(--fg) / 0.24);
@@ -122,6 +126,8 @@
   --fg-muted: 154 152 140;
   --fg-subtle: 94 92 83;
   --accent: 46 125 79;
+  --bezel-bg: color-mix(in srgb, rgb(var(--fg-contrast)) 75%, rgb(var(--canvas)));
+  --bezel-fg: rgb(var(--canvas));
 
   --dot: rgb(var(--fg) / 0.1);
   --dot-strong: rgb(var(--fg) / 0.25);

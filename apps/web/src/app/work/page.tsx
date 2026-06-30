@@ -3,7 +3,6 @@ import { LedgerHero } from "./_components/LedgerHero";
 import { LedgerCompanies } from "./_components/LedgerCompanies";
 import { LedgerWriting } from "./_components/LedgerWriting";
 import { LedgerProjects } from "./_components/LedgerProjects";
-import { LedgerResume } from "./_components/LedgerResume";
 import { MarqueeText } from "../_components/MarqueeText";
 
 export default function WorkHome() {
@@ -20,7 +19,6 @@ export default function WorkHome() {
           <LedgerCompanies />
           <LedgerWriting />
           <LedgerProjects />
-          <LedgerResume />
         </div>
       </LedgerShell>
     </div>

@@ -21,8 +21,8 @@ export const SOCIAL_LINKS = [
     url: "https://github.com/ankushjamdagani",
   },
   {
-    label: "Twitter",
-    url: "https://twitter.com/ankushjamdagani",
+    label: "X (Twitter)",
+    url: "https://x.com/unwitty_dev",
   },
   {
     label: "LinkedIn",
@@ -30,6 +30,6 @@ export const SOCIAL_LINKS = [
   },
   {
     label: "Email",
-    url: "mailto:anqushjamdagani@gmail.com",
+    url: "mailto:hello@unwitty.dev",
   },
 ] as const;

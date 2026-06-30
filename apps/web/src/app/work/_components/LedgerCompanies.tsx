@@ -110,9 +110,9 @@ export const LedgerCompanies = () => {
           </span>
         </aside>
 
-        <div className="md:col-span-7 flex justify-center items-center pb-12 select-none overflow-visible">
+        <div className="md:col-span-7 flex justify-end items-center pb-12 select-none overflow-visible">
           <div className="relative z-10 cursor-default rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
-            <div className="relative flex flex-col items-center">
+            <div className="relative flex flex-col items-end">
               <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-accent mb-1">
                 Life Chapter
               </span>

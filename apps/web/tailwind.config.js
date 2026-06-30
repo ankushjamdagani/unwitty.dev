@@ -14,6 +14,8 @@ module.exports = {
         accent: "rgb(var(--accent) / <alpha-value>)",
         "ledger-outline": "rgb(var(--ledger-outline) / <alpha-value>)",
         "ledger-surface": "rgb(var(--ledger-surface) / <alpha-value>)",
+        "bezel-bg": "var(--bezel-bg)",
+        "bezel-fg": "var(--bezel-fg)",
       },
       fontFamily: {
         technical: "var(--font-technical), ui-monospace, monospace",
