@@ -9,10 +9,10 @@ import { RoughUnderline } from "./RoughUnderline";
 const BLUEPRINT_TEXT = (
   <>
     I spend my days <br />
-    <span className="opacity-30">Writing code,</span> <br />
+    <span className="opacity-30">writing code,</span> <br />
     & even more time <br />
     <span className="italic font-editorial text-accent">
-      <RoughUnderline>Deleting it.</RoughUnderline>
+      <RoughUnderline>deleting it.</RoughUnderline>
     </span>
   </>
 );
@@ -129,7 +129,10 @@ const MinimalistCoverHero = () => {
               </span>
               <div className="grid grid-cols-2 gap-x-6 gap-y-3">
                 {[
-                  { label: "GitHub", url: "https://github.com/ankushjamdagani" },
+                  {
+                    label: "GitHub",
+                    url: "https://github.com/ankushjamdagani",
+                  },
                   {
                     label: "LinkedIn",
                     url: "https://www.linkedin.com/in/ankushjamdagani/",

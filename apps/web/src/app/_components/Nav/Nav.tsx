@@ -18,7 +18,7 @@ export function Nav() {
   return (
     <header
       className={`sticky top-0 z-nav border-b border-dashed border-fg-muted/30 transition-colors duration-300 font-technical ${
-        scrolled ? "bg-canvas/60 backdrop-blur-md" : ""
+        scrolled ? "bg-canvas/40 backdrop-blur-md" : ""
       }`}
     >
       <div className="mx-auto flex h-nav max-w-content items-center justify-between px-4">
