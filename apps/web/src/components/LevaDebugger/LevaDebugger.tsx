@@ -23,7 +23,7 @@ export function LevaDebugger() {
       // oneLineLabels // default = false, alternative layout for labels, with labels and fields on separate rows
       // hideTitleBar // default = false, hides the GUI header
       collapsed={false} // default = false, when true the GUI is collpased
-      hidden={enableDebugger != "true"} // default = false, when true the GUI is hidden
+      hidden={enableDebugger !== "true" && process.env.NODE_ENV === "production"} // default = false, when true the GUI is hidden
       titleBar={{
         position: { x: -20, y: 64 },
       }}

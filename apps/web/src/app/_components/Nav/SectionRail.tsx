@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export interface RailAnchor {
   id: string;
@@ -10,44 +10,51 @@ export interface RailAnchor {
 export function SectionRail({ anchors }: { anchors: RailAnchor[] }) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
-  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const compute = () => {
-      rafRef.current = null;
-      const vh = window.innerHeight;
-      setVisible(window.scrollY > vh * 0.6);
+    const visibleSections = new Map<string, number>();
 
-      let bestId: string | null = null;
-      let bestOverlap = 0;
-      for (const a of anchors) {
-        const el = document.getElementById(a.id);
-        if (!el) continue;
-        const r = el.getBoundingClientRect();
-        const top = Math.max(0, r.top);
-        const bottom = Math.min(vh, r.bottom);
-        const overlap = Math.max(0, bottom - top);
-        if (overlap > bestOverlap) {
-          bestOverlap = overlap;
-          bestId = a.id;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry.intersectionRatio);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        });
+
+        // Show rail if any target section is entering the view
+        const hasVisible = visibleSections.size > 0;
+        setVisible(hasVisible);
+
+        if (hasVisible) {
+          // Match the section with the highest intersection ratio
+          let active: string | null = null;
+          let maxRatio = -1;
+          visibleSections.forEach((ratio, id) => {
+            if (ratio > maxRatio) {
+              maxRatio = ratio;
+              active = id;
+            }
+          });
+          if (active) {
+            setActiveId(active);
+          }
         }
+      },
+      {
+        rootMargin: "-15% 0px -55% 0px",
+        threshold: [0, 0.1, 0.2, 0.5, 0.8]
       }
-      setActiveId(bestId);
-    };
+    );
 
-    const schedule = () => {
-      if (rafRef.current !== null) return;
-      rafRef.current = requestAnimationFrame(compute);
-    };
+    anchors.forEach((a) => {
+      const el = document.getElementById(a.id);
+      if (el) observer.observe(el);
+    });
 
-    compute();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    return () => {
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-    };
+    return () => observer.disconnect();
   }, [anchors]);
 
   return (

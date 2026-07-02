@@ -5,29 +5,19 @@ import { useRouter } from "next/navigation";
 
 import { Botbar } from "./Chrome";
 import { Composition, type Choice } from "./Composition";
-import { Transition } from "./Transition";
+import { useChapterTransition } from "../Nav/ChapterTransition";
 import styles from "./Welcome.module.css";
 import { Nav } from "../Nav";
 import { ROUTES } from "@/configs/constants";
 
-const TRANSITION_MS = 1100;
-
 export function Welcome() {
   const router = useRouter();
+  const { triggerTransition } = useChapterTransition();
   const [hover, setHover] = useState<Choice | null>(null);
   const [selected, setSelected] = useState<Choice | null>(null);
   const [busy, setBusy] = useState(false);
   const hoverRef = useRef<Choice | null>(null);
   hoverRef.current = hover;
-  const navTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (navTimeoutRef.current !== null) {
-        clearTimeout(navTimeoutRef.current);
-      }
-    };
-  }, []);
 
   useEffect(() => {
     const prevOverflow = document.body.style.overflow;
@@ -66,7 +56,7 @@ export function Welcome() {
   );
 
   const onSelect = useCallback(
-    (which: Choice) => {
+    (which: Choice, e?: React.MouseEvent) => {
       if (busy) return;
       setBusy(true);
       setSelected(which);
@@ -74,11 +64,9 @@ export function Welcome() {
       // Trigger the background fade by removing the data-welcome attribute
       document.body.removeAttribute("data-welcome");
 
-      navTimeoutRef.current = setTimeout(() => {
-        router.push(ROUTES[which]);
-      }, TRANSITION_MS);
+      triggerTransition(ROUTES[which], which === "work" ? "work" : "life", e);
     },
-    [busy, router],
+    [busy, triggerTransition],
   );
 
   const bgRef = useRef<HTMLDivElement>(null);
@@ -180,8 +168,6 @@ export function Welcome() {
         </main>
         <Botbar />
       </div>
-
-      <Transition selected={selected} />
     </div>
   );
 }

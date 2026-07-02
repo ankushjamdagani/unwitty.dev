@@ -11,6 +11,7 @@ import { Cursor } from "@/components/Cursor";
 // import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
 // import { CursorWind } from "@/components/CursorWind";
 // import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { ChapterTransitionProvider } from "@/app/_components/Nav/ChapterTransition";
 
 import "./_styles/globals.css";
 import { LevaDebugger } from "@/components/LevaDebugger";
@@ -57,21 +58,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
       <body
         className={`${jetbrains.variable} ${spectral.variable} ${cormorant.variable} ${italianno.variable} font-technical`}
       >
-        <div className="grain-overlay" />
-        {children}
-        <Cursor />
-        {/* <CursorInverted /> */}
+        <ChapterTransitionProvider>
+          <div className="grain-overlay" />
+          {children}
+          <Cursor />
+          {/* <CursorInverted /> */}
 
-        {/* <NoiseOverlay /> */}
-        <React.Suspense fallback={null}>
-          <LevaDebugger />
-        </React.Suspense>
-        <BgVignetteControl />
+          {/* <NoiseOverlay /> */}
+          <React.Suspense fallback={null}>
+            <LevaDebugger />
+          </React.Suspense>
+          <BgVignetteControl />
+        </ChapterTransitionProvider>
       </body>
     </html>
   );

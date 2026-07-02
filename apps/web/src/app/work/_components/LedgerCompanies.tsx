@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 
 const RoughDivider = () => (
   <span
@@ -6,6 +8,48 @@ const RoughDivider = () => (
     className="pointer-events-none hidden md:block absolute top-0 bottom-0 left-0 w-px bg-ledger-outline/30 [filter:url(#ledger-rough)]"
   />
 );
+
+const ScrollReveal = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry && entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translate3d(0, 0, 0)" : "translate3d(0, 16px, 0)",
+        transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const companies = [
   {
@@ -52,23 +96,24 @@ const companies = [
   },
 ];
 
-const renderCompany = (company: (typeof companies)[0]) => (
-  <div
-    key={`${company.name}-${company.period}`}
-    className="group flex flex-col md:flex-row md:items-center py-2 px-4 -mx-4 cursor-default justify-between rounded transition-all duration-300"
-  >
-    <h3 className="text-2xl font-display text-fg-contrast transition-colors">
-      {company.name}
-    </h3>
-    <div className="hidden md:inline-block flex-1 h-px mx-6 bg-ledger-outline/20 transition-colors" />
-    <div className="flex items-center gap-4 mt-4 md:mt-0 text-[11px] tracking-widest justify-between">
-      <p className="text-sm text-fg-muted">{company.role}</p>
-      <span className="text-xl opacity-30 transition-all">⧼</span>
-      <span className="w-24 font-bold text-fg-contrast transition-colors">
-        {company.period}
-      </span>
+const renderCompany = (company: (typeof companies)[0], idx: number) => (
+  <ScrollReveal key={`${company.name}-${company.period}`} delay={idx * 80}>
+    <div
+      className="group flex flex-col md:flex-row md:items-center py-2 px-4 -mx-4 cursor-default justify-between rounded transition-all duration-300"
+    >
+      <h3 className="text-2xl font-display text-fg-contrast transition-colors">
+        {company.name}
+      </h3>
+      <div className="hidden md:inline-block flex-1 h-px mx-6 bg-ledger-outline/20 transition-colors" />
+      <div className="flex items-center gap-4 mt-4 md:mt-0 text-[11px] tracking-widest justify-between">
+        <p className="text-sm text-fg-muted">{company.role}</p>
+        <span className="text-xl opacity-30 transition-all">⧼</span>
+        <span className="w-24 font-bold text-fg-contrast transition-colors">
+          {company.period}
+        </span>
+      </div>
     </div>
-  </div>
+  </ScrollReveal>
 );
 
 export const LedgerCompanies = () => {
@@ -95,7 +140,7 @@ export const LedgerCompanies = () => {
 
       <div className="relative z-base grid grid-cols-1 md:grid-cols-10 gap-x-6">
         <div className="md:col-span-7 space-y-2 pb-12">
-          {fullstackCompanies.map(renderCompany)}
+          {fullstackCompanies.map((c, i) => renderCompany(c, i))}
         </div>
         <aside className="md:col-span-3 md:pl-6 pt-3 md:pt-0 pb-12 select-none relative flex flex-col items-start">
           <RoughDivider />
@@ -134,7 +179,7 @@ export const LedgerCompanies = () => {
         </aside>
 
         <div className="md:col-span-7 space-y-2">
-          {frontendCompanies.map(renderCompany)}
+          {frontendCompanies.map((c, i) => renderCompany(c, i))}
         </div>
         <aside className="md:col-span-3 md:pl-6 pt-3 md:pt-0 select-none relative flex flex-col items-start">
           <RoughDivider />

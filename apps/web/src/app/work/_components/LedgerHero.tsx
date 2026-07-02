@@ -114,6 +114,7 @@ const MinimalistCoverHero = () => {
                   alt="Technical Blueprint"
                   src="/images/blueprint.jpg"
                   fill
+                  sizes="(max-width: 768px) 100vw, 30vw"
                   className="object-cover"
                 />
               </div>

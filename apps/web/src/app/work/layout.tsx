@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 
 import "../_styles/globals.css";
-import { Nav, SectionRail } from "../_components/Nav";
+import { Nav, SectionRail, ChapterRail } from "../_components/Nav";
 import { Footer } from "../_components/Footer";
 
 export const metadata: Metadata = {
@@ -24,6 +24,7 @@ export default function WorkRootLayout({
   return (
     <div className="theme-work font-technical">
       <Nav />
+      <ChapterRail />
       <SectionRail anchors={WORK_ANCHORS} />
       {children}
       <Footer />

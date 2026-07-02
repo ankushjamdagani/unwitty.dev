@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import "../_styles/globals.css";
 import { Footer } from "../_components/Footer";
-import { Nav } from "../_components/Nav";
+import { Nav, ChapterRail } from "../_components/Nav";
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -18,6 +18,7 @@ export default function LifeRootLayout({
   return (
     <div className="theme-life font-editorial">
       <Nav />
+      <ChapterRail />
       {children}
       <Footer />
     </div>

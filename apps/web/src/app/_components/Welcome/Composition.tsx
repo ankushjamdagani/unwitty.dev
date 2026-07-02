@@ -9,7 +9,7 @@ type CompositionProps = {
   hover: Choice | null;
   selected: Choice | null;
   onHover: (which: Choice | null) => void;
-  onSelect: (which: Choice) => void;
+  onSelect: (which: Choice, e: React.MouseEvent) => void;
   copy: { work: string; life: string };
 };
 
@@ -125,7 +125,7 @@ function Zone({
 }: {
   which: Choice;
   onHover: (which: Choice | null) => void;
-  onSelect: (which: Choice) => void;
+  onSelect: (which: Choice, e: React.MouseEvent) => void;
   ariaLabel: string;
 }) {
   const isWork = which === "work";
@@ -140,7 +140,7 @@ function Zone({
       onMouseEnter={() => onHover(which)}
       onMouseLeave={() => onHover(null)}
       onFocus={() => onHover(which)}
-      onClick={() => onSelect(which)}
+      onClick={(e) => onSelect(which, e)}
       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[73.4%] h-[73.4%] rounded-full z-[5] cursor-pointer appearance-none border-0 bg-transparent p-0 m-0 font-[inherit] text-inherit outline-0 focus-visible:outline focus-visible:outline-1 focus-visible:outline-dashed focus-visible:outline-ink-3 focus-visible:[outline-offset:-6px]"
       style={{ clipPath: clip }}
     />
