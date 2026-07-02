@@ -15,7 +15,7 @@ export function CursorDisplacementFire() {
     <>
       <div
         id="cursor-displacement-fire"
-        className="z-above-all pointer-events-none absolute h-[100px] w-[100px] rounded-full [backdrop-filter:url(#displacementFilter)] [filter:url(#displacementFilter)]"
+        className="z-overlay pointer-events-none absolute h-[100px] w-[100px] rounded-full [backdrop-filter:url(#displacementFilter)] [filter:url(#displacementFilter)]"
         style={{
           left: `${mouse.elementX - 50}px`,
           top: `${mouse.elementY - 50}px`,

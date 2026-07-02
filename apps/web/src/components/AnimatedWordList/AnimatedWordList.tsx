@@ -19,7 +19,7 @@ type ComponentProps = {
 };
 
 export function AnimatedWordList<T extends React.ElementType = "span">(
-  props: PolymorphicComponent<T, ComponentProps>
+  props: PolymorphicComponent<T, ComponentProps>,
 ) {
   const {
     words,

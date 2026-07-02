@@ -10,7 +10,7 @@ export function BreadCrumb({ options }: BreadCrumb) {
       {options.map((option) => (
         <li
           key={option.path || option.label}
-          className="relative text-xs after:absolute after:bottom-1 after:left-[calc(100%+6px)] after:h-[6px] after:w-[6px] after:rotate-45 after:border-r-[1px] after:border-t-[1px] after:border-solid after:border-foreground after:content-[''] last:after:hidden"
+          className="relative text-xs after:absolute after:bottom-1 after:left-[calc(100%+6px)] after:h-[6px] after:w-[6px] after:rotate-45 after:border-r-[1px] after:border-t-[1px] after:border-solid after:border-fg-contrast after:content-[''] last:after:hidden"
         >
           {option.path ? (
             <Link href={option.path} className="font-medium">

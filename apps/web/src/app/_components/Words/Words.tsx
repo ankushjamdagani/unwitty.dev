@@ -72,11 +72,11 @@ export function Words() {
             <Link
               aria-label={post.title}
               className="post shadow-box flex-col justify-start p-4 text-left"
-              href={`/articles/${post.id}`}
+              href={`/work/articles/${post.id}`}
             >
               <Image
                 alt={post.title}
-                className="post-thumb bg-foreground rounded-sm aspect-square w-full"
+                className="post-thumb bg-fg-contrast rounded-sm aspect-square w-full"
                 height={240}
                 src={post.thumbnail.src}
                 width={240}

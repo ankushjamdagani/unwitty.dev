@@ -1,5 +1,14 @@
 @import url("./theme.css");
 
+:root {
+  --clock-radius: 166px;
+}
+@media (min-width: 640px) {
+  :root {
+    --clock-radius: 190px;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,8 +42,8 @@
     --circle-y: 50%;
   }
   to {
-    --transparent-bar-width: 2px;
-    --black-bar-width: 200px;
+    --transparent-bar-width: var(--clock-radius);
+    --black-bar-width: 80px;
     --circle-x: 50%;
     --circle-y: 50%;
   }
@@ -123,7 +132,7 @@
   }
 
   [class^="seperator"] {
-    @apply bg-foreground;
+    @apply bg-fg-contrast;
   }
 
   .seperator-sq {
@@ -147,9 +156,9 @@
   }
 
   .shadow-box-v0 {
-    @apply bg-background rounded border-[length:var(--border-width)] border-foreground flex w-full relative items-center justify-center;
+    @apply bg-canvas-contrast rounded border-[length:var(--border-width-md)] border-fg-contrast flex w-full relative items-center justify-center;
     &::after {
-      @apply bg-foreground rounded content-[""] h-full left-0 absolute top-0 w-full z-below-all;
+      @apply bg-fg-contrast rounded content-[""] h-full left-0 absolute top-0 w-full z-below-all;
     }
     &:hover::after {
       @apply left-[0.35em] top-[0.35em];
@@ -157,15 +166,83 @@
   }
 
   .shadow-box {
-    @apply bg-[rgba(var(--background-rgb),0.5)] rounded border-[length:var(--border-width-extra-thick)] border-foreground flex w-full relative items-center justify-center;
+    @apply bg-canvas-contrast/50 rounded border-[length:var(--border-width-extra-thick)] border-fg-contrast flex w-full relative items-center justify-center;
   }
 
   .highlight-inverted {
-    @apply text-background bg-foreground;
+    @apply text-canvas-contrast bg-fg-contrast;
   }
 
   .badge {
     @apply border-thin border-solid rounded-[2px] text-xs px-1 py-[2px];
+  }
+
+  .dot-line {
+    background-image: linear-gradient(
+      to right,
+      rgb(var(--ledger-outline)) 10%,
+      rgba(255, 255, 255, 0) 0%
+    );
+    background-position: bottom;
+    background-size: 4px 1px;
+    background-repeat: repeat-x;
+  }
+
+  .scanline {
+    @apply w-full h-[140px] z-[100] fixed top-[-140px] pointer-events-none opacity-[0.6];
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent
+    );
+    animation: scanline 10s linear infinite;
+    mix-blend-mode: overlay;
+  }
+
+  .scanline::after {
+    content: "";
+    @apply absolute inset-0 opacity-[0.8] animate-[noise_150ms_steps(8)_infinite];
+    background-image: url("/images/noise-web.webp");
+    background-size: 100px;
+  }
+
+  @keyframes scanline {
+    0% {
+      top: -140px;
+    }
+    100% {
+      top: 100%;
+    }
+  }
+
+  @keyframes marquee-border {
+    from {
+      background-position:
+        0 0,
+        0 100%;
+    }
+    to {
+      background-position:
+        20px 0,
+        20px 100%;
+    }
+  }
+
+  .themed-filter {
+    filter: var(--image-filter);
+    transition: filter 300ms ease;
+  }
+
+  .themed-filter:hover {
+    filter: none;
+  }
+  .theme-work :is(h1, h2, h3) {
+    font-family: var(--font-display), serif;
+  }
+
+  .theme-life :is(h1, h2, h3) {
+    font-family: var(--font-expressive), cursive;
   }
 }
 
@@ -174,19 +251,64 @@ html {
 }
 
 body {
-  @apply text-foreground bg-background tracking-[0.075em] relative;
+  @apply bg-canvas text-fg-contrast tracking-[0.075em] relative antialiased;
 
   &.mono {
-    @apply text-[14px] font-mono;
+    @apply text-[14px] font-technical;
   }
 
+  /* Dot pattern background */
   &:after {
-    @apply bg-scroll bg-[url(/images/dots.svg)] content-[""] h-full left-0 opacity-30 absolute top-0 w-full -z-10 [filter:var(--body-bgfilter)];
+    @apply pointer-events-none fixed inset-0 -z-10 content-[""] transition-[background-color,opacity] duration-700 ease-in-out;
+    background: radial-gradient(
+        var(--dot) var(--dot-size),
+        transparent calc(var(--dot-size) + 0.4px)
+      )
+      0 0 / var(--grid-size) var(--grid-size);
+  }
+
+  &[data-welcome="true"]:after {
+    background: radial-gradient(
+        var(--dot-strong) var(--dot-size),
+        transparent calc(var(--dot-size) + 0.4px)
+      )
+      0 0 / var(--grid-size) var(--grid-size);
+  }
+
+  &:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 35%,
+      rgb(var(--vignette) / var(--vignette-mid)) 75%,
+      rgb(var(--vignette) / var(--vignette-edge)) 100%
+    );
+    z-index: 111111;
+    opacity: 1;
+    transition: opacity 900ms ease-out;
+  }
+
+  &:where([data-vignette="off"]):before {
+    opacity: 0;
+  }
+
+  html[data-vignette="off"] &:before {
+    opacity: 0;
   }
 }
 
-[data-theme="light"] body:after {
-  @apply opacity-60;
+.grain-overlay {
+  @apply pointer-events-none fixed inset-0 z-[99999] opacity-[0.12] mix-blend-multiply animate-[noise_150ms_steps(8)_infinite];
+  background-image: url("/images/noise-web.webp");
+  background-size: 500px;
+}
+
+[data-theme="dark"] .grain-overlay {
+  @apply mix-blend-hard-light;
 }
 
 p {
@@ -206,7 +328,7 @@ h3 {
 }
 
 ::selection {
-  @apply text-background bg-foreground;
+  @apply text-canvas-contrast bg-fg-contrast;
 }
 
 a,

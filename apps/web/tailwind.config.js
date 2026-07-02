@@ -4,8 +4,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        foreground: "rgb(var(--foreground-rgb))",
-        background: "rgb(var(--background-rgb))",
+        "fg-contrast": "rgb(var(--fg-contrast) / <alpha-value>)",
+        "canvas-contrast": "rgb(var(--canvas-contrast) / <alpha-value>)",
+        canvas: "rgb(var(--canvas) / <alpha-value>)",
+        "canvas-raised": "rgb(var(--canvas-raised) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        "fg-muted": "rgb(var(--fg-muted) / <alpha-value>)",
+        "fg-subtle": "rgb(var(--fg-subtle) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        "ledger-outline": "rgb(var(--ledger-outline) / <alpha-value>)",
+        "ledger-surface": "rgb(var(--ledger-surface) / <alpha-value>)",
+        "bezel-bg": "var(--bezel-bg)",
+        "bezel-fg": "var(--bezel-fg)",
+      },
+      fontFamily: {
+        technical: "var(--font-technical), ui-monospace, monospace",
+        display: "var(--font-display), serif",
+        editorial: "var(--font-editorial), serif",
+        expressive: "var(--font-expressive), cursive",
       },
       borderRadius: {
         DEFAULT: "var(--border-radius)",
@@ -14,8 +30,9 @@ module.exports = {
         lg: "var(--border-radius-lg)",
       },
       borderWidth: {
-        DEFAULT: "var(--border-width)",
+        DEFAULT: "var(--border-width-md)",
         thin: "var(--border-width-thin)",
+        md: "var(--border-width-md)",
         thick: "var(--border-width-thick)",
         "extra-thick": "var(--border-width-extra-thick)",
       },
@@ -26,20 +43,28 @@ module.exports = {
         menu: "var(--z-index-menu)",
         nav: "var(--z-index-nav)",
         overlay: "var(--z-index-overlay)",
-        "above-all": "var(--z-index-above-all)",
       },
       maxWidth: {
         content: "var(--max-content-width)",
       },
       fontSize: {
+        xxs: "var(--font-xxs)",
         xs: "var(--font-xs)",
         sm: "var(--font-sm)",
         md: "var(--font-md)",
         lg: "var(--font-lg)",
+        "display-sm": "var(--font-display-sm)",
+        "display-md": "var(--font-display-md)",
       },
       height: {
         nav: "var(--nav-height)",
         marquee: "var(--marquee-height)",
+        "icon-sm": "var(--icon-sm)",
+        "icon-md": "var(--icon-md)",
+      },
+      width: {
+        "icon-sm": "var(--icon-sm)",
+        "icon-md": "var(--icon-md)",
       },
       keyframes: {
         marquee: {

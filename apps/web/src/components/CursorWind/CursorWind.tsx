@@ -19,7 +19,7 @@ export function CursorWind() {
     <>
       <div
         id="cursor-wind"
-        className="z-above-all pointer-events-none absolute h-[1000px] w-[1000px] rounded-full [backdrop-filter:url(#displacementFilter)] [mask:radial-gradient(black,transparent_70%)]"
+        className="z-overlay pointer-events-none absolute h-[1000px] w-[1000px] rounded-full [backdrop-filter:url(#displacementFilter)] [mask:radial-gradient(black,transparent_70%)]"
         style={{
           left: `${mouse.elementX - 50}px`,
           top: `${mouse.elementY - 50}px`,
