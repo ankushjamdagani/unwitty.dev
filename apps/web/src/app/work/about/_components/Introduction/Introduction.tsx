@@ -10,6 +10,7 @@ import {
   RotatingCards,
   type RotatingCardsItem,
 } from "@/components/RotatingCards";
+import { SOCIAL_LINKS } from "@/configs/constants";
 
 const Images: RotatingCardsItem[] = [
   {
@@ -32,11 +33,18 @@ const Images: RotatingCardsItem[] = [
   },
 ];
 
+const SocialIcons: Record<string, React.ReactNode> = {
+  GitHub: <FaGithub />,
+  Twitter: <FaXTwitter />,
+  LinkedIn: <FaLinkedinIn />,
+  Email: <FaRegEnvelope />,
+};
+
 export function Introduction() {
   return (
     <section
       id="container-introduction"
-      className="ml-[var(--horizontal-gap)] relative flex flex-col gap-4 pl-4 pt-16"
+      className="px-[var(--horizontal-gap)] relative flex flex-col gap-4 pt-16"
     >
       <h1 className="text-[4.5em] font-bold">About me</h1>
 
@@ -56,41 +64,21 @@ export function Introduction() {
       <div className="seperator-rect"></div>
 
       <ul className="flex w-full items-start gap-2">
-        <li>
-          <Link
-            href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-          >
-            <FaGithub />
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-          >
-            <FaXTwitter />
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-          >
-            <FaLinkedinIn />
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="#"
-            className="border-foreground hover:bg-foreground hover:text-background inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
-          >
-            <FaRegEnvelope />
-          </Link>
-        </li>
+        {SOCIAL_LINKS.map((link) => (
+          <li key={link.label}>
+            <Link
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast inline-flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            >
+              {SocialIcons[link.label]}
+            </Link>
+          </li>
+        ))}
       </ul>
 
-      <div className="absolute bottom-0 right-[var(--horizontal-gap)] top-[calc(64px+4em)] w-[300px]">
+      <div className="absolute bottom-0 right-[var(--horizontal-gap)] top-[calc(64px+4em)] w-[300px] max-[1200px]:hidden">
         <RotatingCards list={Images} />
       </div>
     </section>

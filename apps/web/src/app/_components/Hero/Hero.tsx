@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="border-foreground ml-[max(16px,calc((100vw-800px)/2))] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height)/2)] flex-col items-start justify-center gap-4 border-l-[length:var(--border-width)] border-dashed py-16 pl-4 text-left"
+      className="border-fg-contrast ml-[max(16px,calc((100vw-800px)/2))] relative flex min-h-[calc(100vh-var(--nav-height)-var(--marquee-height)/2)] flex-col items-start justify-center gap-4 border-l-[length:var(--border-width-md)] border-dashed py-16 pl-4 text-left"
     >
       <h1 className="text-[4.5em] leading-[1.15em]">
         Hello <br />
@@ -42,7 +42,7 @@ export function Hero() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaGithub />
           </Link>
@@ -50,7 +50,7 @@ export function Hero() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaXTwitter />
           </Link>
@@ -58,7 +58,7 @@ export function Hero() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaLinkedinIn />
           </Link>
@@ -66,7 +66,7 @@ export function Hero() {
         <li>
           <Link
             href="#"
-            className="border-foreground hover:bg-foreground hover:text-background flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
+            className="border-fg-contrast hover:bg-fg-contrast hover:text-canvas-contrast flex h-7 w-7 items-center justify-center rounded border-thin transition-colors"
           >
             <FaRegEnvelope />
           </Link>

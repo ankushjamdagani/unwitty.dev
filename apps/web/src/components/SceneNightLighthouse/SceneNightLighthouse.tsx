@@ -14,23 +14,23 @@ export function SceneNightLighthouse() {
       className="z-below-all absolute bottom-0 left-0 right-0 top-[var(--nav-height)] opacity-75"
       style={{
         background:
-          "linear-gradient(to top, transparent 50%, rgba(var(--foreground-rgb), 0.2) 100%), rgb(var(--background-rgb)) repeating-linear-gradient(0deg, transparent, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0.1) 7px)",
+          "linear-gradient(to top, transparent 50%, rgb(var(--fg-contrast) / 0.2) 100%), rgb(var(--canvas-contrast)) repeating-linear-gradient(0deg, transparent, rgb(var(--fg-contrast) / 0) 5px, rgb(var(--fg-contrast) / 0) 5px, rgb(var(--fg-contrast) / 0.1) 7px)",
       }}
     >
       <div
         id="sun"
-        className="bg-foreground absolute left-[100px] top-[100px] h-[100px] w-[100px] rounded-full [filter:url(#sun-decompose)]"
+        className="bg-fg-contrast absolute left-[100px] top-[100px] h-[100px] w-[100px] rounded-full [filter:url(#sun-decompose)]"
       ></div>
       <div
         id="clouds"
-        className="absolute left-[50px] top-[150px] h-[100px] w-[200px] rounded-full [filter:url(#wavy-clouds)_invert(1)] [background:radial-gradient(rgb(var(--foreground-rgb)),transparent_40%)] after:absolute after:left-[-150px] after:top-[-40px] after:h-[140px] after:w-[530px] after:rounded-full after:opacity-50 after:content-[''] after:[background:radial-gradient(rgb(var(--foreground-rgb)),transparent_40%)] after:[filter:url(#wavy-clouds)_invert(1)]"
+        className="absolute left-[50px] top-[150px] h-[100px] w-[200px] rounded-full [filter:url(#wavy-clouds)_invert(1)] [background:radial-gradient(rgb(var(--fg-contrast)),transparent_40%)] after:absolute after:left-[-150px] after:top-[-40px] after:h-[140px] after:w-[530px] after:rounded-full after:opacity-50 after:content-[''] after:[background:radial-gradient(rgb(var(--fg-contrast)),transparent_40%)] after:[filter:url(#wavy-clouds)_invert(1)]"
       ></div>
       <div
         id="sea"
         className="absolute bottom-0 left-[-20px] right-[var(--horizontal-gap)] h-[140px] [filter:url(#nightSea)]"
         style={{
           background:
-            "linear-gradient(to top, transparent 50%, rgba(var(--foreground-rgb), 0.2) 100%), rgb(var(--background-rgb)) repeating-linear-gradient(0deg, transparent, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0) 5px, rgba(var(--foreground-rgb), 0.1) 7px)",
+            "linear-gradient(to top, transparent 50%, rgb(var(--fg-contrast) / 0.2) 100%), rgb(var(--canvas-contrast)) repeating-linear-gradient(0deg, transparent, rgb(var(--fg-contrast) / 0) 5px, rgb(var(--fg-contrast) / 0) 5px, rgb(var(--fg-contrast) / 0.1) 7px)",
         }}
       ></div>
 

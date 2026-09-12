@@ -1,92 +1,60 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { GoArrowUpRight } from "react-icons/go";
 
 import { ThemeToggle } from "./ThemeToggle";
 
-import useMostVisibileItem from "@/hooks/useMostVisibleItem";
-
-const Links = [
-  // {
-  //   path: "#hero",
-  //   label: "Hero",
-  // },
-  {
-    path: "/#projects",
-    label: "Experiments",
-  },
-  {
-    path: "/#words",
-    label: "Thoughts",
-  },
-  {
-    path: "/#work",
-    label: "Work",
-  },
-  // {
-  //   path: "/about",
-  //   label: "About me",
-  // },
-  {
-    path: "#resume",
-    label: "Resume",
-    icon: () => <GoArrowUpRight />,
-  },
-];
-
 export function Nav() {
-  const path = usePathname();
-  const activeElement = useMostVisibileItem("main > section[id]");
-  const activePath = `/#${activeElement?.id}`;
+  const [scrolled, setScrolled] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry) {
+          setScrolled(!entry.isIntersecting);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    const currentSentinel = sentinelRef.current;
+    if (currentSentinel) {
+      observer.observe(currentSentinel);
+    }
+
+    return () => {
+      if (currentSentinel) {
+        observer.unobserve(currentSentinel);
+      }
+      observer.disconnect();
+    };
+  }, []);
 
   return (
-    <header
-      id="navigation-bar"
-      className="bg-background border-foreground z-nav h-nav sticky top-0 mb-2 flex items-center justify-between border-b-[length:var(--border-width)] border-dashed px-[var(--horizontal-gap)]"
-    >
-      <span>
-        <Link
-          href="/#home"
-          id="logo"
-          className="bg-foreground rounded px-2 py-1 font-bold text-background"
-        >
-          Unwitty
-        </Link>
-        {"  "}.dev
-      </span>
-      <nav>
-        <ul className="flex items-center text-[0.875em]">
-          {Links.map((link) => (
-            <React.Fragment key={link.path}>
-              <li className="px-2">
-                <Link
-                  href={link.path}
-                  prefetch={true}
-                  className={`inline-flex rounded p-2 hover:font-bold ${
-                    activePath === link.path ? "font-bold" : ""
-                  }`}
-                  aria-current={path === link.path}
-                >
-                  <>
-                    {link.label}
-                    {link.icon ? (
-                      <span className="ml-1 mt-[2px]">{link.icon()}</span>
-                    ) : null}
-                  </>
-                </Link>
-              </li>
-
-              <div className="seperator-rect-sm last-of-type:hidden"></div>
-            </React.Fragment>
-          ))}
-          <li className="px-2">
-            <ThemeToggle />
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <>
+      <div ref={sentinelRef} className="absolute top-0 left-0 right-0 h-px pointer-events-none z-below-all" />
+      <header
+        className={`sticky top-0 z-nav border-b border-dashed border-fg-muted/30 transition-colors duration-300 font-technical ${
+          scrolled ? "bg-canvas-raised/75 backdrop-blur-md" : ""
+        }`}
+      >
+        <div className="mx-auto flex h-nav max-w-content items-center justify-between px-4">
+          <Link
+            href="/"
+            aria-label="Unwitty.dev home"
+            className="inline-flex items-center text-sm"
+          >
+            <span className="rounded-sm bg-fg-contrast px-1.5 py-0.5 font-bold text-canvas-contrast">
+              Unwitty
+            </span>
+            <span className="ml-0.5 text-fg-muted">.dev</span>
+          </Link>
+          <ThemeToggle />
+        </div>
+      </header>
+    </>
   );
 }
