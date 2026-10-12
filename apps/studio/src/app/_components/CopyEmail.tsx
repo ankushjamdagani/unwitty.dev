@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 type State = "idle" | "copied" | "manual";
 
-const LABEL: Record<State, string> = { idle: "Copy", copied: "Copied ✓", manual: "Press ⌘C" };
+const LABEL: Record<Exclude<State, "manual">, string> = { idle: "Copy", copied: "Copied ✓" };
 
 /** Email chip with a copy button. Falls back to selecting the text when the clipboard is blocked. */
 export function CopyEmail({ email }: { email: string }) {

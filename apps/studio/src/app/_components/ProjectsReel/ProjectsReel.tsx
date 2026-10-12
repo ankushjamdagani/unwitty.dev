@@ -220,14 +220,14 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
               products={products}
               index={index}
               videoRef={videoRef}
-              loop={!autoAdvance}
+              loop={!autoAdvance || holding}
               progress={hasVideo || autoAdvance ? progress : null}
               clock={clock}
               paused={paused}
               onTogglePause={() => setPaused((p) => !p)}
               onTime={onTime}
               onEnded={() => {
-                if (autoAdvance) go(index + 1);
+                if (autoAdvance && !holding) go(index + 1);
               }}
               onSlideEnd={() => setSlideDone(true)}
             />
