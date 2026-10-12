@@ -37,6 +37,7 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
       setIndex(target);
       setProgress(0);
       setClock(null);
+      setPaused(false);
       // Without motion the track jumps; there is no transitionend to wait for.
       setSlideDone(reduced);
     },
