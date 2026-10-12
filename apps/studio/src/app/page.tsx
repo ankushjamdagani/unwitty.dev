@@ -18,9 +18,8 @@ export default async function Home() {
       <Activity
         grid={activity}
         sources={activitySwatches()}
-        releases={products.reduce(
-          (n, p) => n + new Set(p.log.filter((e) => e.date).map((e) => e.version)).size,
-          0,
+        releases={Object.fromEntries(
+          products.map((p) => [p.slug, new Set(p.log.filter((e) => e.date).map((e) => e.version)).size]),
         )}
       />
       <About />

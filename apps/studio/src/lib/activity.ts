@@ -100,3 +100,42 @@ export function buildActivityGrid(
 
   return { weeks: grid, total, activeDays, longestStreak };
 }
+
+/** Recomputes totals and streaks over the in-range days, oldest first. */
+function summarize(weeks: ActivityCell[][]): ActivityGrid {
+  let total = 0;
+  let activeDays = 0;
+  let streak = 0;
+  let longestStreak = 0;
+  for (const cell of weeks.flat()) {
+    if (!cell.inRange) continue;
+    total += cell.total;
+    if (cell.total) {
+      activeDays++;
+      streak++;
+      longestStreak = Math.max(longestStreak, streak);
+    } else {
+      streak = 0;
+    }
+  }
+  return { weeks, total, activeDays, longestStreak };
+}
+
+/** The same grid counting only sources for which `visible(slug)` is true. */
+export function filterGrid(grid: ActivityGrid, visible: (slug: string) => boolean): ActivityGrid {
+  const weeks = grid.weeks.map((week) =>
+    week.map((cell): ActivityCell => {
+      const bySlug: Record<string, number> = {};
+      let total = 0;
+      let lead: string | null = null;
+      for (const [slug, n] of Object.entries(cell.bySlug)) {
+        if (!visible(slug)) continue;
+        bySlug[slug] = n;
+        total += n;
+        if (!lead || n > (bySlug[lead] ?? 0)) lead = slug;
+      }
+      return { ...cell, bySlug, total, lead, level: levelFor(total) };
+    }),
+  );
+  return summarize(weeks);
+}

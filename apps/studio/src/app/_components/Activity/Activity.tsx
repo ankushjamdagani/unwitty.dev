@@ -2,14 +2,15 @@
 
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 
-import type { ActivityCell, ActivityGrid } from "@/lib/activity";
+import { filterGrid, type ActivityCell, type ActivityGrid } from "@/lib/activity";
 import type { ActivitySwatch } from "@/lib/data";
 import { formatDay } from "@/lib/format";
 
 type Props = {
   grid: ActivityGrid;
   sources: ActivitySwatch[];
-  releases: number;
+  /** Dated releases per product slug. */
+  releases: Record<string, number>;
 };
 
 const OPACITY = [0, 0.3, 0.55, 0.78, 1] as const;
@@ -26,7 +27,26 @@ export function Activity({ grid, sources, releases }: Props) {
   const lastWeek = grid.weeks.length - 1;
   const lastDay = Math.max(0, (grid.weeks[lastWeek]?.filter((c) => c.inRange).length ?? 1) - 1);
   const [focus, setFocus] = useState<[number, number]>([lastWeek, lastDay]);
-  const [active, setActive] = useState<ActivityCell | null>(null);
+  const [activePos, setActivePos] = useState<[number, number] | null>(null);
+  const [hidden, setHidden] = useState<ReadonlySet<string>>(new Set());
+
+  const view = useMemo(
+    () => (hidden.size ? filterGrid(grid, (slug) => !hidden.has(slug)) : grid),
+    [grid, hidden],
+  );
+  const active = activePos ? (view.weeks[activePos[0]]?.[activePos[1]] ?? null) : null;
+  const visibleReleases = Object.entries(releases).reduce(
+    (n, [slug, count]) => (hidden.has(slug) ? n : n + count),
+    0,
+  );
+
+  const toggle = (slug: string) =>
+    setHidden((prev) => {
+      const next = new Set(prev);
+      if (next.has(slug)) next.delete(slug);
+      else next.add(slug);
+      return next;
+    });
   const cellRefs = useRef<Map<string, HTMLSpanElement>>(new Map());
   const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -36,7 +56,7 @@ export function Activity({ grid, sources, releases }: Props) {
     if (el) el.scrollLeft = el.scrollWidth;
   }, []);
 
-  const summary = `${plural(grid.total, "contribution")} · ${plural(releases, "release")} · longest streak ${plural(grid.longestStreak, "day")}`;
+  const summary = `${plural(view.total, "contribution")} · ${plural(visibleReleases, "release")} · longest streak ${plural(view.longestStreak, "day")}`;
 
   const describe = (cell: ActivityCell): string => {
     const parts = Object.entries(cell.bySlug)
@@ -95,9 +115,9 @@ export function Activity({ grid, sources, releases }: Props) {
               role="grid"
               aria-label="Daily contributions for the last 12 months, coloured by project"
               className="flex gap-[3px]"
-              onMouseLeave={() => setActive(null)}
+              onMouseLeave={() => setActivePos(null)}
             >
-              {grid.weeks.map((week, w) => (
+              {view.weeks.map((week, w) => (
                 <div key={w} role="row" className="flex flex-1 flex-col gap-[3px]">
                   {week.map((cell, d) => {
                     const color = cell.lead ? colors[cell.lead] : undefined;
@@ -113,10 +133,10 @@ export function Activity({ grid, sources, releases }: Props) {
                         aria-label={cell.inRange ? describe(cell) : undefined}
                         aria-hidden={cell.inRange ? undefined : true}
                         tabIndex={cell.inRange ? (focusable ? 0 : -1) : undefined}
-                        onMouseEnter={() => cell.inRange && setActive(cell)}
+                        onMouseEnter={() => cell.inRange && setActivePos([w, d])}
                         onFocus={() => {
                           setFocus([w, d]);
-                          setActive(cell);
+                          setActivePos([w, d]);
                         }}
                         onKeyDown={(e) => move(e, w, d)}
                         className={`relative aspect-square w-full rounded-[3px] ${
@@ -139,14 +159,42 @@ export function Activity({ grid, sources, releases }: Props) {
           </div>
         </div>
 
-        <div className="mt-4 flex flex-wrap justify-between gap-x-6 gap-y-2 text-[12px] text-fg-muted">
-          <span className="flex flex-wrap gap-x-4 gap-y-1">
-            {sources.map((s) => (
-              <span key={s.slug} className="inline-flex items-center gap-1.5">
-                <span aria-hidden className="size-2.5 rounded-[3px]" style={{ background: s.color }} />
-                {s.name}
-              </span>
-            ))}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 text-[12px] text-fg-muted">
+          <span role="group" aria-label="Filter by source" className="-ml-1.5 flex flex-wrap items-center gap-x-1 gap-y-1">
+            {sources.map((s) => {
+              const shown = !hidden.has(s.slug);
+              return (
+                <button
+                  key={s.slug}
+                  type="button"
+                  aria-pressed={shown}
+                  onClick={() => toggle(s.slug)}
+                  className={`inline-flex h-7 items-center gap-1.5 rounded-md px-1.5 transition-colors hover:bg-black/[0.04] ${
+                    shown ? "" : "text-fg-subtle line-through decoration-fg-subtle/60"
+                  }`}
+                >
+                  <span
+                    aria-hidden
+                    className="size-2.5 rounded-[3px] transition-colors"
+                    style={
+                      shown
+                        ? { background: s.color }
+                        : { background: "transparent", boxShadow: `inset 0 0 0 1.5px ${s.color}` }
+                    }
+                  />
+                  {s.name}
+                </button>
+              );
+            })}
+            {hidden.size > 0 && (
+              <button
+                type="button"
+                onClick={() => setHidden(new Set())}
+                className="inline-flex h-7 items-center rounded-md px-1.5 text-fg underline-offset-2 hover:underline"
+              >
+                Show all
+              </button>
+            )}
           </span>
           <span>{summary}</span>
         </div>

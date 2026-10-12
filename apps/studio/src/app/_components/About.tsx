@@ -28,7 +28,7 @@ export function About() {
                   alt=""
                   width={20}
                   height={20}
-                  className="size-5 shrink-0 rounded-[5px] object-cover shadow-hairline"
+                  className="size-5 shrink-0 rounded-[5px] object-cover shadow-hairline contrast-125 grayscale"
                 />
               ) : (
                 <span aria-hidden className="size-5 shrink-0 rounded-[5px] bg-well" />
