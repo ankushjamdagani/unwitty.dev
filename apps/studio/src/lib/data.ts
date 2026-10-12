@@ -7,7 +7,8 @@ import type { ActivitySource, Product } from "@/config/types";
 
 import { buildActivityGrid, remainder, type ActivityGrid, type DayCounts } from "./activity";
 import { parseChangelog, toBuildLog, type BuildLogEntry } from "./changelog";
-import { fetchChangelog, fetchCommitDays, fetchContributionDays } from "./github";
+import { buildHeroUpdates, type CommitInput, type HeroUpdate } from "./hero";
+import { fetchChangelog, fetchCommitDays, fetchContributionDays, fetchLatestCommit } from "./github";
 
 export type ProductWithLog = Product & {
   version: string | null;
@@ -78,4 +79,29 @@ export async function getActivity(now = new Date()): Promise<ActivityGrid> {
   const counts = Object.fromEntries(tracked);
   counts[otherSource.slug] = remainder(calendar, Object.values(counts));
   return buildActivityGrid(counts, now);
+}
+
+/** Status ticker items: each product's latest dated release plus the newest commit across tracked repos. */
+export async function getHeroUpdates(list: ProductWithLog[]): Promise<HeroUpdate[]> {
+  const releases = list.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    color: p.brand.accent,
+    version: p.version,
+    date: p.log.find((entry) => entry.version === p.version)?.date ?? null,
+  }));
+
+  const commits = await Promise.all(
+    [...list, ...extraSources].map(async (source): Promise<CommitInput> => {
+      try {
+        const commit = await fetchLatestCommit(source.repo, profile.githubLogin);
+        return commit && { repoName: source.repo.name, url: commit.url, date: commit.date };
+      } catch (error) {
+        console.warn(`[studio] latest commit unavailable for ${source.slug}:`, error);
+        return null;
+      }
+    }),
+  );
+
+  return buildHeroUpdates(releases, commits);
 }

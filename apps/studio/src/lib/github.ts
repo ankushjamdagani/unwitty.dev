@@ -18,10 +18,10 @@ function headers(accept = "application/vnd.github+json"): HeadersInit {
   };
 }
 
-async function get(url: string, accept?: string): Promise<Response> {
+async function get(url: string, accept?: string, revalidate = REVALIDATE_SECONDS): Promise<Response> {
   const res = await fetch(url, {
     headers: headers(accept),
-    next: { revalidate: REVALIDATE_SECONDS, tags: ["github"] },
+    next: { revalidate, tags: ["github"] },
   });
   if (!res.ok) throw new Error(`GitHub ${res.status} for ${url}`);
   return res;
@@ -118,4 +118,28 @@ export async function fetchContributionDays(
     }
   }
   return counts;
+}
+
+/** The latest-commit line in the hero is refreshed hourly; this lowers the page's ISR interval to 1h. */
+const LATEST_COMMIT_REVALIDATE_SECONDS = 3_600;
+
+type LatestCommitItem = { html_url: string; commit: { author: { date: string } | null } };
+
+/** The newest commit on the branch (optionally by `author`), or null. */
+export async function fetchLatestCommit(
+  repo: Product["repo"],
+  author?: string,
+): Promise<{ url: string; date: string } | null> {
+  const query =
+    "per_page=1" +
+    (repo.branch ? `&sha=${encodeURIComponent(repo.branch)}` : "") +
+    (author ? `&author=${encodeURIComponent(author)}` : "");
+  const res = await get(
+    `${API}/repos/${repo.owner}/${repo.name}/commits?${query}`,
+    undefined,
+    LATEST_COMMIT_REVALIDATE_SECONDS,
+  );
+  const [item] = (await res.json()) as LatestCommitItem[];
+  const date = item?.commit.author?.date;
+  return item && date ? { url: item.html_url, date } : null;
 }
