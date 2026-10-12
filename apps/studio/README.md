@@ -12,6 +12,7 @@ pnpm --filter @app/studio test
 All content is config in `src/config/`:
 
 - `products.ts` — one entry per product (newest first). Build log = the repo's `CHANGELOG.md`; activity = the repo's commits.
+- `appUrl` — optional direct URL for a product's Open button. Canvas One links to `https://canvas-one-ai.vercel.app/`; products without it use the site's `/<slug>` route.
 - `companies.ts` — roles for the about section.
 - `profile.ts` — headline, about text, email, résumé link, GitHub login.
 - `activity.ts` — extra repos in the activity graph (unwitty.dev) and the grey "Other work" layer.

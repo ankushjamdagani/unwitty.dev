@@ -20,6 +20,8 @@ export type Product = {
   name: string;
   category: string;
   status: ProductStatus;
+  /** Public app URL; omit to use the site's /<slug> route. */
+  appUrl?: string;
   tagline: string;
   description: string;
   brand: ProductBrand;

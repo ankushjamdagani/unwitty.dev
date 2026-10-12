@@ -196,7 +196,7 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
             </p>
             <div className="mt-auto flex flex-wrap gap-2">
               <a
-                href={`/${current.slug}`}
+                href={current.appUrl ?? `/${current.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn bg-product-accent text-product-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.15)] transition-colors duration-700 hover:opacity-90"

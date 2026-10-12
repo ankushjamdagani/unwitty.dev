@@ -9,6 +9,7 @@ export const products: Product[] = [
   {
     slug: "canvas-one",
     name: "Canvas One",
+    appUrl: "https://canvas-one-ai.vercel.app/",
     category: "Developer tools",
     status: "Preview",
     tagline: "Think in architecture. Let agents draw the system.",
