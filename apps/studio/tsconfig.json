@@ -1,0 +1,24 @@
+{
+  "extends": "@common/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": false,
+    "declarationMap": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "plugins": [{ "name": "next" }]
+  },
+  "include": [
+    "eslint.config.mjs",
+    "next-env.d.ts",
+    "next.config.ts",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "vitest.config.mts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

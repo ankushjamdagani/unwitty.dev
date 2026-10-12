@@ -3,3 +3,5 @@ packages:
   - "projects/*"
   - "packages/*"
   - "labs/*"
+  # Git submodule, deployed on its own (multi-zone). Remove once it installs under this workspace.
+  - "!projects/canvas-one"

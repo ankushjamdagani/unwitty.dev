@@ -1,0 +1,3 @@
+[submodule "projects/canvas-one"]
+	path = projects/canvas-one
+	url = https://github.com/ankushjamdagani/canvas-one.git
