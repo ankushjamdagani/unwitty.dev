@@ -2,7 +2,7 @@ import "server-only";
 
 import type { Product } from "@/config/types";
 
-import type { DayCounts } from "./activity";
+import { firstLine, type CommitDay, type DayCounts } from "./activity";
 
 const API = "https://api.github.com";
 /** Re-fetch GitHub data at most once a day. */
@@ -38,15 +38,15 @@ export async function fetchChangelog(repo: Product["repo"]): Promise<string> {
   return res.text();
 }
 
-type CommitItem = { commit: { author: { date: string } | null } };
+type CommitItem = { commit: { message: string; author: { date: string } | null } };
 
-/** Commit counts per UTC day since `since`, optionally only by `author`. */
+/** Commits since `since`, newest first, optionally only by `author`. */
 export async function fetchCommitDays(
   repo: Product["repo"],
   since: Date,
   author?: string,
-): Promise<DayCounts> {
-  const counts: DayCounts = {};
+): Promise<CommitDay[]> {
+  const commits: CommitDay[] = [];
   const branch =
     (repo.branch ? `&sha=${encodeURIComponent(repo.branch)}` : "") +
     (author ? `&author=${encodeURIComponent(author)}` : "");
@@ -57,13 +57,13 @@ export async function fetchCommitDays(
     );
     const items = (await res.json()) as CommitItem[];
     for (const item of items) {
-      const date = item.commit.author?.date?.slice(0, 10);
-      if (date) counts[date] = (counts[date] ?? 0) + 1;
+      const at = item.commit.author?.date;
+      if (at) commits.push({ day: at.slice(0, 10), at, message: firstLine(item.commit.message) });
     }
     if (items.length < 100) break;
   }
 
-  return counts;
+  return commits;
 }
 
 type CalendarResponse = {

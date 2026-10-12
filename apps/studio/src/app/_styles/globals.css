@@ -89,6 +89,17 @@
       --dot-mask: radial-gradient(90% 50% at 50% 50%, #000 15%, transparent 70%);
     }
   }
+  /* Activity draw-in: armed cells start hidden, then fill week by week. */
+  .heat-cell {
+    transition:
+      opacity 250ms ease-out,
+      transform 250ms ease-out;
+    transition-delay: calc(var(--week, 0) * 18ms);
+  }
+  [data-armed] .heat-cell {
+    opacity: 0;
+    transform: scale(0.4);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
