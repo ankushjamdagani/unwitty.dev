@@ -24,14 +24,17 @@ See `.env.example`.
 
 ## Deploying
 
-`apps/studio/vercel.json` configures the build. Go live without downtime:
+Vercel project `unwitty-dev` (serves unwitty.dev) with **Root Directory `apps/studio`**. `apps/studio/vercel.json` sets the install and build commands; keep dashboard overrides off and "Include files outside the root directory" on.
 
-1. **New Vercel project** from this repo, Root Directory `apps/studio`. Add `GITHUB_TOKEN`.
-2. Check the `*.vercel.app` preview.
-3. **Canvas One**: new Vercel project from `ankushjamdagani/canvas-one`, Root Directory `apps/web`, env `NEXT_PUBLIC_CANVAS_BASE_PATH=/canvas-one` and `CANVAS_SITE_URL=https://unwitty.dev/canvas-one`. Set `PRODUCT_URL_CANVAS_ONE=<its .vercel.app URL>` on the studio project and redeploy.
-4. Move the `unwitty.dev` domain from the old portfolio project to the studio project (Settings → Domains).
+- Env: `GITHUB_TOKEN` (Production + Preview).
+- Rollback: set Root Directory back to `apps/web` and redeploy.
+- Old routes (`/work`, `/work/about`, `/life`, …) redirect into the home page.
+- `/<slug>` redirects to the product's GitHub repo until `PRODUCT_URL_<SLUG>` is set.
 
-Until step 3, `/canvas-one` redirects to the GitHub repo. Old routes (`/work`, `/work/about`, `/life`, …) redirect into the home page.
+### Hosting a product on unwitty.dev/<slug>
+
+1. Deploy the product as its own Vercel project, built with `basePath` `/<slug>`. Canvas One: Root Directory `apps/web`, `NEXT_PUBLIC_CANVAS_BASE_PATH=/canvas-one`, `CANVAS_SITE_URL=https://unwitty.dev/canvas-one`.
+2. Set `PRODUCT_URL_<SLUG>=<its .vercel.app URL>` on `unwitty-dev` and redeploy.
 
 ## Adding a product
 

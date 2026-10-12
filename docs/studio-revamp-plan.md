@@ -63,8 +63,8 @@ apps/studio/
 4. Sections, matching the canvas boards.
 5. Add `projects/canvas-one`; wire `rewrites()` in studio `next.config` from `products.ts` (`zoneUrl` per product, env-overridable).
 6. Verify: `pnpm --filter @app/studio typecheck lint build`; Playwright screenshots at 1440 and 375.
-7. Deploy switch (vercel.json / project root) — only when you say.
+7. Deploy switch: reuse Vercel project `unwitty-dev`, Root Directory `apps/studio`.
 
 ## Status (2026-10-12)
 
-Steps 1–6 done on branch `studio/revamp`. `projects/canvas-one` is excluded from the pnpm workspace until it installs there (`@canvas-one/ui` is not on npm). Merged to main (#13, #36). Deploy config, legacy redirects and the `/canvas-one` fallback are on `studio/deploy`. Pending: demo video, Vercel projects and domain move (see apps/studio/README.md).
+Steps 1–6 done on branch `studio/revamp`. `projects/canvas-one` is excluded from the pnpm workspace until it installs there (`@canvas-one/ui` is not on npm). Merged to main (#13, #36). Deploy config, legacy redirects and the `/canvas-one` fallback merged (#38). Pending: demo video; switch `unwitty-dev` Root Directory to `apps/studio` (see apps/studio/README.md).
