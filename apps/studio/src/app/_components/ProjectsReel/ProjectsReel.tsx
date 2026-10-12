@@ -68,20 +68,34 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
   }, [held, reduced, index]);
 
   // Deep links from the hero (#projects/<slug>) select that product and hold the reel.
+  // Read through refs so the effect runs once on mount, not when `reduced` or `go` change.
+  const reducedRef = useRef(reduced);
+  const goRef = useRef(go);
+  useEffect(() => {
+    reducedRef.current = reduced;
+    goRef.current = go;
+  });
   useEffect(() => {
     const select = () => {
       const match = /^#projects\/(.+)$/.exec(window.location.hash);
       if (!match) return;
-      const i = products.findIndex((p) => p.slug === decodeURIComponent(match[1] ?? ""));
+      let slug: string;
+      try {
+        slug = decodeURIComponent(match[1] ?? "");
+      } catch {
+        return;
+      }
+      const i = products.findIndex((p) => p.slug === slug);
       if (i < 0) return;
-      go(i);
+      goRef.current(i);
       setHeld(true);
-      document.getElementById("projects")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      document.getElementById("projects")?.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
     };
     select();
     window.addEventListener("hashchange", select);
     return () => window.removeEventListener("hashchange", select);
-  }, [products, go, reduced]);
+  }, [products]);
 
   if (!current) return null;
 
