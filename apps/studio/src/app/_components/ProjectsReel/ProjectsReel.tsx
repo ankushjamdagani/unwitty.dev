@@ -67,13 +67,20 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
     if (progress >= 1 && autoAdvance && !hasVideo) go(index + 1);
   }, [progress, autoAdvance, hasVideo, go, index]);
 
-  // Videos play once their slide has landed, and pause while held, paused or under reduced motion.
+  // Fallback in case the slide's transitionend never fires (background tab, cancelled transition).
+  useEffect(() => {
+    if (slideDone) return;
+    const id = window.setTimeout(() => setSlideDone(true), 900);
+    return () => window.clearTimeout(id);
+  }, [slideDone, index]);
+
+  // Videos play once their slide has landed, and pause while paused or under reduced motion.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    if (holding || reduced || !slideDone) video.pause();
+    if (paused || reduced || !slideDone) video.pause();
     else void video.play().catch(() => undefined);
-  }, [holding, reduced, slideDone, index]);
+  }, [paused, reduced, slideDone, index]);
 
   // Deep links from the hero (#projects/<slug>) select that product and hold the reel.
   // Runs once on mount (plus hashchange), not when `reduced` or `go` change.
@@ -93,6 +100,7 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
       setHeld(true);
       const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.getElementById("projects")?.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      history.replaceState(null, "", "#projects");
     };
     select();
     window.addEventListener("hashchange", select);

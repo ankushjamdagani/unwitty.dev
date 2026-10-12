@@ -80,7 +80,7 @@ export function StatusTicker({ updates }: { updates: HeroUpdate[] }) {
           return (
             <li
               key={update.href}
-              aria-hidden={!active}
+              aria-hidden={!reduced && !active}
               className={`${width === null && active ? "relative" : "absolute"} left-0 top-0 transition-[transform,opacity] duration-500 ease-[cubic-bezier(.2,.7,.2,1)] ${position}`}
             >
               <a
@@ -88,7 +88,8 @@ export function StatusTicker({ updates }: { updates: HeroUpdate[] }) {
                   itemRefs.current[i] = el;
                 }}
                 href={update.href}
-                tabIndex={active ? 0 : -1}
+                tabIndex={reduced || active ? 0 : -1}
+                onFocus={() => setIndex(i)}
                 {...(update.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="block whitespace-nowrap leading-[30px] hover:text-fg"
               >

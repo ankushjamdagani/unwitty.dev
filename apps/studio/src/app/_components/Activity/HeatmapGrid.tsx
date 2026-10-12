@@ -61,7 +61,7 @@ export function HeatmapGrid({ weeks, colors, activeDate, armed, gridRef, describ
   };
 
   return (
-    <div ref={scrollerRef} className="overflow-x-auto pb-1">
+    <div ref={scrollerRef} className="-m-1 overflow-x-auto p-1 pb-2">
       <div className="min-w-[720px]">
         <div aria-hidden className="mb-1.5 flex gap-[3px] font-mono text-[10px] text-fg-subtle">
           {monthLabels.map((label, w) => (

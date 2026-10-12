@@ -9,6 +9,7 @@ const LABEL: Record<State, string> = { idle: "Copy", copied: "Copied ✓", manua
 /** Email chip with a copy button. Falls back to selecting the text when the clipboard is blocked. */
 export function CopyEmail({ email }: { email: string }) {
   const [state, setState] = useState<State>("idle");
+  const [mac, setMac] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>(null);
   const timer = useRef<number | undefined>(undefined);
 
@@ -25,6 +26,8 @@ export function CopyEmail({ email }: { email: string }) {
       await navigator.clipboard.writeText(email);
       settle("copied");
     } catch {
+      const mac = /Mac|iPhone|iPad/.test(navigator.userAgent);
+      setMac(mac);
       const link = linkRef.current;
       if (link) {
         const range = document.createRange();
@@ -47,10 +50,10 @@ export function CopyEmail({ email }: { email: string }) {
         onClick={copy}
         className="min-w-[76px] rounded-md bg-fg px-2 py-1 text-[11px] text-white transition-colors hover:bg-fg/85"
       >
-        {LABEL[state]}
+        {state === "manual" ? (mac ? "Press ⌘C" : "Press Ctrl+C") : LABEL[state]}
       </button>
       <span aria-live="polite" className="sr-only">
-        {state === "copied" ? "Email copied" : ""}
+        {state === "copied" ? "Email copied" : state === "manual" ? "Email selected. Press Ctrl+C or Command+C to copy." : ""}
       </span>
     </span>
   );

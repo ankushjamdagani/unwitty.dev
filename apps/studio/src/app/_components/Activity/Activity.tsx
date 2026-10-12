@@ -78,7 +78,7 @@ export function Activity({ grid, sources }: Props) {
           </span>
         </div>
 
-        <StatTiles grid={view} countUp={phase === "played"} />
+        <StatTiles grid={view} countUp={phase === "played"} armed={phase === "armed"} />
 
         <HeatmapGrid
           weeks={view.weeks}

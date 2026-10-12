@@ -74,7 +74,8 @@ async function safely<T>(label: string, load: () => Promise<T>, fallback: T): Pr
 }
 
 export async function getActivity(list: ProductWithLog[], now = new Date()): Promise<ActivityGrid> {
-  const since = new Date(now.getTime() - 371 * 86_400_000);
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const since = new Date(today - 371 * 86_400_000);
   const repos = [...products, ...extraSources];
 
   const [tracked, calendar] = await Promise.all([
@@ -84,7 +85,11 @@ export async function getActivity(list: ProductWithLog[], now = new Date()): Pro
         await safely(s.slug, () => fetchCommitDays(s.repo, since, profile.githubLogin), []),
       ]),
     ),
-    safely(otherSource.slug, () => fetchContributionDays(profile.githubLogin, since, now), {} as DayCounts),
+    safely(
+      otherSource.slug,
+      () => fetchContributionDays(profile.githubLogin, since, new Date(today + 86_399_000)),
+      {} as DayCounts,
+    ),
   ]);
 
   const counts: Record<string, DayCounts> = Object.fromEntries(
