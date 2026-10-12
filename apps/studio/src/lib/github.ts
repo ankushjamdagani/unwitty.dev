@@ -40,13 +40,16 @@ export async function fetchChangelog(repo: Product["repo"]): Promise<string> {
 
 type CommitItem = { commit: { author: { date: string } | null } };
 
-/** Commit counts per UTC day since `since`. */
+/** Commit counts per UTC day since `since`, optionally only by `author`. */
 export async function fetchCommitDays(
   repo: Product["repo"],
   since: Date,
+  author?: string,
 ): Promise<DayCounts> {
   const counts: DayCounts = {};
-  const branch = repo.branch ? `&sha=${encodeURIComponent(repo.branch)}` : "";
+  const branch =
+    (repo.branch ? `&sha=${encodeURIComponent(repo.branch)}` : "") +
+    (author ? `&author=${encodeURIComponent(author)}` : "");
 
   for (let page = 1; page <= MAX_PAGES; page++) {
     const res = await get(
@@ -60,5 +63,59 @@ export async function fetchCommitDays(
     if (items.length < 100) break;
   }
 
+  return counts;
+}
+
+type CalendarResponse = {
+  data?: {
+    user: {
+      contributionsCollection: {
+        contributionCalendar: {
+          weeks: { contributionDays: { date: string; contributionCount: number }[] }[];
+        };
+      };
+    } | null;
+  };
+  errors?: { message: string }[];
+};
+
+/**
+ * The profile's contribution calendar (commits, PRs, issues, reviews) per day.
+ * GitHub's GraphQL API always needs a token.
+ */
+export async function fetchContributionDays(
+  login: string,
+  from: Date,
+  to: Date,
+): Promise<DayCounts> {
+  if (!process.env.GITHUB_TOKEN) throw new Error("GITHUB_TOKEN is not set");
+
+  const res = await fetch(`${API}/graphql`, {
+    method: "POST",
+    headers: { ...headers(), "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: `query($login: String!, $from: DateTime!, $to: DateTime!) {
+        user(login: $login) {
+          contributionsCollection(from: $from, to: $to) {
+            contributionCalendar { weeks { contributionDays { date contributionCount } } }
+          }
+        }
+      }`,
+      variables: { login, from: from.toISOString(), to: to.toISOString() },
+    }),
+    next: { revalidate: REVALIDATE_SECONDS, tags: ["github"] },
+  });
+  if (!res.ok) throw new Error(`GitHub GraphQL ${res.status}`);
+
+  const json = (await res.json()) as CalendarResponse;
+  const weeks = json.data?.user?.contributionsCollection.contributionCalendar.weeks;
+  if (!weeks) throw new Error(json.errors?.[0]?.message ?? "No contribution calendar");
+
+  const counts: DayCounts = {};
+  for (const week of weeks) {
+    for (const day of week.contributionDays) {
+      if (day.contributionCount) counts[day.date] = day.contributionCount;
+    }
+  }
   return counts;
 }

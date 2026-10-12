@@ -3,13 +3,12 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 
 import type { ActivityCell, ActivityGrid } from "@/lib/activity";
+import type { ActivitySwatch } from "@/lib/data";
 import { formatDay } from "@/lib/format";
-
-type ProductSwatch = { slug: string; name: string; color: string };
 
 type Props = {
   grid: ActivityGrid;
-  products: ProductSwatch[];
+  sources: ActivitySwatch[];
   releases: number;
 };
 
@@ -20,9 +19,9 @@ function plural(n: number, word: string): string {
   return `${n.toLocaleString("en-US")} ${word}${n === 1 ? "" : "s"}`;
 }
 
-export function Activity({ grid, products, releases }: Props) {
-  const colors = useMemo(() => Object.fromEntries(products.map((p) => [p.slug, p.color])), [products]);
-  const names = useMemo(() => Object.fromEntries(products.map((p) => [p.slug, p.name])), [products]);
+export function Activity({ grid, sources, releases }: Props) {
+  const colors = useMemo(() => Object.fromEntries(sources.map((s) => [s.slug, s.color])), [sources]);
+  const names = useMemo(() => Object.fromEntries(sources.map((s) => [s.slug, s.name])), [sources]);
 
   const lastWeek = grid.weeks.length - 1;
   const lastDay = Math.max(0, (grid.weeks[lastWeek]?.filter((c) => c.inRange).length ?? 1) - 1);
@@ -37,13 +36,13 @@ export function Activity({ grid, products, releases }: Props) {
     if (el) el.scrollLeft = el.scrollWidth;
   }, []);
 
-  const summary = `${plural(grid.total, "commit")} · ${plural(releases, "release")} · longest streak ${plural(grid.longestStreak, "day")}`;
+  const summary = `${plural(grid.total, "contribution")} · ${plural(releases, "release")} · longest streak ${plural(grid.longestStreak, "day")}`;
 
   const describe = (cell: ActivityCell): string => {
     const parts = Object.entries(cell.bySlug)
       .sort((a, b) => b[1] - a[1])
       .map(([slug, n]) => `${names[slug] ?? slug} ${n}`);
-    return `${formatDay(cell.date)} · ${cell.total ? parts.join(", ") : "no commits"}`;
+    return `${formatDay(cell.date)} · ${cell.total ? parts.join(", ") : "no contributions"}`;
   };
 
   const monthLabels = grid.weeks.map((week, w) => {
@@ -94,7 +93,7 @@ export function Activity({ grid, products, releases }: Props) {
             </div>
             <div
               role="grid"
-              aria-label="Daily commits for the last 12 months, coloured by project"
+              aria-label="Daily contributions for the last 12 months, coloured by project"
               className="flex gap-[3px]"
               onMouseLeave={() => setActive(null)}
             >
@@ -142,10 +141,10 @@ export function Activity({ grid, products, releases }: Props) {
 
         <div className="mt-4 flex flex-wrap justify-between gap-x-6 gap-y-2 text-[12px] text-fg-muted">
           <span className="flex flex-wrap gap-x-4 gap-y-1">
-            {products.map((p) => (
-              <span key={p.slug} className="inline-flex items-center gap-1.5">
-                <span aria-hidden className="size-2.5 rounded-[3px]" style={{ background: p.color }} />
-                {p.name}
+            {sources.map((s) => (
+              <span key={s.slug} className="inline-flex items-center gap-1.5">
+                <span aria-hidden className="size-2.5 rounded-[3px]" style={{ background: s.color }} />
+                {s.name}
               </span>
             ))}
           </span>

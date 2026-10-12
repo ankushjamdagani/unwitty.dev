@@ -1,4 +1,4 @@
-import { getActivity, getProducts } from "@/lib/data";
+import { activitySwatches, getActivity, getProducts } from "@/lib/data";
 
 import { About } from "./_components/About";
 import { Activity } from "./_components/Activity";
@@ -17,7 +17,7 @@ export default async function Home() {
       <ProjectsReel products={products} />
       <Activity
         grid={activity}
-        products={products.map(({ slug, name, brand }) => ({ slug, name, color: brand.accent }))}
+        sources={activitySwatches()}
         releases={products.reduce(
           (n, p) => n + new Set(p.log.filter((e) => e.date).map((e) => e.version)).size,
           0,

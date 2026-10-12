@@ -134,9 +134,12 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
           <div className="mt-auto flex flex-wrap gap-2">
             <a
               href={`/${current.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn bg-product-accent text-product-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.15)] hover:opacity-90"
             >
-              Open {current.name} <span aria-hidden>→</span>
+              Open {current.name} <span aria-hidden>↗</span>
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
             <a
               href={current.changelogUrl}

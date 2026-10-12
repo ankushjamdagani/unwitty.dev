@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildActivityGrid, levelFor } from "./activity";
+import { buildActivityGrid, levelFor, remainder } from "./activity";
 
 describe("buildActivityGrid", () => {
   // Wednesday
@@ -34,5 +34,16 @@ describe("buildActivityGrid", () => {
 
   it("maps totals to levels", () => {
     expect([0, 1, 3, 6, 10].map(levelFor)).toEqual([0, 1, 2, 3, 4]);
+  });
+});
+
+describe("remainder", () => {
+  it("keeps only what the known sources do not explain", () => {
+    expect(
+      remainder({ "2026-10-01": 5, "2026-10-02": 2, "2026-10-03": 1 }, [
+        { "2026-10-01": 3 },
+        { "2026-10-02": 4, "2026-10-01": 1 },
+      ]),
+    ).toEqual({ "2026-10-01": 1, "2026-10-03": 1 });
   });
 });
