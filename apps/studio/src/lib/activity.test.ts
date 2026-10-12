@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { buildActivityGrid, levelFor, remainder } from "./activity";
+import { buildActivityGrid, filterGrid, levelFor, remainder } from "./activity";
 
 describe("buildActivityGrid", () => {
   // Wednesday
@@ -45,5 +45,19 @@ describe("remainder", () => {
         { "2026-10-02": 4, "2026-10-01": 1 },
       ]),
     ).toEqual({ "2026-10-01": 1, "2026-10-03": 1 });
+  });
+});
+
+describe("filterGrid", () => {
+  it("drops hidden sources and recomputes leads and totals", () => {
+    const grid = buildActivityGrid(
+      { a: { "2026-10-12": 1, "2026-10-13": 2 }, b: { "2026-10-13": 5, "2026-10-14": 1 } },
+      new Date("2026-10-14T12:00:00Z"),
+      1,
+    );
+    const onlyA = filterGrid(grid, (slug) => slug === "a");
+    expect(onlyA.weeks[0]?.[2]).toMatchObject({ total: 2, lead: "a", level: 1, bySlug: { a: 2 } });
+    expect(onlyA.weeks[0]?.[3]).toMatchObject({ total: 0, lead: null, level: 0 });
+    expect([onlyA.total, onlyA.activeDays, onlyA.longestStreak]).toEqual([3, 2, 2]);
   });
 });
