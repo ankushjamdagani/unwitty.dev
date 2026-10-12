@@ -8,7 +8,29 @@ function productUrl(slug: string): string | undefined {
   return process.env[key]?.replace(/\/$/, "");
 }
 
+/** Routes from the previous portfolio (apps/web). */
+const LEGACY_REDIRECTS = [
+  { source: "/work", destination: "/" },
+  { source: "/work/about", destination: "/#about" },
+  { source: "/work/projects/:project*", destination: "/#projects" },
+  { source: "/work/articles/:article*", destination: "/" },
+  { source: "/life", destination: "/" },
+];
+
 const nextConfig: NextConfig = {
+  async redirects() {
+    // Until a product's deployment is configured, send visitors to its repository.
+    const pending = products
+      .filter(({ slug }) => !productUrl(slug))
+      .map(({ slug, repo }) => ({
+        source: `/${slug}/:path*`,
+        destination: `https://github.com/${repo.owner}/${repo.name}`,
+        permanent: false,
+      }));
+
+    return [...LEGACY_REDIRECTS.map((r) => ({ ...r, permanent: false })), ...pending];
+  },
+
   // Each product is its own deployment, built with basePath "/<slug>" (multi-zones).
   async rewrites() {
     return products.flatMap(({ slug }) => {

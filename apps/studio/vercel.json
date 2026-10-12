@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --filter @app/studio...",
+  "buildCommand": "pnpm build",
+  "ignoreCommand": "npx turbo-ignore @app/studio"
+}
