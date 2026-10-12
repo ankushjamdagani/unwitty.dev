@@ -13,6 +13,20 @@ export const profile = {
   github: "https://github.com/ankushjamdagani",
   /** Commits by this login count towards the activity graph. */
   githubLogin: "ankushjamdagani",
+  /** About section greeting: "Hi, I'm" + italic name. */
+  greeting: { lead: "Hi, I'm", name: "Ankush." },
+  facts: {
+    experience: "9+ years",
+    location: "Bangalore, IN",
+    timeZone: "Asia/Kolkata",
+    timeZoneLabel: "IST",
+  },
+  portrait: "/images/portrait.jpg",
+  contact: {
+    title: "Have something",
+    emphasis: "in mind?",
+    blurb: "Roles, collaborations, or feedback on the tools.",
+  },
 } as const;
 
 export const socialLinks: SocialLink[] = [
