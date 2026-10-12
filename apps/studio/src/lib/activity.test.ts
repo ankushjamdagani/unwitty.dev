@@ -1,6 +1,15 @@
 import { describe, expect, it } from "vitest";
 
-import { buildActivityGrid, filterGrid, levelFor, remainder } from "./activity";
+import {
+  buildActivityGrid,
+  filterGrid,
+  firstLine,
+  levelFor,
+  releasesByDay,
+  remainder,
+  toDayCounts,
+  type CommitDay,
+} from "./activity";
 
 describe("buildActivityGrid", () => {
   // Wednesday
@@ -59,5 +68,85 @@ describe("filterGrid", () => {
     expect(onlyA.weeks[0]?.[2]).toMatchObject({ total: 2, lead: "a", level: 1, bySlug: { a: 2 } });
     expect(onlyA.weeks[0]?.[3]).toMatchObject({ total: 0, lead: null, level: 0 });
     expect([onlyA.total, onlyA.activeDays, onlyA.longestStreak]).toEqual([3, 2, 2]);
+  });
+});
+
+describe("commit helpers", () => {
+  it("keeps the first line of a message", () => {
+    expect(firstLine("feat: draw edges\n\nLonger body")).toBe("feat: draw edges");
+  });
+
+  it("counts commits per day", () => {
+    const c = (day: string): CommitDay => ({ day, at: `${day}T00:00:00Z`, message: "" });
+    expect(toDayCounts([c("2026-10-01"), c("2026-10-01"), c("2026-10-02")])).toEqual({
+      "2026-10-01": 2,
+      "2026-10-02": 1,
+    });
+  });
+
+  it("maps each dated version to its day once", () => {
+    expect(
+      releasesByDay([
+        {
+          slug: "a",
+          name: "Alpha",
+          log: [
+            { version: "1.0.0", date: "2026-10-01" },
+            { version: "1.0.0", date: "2026-10-01" },
+            { version: "Unreleased", date: null },
+          ],
+        },
+      ]),
+    ).toEqual({ "2026-10-01": [{ slug: "a", name: "Alpha", version: "1.0.0" }] });
+  });
+});
+
+describe("grid extras", () => {
+  const end = new Date("2026-10-14T12:00:00Z");
+  const at = (time: string, message: string): CommitDay => ({ day: "2026-10-13", at: `2026-10-13T${time}:00Z`, message });
+  const build = () =>
+    buildActivityGrid({ a: { "2026-10-13": 4 }, b: { "2026-10-13": 1 } }, end, 1, {
+      messagesBySlug: {
+        a: [at("09:00", "a1"), at("12:00", "a2"), at("10:00", "a3"), at("08:00", "a4")],
+        b: [at("11:00", "b1")],
+      },
+      releasesByDay: { "2026-10-13": [{ slug: "a", name: "Alpha", version: "1.0.0" }] },
+    });
+
+  it("attaches messages newest first, at most 3 per source, and releases", () => {
+    const grid = build();
+    const tue = grid.weeks[0]?.[2];
+    expect(tue?.messages.map((m) => m.text)).toEqual(["a2", "b1", "a3", "a1"]);
+    expect(tue?.releases).toEqual([{ slug: "a", name: "Alpha", version: "1.0.0" }]);
+    expect(grid.releases).toBe(1);
+  });
+
+  it("filterGrid drops hidden sources' messages and releases", () => {
+    const onlyB = filterGrid(build(), (slug) => slug === "b");
+    expect(onlyB.weeks[0]?.[2]?.messages.map((m) => m.text)).toEqual(["b1"]);
+    expect(onlyB.weeks[0]?.[2]?.releases).toEqual([]);
+    expect(onlyB.releases).toBe(0);
+  });
+});
+
+describe("currentStreak", () => {
+  // Wednesday; the single week is Sun 11 → Wed 14 in range.
+  const end = new Date("2026-10-14T12:00:00Z");
+  const streak = (counts: Record<string, number>) => buildActivityGrid({ a: counts }, end, 1).currentStreak;
+
+  it("counts back from the last day", () => {
+    expect(streak({ "2026-10-13": 1, "2026-10-14": 1 })).toBe(2);
+  });
+
+  it("does not break on an empty last day", () => {
+    expect(streak({ "2026-10-12": 1, "2026-10-13": 1 })).toBe(2);
+  });
+
+  it("stops at a gap", () => {
+    expect(streak({ "2026-10-11": 1, "2026-10-13": 1 })).toBe(1);
+  });
+
+  it("is zero when the last two days are empty", () => {
+    expect(streak({ "2026-10-11": 1 })).toBe(0);
   });
 });
