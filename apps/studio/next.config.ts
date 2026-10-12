@@ -19,16 +19,19 @@ const LEGACY_REDIRECTS = [
 
 const nextConfig: NextConfig = {
   async redirects() {
-    // Until a product's deployment is configured, send visitors to its repository.
+    // Send visitors to product's app URL or repository.
     const pending = products
       .filter(({ slug }) => !productUrl(slug))
-      .map(({ slug, repo }) => ({
+      .map(({ slug, repo, appUrl }) => ({
         source: `/${slug}/:path*`,
-        destination: `https://github.com/${repo.owner}/${repo.name}`,
+        destination: appUrl ?? `https://github.com/${repo.owner}/${repo.name}`,
         permanent: false,
       }));
 
-    return [...LEGACY_REDIRECTS.map((r) => ({ ...r, permanent: false })), ...pending];
+    return [
+      ...LEGACY_REDIRECTS.map((r) => ({ ...r, permanent: false })),
+      ...pending,
+    ];
   },
 
   // Each product is its own deployment, built with basePath "/<slug>" (multi-zones).
