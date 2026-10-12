@@ -1,6 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+} from "react";
 
 import type { ProductWithLog } from "@/lib/data";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
@@ -98,8 +105,12 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
       if (i < 0) return;
       goRef.current(i);
       setHeld(true);
-      const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      document.getElementById("projects")?.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)")
+        .matches;
+      document.getElementById("projects")?.scrollIntoView({
+        behavior: smooth ? "smooth" : "auto",
+        block: "start",
+      });
       history.replaceState(null, "", "#projects");
     };
     select();
@@ -146,9 +157,14 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
     >
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
         <h2 id="projects-title" className="section-title">
-          Projects <span className="font-normal text-fg-subtle">{String(products.length).padStart(2, "0")}</span>
+          Projects{" "}
+          <span className="font-normal text-fg-subtle">
+            {String(products.length).padStart(2, "0")}
+          </span>
         </h2>
-        <span className="font-mono text-[12px] text-fg-subtle">newest first</span>
+        <span className="font-mono text-[12px] text-fg-subtle">
+          newest first
+        </span>
       </div>
 
       <div className="relative isolate">
@@ -172,7 +188,10 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
           className="grid grid-cols-1 items-center gap-x-[18px] gap-y-6 overflow-hidden rounded-3xl bg-product-bg py-5 pl-5 text-product-fg shadow-[0_0_0_1px_rgb(0_0_0/0.05),0_1px_2px_rgb(0_0_0/0.04)] transition-[background-color,color] duration-700 ease-[cubic-bezier(.4,0,.2,1)] sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.4fr)] sm:py-8 sm:pl-8"
         >
           <div className="flex min-w-0 flex-col gap-[18px] p-2 pr-7 sm:pr-2">
-            <div key={`meta-${current.slug}`} className="flex animate-[fade-in_200ms_ease-out] items-center gap-2.5">
+            <div
+              key={`meta-${current.slug}`}
+              className="flex animate-[fade-in_200ms_ease-out] items-center gap-2.5"
+            >
               <ProductIcon {...current} />
               <span className="text-[15px] font-semibold">{current.name}</span>
               <span className="rounded-full bg-white/70 px-2 py-0.5 font-mono text-[11px] shadow-[0_0_0_1px_rgb(0_0_0/0.06)]">
@@ -201,16 +220,17 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
                 rel="noopener noreferrer"
                 className="btn bg-product-accent text-product-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.15)] transition-colors duration-700 hover:opacity-90"
               >
-                Open {current.name} <span aria-hidden>↗</span>
+                Open Preview <span aria-hidden>↗</span>
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
               <a
-                href={current.changelogUrl}
+                href={current.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn bg-white/70 shadow-[0_0_0_1px_rgb(0_0_0/0.08)] hover:bg-white"
               >
-                Full build log
+                Github <span aria-hidden>↗</span>
+                <span className="sr-only">(opens in a new tab)</span>
               </a>
             </div>
           </div>
@@ -240,7 +260,11 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
       </div>
 
       {multi ? (
-        <div role="tablist" aria-label="Choose a project" className="mt-3 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2">
+        <div
+          role="tablist"
+          aria-label="Choose a project"
+          className="mt-3 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-2"
+        >
           {products.map((product, i) => {
             const selected = i === index;
             return (
@@ -258,20 +282,30 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
                 onClick={() => go(i)}
                 onKeyDown={(e) => onTabKey(e, i)}
                 className={`rounded-xl p-3.5 text-left transition-[background-color,box-shadow] duration-200 ${
-                  selected ? "bg-surface shadow-hairline" : "shadow-[0_0_0_1px_rgb(0_0_0/0.04)] hover:bg-surface/60"
+                  selected
+                    ? "bg-surface shadow-hairline"
+                    : "shadow-[0_0_0_1px_rgb(0_0_0/0.04)] hover:bg-surface/60"
                 }`}
               >
                 <span className="flex items-center gap-2.5">
                   <ProductIcon {...product} size={24} />
                   <span>
                     <span className="block font-medium">{product.name}</span>
-                    <span className="block text-[12px] text-fg-subtle">{product.category}</span>
+                    <span className="block text-[12px] text-fg-subtle">
+                      {product.category}
+                    </span>
                   </span>
                 </span>
-                <span aria-hidden className="mt-3 block h-0.5 overflow-hidden rounded-[1px] bg-black/[0.06]">
+                <span
+                  aria-hidden
+                  className="mt-3 block h-0.5 overflow-hidden rounded-[1px] bg-black/[0.06]"
+                >
                   <span
                     className="block h-full"
-                    style={{ width: `${(selected ? progress : 0) * 100}%`, background: product.brand.accent }}
+                    style={{
+                      width: `${(selected ? progress : 0) * 100}%`,
+                      background: product.brand.accent,
+                    }}
                   />
                 </span>
               </button>
@@ -280,7 +314,10 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
         </div>
       ) : (
         <p className="mt-3.5 flex items-center gap-2.5 text-[13px] text-fg-subtle">
-          <span aria-hidden className="size-[18px] rounded-[5px] border border-dashed border-[#C4C4C4]" />
+          <span
+            aria-hidden
+            className="size-[18px] rounded-[5px] border border-dashed border-[#C4C4C4]"
+          />
           The next project is in the workshop.
         </p>
       )}
