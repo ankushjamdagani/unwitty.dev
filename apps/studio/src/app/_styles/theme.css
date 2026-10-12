@@ -22,6 +22,13 @@
   --product-fg: #0a0a0a;
   --product-accent: #0a0a0a;
   --product-ink: #ffffff;
+
+  /* Background, "whisper" strength. See docs/superpowers/specs/2026-10-12-studio-background-design.md */
+  --bg-grain-opacity: 0.3;
+  --bg-vignette: 0.03;
+  --bg-dot-alpha: 0.1;
+  --bg-dot-size: 16px;
+  --bg-glow: 8%;
 }
 
 @media (max-width: 640px) {
