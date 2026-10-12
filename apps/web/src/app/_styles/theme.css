@@ -1,73 +1,144 @@
+/* =====================================================
+   1. STATIC TOKENS (theme-independent)
+   Radii, borders, fonts, font sizes, z-index, layout, focus.
+   ===================================================== */
 :root {
-  /* Color variables */
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-
-  /* Accessibility Styles */
-  --focus-color: crimson;
-  --focus-outline: dotted 2px var(--focus-color);
-  --focus-outline-offset: 2px;
-
-  /* Box variables */
+  /* Radii */
   --border-radius-sm: 1px;
   --border-radius: 3px;
   --border-radius-md: 5px;
   --border-radius-lg: 8px;
+
+  /* Border widths */
   --border-width-thin: 1px;
-  --border-width: 2px;
+  --border-width-md: 2px;
   --border-width-thick: 3px;
   --border-width-extra-thick: 4px;
 
-  /* Font Families */
-  --font-mono:
-    ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-
-  /* Font Sizes */
+  /* Font sizes */
+  --font-xxs: 0.625rem;
   --font-xs: 0.75rem;
   --font-sm: 0.875rem;
   --font-md: 1rem;
   --font-lg: 1.25rem;
+  --font-display-sm: clamp(28px, 4.6vmin, 52px);
+  --font-display-md: clamp(40px, 7vmin, 76px);
 
-  /* Z-Index */
+  /* Z-index */
   --z-index-below-all: -1;
   --z-index-base: 1;
   --z-index-normal: 11;
   --z-index-menu: 111;
   --z-index-nav: 1111;
   --z-index-overlay: 11111;
-  --z-index-above-all: 11111;
 
-  /* Components */
+  /* Layout */
   --nav-height: 50px;
   --marquee-height: 80px;
   --max-content-width: 920px;
-
   --horizontal-gap: max(0px, calc((100vw - var(--max-content-width)) / 2));
-  --body-bgfilter: invert(1);
+
+  /* Icon sizing */
+  --icon-sm: 12px;
+  --icon-md: 22px;
+
+  /* Texture */
+  --grid-size: 22px;
+  --dot-size: 1.1px;
+
+  /* Focus */
+  --focus-outline: dotted 2px var(--focus);
+  --focus-outline-offset: 2px;
+
+  /* Ledger Styles */
+  --ledger-outline: 71 71 64; /* #474740 */
+  --ledger-surface: 28 27 27; /* #1c1b1b */
 
   color-scheme: light dark;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 0, 0, 0;
-  }
-} */
+/* =====================================================
+   2. LIGHT PALETTE (default)
+   Channel-only color tokens for use with rgb(var(--x) / <alpha>).
+   ===================================================== */
+:root,
+[data-theme="light"] {
+  --fg-contrast: 0 0 0;
+  --canvas-contrast: 255 255 255;
+  --canvas: 236 234 227;
+  --canvas-raised: 226 223 213;
+  --fg: 21 20 15;
+  --fg-muted: 95 94 85;
+  --fg-subtle: 164 162 153;
+  --accent: 46 125 79;
+  --bezel-bg: color-mix(in srgb, rgb(var(--fg-contrast)) 75%, rgb(var(--canvas)));
+  --bezel-fg: rgb(var(--canvas));
 
+  --dot: rgb(var(--fg) / 0.14); /* Faded but visible across all pages */
+  --dot-strong: rgb(var(--fg) / 0.22); /* Full intensity for welcome */
+
+  --vignette: var(--fg);
+  --vignette-mid: 0.16;
+  --vignette-edge: 0.32;
+
+  --focus: crimson;
+  --body-bgfilter: invert(1);
+  --image-filter: grayscale(1) opacity(0.7);
+}
+
+/* =====================================================
+   3. WARM PALETTE
+   ===================================================== */
+[data-theme="warm"] {
+  --fg-contrast: 48 38 28;
+  --canvas-contrast: 250 244 232;
+  --canvas: 245 236 218;
+  --canvas-raised: 236 225 202;
+  --fg: 48 38 28;
+  --fg-muted: 118 104 82;
+  --fg-subtle: 188 172 144;
+  --accent: 140 90 40;
+  --bezel-bg: color-mix(in srgb, rgb(var(--fg-contrast)) 75%, rgb(var(--canvas)));
+  --bezel-fg: rgb(var(--canvas));
+
+  --dot: rgb(var(--fg) / 0.1);
+  --dot-strong: rgb(var(--fg) / 0.24);
+
+  --vignette: var(--fg);
+  --vignette-mid: 0.16;
+  --vignette-edge: 0.32;
+
+  --focus: #b87333;
+  --body-bgfilter: sepia(0.2) saturate(1.1);
+  --image-filter: grayscale(1) sepia(1) hue-rotate(-15deg) saturate(0.5)
+    opacity(0.8);
+}
+
+/* =====================================================
+   4. DARK PALETTE
+   ===================================================== */
 [data-theme="dark"] {
-  --foreground-rgb: 255, 255, 255;
-  --background-rgb: 0, 0, 0;
-  --focus-color: orange;
+  --fg-contrast: 255 255 255;
+  --canvas-contrast: 0 0 0;
+  --canvas: 19 19 15;
+  --canvas-raised: 26 26 20;
+  --fg: 237 233 221;
+  --fg-muted: 154 152 140;
+  --fg-subtle: 94 92 83;
+  --accent: 46 125 79;
+  --bezel-bg: color-mix(in srgb, rgb(var(--fg-contrast)) 75%, rgb(var(--canvas)));
+  --bezel-fg: rgb(var(--canvas));
 
+  --dot: rgb(var(--fg) / 0.1);
+  --dot-strong: rgb(var(--fg) / 0.25);
+
+  --vignette: var(--fg);
+  --vignette-mid: 0.08;
+  --vignette-edge: 0.16;
+
+  --focus: orange;
   --body-bgfilter: none;
+  --image-filter: grayscale(1) brightness(0.7) contrast(1.2) opacity(0.7);
 
   .dark-invert {
     filter: invert();

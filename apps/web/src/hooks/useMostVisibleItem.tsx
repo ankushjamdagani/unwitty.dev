@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import throttle from "@/utils/throttle";
 
-export default function useMostVisibileItemOnScroll<T extends HTMLElement>(
+export default function useMostVisibleItem<T extends HTMLElement>(
   selector: string,
-  updateDelay: number = 100
+  updateDelay: number = 100,
 ) {
   const [mostVisibleElement, setMostVisibleElement] = useState<T | null>(null);
 
@@ -34,7 +34,7 @@ export default function useMostVisibileItemOnScroll<T extends HTMLElement>(
       });
 
       const maxVisibleSection = sectionVisible.indexOf(
-        Math.max(...sectionVisible)
+        Math.max(...sectionVisible),
       );
 
       const activeSection = allSections[maxVisibleSection];

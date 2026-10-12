@@ -1,21 +1,51 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-
-import { CursorInverted } from "@/components/CursorInveted";
+import {
+  JetBrains_Mono,
+  Cormorant_Garamond,
+  Italianno,
+  Spectral,
+} from "next/font/google";
+// import { CursorInverted } from "@/components/CursorInveted";
+import { Cursor } from "@/components/Cursor";
 // import { CursorDisplacementFire } from "@/components/CursorDisplacementFire";
+// import { CursorWind } from "@/components/CursorWind";
+// import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { ChapterTransitionProvider } from "@/app/_components/Nav/ChapterTransition";
 
 import "./_styles/globals.css";
-// import { CursorWind } from "@/components/CursorWind";
 import { LevaDebugger } from "@/components/LevaDebugger";
-import { Nav } from "./_components/Nav";
-import { Footer } from "./_components/Footer";
-import { Cursor } from "@/components/Cursor";
-import { NoiseOverlay } from "@/components/NoiseOverlay";
+import { BgVignetteControl } from "./work/_components/BgVignetteControl";
 
-// Inter is a variable font. Don't need weights
-// const font = Inter({ subsets: ["latin"] });
-const font = Montserrat({ subsets: ["latin"] });
+// const font = Montserrat({
+//   subsets: ["latin"],
+//   variable: "--font-montserrat",
+// });
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-technical",
+});
+
+const spectral = Spectral({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-editorial",
+});
+
+const italianno = Italianno({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-expressive",
+});
 
 export const metadata: Metadata = {
   title: "Unwitty Dev",
@@ -28,22 +58,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <link rel="icon" href="/images/favicon.png" sizes="any" />
-      <body className={`${font.className} monos`}>
-        <Nav />
-        {children}
-        <CursorInverted />
-        {/* <CursorDisplacementFire /> */}
-        {/* <CursorWind /> */}
-        <Footer />
+      <body
+        className={`${jetbrains.variable} ${spectral.variable} ${cormorant.variable} ${italianno.variable} font-technical`}
+      >
+        <ChapterTransitionProvider>
+          <div className="grain-overlay" />
+          {children}
+          <Cursor />
+          {/* <CursorInverted /> */}
 
-        <Cursor />
-        <NoiseOverlay />
-
-        <React.Suspense fallback={null}>
-          <LevaDebugger />
-        </React.Suspense>
+          {/* <NoiseOverlay /> */}
+          <React.Suspense fallback={null}>
+            <LevaDebugger />
+          </React.Suspense>
+          <BgVignetteControl />
+        </ChapterTransitionProvider>
       </body>
     </html>
   );
