@@ -1,0 +1,33 @@
+{
+  "name": "@app/studio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --port 3100",
+    "build": "next build",
+    "start": "next start --port 3100",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "next": "15.5.21",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@common/eslint-config": "workspace:*",
+    "@common/typescript-config": "workspace:*",
+    "@eslint/eslintrc": "^3.3.7",
+    "@types/node": "^24.13.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "15.4.6",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19",
+    "vitest": "^3.2.4"
+  }
+}

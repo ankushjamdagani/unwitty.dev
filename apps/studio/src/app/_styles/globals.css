@@ -1,0 +1,44 @@
+@import "./theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-padding-top: 72px;
+  }
+  body {
+    @apply bg-canvas font-sans text-[14px] leading-[1.55] text-fg antialiased;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-fg;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-gutter;
+  }
+  .btn {
+    @apply inline-flex h-10 items-center gap-2 rounded-[10px] px-4 font-medium transition-[box-shadow,background-color] duration-150;
+  }
+  .btn-primary {
+    @apply btn bg-fg text-white shadow-button hover:bg-fg/85;
+  }
+  .btn-secondary {
+    @apply btn bg-surface shadow-hairline hover:bg-white/60;
+  }
+  .section-title {
+    @apply m-0 text-[20px] font-semibold tracking-[-0.02em];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
