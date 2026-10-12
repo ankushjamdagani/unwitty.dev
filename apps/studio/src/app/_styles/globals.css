@@ -55,6 +55,13 @@
   .section-title {
     @apply m-0 text-[20px] font-semibold tracking-[-0.02em];
   }
+  /* Italic serif accent word, e.g. "thinking." or "Ankush." */
+  .emphasis {
+    font-family: var(--font-newsreader), Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
   /* Decorative dot grid, full-bleed behind a section. Use via <DotField />. */
   .dot-field {
     @apply pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2;
