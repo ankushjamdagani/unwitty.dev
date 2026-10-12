@@ -67,4 +67,4 @@ apps/studio/
 
 ## Status (2026-10-12)
 
-Steps 1–6 done on branch `studio/revamp`. `projects/canvas-one` is excluded from the pnpm workspace until it installs there (`@canvas-one/ui` is not on npm). Pending: demo video, deploy switch.
+Steps 1–6 done on branch `studio/revamp`. `projects/canvas-one` is excluded from the pnpm workspace until it installs there (`@canvas-one/ui` is not on npm). Merged to main (#13, #36). Deploy config, legacy redirects and the `/canvas-one` fallback are on `studio/deploy`. Pending: demo video, Vercel projects and domain move (see apps/studio/README.md).
