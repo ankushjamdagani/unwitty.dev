@@ -4,6 +4,8 @@ import { companies } from "@/config/companies";
 import { profile } from "@/config/profile";
 import { formatYearMonth } from "@/lib/format";
 
+import { DotField } from "./DotField";
+
 function period(start: string, end: string | null): string {
   const from = formatYearMonth(start);
   const to = formatYearMonth(end);
@@ -12,7 +14,12 @@ function period(start: string, end: string | null): string {
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="flex flex-wrap gap-x-16 gap-y-6 pt-section">
+    <section
+      id="about"
+      aria-labelledby="about-title"
+      className="relative isolate flex flex-wrap gap-x-16 gap-y-6 pt-section"
+    >
+      <DotField fade="center" />
       <h2 id="about-title" className="section-title flex-[1_1_200px]">
         About
       </h2>
