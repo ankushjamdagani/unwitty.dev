@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatLocalTime, formatRelative } from "./format";
+import { formatClock, formatLocalTime, formatRelative } from "./format";
 
 describe("formatLocalTime", () => {
   it("formats 24h time in the given zone with a label", () => {
@@ -25,5 +25,17 @@ describe("formatRelative", () => {
     [14 * 86_400, "2 weeks ago"],
   ])("%i seconds ago → %s", (seconds, expected) => {
     expect(formatRelative(ago(seconds), now)).toBe(expected);
+  });
+});
+
+describe("formatClock", () => {
+  it.each([
+    [0, "0:00"],
+    [59.9, "0:59"],
+    [60, "1:00"],
+    [3599, "59:59"],
+    [Number.NaN, "0:00"],
+  ])("%s → %s", (seconds, expected) => {
+    expect(formatClock(seconds)).toBe(expected);
   });
 });
