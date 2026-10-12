@@ -12,3 +12,9 @@ export function formatDay(iso: string): string {
   const [y, m, d] = iso.split("-").map(Number);
   return `${MONTHS[(m ?? 1) - 1]} ${d}, ${y}`;
 }
+
+/** "15:42 IST": 24-hour wall-clock time in `timeZone`, followed by `label`. */
+export function formatLocalTime(date: Date, timeZone: string, label: string): string {
+  const time = new Intl.DateTimeFormat("en-GB", { timeZone, hour: "2-digit", minute: "2-digit" }).format(date);
+  return `${time} ${label}`;
+}
