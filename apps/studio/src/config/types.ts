@@ -57,3 +57,10 @@ export type SocialLink = {
   label: string;
   url: string;
 };
+
+export type ActivitySource = {
+  slug: string;
+  name: string;
+  color: string;
+  repo: Product["repo"];
+};

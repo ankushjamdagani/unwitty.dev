@@ -13,13 +13,14 @@ All content is config in `src/config/`:
 
 - `products.ts` — one entry per product (newest first). Build log = the repo's `CHANGELOG.md`; activity = the repo's commits.
 - `companies.ts` — roles for the about section.
-- `profile.ts` — headline, about text, email, résumé link.
+- `profile.ts` — headline, about text, email, résumé link, GitHub login.
+- `activity.ts` — extra repos in the activity graph (unwitty.dev) and the grey "Other work" layer.
 
 ## Environment
 
 See `.env.example`.
 
-- `GITHUB_TOKEN` — fine-grained, Contents: read-only on the product repos. Optional for public repos.
+- `GITHUB_TOKEN` — fine-grained, Contents: read-only on the product repos. Needed for the "Other work" layer (GraphQL); otherwise optional for public repos.
 - `PRODUCT_URL_<SLUG>` — deployment that serves `unwitty.dev/<slug>/*`. The product must be built with `basePath: "/<slug>"` (Canvas One: `NEXT_PUBLIC_CANVAS_BASE_PATH=/canvas-one`).
 
 ## Deploying

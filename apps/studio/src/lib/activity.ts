@@ -22,6 +22,19 @@ export type ActivityGrid = {
 
 const DAY = 86_400_000;
 
+/**
+ * Whatever `total` has beyond the known sources, per day. Used to show the
+ * rest of the GitHub profile without double-counting the tracked repos.
+ */
+export function remainder(total: DayCounts, known: DayCounts[]): DayCounts {
+  const rest: DayCounts = {};
+  for (const [date, n] of Object.entries(total)) {
+    const counted = known.reduce((sum, counts) => sum + (counts[date] ?? 0), 0);
+    if (n > counted) rest[date] = n - counted;
+  }
+  return rest;
+}
+
 export function isoDay(time: number): string {
   return new Date(time).toISOString().slice(0, 10);
 }

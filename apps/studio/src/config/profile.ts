@@ -9,8 +9,10 @@ export const profile = {
     "Senior full-stack engineer with 9+ years building high-traffic products at Atlassian, Uber and Rippling — tax systems at 10k QPS, a data grid used by 34 teams, and AI tooling for developer workflows. On the side I build tools for thinking.",
   email: "hello@unwitty.dev",
   resumeUrl:
-    "https://drive.google.com/file/d/1rO8XhB2kcQwX3NogdcjqoUkqAo6DBjOE/view?usp=sharing",
+    "https://drive.google.com/file/d/1nXgwSoudFM3xklQOTARAojv_6IaZCM94/view?usp=sharing",
   github: "https://github.com/ankushjamdagani",
+  /** Commits by this login count towards the activity graph. */
+  githubLogin: "ankushjamdagani",
 } as const;
 
 export const socialLinks: SocialLink[] = [
