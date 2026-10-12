@@ -10,6 +10,7 @@ import {
 } from "react";
 
 import type { ProductWithLog } from "@/lib/data";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
 import { BuildLog } from "./BuildLog";
 import { DemoFrame } from "./DemoFrame";
@@ -17,18 +18,6 @@ import { ProductIcon } from "./ProductIcon";
 
 /** How long a product without a demo video stays on stage. */
 const SLIDE_MS = 8000;
-
-function usePrefersReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const query = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-  return reduced;
-}
 
 export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
   const [index, setIndex] = useState(0);
@@ -77,6 +66,22 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
     if (held || reduced) video.pause();
     else void video.play().catch(() => undefined);
   }, [held, reduced, index]);
+
+  // Deep links from the hero (#projects/<slug>) select that product and hold the reel.
+  useEffect(() => {
+    const select = () => {
+      const match = /^#projects\/(.+)$/.exec(window.location.hash);
+      if (!match) return;
+      const i = products.findIndex((p) => p.slug === decodeURIComponent(match[1] ?? ""));
+      if (i < 0) return;
+      go(i);
+      setHeld(true);
+      document.getElementById("projects")?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+    };
+    select();
+    window.addEventListener("hashchange", select);
+    return () => window.removeEventListener("hashchange", select);
+  }, [products, go, reduced]);
 
   if (!current) return null;
 
