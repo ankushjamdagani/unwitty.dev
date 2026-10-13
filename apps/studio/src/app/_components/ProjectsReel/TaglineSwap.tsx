@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import type { TaglineCanvas } from "@/config/types";
 
-import { CanvasTagline } from "./CanvasTagline";
+import { CanvasHeadline } from "./CanvasTagline";
 
 export type Tagline = {
   key: string;
@@ -23,8 +23,8 @@ const OUT_MS = 350;
  * The product tagline. When `tagline.key` changes, the old line animates out
  * while the new one animates in; both share one grid cell, so the height of the
  * taller one is reserved and nothing jumps. Only the incoming line is the heading.
- * A tagline with `canvas` plays its typed intro on first view only; swaps show
- * its settled state.
+ * A tagline with `canvas` renders as a CanvasHeadline; its intro is driven by
+ * the reel.
  */
 export function TaglineSwap({ tagline }: { tagline: Tagline }) {
   const [current, setCurrent] = useState(tagline);
@@ -50,15 +50,13 @@ export function TaglineSwap({ tagline }: { tagline: Tagline }) {
     <div className={leaving ? "grid overflow-hidden" : "grid"}>
       {leaving &&
         (leaving.canvas ? (
-          <CanvasTagline
+          <CanvasHeadline
             key={`out-${leaving.key}`}
             canvas={leaving.canvas}
             text={leaving.text}
-            headingClassName={SIZE}
+            className={`${SIZE} ${CELL} tagline-out`}
             style={style(leaving)}
-            intro={false}
             decorative
-            className={`${CELL} tagline-out`}
           />
         ) : (
           <p
@@ -71,14 +69,12 @@ export function TaglineSwap({ tagline }: { tagline: Tagline }) {
           </p>
         ))}
       {current.canvas ? (
-        <CanvasTagline
+        <CanvasHeadline
           key={current.key}
           canvas={current.canvas}
           text={current.text}
-          headingClassName={SIZE}
+          className={swapped ? `${SIZE} ${CELL} tagline-in` : `${SIZE} ${CELL}`}
           style={style(current)}
-          intro={!swapped}
-          className={swapped ? `${CELL} tagline-in` : CELL}
         />
       ) : (
         <h3

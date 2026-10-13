@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
 import type { TaglineCanvas } from "@/config/types";
 
-import { useDrawIn, type DrawInPhase } from "../Activity/useDrawIn";
+import type { DrawInPhase } from "../Activity/useDrawIn";
 
-const TYPE_START_MS = 350;
+// Typing starts once the headline has landed (see the .ct timeline in globals.css).
+const TYPE_START_MS = 1100;
 const TYPE_STEP_MS = 34;
 
 const MUTED = {
@@ -41,42 +42,41 @@ function useTyped(text: string, phase: DrawInPhase) {
   return text.slice(0, count);
 }
 
-function PromptInput({
-  prompt,
-  phase,
-}: {
+type PromptBarProps = {
   prompt: string;
   phase: DrawInPhase;
-}) {
+  href: string;
+  label: string;
+};
+
+/**
+ * The card's call to action, dressed as a chat input: the prompt types itself
+ * in during the intro and the send button is the "Open" link.
+ */
+export function PromptBar({ prompt, phase, href, label }: PromptBarProps) {
   const typed = useTyped(prompt, phase);
   return (
-    <span
-      aria-hidden
-      className="ct-input inline-flex w-fit items-center gap-2 rounded-full bg-white/60 py-1 pl-3 pr-1 font-sans text-[13px] font-normal not-italic leading-none tracking-normal shadow-[0_0_0_1px_rgb(0_0_0/0.06)]"
-    >
-      {/* The invisible full prompt reserves the final width, so the pill never grows while typing. */}
-      <span className="grid">
-        <span className="invisible whitespace-nowrap pr-[3px] [grid-area:1/1]">
+    <div className="ct-bar flex w-full max-w-[400px] items-center gap-2 rounded-full bg-white/80 py-1.5 pl-4 pr-1.5 font-sans text-[14px] leading-none shadow-[0_0_0_1px_rgb(0_0_0/0.06),0_1px_2px_rgb(0_0_0/0.04)]">
+      {/* The invisible full prompt reserves the final width, so nothing shifts while typing. */}
+      <span aria-hidden className="grid min-w-0 flex-1">
+        <span className="invisible truncate pr-[3px] [grid-area:1/1]">
           {prompt}
         </span>
-        <span className="whitespace-nowrap [grid-area:1/1]">
-          {typed || <span style={MUTED}>Ask anything…</span>}
+        <span className="truncate [grid-area:1/1]" style={MUTED}>
+          {typed || "Ask anything…"}
           <span className="ct-caret ml-px inline-block h-[14px] w-[1.5px] translate-y-[2px] bg-product-accent" />
         </span>
       </span>
-      <span className="ct-send inline-flex h-5 w-5 items-center justify-center rounded-full bg-product-accent text-product-ink">
-        <svg viewBox="0 0 12 12" className="h-2.5 w-2.5">
-          <path
-            d="M6 10V2M2.5 5.5 6 2l3.5 3.5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </span>
-    </span>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ct-send btn !h-8 shrink-0 !gap-1.5 !px-3 !text-[13px] bg-product-accent text-product-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.15)] hover:opacity-90"
+      >
+        {label} <span aria-hidden>↗</span>
+        <span className="sr-only">(opens in a new tab)</span>
+      </a>
+    </div>
   );
 }
 
@@ -130,53 +130,35 @@ type Props = {
   canvas: TaglineCanvas;
   /** Full sentence, read by assistive tech in place of the decoration. */
   text: string;
-  headingClassName: string;
+  className: string;
   style: CSSProperties;
-  /** Play the typed intro when scrolled into view; false for later product swaps. */
-  intro: boolean;
   /** The outgoing copy during a swap: decorative only, no heading. */
   decorative?: boolean;
-  className?: string;
 };
 
 /**
- * "Prompt → canvas" tagline: the prompt is typed into a chat input and sent,
- * the input recedes, the headline rises and Claude's cursor selects the
- * highlighted word, then keeps nudging its resize handle.
+ * "Prompt → canvas" headline: `highlight` sits in a selection frame that
+ * Claude's cursor keeps resizing. The intro is driven by an ancestor's
+ * `data-intro` (see ProjectsReel); without one it shows the settled loop.
  */
-export function CanvasTagline({
+export function CanvasHeadline({
   canvas,
   text,
-  headingClassName,
+  className,
   style,
-  intro,
   decorative,
-  className = "",
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  // Wait until the whole tagline is on screen, so the typing is actually seen.
-  const drawIn = useDrawIn(ref, 1);
-  const phase = intro ? drawIn : "idle";
   const Heading = decorative ? "p" : "h3";
-
   return (
-    <div
-      ref={ref}
+    <Heading
       aria-hidden={decorative || undefined}
-      data-intro={phase === "idle" ? undefined : phase}
-      className={`ct flex flex-col gap-3 ${className}`}
+      className={`ct-headline mb-6 [text-wrap:balance] ${className}`}
+      style={style}
     >
-      <PromptInput prompt={canvas.prompt} phase={phase} />
-      <Heading
-        className={`ct-headline mb-6 [text-wrap:balance] ${headingClassName}`}
-        style={style}
-      >
-        <span className="sr-only">{text}</span>
-        <span aria-hidden>
-          {canvas.before} <SelectedWord word={canvas.highlight} />{" "}
-          {canvas.after}
-        </span>
-      </Heading>
-    </div>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden>
+        {canvas.before} <SelectedWord word={canvas.highlight} /> {canvas.after}
+      </span>
+    </Heading>
   );
 }

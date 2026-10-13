@@ -121,16 +121,10 @@
   }
   /*
    * Canvas tagline (CanvasTagline.tsx). Base styles are the settled state plus
-   * the idle loop. [data-intro] adds the one-time intro, paused while "armed":
-   * type 350–1170ms · send 1300 · input recedes 1450 · headline 1500 ·
-   * selection 2150 · cursor flies in 2400 · loop from 3300.
+   * the idle loop. The reel's [data-intro] adds the one-time intro, paused
+   * while "armed": headline 0–650ms · selection 500 · cursor flies in 750 ·
+   * prompt types into the bar 1100–1920 · Open pulses 2050 · loop from 1650.
    */
-  .ct-input {
-    transform-origin: left center;
-    opacity: 0.55;
-    transform: scale(0.97);
-    filter: saturate(0.6);
-  }
   .ct-caret {
     animation: ct-blink 1s steps(1) infinite;
   }
@@ -140,27 +134,24 @@
   .ct-grab {
     animation: ct-grab 4.2s ease-in-out infinite;
   }
-  [data-intro] .ct-input {
-    animation: ct-input 2050ms ease both;
-  }
-  [data-intro] .ct-caret {
-    animation-delay: 1300ms;
-  }
-  [data-intro] .ct-send {
-    animation: ct-send 320ms cubic-bezier(0.3, 1.5, 0.5, 1) 1300ms;
-  }
   [data-intro] .ct-headline {
-    animation: hero-rise 650ms cubic-bezier(0.2, 0.7, 0.2, 1) 1500ms both;
+    animation: hero-rise 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
   }
   [data-intro] .ct-select {
-    animation: ct-select 420ms cubic-bezier(0.6, 0, 0.3, 1) 2150ms both;
+    animation: ct-select 420ms cubic-bezier(0.6, 0, 0.3, 1) 500ms both;
   }
   [data-intro] .ct-fly {
-    animation: ct-fly 750ms cubic-bezier(0.25, 0.8, 0.3, 1) 2400ms both;
+    animation: ct-fly 750ms cubic-bezier(0.25, 0.8, 0.3, 1) 750ms both;
   }
   [data-intro] .ct-frame,
   [data-intro] .ct-grab {
-    animation-delay: 3300ms;
+    animation-delay: 1650ms;
+  }
+  [data-intro] .ct-caret {
+    animation-delay: 2050ms;
+  }
+  [data-intro] .ct-send {
+    animation: ct-send 420ms cubic-bezier(0.3, 1.5, 0.5, 1) 2050ms;
   }
   /* Out-specifies the shorthands above, which would otherwise reset the play state. */
   .ct[data-intro="armed"] * {
@@ -211,24 +202,9 @@
   }
 }
 
-/* Pops in, holds while the prompt is typed and sent, then recedes to the base style. */
-@keyframes ct-input {
-  0% {
-    opacity: 0;
-    transform: scale(0.92);
-    filter: none;
-  }
-  20%,
-  71% {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
 @keyframes ct-send {
   40% {
-    transform: scale(0.82);
+    transform: scale(0.94);
     box-shadow: 0 0 0 6px
       color-mix(in srgb, var(--product-accent) 18%, transparent);
   }
