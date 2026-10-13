@@ -6,7 +6,8 @@ export const profile = {
   headline: "I make tools for thinking.",
   /** Rendered in italic serif inside the headline. */
   headlineEmphasis: "thinking.",
-  intro: "A set of tools for the work before the code: sketching, simulating and shipping ideas, made with care.",
+  intro:
+    "A set of tools for the work before the code: sketching, simulating and shipping ideas, made with care.",
   studio: "unwitty",
   studioLine: "a one-person studio",
   title: "Senior Software Engineer · Fullstack",
@@ -19,7 +20,7 @@ export const profile = {
   /** Commits by this login count towards the activity graph. */
   githubLogin: "ankushjamdagani",
   /** About section greeting: "Hi, I'm" + italic name. */
-  greeting: { lead: "Hi, I'm", name: "Ankush." },
+  greeting: { lead: "👋🏻 Hi, I'm", name: "Ankush." },
   facts: {
     experience: "9+ years",
     location: "Bangalore, IN",

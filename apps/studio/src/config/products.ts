@@ -12,9 +12,9 @@ export const products: Product[] = [
     appUrl: "https://canvas-one-ai.vercel.app/",
     category: "Developer tools",
     status: "Preview",
-    tagline: "Think in architecture. Let agents draw the system.",
+    tagline: "Stop prompting in a box! Collaborate visually with AI.",
     description:
-      "AI agents sketch topologies, isolate hot paths and simulate backpressure on an infinite drafting sheet.",
+      "An open spatial workspace to map thoughts, connect concepts, and build ideas together—beyond text limits.",
     brand: {
       bg: "#EEF3F1",
       fg: "#16201D",
