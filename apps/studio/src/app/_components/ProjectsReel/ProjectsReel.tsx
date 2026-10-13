@@ -12,7 +12,10 @@ import {
 import type { ProductWithLog } from "@/lib/data";
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 
+import { useDrawIn } from "../Activity/useDrawIn";
+
 import { BuildLog } from "./BuildLog";
+import { PromptBar } from "./CanvasTagline";
 import { DemoFrame, type DemoClock } from "./DemoFrame";
 import { ProductIcon } from "./ProductIcon";
 import { TaglineSwap } from "./TaglineSwap";
@@ -30,6 +33,11 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
   const reduced = usePrefersReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  // The canvas-tagline intro plays once, on first view; after any swap the stage stays settled.
+  const columnRef = useRef<HTMLDivElement>(null);
+  const drawIn = useDrawIn(columnRef, 0.4);
+  const [swapped, setSwapped] = useState(false);
+  const introPhase = swapped ? "idle" : drawIn;
 
   const multi = products.length > 1;
   const current = products[index] ?? products[0];
@@ -42,6 +50,7 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
       const target = (next + products.length) % products.length;
       if (target === index) return;
       setIndex(target);
+      setSwapped(true);
       setProgress(0);
       setClock(null);
       setPaused(false);
@@ -187,22 +196,23 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
           style={stageVars}
           className="grid grid-cols-1 items-center gap-x-[18px] gap-y-6 overflow-hidden rounded-3xl bg-product-bg py-5 pl-5 text-product-fg shadow-[0_0_0_1px_rgb(0_0_0/0.05),0_1px_2px_rgb(0_0_0/0.04)] transition-[background-color,color] duration-700 ease-[cubic-bezier(.4,0,.2,1)] sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1.4fr)] sm:py-8 sm:pl-8"
         >
-          <div className="flex min-w-0 flex-col gap-[18px] p-2 pr-7 sm:pr-2">
+          <div
+            ref={columnRef}
+            data-intro={introPhase === "idle" ? undefined : introPhase}
+            className="ct flex min-w-0 flex-col gap-[18px] p-2 pr-7 sm:pr-2"
+          >
             <div
               key={`meta-${current.slug}`}
-              className="flex animate-[fade-in_200ms_ease-out] items-center gap-2.5"
+              className="mb-2 flex animate-[fade-in_200ms_ease-out] items-center gap-2.5"
             >
               <ProductIcon {...current} />
               <span className="text-[15px] font-semibold">{current.name}</span>
-              <span className="rounded-full bg-white/70 px-2 py-0.5 font-mono text-[11px] shadow-[0_0_0_1px_rgb(0_0_0/0.06)]">
-                {current.status}
-                {current.version ? ` · v${current.version}` : ""}
-              </span>
             </div>
             <TaglineSwap
               tagline={{
                 key: current.slug,
                 text: current.tagline,
+                canvas: current.taglineCanvas,
                 font: current.brand.taglineFont,
                 weight: current.brand.taglineWeight ?? 400,
               }}
@@ -213,25 +223,41 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
             >
               {current.description}
             </p>
-            <div className="mt-auto flex flex-wrap gap-2">
-              <a
-                href={current.appUrl ?? `/${current.slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn bg-product-accent text-product-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.15)] transition-colors duration-700 hover:opacity-90"
+            <div className="mt-3 flex flex-col gap-2.5">
+              {current.taglineCanvas ? (
+                <PromptBar
+                  key={`bar-${current.slug}`}
+                  prompt={current.taglineCanvas.prompt}
+                  phase={introPhase}
+                  href={current.appUrl ?? `/${current.slug}`}
+                  label="Open preview"
+                />
+              ) : (
+                <a
+                  href={current.appUrl ?? `/${current.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn w-fit bg-product-accent text-product-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.15)] transition-colors duration-700 hover:opacity-90"
+                >
+                  Open preview <span aria-hidden>↗</span>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              )}
+              <span
+                className={`font-mono text-[11px] opacity-60 ${current.taglineCanvas ? "pl-4" : ""}`}
               >
-                Open Preview <span aria-hidden>↗</span>
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-              <a
-                href={current.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn bg-white/70 shadow-[0_0_0_1px_rgb(0_0_0/0.08)] hover:bg-white"
-              >
-                Github <span aria-hidden>↗</span>
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
+                {current.status}
+                {current.version ? ` · v${current.version}` : ""} ·{" "}
+                <a
+                  href={current.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 hover:opacity-100"
+                >
+                  github <span aria-hidden>↗</span>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </span>
             </div>
           </div>
 
