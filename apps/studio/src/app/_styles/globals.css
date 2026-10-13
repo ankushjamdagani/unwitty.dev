@@ -32,7 +32,11 @@
     height: 100vh;
     z-index: -1;
     pointer-events: none;
-    background: radial-gradient(120% 80% at 50% 0%, transparent 55%, rgb(0 0 0 / var(--bg-vignette)));
+    background: radial-gradient(
+      120% 80% at 50% 0%,
+      transparent 55%,
+      rgb(0 0 0 / var(--bg-vignette))
+    );
     -webkit-mask-image: linear-gradient(#000 50%, transparent);
     mask-image: linear-gradient(#000 50%, transparent);
   }
@@ -83,10 +87,18 @@
   }
   @media (max-width: 640px) {
     .dot-field-top {
-      --dot-mask: radial-gradient(90% 55% at 50% 30%, #000 15%, transparent 70%);
+      --dot-mask: radial-gradient(
+        90% 55% at 50% 30%,
+        #000 15%,
+        transparent 70%
+      );
     }
     .dot-field-center {
-      --dot-mask: radial-gradient(90% 50% at 50% 50%, #000 15%, transparent 70%);
+      --dot-mask: radial-gradient(
+        90% 50% at 50% 50%,
+        #000 15%,
+        transparent 70%
+      );
     }
   }
   /* Activity draw-in: armed cells start hidden, then fill week by week. */
@@ -106,6 +118,53 @@
   }
   .tagline-in {
     animation: tagline-in 550ms cubic-bezier(0.2, 0.7, 0.2, 1) 350ms both;
+  }
+  /*
+   * Canvas tagline (CanvasTagline.tsx). Base styles are the settled state plus
+   * the idle loop. [data-intro] adds the one-time intro, paused while "armed":
+   * type 350–1170ms · send 1300 · input recedes 1450 · headline 1500 ·
+   * selection 2150 · cursor flies in 2400 · loop from 3300.
+   */
+  .ct-input {
+    transform-origin: left center;
+    opacity: 0.55;
+    transform: scale(0.97);
+    filter: saturate(0.6);
+  }
+  .ct-caret {
+    animation: ct-blink 1s steps(1) infinite;
+  }
+  .ct-frame {
+    animation: ct-resize 4.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  }
+  .ct-grab {
+    animation: ct-grab 4.2s ease-in-out infinite;
+  }
+  [data-intro] .ct-input {
+    animation: ct-input 2050ms ease both;
+  }
+  [data-intro] .ct-caret {
+    animation-delay: 1300ms;
+  }
+  [data-intro] .ct-send {
+    animation: ct-send 320ms cubic-bezier(0.3, 1.5, 0.5, 1) 1300ms;
+  }
+  [data-intro] .ct-headline {
+    animation: hero-rise 650ms cubic-bezier(0.2, 0.7, 0.2, 1) 1500ms both;
+  }
+  [data-intro] .ct-select {
+    animation: ct-select 420ms cubic-bezier(0.6, 0, 0.3, 1) 2150ms both;
+  }
+  [data-intro] .ct-fly {
+    animation: ct-fly 750ms cubic-bezier(0.25, 0.8, 0.3, 1) 2400ms both;
+  }
+  [data-intro] .ct-frame,
+  [data-intro] .ct-grab {
+    animation-delay: 3300ms;
+  }
+  /* Out-specifies the shorthands above, which would otherwise reset the play state. */
+  .ct[data-intro="armed"] * {
+    animation-play-state: paused;
   }
 }
 
@@ -146,6 +205,95 @@
   }
 }
 
+@keyframes ct-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Pops in, holds while the prompt is typed and sent, then recedes to the base style. */
+@keyframes ct-input {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: none;
+  }
+  20%,
+  71% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes ct-send {
+  40% {
+    transform: scale(0.82);
+    box-shadow: 0 0 0 6px
+      color-mix(in srgb, var(--product-accent) 18%, transparent);
+  }
+}
+
+@keyframes ct-select {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 100% 0);
+  }
+  99% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: none;
+  }
+}
+
+@keyframes ct-fly {
+  from {
+    opacity: 0;
+    transform: translate(-90px, -70px) rotate(-8deg);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+/* Claude grabs the bottom-right handle, stretches the frame, lets go, drifts. */
+@keyframes ct-resize {
+  0%,
+  18%,
+  80%,
+  100% {
+    right: -5px;
+    bottom: -1px;
+  }
+  42%,
+  58% {
+    right: -16px;
+    bottom: -9px;
+  }
+}
+
+@keyframes ct-grab {
+  0%,
+  14%,
+  92%,
+  100% {
+    transform: none;
+  }
+  18%,
+  58% {
+    transform: scale(0.86);
+  }
+  64% {
+    transform: none;
+  }
+  78% {
+    transform: translate(7px, 6px) rotate(4deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-word {
     animation: none;
@@ -155,6 +303,11 @@
   }
   .tagline-out {
     display: none;
+  }
+  .ct-caret,
+  .ct-frame,
+  .ct-grab {
+    animation: none;
   }
 }
 
@@ -166,4 +319,3 @@
     display: none;
   }
 }
-

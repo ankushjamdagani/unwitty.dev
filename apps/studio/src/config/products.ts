@@ -13,6 +13,12 @@ export const products: Product[] = [
     category: "Developer tools",
     status: "Preview",
     tagline: "Stop prompting in a box! Collaborate visually with AI.",
+    taglineCanvas: {
+      prompt: "Stop prompting in a box!",
+      before: "Collaborate",
+      highlight: "visually",
+      after: "with AI.",
+    },
     description:
       "An open spatial workspace to map thoughts, connect concepts, and build ideas together—beyond text limits.",
     brand: {

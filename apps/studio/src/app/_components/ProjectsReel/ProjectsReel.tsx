@@ -194,7 +194,7 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
             >
               <ProductIcon {...current} />
               <span className="text-[15px] font-semibold">{current.name}</span>
-              <span className="rounded-full bg-white/70 px-2 py-0.5 font-mono text-[11px] shadow-[0_0_0_1px_rgb(0_0_0/0.06)]">
+              <span className="font-mono text-[11px] opacity-60">
                 {current.status}
                 {current.version ? ` · v${current.version}` : ""}
               </span>
@@ -203,6 +203,7 @@ export function ProjectsReel({ products }: { products: ProductWithLog[] }) {
               tagline={{
                 key: current.slug,
                 text: current.tagline,
+                canvas: current.taglineCanvas,
                 font: current.brand.taglineFont,
                 weight: current.brand.taglineWeight ?? 400,
               }}

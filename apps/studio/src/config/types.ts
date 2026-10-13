@@ -14,6 +14,18 @@ export type ProductBrand = {
   taglineWeight?: number;
 };
 
+/**
+ * "Prompt → canvas" tagline: `prompt` is typed into a chat input, then
+ * `before highlight after` lands as the headline with `highlight` selected by
+ * Claude's cursor. `Product.tagline` stays the accessible full sentence.
+ */
+export type TaglineCanvas = {
+  prompt: string;
+  before: string;
+  highlight: string;
+  after: string;
+};
+
 export type Product = {
   /** Served at unwitty.dev/<slug>; also the folder name under projects/. */
   slug: string;
@@ -23,6 +35,8 @@ export type Product = {
   /** Public app URL; omit to use the site's /<slug> route. */
   appUrl?: string;
   tagline: string;
+  /** Optional animated treatment for the tagline; plain text when omitted. */
+  taglineCanvas?: TaglineCanvas;
   description: string;
   brand: ProductBrand;
   /** Optional inline SVG for the icon; falls back to a monogram. */
