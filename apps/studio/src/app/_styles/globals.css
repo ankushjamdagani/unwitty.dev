@@ -71,9 +71,7 @@
   }
   /* Decorative dot grid, full-bleed behind a section. Use via <DotField />. */
   .dot-field {
-    @apply pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2;
-    background-image: radial-gradient(rgb(0 0 0 / var(--bg-dot-alpha)) 1px, transparent 1.2px);
-    background-size: var(--bg-dot-size) var(--bg-dot-size);
+    @apply pointer-events-none absolute inset-y-0 left-1/2 -z-10 w-screen -translate-x-1/2 overflow-hidden;
     -webkit-mask-image: var(--dot-mask);
     mask-image: var(--dot-mask);
   }

@@ -26,6 +26,8 @@ export const products: Product[] = [
     icon: "canvas-one",
     demo: {
       poster: "/products/canvas-one/poster.jpg",
+      video: "/products/canvas-one/demo.mp4",
+      duration: "0:20",
     },
     repo: {
       owner: "ankushjamdagani",
