@@ -140,6 +140,8 @@ export function HeatmapGrid({ weeks, colors, sourceOrder, activeDate, armed, gri
                 return (
                   <span
                     key={cell.date}
+                    data-date={cell.date}
+                    data-has-release={cell.releases.length > 0 ? "true" : undefined}
                     ref={(el) => {
                       if (el) cellRefs.current.set(`${w}-${d}`, el);
                       else cellRefs.current.delete(`${w}-${d}`);
