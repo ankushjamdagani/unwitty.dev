@@ -225,3 +225,24 @@ export function filterGrid(grid: ActivityGrid, visible: (slug: string) => boolea
   );
   return summarize(weeks);
 }
+
+/** The same grid keeping only days that have releases. */
+export function filterReleases(grid: ActivityGrid): ActivityGrid {
+  const weeks = grid.weeks.map((week) =>
+    week.map((cell): ActivityCell => {
+      if (cell.releases.length === 0) {
+        return {
+          ...cell,
+          total: 0,
+          bySlug: {},
+          lead: null,
+          level: 0,
+          messages: [],
+          releases: [],
+        };
+      }
+      return cell;
+    }),
+  );
+  return summarize(weeks);
+}

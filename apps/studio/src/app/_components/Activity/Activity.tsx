@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { filterGrid, type ActivityCell, type ActivityGrid, type DayRelease } from "@/lib/activity";
+import { filterGrid, filterReleases, type ActivityCell, type ActivityGrid, type DayRelease } from "@/lib/activity";
 import type { ActivitySwatch } from "@/lib/data";
 import { formatDay } from "@/lib/format";
 
@@ -23,13 +23,6 @@ type ReleaseSpot = {
   date: string;
   pos: [number, number];
 };
-
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-function formatReleaseDate(iso: string): string {
-  const [, m, d] = iso.split("-").map(Number);
-  return `${MONTHS[(m ?? 1) - 1]} ${d}`;
-}
 
 export function Activity({ grid, sources }: Props) {
   const colors = useMemo(() => Object.fromEntries(sources.map((s) => [s.slug, s.color])), [sources]);
@@ -54,10 +47,15 @@ export function Activity({ grid, sources }: Props) {
     return list;
   }, [grid.weeks]);
 
-  const view = useMemo(
-    () => (selected ? filterGrid(grid, (slug) => slug === selected) : grid),
-    [grid, selected],
-  );
+  const view = useMemo(() => {
+    if (selected === "releases") {
+      return filterReleases(grid);
+    }
+    if (selected) {
+      return filterGrid(grid, (slug) => slug === selected);
+    }
+    return grid;
+  }, [grid, selected]);
   const activeCell = active ? (view.weeks[active.pos[0]]?.[active.pos[1]] ?? null) : null;
 
   const onActive = useCallback((pos: [number, number] | null, el: HTMLElement | null) => {
@@ -69,10 +67,9 @@ export function Activity({ grid, sources }: Props) {
     if (!active) return;
     const onDown = (event: PointerEvent) => {
       const target = event.target as HTMLElement | null;
-      if (gridRef.current?.contains(target) || target?.closest?.("[data-release-spotlight]")) {
-        return;
+      if (!gridRef.current?.contains(target)) {
+        setActive(null);
       }
-      setActive(null);
     };
     document.addEventListener("pointerdown", onDown);
     return () => document.removeEventListener("pointerdown", onDown);
@@ -80,22 +77,6 @@ export function Activity({ grid, sources }: Props) {
 
   const onSelectSource = (slug: string) => {
     setSelected((prev) => (prev === slug ? null : slug));
-  };
-
-  const spotlightRelease = (target: ReleaseSpot) => {
-    // If the release's source is currently filtered out, restore "All" so the release cell is visible
-    if (selected !== null && selected !== target.release.slug) {
-      setSelected(null);
-    }
-
-    setTimeout(() => {
-      const cellEl = gridRef.current?.querySelector<HTMLElement>(`[data-date="${target.date}"]`);
-      if (cellEl) {
-        cellEl.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-        onActive(target.pos, cellEl);
-        cellEl.focus();
-      }
-    }, 40);
   };
 
   const describe = (cell: ActivityCell): string => {
@@ -185,24 +166,27 @@ export function Activity({ grid, sources }: Props) {
             <div className="flex items-center">
               <button
                 type="button"
-                data-release-spotlight
-                onClick={() => spotlightRelease(releases[0]!)}
-                title={`Jump to ${releases[0]!.release.name} v${releases[0]!.release.version} (${formatDay(releases[0]!.date)})`}
-                className="group inline-flex h-7 items-center gap-2 rounded-full border border-black/10 bg-surface pl-2 pr-2.5 text-[11px] text-fg shadow-xs transition-all hover:border-black/25 hover:bg-black/[0.03] active:scale-[0.98] dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-white/[0.05]"
+                aria-pressed={selected === "releases"}
+                onClick={() => setSelected((prev) => (prev === "releases" ? null : "releases"))}
+                title={selected === "releases" ? "Show all activity" : "Filter to release days"}
+                className={`group inline-flex h-7 items-center gap-2 rounded-full border pl-2 pr-2.5 text-[11px] transition-all active:scale-[0.98] ${
+                  selected === "releases"
+                    ? "border-black/25 bg-black/[0.08] font-medium text-fg shadow-xs dark:border-white/30 dark:bg-white/15"
+                    : "border-black/10 bg-surface text-fg-muted shadow-xs hover:border-black/25 hover:bg-black/[0.03] hover:text-fg dark:border-white/15 dark:hover:border-white/30 dark:hover:bg-white/[0.05]"
+                }`}
               >
                 <span
                   aria-hidden
-                  className="size-2 rounded-full bg-transparent transition-transform group-hover:scale-110"
+                  className={`size-2 rounded-full bg-transparent transition-transform group-hover:scale-110 ${
+                    selected === "releases" ? "scale-110" : ""
+                  }`}
                   style={{
-                    boxShadow: `0 0 0 1px rgb(var(--surface)), 0 0 0 2.5px ${colors[releases[0]!.release.slug] ?? releaseColor}`,
+                    boxShadow: `0 0 0 1px rgb(var(--surface)), 0 0 0 2.5px ${releaseColor}`,
                   }}
                 />
                 <span className="flex items-center gap-1">
-                  <span className="font-medium text-fg">
+                  <span className={selected === "releases" ? "font-medium text-fg" : ""}>
                     {releases.length === 1 ? "1 release" : `${releases.length} releases`}
-                  </span>
-                  <span className="font-mono text-fg-subtle">
-                    · {formatReleaseDate(releases[0]!.date)}
                   </span>
                 </span>
               </button>

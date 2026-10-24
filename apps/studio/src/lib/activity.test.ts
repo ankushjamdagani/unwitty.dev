@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildActivityGrid,
   filterGrid,
+  filterReleases,
   firstLine,
   levelFor,
   releasesByDay,
@@ -126,6 +127,16 @@ describe("grid extras", () => {
     expect(onlyB.weeks[0]?.[2]?.messages.map((m) => m.text)).toEqual(["b1"]);
     expect(onlyB.weeks[0]?.[2]?.releases).toEqual([]);
     expect(onlyB.releases).toBe(0);
+  });
+
+  it("filterReleases keeps only cells with releases and empties other cells", () => {
+    const grid = build();
+    const releasesOnly = filterReleases(grid);
+    expect(releasesOnly.weeks[0]?.[2]?.releases).toEqual([{ slug: "a", name: "Alpha", version: "1.0.0" }]);
+    expect(releasesOnly.weeks[0]?.[2]?.total).toBe(5);
+    expect(releasesOnly.releases).toBe(1);
+    expect(releasesOnly.weeks[0]?.[1]?.total).toBe(0);
+    expect(releasesOnly.weeks[0]?.[1]?.releases).toEqual([]);
   });
 });
 
