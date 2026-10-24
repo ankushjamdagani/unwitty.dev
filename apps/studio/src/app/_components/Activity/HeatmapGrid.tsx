@@ -13,10 +13,48 @@ const STEP: Record<string, [number, number]> = {
   ArrowDown: [0, 1],
 };
 
+export function getCellBackground(
+  cell: ActivityCell,
+  colors: Record<string, string>,
+  sourceOrder?: string[],
+): string | undefined {
+  if (cell.level === 0) return undefined;
+
+  const orderMap = sourceOrder ? new Map(sourceOrder.map((slug, i) => [slug, i])) : null;
+
+  const entries = Object.entries(cell.bySlug)
+    .filter(([slug, n]) => n > 0 && colors[slug])
+    .sort((a, b) => {
+      if (orderMap) {
+        return (orderMap.get(a[0]) ?? 999) - (orderMap.get(b[0]) ?? 999);
+      }
+      return b[1] - a[1];
+    });
+
+  const leadEntry = entries[0];
+  if (!leadEntry) return undefined;
+  if (entries.length === 1) {
+    return colors[leadEntry[0]];
+  }
+
+  // Equal split (Option B) ordered according to legends
+  const step = 100 / entries.length;
+  const stops: string[] = [];
+  entries.forEach(([slug], idx) => {
+    const color = colors[slug];
+    const start = (idx * step).toFixed(1);
+    const end = ((idx + 1) * step).toFixed(1);
+    stops.push(`${color} ${start}% ${end}%`);
+  });
+  return `linear-gradient(135deg, ${stops.join(", ")})`;
+}
+
 type Props = {
   weeks: ActivityCell[][];
   /** Source slug → colour. */
   colors: Record<string, string>;
+  /** Slugs in legend order. */
+  sourceOrder?: string[];
   activeDate: string | null;
   /** Hide cells until the draw-in plays. */
   armed: boolean;
@@ -25,7 +63,7 @@ type Props = {
   onActive: (pos: [number, number] | null, el: HTMLElement | null) => void;
 };
 
-export function HeatmapGrid({ weeks, colors, activeDate, armed, gridRef, describe, onActive }: Props) {
+export function HeatmapGrid({ weeks, colors, sourceOrder, activeDate, armed, gridRef, describe, onActive }: Props) {
   const lastWeek = weeks.length - 1;
   const lastDay = Math.max(0, (weeks[lastWeek]?.filter((c) => c.inRange).length ?? 1) - 1);
   const [focus, setFocus] = useState<[number, number]>([lastWeek, lastDay]);
@@ -81,7 +119,7 @@ export function HeatmapGrid({ weeks, colors, activeDate, armed, gridRef, describ
           {weeks.map((week, w) => (
             <div key={w} role="row" className="flex flex-1 flex-col gap-[3px]">
               {week.map((cell, d) => {
-                const color = cell.lead ? colors[cell.lead] : undefined;
+                const bg = getCellBackground(cell, colors, sourceOrder);
                 const release = cell.releases[0];
                 const ring = release ? colors[release.slug] : undefined;
                 const focusable = focus[0] === w && focus[1] === d;
@@ -112,14 +150,18 @@ export function HeatmapGrid({ weeks, colors, activeDate, armed, gridRef, describ
                     onKeyDown={(e) => move(e, w, d)}
                     style={style}
                     className={`heat-cell relative aspect-square w-full rounded-[3px] ${
-                      cell.inRange ? "bg-black/[0.05]" : "invisible"
+                      cell.inRange
+                        ? cell.level === 0
+                          ? "border border-black/[0.12] bg-transparent"
+                          : "border border-transparent bg-black/[0.04]"
+                        : "invisible"
                     } ${activeDate === cell.date ? "outline outline-1 outline-offset-1 outline-fg/40" : ""}`}
                   >
-                    {color && cell.level > 0 && (
+                    {bg && cell.level > 0 && (
                       <span
                         aria-hidden
-                        className="absolute inset-0 rounded-[3px]"
-                        style={{ background: color, opacity: OPACITY[cell.level] }}
+                        className="absolute inset-0 rounded-[2px]"
+                        style={{ background: bg, opacity: OPACITY[cell.level] }}
                       />
                     )}
                   </span>

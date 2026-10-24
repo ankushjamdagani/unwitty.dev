@@ -5,7 +5,7 @@ export const extraSources: ActivitySource[] = [
   {
     slug: "unwitty-dev",
     name: "unwitty.dev",
-    color: "#404040",
+    color: "#3B82F6",
     repo: { owner: "ankushjamdagani", name: "unwitty.dev" },
   },
 ];

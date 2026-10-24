@@ -21,6 +21,7 @@ type Active = { pos: [number, number]; el: HTMLElement };
 export function Activity({ grid, sources }: Props) {
   const colors = useMemo(() => Object.fromEntries(sources.map((s) => [s.slug, s.color])), [sources]);
   const names = useMemo(() => Object.fromEntries(sources.map((s) => [s.slug, s.name])), [sources]);
+  const sourceOrder = useMemo(() => sources.map((s) => s.slug), [sources]);
 
   const [hidden, setHidden] = useState<ReadonlySet<string>>(new Set());
   const [active, setActive] = useState<Active | null>(null);
@@ -83,6 +84,7 @@ export function Activity({ grid, sources }: Props) {
         <HeatmapGrid
           weeks={view.weeks}
           colors={colors}
+          sourceOrder={sourceOrder}
           activeDate={activeCell?.date ?? null}
           armed={phase === "armed"}
           gridRef={gridRef}
