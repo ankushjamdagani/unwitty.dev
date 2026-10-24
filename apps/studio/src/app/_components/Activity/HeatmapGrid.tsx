@@ -126,9 +126,16 @@ export function HeatmapGrid({ weeks, colors, sourceOrder, activeDate, armed, gri
                 const activate = (el: HTMLElement) => {
                   if (cell.inRange) onActive([w, d], el);
                 };
+                const shadows: string[] = [];
+                if (cell.level === 0) {
+                  shadows.push("inset 0 0 0 1px rgb(0 0 0 / 0.12)");
+                }
+                if (ring) {
+                  shadows.push("0 0 0 1.5px rgb(var(--surface))", `0 0 0 3px ${ring}`);
+                }
                 const style = {
                   "--week": w,
-                  ...(ring ? { boxShadow: `0 0 0 1.5px rgb(var(--surface)), 0 0 0 3px ${ring}` } : {}),
+                  ...(shadows.length > 0 ? { boxShadow: shadows.join(", ") } : {}),
                 } as CSSProperties;
                 return (
                   <span
@@ -152,15 +159,15 @@ export function HeatmapGrid({ weeks, colors, sourceOrder, activeDate, armed, gri
                     className={`heat-cell relative aspect-square w-full rounded-[3px] ${
                       cell.inRange
                         ? cell.level === 0
-                          ? "border border-black/[0.12] bg-transparent"
-                          : "border border-transparent bg-black/[0.04]"
+                          ? "bg-transparent"
+                          : "bg-black/[0.04]"
                         : "invisible"
                     } ${activeDate === cell.date ? "outline outline-1 outline-offset-1 outline-fg/40" : ""}`}
                   >
                     {bg && cell.level > 0 && (
                       <span
                         aria-hidden
-                        className="absolute inset-0 rounded-[2px]"
+                        className="absolute inset-0 rounded-[3px]"
                         style={{ background: bg, opacity: OPACITY[cell.level] }}
                       />
                     )}
