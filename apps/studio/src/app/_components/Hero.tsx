@@ -7,7 +7,10 @@ import { HeroHeadline } from "./HeroHeadline";
 import { StatusTicker } from "./StatusTicker";
 import { SuiteStrip } from "./SuiteStrip";
 
-type Props = { updates: HeroUpdate[]; products: Product[] };
+type Props = {
+  updates: HeroUpdate[];
+  products: Product[];
+};
 
 export function Hero({ updates, products }: Props) {
   return (

@@ -270,6 +270,60 @@
   }
 }
 
+/* Status ticker silky slide animation */
+.ticker-mask-y {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+}
+
+.ticker-slide-in {
+  animation: ticker-slide-in 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+.ticker-slide-out {
+  animation: ticker-slide-out 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes ticker-slide-in {
+  from {
+    opacity: 0.01;
+    transform: translate3d(0, 100%, 0);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes ticker-slide-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0.01;
+    transform: translate3d(0, -100%, 0);
+    filter: blur(2px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-word {
     animation: none;
@@ -284,6 +338,12 @@
   .ct-frame,
   .ct-grab {
     animation: none;
+  }
+  [class*="ticker-"] {
+    animation: none !important;
+  }
+  .ticker-out-item {
+    display: none !important;
   }
 }
 
